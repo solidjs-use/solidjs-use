@@ -5,7 +5,7 @@ import consola from 'consola'
 import { version } from '../package.json'
 import { packages } from '../meta/packages'
 
-let command = 'npm publish --access public'
+let command = 'npm publish --access public --registry https://registry.npmjs.org/'
 
 if (version.includes('beta')) command += ' --tag beta'
 
