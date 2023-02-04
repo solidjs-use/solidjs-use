@@ -1,0 +1,46 @@
+{
+  "name": "@solidjs-use/math",
+  "version": "0.0.1",
+  "description": "Math functions for solidjs-use inspired completely by VueUse",
+  "author": "dream2023 <https://github.com/dream2023>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/math#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/math"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solidjs",
+    "solid",
+    "solidjs-use",
+    "math",
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "solidjs-use": "workspace:*"
+  },
+  "devDependencies": {
+    "solid-js": "^1.6.9"
+  }
+}
