@@ -41,7 +41,9 @@ const markdownComponents: any = {
     return (
       <Anchor
         as={Link}
-        target={props.href?.startsWith('http') ? '_blank' : undefined}
+        target={
+          props.href?.startsWith('http') || props.href.includes('/solidjs-use-playground/') ? '_blank' : undefined
+        }
         href={props.href}
         color="$primary11"
       >

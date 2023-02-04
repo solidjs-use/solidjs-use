@@ -56,7 +56,6 @@ export default function Header() {
       height="72px"
       flexShrink={0}
       shadow={headerShadow()}
-      // bg={headerBgColor()}
     >
       <Container h="$full">
         <HStack h="$full" px="$4" justifyContent="space-between">
@@ -82,6 +81,15 @@ export default function Header() {
             </Tag>
           </HStack>
           <HStack spacing="$2">
+            <Text
+              as={Link}
+              target="_blank"
+              href="https://solidjs-use.github.io/solidjs-use-playground/"
+              textDecoration="none"
+              letterSpacing="$wide"
+            >
+              Playground
+            </Text>
             <IconButton
               as="a"
               href="https://github.com/solidjs-use/solidjs-use"
