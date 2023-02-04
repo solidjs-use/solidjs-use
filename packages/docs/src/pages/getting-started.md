@@ -8,6 +8,10 @@ npm i solidjs-use
 
 [Add ons](/add-ons.html)
 
+## Playground
+
+[Playground](https://solidjs-use.github.io/solidjs-use-playground/)
+
 ## Demos
 
 - [Vite + SolidJS + solidjs-use](https://github.com/solidjs-use/solidjs-use-vite-starter)
