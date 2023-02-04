@@ -1,0 +1,176 @@
+<svg width="1000" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 100"><mask id="crop"><path d="M0,0 h500 v72 q0,28 -28,28 h-472 z" fill="white"/></mask><defs><filter y="-5" height="52" id="blur" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="12" flood-color="#148CC0" flood-opacity="0.5"/></filter></defs><g mask="url(#crop)" ><svg x="0" y="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 100">
+  <defs>
+    <path id="reuse-0" fill="url(#c)" d="M0 30.76 57.6 0l57.6 30.76v70.984l-57.6 31.943L0 101.744Z" />
+    <path id="reuse-1" fill="url(#d)" d="M0 30.76 57.6 0l57.6 30.76v70.984l-57.6 31.943L0 101.744Z" />
+    <path id="reuse-2" fill="url(#e)" d="M0 31.943 57.6 0v70.984L0 102.927Z" />
+    <path id="reuse-3" fill="url(#f)" d="m0 0 57.6 39.041L0 70.984Z" />
+    <path id="reuse-4" fill="url(#g)" d="M0 31.943-57.6 0v70.984L0 102.927Z" />
+    <path id="reuse-5" fill="url(#g)" d="m0 0-57.6 39.041L0 70.984Z" />
+    <path id="reuse-6" fill="url(#c)" d="M0 30.421 56.751 0 113.5 30.421v70.2l-56.749 31.592L0 100.622Z" />
+    <path id="reuse-7" fill="url(#d)" d="M0 30.421 56.751 0 113.5 30.421v70.2l-56.749 31.592L0 100.622Z" />
+    <path id="reuse-8" fill="url(#e)" d="M0 31.591 56.751 0v70.2L0 101.792Z" />
+    <path id="reuse-9" fill="url(#f)" d="m0 0 56.751 38.611L0 70.2Z" />
+    <path id="reuse-10" fill="url(#g)" d="M0 31.591-56.751 0v70.2L0 101.792Z" />
+    <path id="reuse-11" fill="url(#g)" d="m0 0-56.751 38.611L0 70.2Z" />
+  </defs>
+  <defs>
+    <linearGradient id="c" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff" />
+      <stop offset="1" stop-color="#f7fbff" />
+    </linearGradient>
+    <linearGradient id="d" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d0deea" />
+      <stop offset="1" stop-color="#dae1e8" />
+    </linearGradient>
+    <linearGradient id="e" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bdc2c8" />
+      <stop offset="1" stop-color="#dcedef" />
+    </linearGradient>
+    <linearGradient id="f" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#adbbca" stop-opacity=".702" />
+      <stop offset="1" stop-color="#e4e8e9" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="g" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7692ae" />
+      <stop offset="1" stop-color="#93b0ce" />
+    </linearGradient>
+    <radialGradient id="b" cx="-.061" cy="-.082" r="1.895" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#002c69" />
+      <stop offset=".748" stop-color="#20569a" />
+      <stop offset="1" stop-color="#28abd8" />
+    </radialGradient>
+    <clipPath id="a">
+      <path d="M0 0h500v100H0z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)">
+    <path fill="url(#b)" d="M0 0h502v150H0z" transform="translate(0 -3)" />
+    <g opacity=".3" style="mix-blend-mode: color-burn; isolation: isolate">
+      <g>
+        <g>
+          <use xlink:href="#reuse-0" transform="translate(115.645 -71.225)" />
+          <g opacity=".237">
+            <g>
+              <use xlink:href="#reuse-1" transform="translate(115.645 -71.225)" />
+              <use xlink:href="#reuse-2" transform="translate(173.246 -40.465)" />
+              <use xlink:href="#reuse-2" transform="translate(173.246 -40.465)" />
+              <use xlink:href="#reuse-3" transform="translate(173.246 -8.522)" />
+              <use xlink:href="#reuse-4" transform="translate(173.246 -40.465)" />
+              <use xlink:href="#reuse-5" transform="translate(173.246 -8.522)" />
+            </g>
+          </g>
+        </g>
+        <g>
+          <use xlink:href="#reuse-0" transform="translate(170.686 -40.374)" />
+          <g opacity=".237">
+            <g>
+              <use xlink:href="#reuse-1" transform="translate(170.686 -40.374)" />
+              <use xlink:href="#reuse-2" transform="translate(228.287 -9.614)" />
+              <use xlink:href="#reuse-2" transform="translate(228.287 -9.614)" />
+              <use xlink:href="#reuse-3" transform="translate(228.287 22.329)" />
+              <use xlink:href="#reuse-4" transform="translate(228.287 -9.614)" />
+              <use xlink:href="#reuse-5" transform="translate(228.287 22.329)" />
+            </g>
+          </g>
+        </g>
+        <g>
+          <use xlink:href="#reuse-0" transform="translate(228.287 -8.517)" />
+          <g opacity=".237">
+            <g>
+              <use xlink:href="#reuse-1" transform="translate(228.287 -8.517)" />
+              <use xlink:href="#reuse-2" transform="translate(285.888 22.243)" />
+              <use xlink:href="#reuse-2" transform="translate(285.888 22.243)" />
+              <use xlink:href="#reuse-3" transform="translate(285.888 54.186)" />
+              <use xlink:href="#reuse-4" transform="translate(285.888 22.243)" />
+              <use xlink:href="#reuse-5" transform="translate(285.888 54.186)" />
+            </g>
+          </g>
+        </g>
+        <g>
+          <use xlink:href="#reuse-0" transform="translate(170.686 93.313)" />
+          <g opacity=".237">
+            <g>
+              <use xlink:href="#reuse-1" transform="translate(170.686 93.313)" />
+              <use xlink:href="#reuse-2" transform="translate(228.287 124.073)" />
+              <use xlink:href="#reuse-2" transform="translate(228.287 124.073)" />
+              <use xlink:href="#reuse-3" transform="translate(228.287 156.016)" />
+              <use xlink:href="#reuse-4" transform="translate(228.287 124.073)" />
+              <use xlink:href="#reuse-5" transform="translate(228.287 156.016)" />
+            </g>
+          </g>
+        </g>
+        <g>
+          <use xlink:href="#reuse-0" transform="translate(0 -.822)" />
+          <g opacity=".237">
+            <g>
+              <use xlink:href="#reuse-1" transform="translate(0 -.822)" />
+              <use xlink:href="#reuse-2" transform="translate(57.601 29.938)" />
+              <use xlink:href="#reuse-2" transform="translate(57.601 29.938)" />
+              <use xlink:href="#reuse-3" transform="translate(57.601 61.881)" />
+              <use xlink:href="#reuse-4" transform="translate(57.601 29.938)" />
+              <use xlink:href="#reuse-5" transform="translate(57.601 61.881)" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g>
+        <use xlink:href="#reuse-6" transform="translate(341.499 -9.592)" />
+        <g opacity=".237">
+          <g>
+            <use xlink:href="#reuse-7" transform="translate(341.499 -9.592)" />
+            <use xlink:href="#reuse-8" transform="translate(398.25 20.829)" />
+            <use xlink:href="#reuse-8" transform="translate(398.25 20.829)" />
+            <use xlink:href="#reuse-9" transform="translate(398.25 52.419)" />
+            <use xlink:href="#reuse-10" transform="translate(398.25 20.829)" />
+            <use xlink:href="#reuse-11" transform="translate(398.25 52.419)" />
+          </g>
+        </g>
+      </g>
+      <g>
+        <use xlink:href="#reuse-6" transform="translate(284.748 -109)" />
+        <g opacity=".237">
+          <g>
+            <use xlink:href="#reuse-7" transform="translate(284.748 -109)" />
+            <use xlink:href="#reuse-8" transform="translate(341.499 -78.579)" />
+            <use xlink:href="#reuse-8" transform="translate(341.499 -78.579)" />
+            <use xlink:href="#reuse-9" transform="translate(341.499 -46.989)" />
+            <use xlink:href="#reuse-10" transform="translate(341.499 -78.579)" />
+            <use xlink:href="#reuse-11" transform="translate(341.499 -46.989)" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg><svg width="182.53" height="41.12" x="48.5" y="29.44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 38.575">
+  <defs>
+    <linearGradient id="logo-a" x1="-.061" x2=".914" y1="2.499" y2="1.52" gradientUnits="objectBoundingBox">
+      <stop offset=".1" stop-color="#76b3e1" />
+      <stop offset=".3" stop-color="#dcf2fd" />
+      <stop offset="1" stop-color="#76b3e1" />
+    </linearGradient>
+    <linearGradient id="logo-b" x1=".571" x2=".381" y1="1.757" y2=".412" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#76b3e1" />
+      <stop offset=".5" stop-color="#4377bb" />
+      <stop offset="1" stop-color="#1f3b77" />
+    </linearGradient>
+    <linearGradient id="logo-c" x1=".107" x2="1.045" y1=".443" y2="-.683" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#315aa9" />
+      <stop offset=".5" stop-color="#518ac8" />
+      <stop offset="1" stop-color="#315aa9" />
+    </linearGradient>
+    <linearGradient id="logo-d" x1=".621" x2=".178" y1="-.213" y2="-3.668" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4377bb" />
+      <stop offset=".5" stop-color="#1a336b" />
+      <stop offset="1" stop-color="#1a336b" />
+    </linearGradient>
+  </defs>
+  <g>
+    <path fill="#76b3e1" d="M41.354 8.299S27.646-2.052 17.009.366l-.934.258a6.785 6.785 0 0 0-3.615 2.538 6.142 6.142 0 0 0-.39.648l-3.928 6.676 6.785 1.324a12.087 12.087 0 0 0 9.675 1.9l12.087 2.362Z" />
+    <path fill="url(#logo-a)" d="M48.572 8.543S34.864-1.808 24.227.61l-.934.258a6.785 6.785 0 0 0-3.615 2.538 6.142 6.142 0 0 0-.39.648L15.36 10.73l6.785 1.324a12.087 12.087 0 0 0 9.675 1.9l12.087 2.362Z" opacity=".3" style="isolation:isolate" transform="translate(-7.218 -.244)" />
+    <path fill="#518ac8" d="m12.339 8.167-.939.264c-4.34 1.4-5.824 5.461-3.329 9.021a11.6 11.6 0 0 0 12.383 3.906l16.219-5.28S22.992 5.75 12.339 8.167Z" />
+    <path fill="url(#logo-b)" d="m18.506 14.809-.939.264c-4.34 1.4-5.824 5.461-3.329 9.021A11.6 11.6 0 0 0 26.621 28l16.219-5.28s-13.681-10.328-24.334-7.911Z" opacity=".3" style="isolation:isolate" transform="translate(-6.167 -6.642)" />
+    <path fill="url(#logo-c)" d="M34.246 32.8a11.6 11.6 0 0 0-12.406-3.928l-16.2 5.252L.54 43.2l29.025 4.945 5.2-9.258a5.5 5.5 0 0 0-.522-6.087Z" transform="translate(-.54 -12.928)" />
+    <path fill="url(#logo-d)" d="M29.148 49.331A11.615 11.615 0 0 0 16.77 45.4L.54 50.655s13.735 10.351 24.344 7.933l.934-.258c4.346-1.379 5.829-5.439 3.329-9Z" transform="translate(-.54 -20.379)" />
+    <path fill="#fff" d="M59.979 24.589a6.593 6.593 0 0 0 4.45 1.868c1.868 0 3.406-1.1 3.406-2.967 0-4.285-8.516-3.242-8.516-8.516 0-2.472 2.2-4.56 5.329-4.56a6.593 6.593 0 0 1 4.56 1.648l-.83 1.428a5.7 5.7 0 0 0-3.736-1.483c-2.2 0-3.571 1.428-3.626 2.912 0 4.066 8.516 2.912 8.516 8.516 0 2.527-1.978 4.615-5.164 4.615a7.34 7.34 0 0 1-5.384-2.2Zm26.976-14.065a8.642 8.642 0 0 1 8.681 8.736 8.791 8.791 0 0 1-8.681 8.9H86.9a8.791 8.791 0 0 1-8.681-8.9v-.055a8.642 8.642 0 0 1 8.736-8.681Zm-.055 16.1a7.142 7.142 0 0 0 6.978-7.3v-.06a6.953 6.953 0 1 0-13.9-.055 7.153 7.153 0 0 0 6.922 7.413Zm18.625-15.77h1.648l-.055 15.548h7.912v1.483h-9.615Zm18.625.055h1.648l-.055 17.087h-1.648Zm12.746 0h5.494c5.109 0 8.571 3.132 8.571 8.571s-3.461 8.516-8.571 8.516h-5.494Zm5.274 15.6c4.176 0 6.978-2.472 7.032-7.032s-2.8-7.032-6.977-7.032h-3.68l-.055 14.072Zm23.169 1.483a5.643 5.643 0 0 0 3.879-1.385 4.945 4.945 0 0 0 1.571-3.9v-11.59h-3.434v11.341a2.308 2.308 0 0 1-.549 1.648 1.983 1.983 0 0 1-1.522.588 2.5 2.5 0 0 1-2.357-1.9l-2.906 1.623a5.267 5.267 0 0 0 5.318 3.577Zm20.581.038a6.513 6.513 0 0 0 4.472-1.423 4.73 4.73 0 0 0 1.6-3.73 3.9 3.9 0 0 0-1.374-3.115 12.019 12.019 0 0 0-4.434-2.055 6.461 6.461 0 0 1-2.066-.863 1.412 1.412 0 0 1-.6-1.181 1.483 1.483 0 0 1 .6-1.236 2.527 2.527 0 0 1 1.6-.467 3.115 3.115 0 0 1 3.137 2.044l2.84-1.555a5.521 5.521 0 0 0-2.236-2.659 6.686 6.686 0 0 0-3.588-.939 6.1 6.1 0 0 0-4.093 1.428 4.456 4.456 0 0 0-1.7 3.6 4.121 4.121 0 0 0 1.275 3.082 9.741 9.741 0 0 0 4.049 2.027 9.071 9.071 0 0 1 2.483 1 1.28 1.28 0 0 1 .654 1.148 1.505 1.505 0 0 1-.709 1.269 3.1 3.1 0 0 1-1.813.5 3.846 3.846 0 0 1-3.626-2.324l-2.959 1.536a5.961 5.961 0 0 0 2.467 2.873 7.549 7.549 0 0 0 4.022 1.044Z" />
+  </g>
+</svg><path d="M374.9,72 h125.1 v28 h-125.1 q0,-28 28,-28 z" fill="#0E478C" filter="url(#blur)" /><path d="M402.28 85.27L402.28 85.27Q403.68 85.67 404.35 86.22Q405.02 86.76 405.02 87.70L405.02 87.70Q405.02 88.78 404.26 89.45L404.26 89.45Q403.50 90.12 402.15 90.12L402.15 90.12Q401.05 90.12 400.25 89.63Q399.44 89.13 399.09 88.28L399.09 88.28L400.49 87.56Q400.72 88.07 401.16 88.36Q401.61 88.65 402.20 88.65L402.20 88.65Q402.72 88.65 403.05 88.42Q403.39 88.18 403.39 87.82L403.39 87.82Q403.39 87.47 403.08 87.28L403.08 87.28Q402.77 87.06 401.91 86.81L401.91 86.81Q400.55 86.40 400 85.86L400 85.86Q399.40 85.27 399.40 84.41L399.40 84.41Q399.40 83.38 400.20 82.72L400.20 82.72Q400.99 82.05 402.13 82.05L402.13 82.05Q403.11 82.05 403.82 82.49Q404.54 82.93 404.88 83.74L404.88 83.74L403.54 84.47Q403.14 83.51 402.06 83.51L402.06 83.51Q401.58 83.51 401.30 83.73Q401.02 83.96 401.02 84.31L401.02 84.31Q401.02 84.66 401.31 84.87Q401.61 85.08 402.28 85.27ZM406.35 86.09L406.35 86.09Q406.35 84.41 407.55 83.23L407.55 83.23Q408.74 82.05 410.44 82.05L410.44 82.05Q412.12 82.05 413.30 83.21L413.30 83.21Q414.48 84.36 414.48 86.05L414.48 86.05Q414.48 87.75 413.28 88.94L413.28 88.94Q412.10 90.12 410.40 90.12L410.40 90.12Q408.72 90.12 407.53 88.95L407.53 88.95Q406.35 87.78 406.35 86.09ZM408.71 84.34L408.71 84.34Q408.01 85.05 408.01 86.08L408.01 86.08Q408.01 87.10 408.71 87.83L408.71 87.83Q409.42 88.55 410.42 88.55L410.42 88.55Q411.43 88.55 412.13 87.83L412.13 87.83Q412.83 87.10 412.83 86.08L412.83 86.08Q412.83 85.05 412.13 84.34L412.13 84.34Q411.43 83.62 410.42 83.62L410.42 83.62Q409.42 83.62 408.71 84.34ZM416.32 90L416.32 82.17L417.93 82.17L417.93 88.46L421.28 88.46L421.28 90L416.32 90ZM422.86 82.17L424.48 82.17L424.48 90L422.86 90L422.86 82.17ZM433.63 86.07L433.63 86.07Q433.63 87.84 432.43 88.92L432.43 88.92Q431.23 90 429.18 90L429.18 90L426.81 90L426.81 82.17L429.21 82.17Q431.27 82.17 432.45 83.20L432.45 83.20Q433.63 84.23 433.63 86.07ZM431.97 86.07L431.97 86.07Q431.97 84.94 431.21 84.33L431.21 84.33Q430.45 83.70 429.25 83.70L429.25 83.70L428.43 83.70L428.43 88.47L429.23 88.47Q430.47 88.47 431.22 87.84L431.22 87.84Q431.97 87.19 431.97 86.07ZM438.33 87.50L438.33 82.17L439.95 82.17L439.95 87.62Q439.95 88.79 439.21 89.45L439.21 89.45Q438.47 90.10 437.38 90.10L437.38 90.10Q435.55 90.10 434.87 88.42L434.87 88.42L436.24 87.66Q436.59 88.55 437.35 88.55L437.35 88.55Q437.81 88.55 438.07 88.28Q438.33 88 438.33 87.50L438.33 87.50ZM444.68 85.27L444.68 85.27Q446.08 85.67 446.75 86.22Q447.42 86.76 447.42 87.70L447.42 87.70Q447.42 88.78 446.66 89.45L446.66 89.45Q445.90 90.12 444.55 90.12L444.55 90.12Q443.45 90.12 442.65 89.63Q441.84 89.13 441.49 88.28L441.49 88.28L442.89 87.56Q443.12 88.07 443.56 88.36Q444.01 88.65 444.60 88.65L444.60 88.65Q445.12 88.65 445.45 88.42Q445.79 88.18 445.79 87.82L445.79 87.82Q445.79 87.47 445.48 87.28L445.48 87.28Q445.17 87.06 444.31 86.81L444.31 86.81Q442.95 86.40 442.40 85.86L442.40 85.86Q441.80 85.27 441.80 84.41L441.80 84.41Q441.80 83.38 442.60 82.72L442.60 82.72Q443.39 82.05 444.53 82.05L444.53 82.05Q445.51 82.05 446.23 82.49Q446.94 82.93 447.28 83.74L447.28 83.74L445.94 84.47Q445.54 83.51 444.46 83.51L444.46 83.51Q443.98 83.51 443.70 83.73Q443.42 83.96 443.42 84.31L443.42 84.31Q443.42 84.66 443.72 84.87Q444.01 85.08 444.68 85.27ZM448.96 85.98L452.26 85.98L452.26 87.52L448.96 87.52L448.96 85.98ZM458.92 86.90L458.92 82.17L460.52 82.17L460.52 86.84Q460.52 88.38 459.72 89.25Q458.92 90.11 457.36 90.11L457.36 90.11Q455.79 90.11 455.01 89.25Q454.23 88.38 454.23 86.90L454.23 86.90L454.23 82.17L455.86 82.17L455.85 86.86Q455.85 87.69 456.27 88.12Q456.70 88.55 457.37 88.55L457.37 88.55Q458.11 88.55 458.51 88.11Q458.92 87.66 458.92 86.90L458.92 86.90ZM465.23 85.27L465.23 85.27Q466.63 85.67 467.30 86.22Q467.97 86.76 467.97 87.70L467.97 87.70Q467.97 88.78 467.21 89.45L467.21 89.45Q466.45 90.12 465.10 90.12L465.10 90.12Q464.00 90.12 463.19 89.63Q462.39 89.13 462.04 88.28L462.04 88.28L463.44 87.56Q463.67 88.07 464.11 88.36Q464.56 88.65 465.15 88.65L465.15 88.65Q465.67 88.65 466.00 88.42Q466.34 88.18 466.34 87.82L466.34 87.82Q466.34 87.47 466.03 87.28L466.03 87.28Q465.72 87.06 464.86 86.81L464.86 86.81Q463.50 86.40 462.95 85.86L462.95 85.86Q462.35 85.27 462.35 84.41L462.35 84.41Q462.35 83.38 463.15 82.72L463.15 82.72Q463.94 82.05 465.08 82.05L465.08 82.05Q466.06 82.05 466.77 82.49Q467.49 82.93 467.83 83.74L467.83 83.74L466.49 84.47Q466.09 83.51 465.01 83.51L465.01 83.51Q464.53 83.51 464.25 83.73Q463.97 83.96 463.97 84.31L463.97 84.31Q463.97 84.66 464.26 84.87Q464.56 85.08 465.23 85.27ZM469.78 90L469.78 82.17L474.91 82.17L474.91 83.69L471.38 83.69L471.38 85.28L474.54 85.28L474.54 86.80L471.38 86.80L471.38 88.49L474.93 88.49L474.93 90L469.78 90Z" fill="#fff"/></g></svg>

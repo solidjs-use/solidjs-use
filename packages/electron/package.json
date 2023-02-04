@@ -1,0 +1,50 @@
+{
+  "name": "@solidjs-use/electron",
+  "version": "0.0.1",
+  "description": "Electron renderer process modules for solidjs-use inspired completely by VueUse",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/electron#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/electron"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solidjs-use",
+    "utils",
+    "electron",
+    "renderer"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "electron": ">=9.0.0"
+  },
+  "dependencies": {
+    "solidjs-use": "workspace:*"
+  },
+  "devDependencies": {
+    "electron": "^18.3.7",
+    "solid-js": "^1.6.9"
+  }
+}

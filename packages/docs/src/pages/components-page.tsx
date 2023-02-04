@@ -1,0 +1,466 @@
+import markdownComponents from '../components/markdownComponents'
+import { Route } from 'solid-app-router'
+import { lazy } from 'solid-js'
+
+const SharedReadMe = lazy(() => import('../../../shared/README.md'))
+const CoreReadMe = lazy(() => import('../../../core/README.md'))
+const MathReadMe = lazy(() => import('../../../math/README.md'))
+const IntegrationsReadMe = lazy(() => import('../../../integrations/README.md'))
+const FirebaseReadMe = lazy(() => import('../../../firebase/README.md'))
+const RxjsReadMe = lazy(() => import('../../../rxjs/README.md'))
+const ElectronReadMe = lazy(() => import('../../../electron/README.md'))
+const AccessorDebounced = lazy(() => import('../../../shared/src/accessorDebounced/index.md'))
+const AccessorDefault = lazy(() => import('../../../shared/src/accessorDefault/index.md'))
+const AccessorThrottled = lazy(() => import('../../../shared/src/accessorThrottled/index.md'))
+const CreateEventHook = lazy(() => import('../../../shared/src/createEventHook/index.md'))
+const CreateSharedComposable = lazy(() => import('../../../shared/src/createSharedComposable/index.md'))
+const Get = lazy(() => import('../../../shared/src/get/index.md'))
+const IsDefined = lazy(() => import('../../../shared/src/isDefined/index.md'))
+const MakeDestructurable = lazy(() => import('../../../shared/src/makeDestructurable/index.md'))
+const MutableMemo = lazy(() => import('../../../shared/src/mutableMemo/index.md'))
+const OmitMutable = lazy(() => import('../../../shared/src/omitMutable/index.md'))
+const PickMutable = lazy(() => import('../../../shared/src/pickMutable/index.md'))
+const Reactify = lazy(() => import('../../../shared/src/reactify/index.md'))
+const ReactifyObject = lazy(() => import('../../../shared/src/reactifyObject/index.md'))
+const ResolveAccessor = lazy(() => import('../../../shared/src/resolveAccessor/index.md'))
+const SignalAutoReset = lazy(() => import('../../../shared/src/signalAutoReset/index.md'))
+const SyncSignal = lazy(() => import('../../../shared/src/syncSignal/index.md'))
+const SyncSignals = lazy(() => import('../../../shared/src/syncSignals/index.md'))
+const ToAccessors = lazy(() => import('../../../shared/src/toAccessors/index.md'))
+const ToReactive = lazy(() => import('../../../shared/src/toReactive/index.md'))
+const TryOnCleanup = lazy(() => import('../../../shared/src/tryOnCleanup/index.md'))
+const TryOnMount = lazy(() => import('../../../shared/src/tryOnMount/index.md'))
+const UnAccessor = lazy(() => import('../../../shared/src/unAccessor/index.md'))
+const Until = lazy(() => import('../../../shared/src/until/index.md'))
+const UseArrayEvery = lazy(() => import('../../../shared/src/useArrayEvery/index.md'))
+const UseArrayFilter = lazy(() => import('../../../shared/src/useArrayFilter/index.md'))
+const UseArrayFind = lazy(() => import('../../../shared/src/useArrayFind/index.md'))
+const UseArrayFindIndex = lazy(() => import('../../../shared/src/useArrayFindIndex/index.md'))
+const UseArrayJoin = lazy(() => import('../../../shared/src/useArrayJoin/index.md'))
+const UseArrayMap = lazy(() => import('../../../shared/src/useArrayMap/index.md'))
+const UseArrayReduce = lazy(() => import('../../../shared/src/useArrayReduce/index.md'))
+const UseArraySome = lazy(() => import('../../../shared/src/useArraySome/index.md'))
+const UseArrayUnique = lazy(() => import('../../../shared/src/useArrayUnique/index.md'))
+const UseAsyncQueue = lazy(() => import('../../../shared/src/useAsyncQueue/index.md'))
+const UseCounter = lazy(() => import('../../../shared/src/useCounter/index.md'))
+const UseDateFormat = lazy(() => import('../../../shared/src/useDateFormat/index.md'))
+const UseDebounceFn = lazy(() => import('../../../shared/src/useDebounceFn/index.md'))
+const UseInterval = lazy(() => import('../../../shared/src/useInterval/index.md'))
+const UseIntervalFn = lazy(() => import('../../../shared/src/useIntervalFn/index.md'))
+const UseLastChanged = lazy(() => import('../../../shared/src/useLastChanged/index.md'))
+const UseSorted = lazy(() => import('../../../shared/src/useSorted/index.md'))
+const UseThrottleFn = lazy(() => import('../../../shared/src/useThrottleFn/index.md'))
+const UseTimeout = lazy(() => import('../../../shared/src/useTimeout/index.md'))
+const UseTimeoutFn = lazy(() => import('../../../shared/src/useTimeoutFn/index.md'))
+const UseTimeoutPoll = lazy(() => import('../../../shared/src/useTimeoutPoll/index.md'))
+const UseToggle = lazy(() => import('../../../shared/src/useToggle/index.md'))
+const UseToNumber = lazy(() => import('../../../shared/src/useToNumber/index.md'))
+const UseToString = lazy(() => import('../../../shared/src/useToString/index.md'))
+const Watch = lazy(() => import('../../../shared/src/watch/index.md'))
+const WatchArray = lazy(() => import('../../../shared/src/watchArray/index.md'))
+const WatchAtMost = lazy(() => import('../../../shared/src/watchAtMost/index.md'))
+const WatchDebounced = lazy(() => import('../../../shared/src/watchDebounced/index.md'))
+const WatchIgnorable = lazy(() => import('../../../shared/src/watchIgnorable/index.md'))
+const WatchOnce = lazy(() => import('../../../shared/src/watchOnce/index.md'))
+const WatchPausable = lazy(() => import('../../../shared/src/watchPausable/index.md'))
+const WatchThrottled = lazy(() => import('../../../shared/src/watchThrottled/index.md'))
+const WatchTriggerable = lazy(() => import('../../../shared/src/watchTriggerable/index.md'))
+const WatchWithFilter = lazy(() => import('../../../shared/src/watchWithFilter/index.md'))
+const Whenever = lazy(() => import('../../../shared/src/whenever/index.md'))
+const CreateAsyncMemo = lazy(() => import('../../../core/src/createAsyncMemo/index.md'))
+const CreateUnAccessorFn = lazy(() => import('../../../core/src/createUnAccessorFn/index.md'))
+const OnClickOutside = lazy(() => import('../../../core/src/onClickOutside/index.md'))
+const OnKeyStroke = lazy(() => import('../../../core/src/onKeyStroke/index.md'))
+const OnLongPress = lazy(() => import('../../../core/src/onLongPress/index.md'))
+const OnStartTyping = lazy(() => import('../../../core/src/onStartTyping/index.md'))
+const UseActiveElement = lazy(() => import('../../../core/src/useActiveElement/index.md'))
+const UseAsyncState = lazy(() => import('../../../core/src/useAsyncState/index.md'))
+const UseBase64 = lazy(() => import('../../../core/src/useBase64/index.md'))
+const UseBattery = lazy(() => import('../../../core/src/useBattery/index.md'))
+const UseBluetooth = lazy(() => import('../../../core/src/useBluetooth/index.md'))
+const UseBreakpoints = lazy(() => import('../../../core/src/useBreakpoints/index.md'))
+const UseBroadcastChannel = lazy(() => import('../../../core/src/useBroadcastChannel/index.md'))
+const UseBrowserLocation = lazy(() => import('../../../core/src/useBrowserLocation/index.md'))
+const UseClipboard = lazy(() => import('../../../core/src/useClipboard/index.md'))
+const UseCloned = lazy(() => import('../../../core/src/useCloned/index.md'))
+const UseColorMode = lazy(() => import('../../../core/src/useColorMode/index.md'))
+const UseConfirmDialog = lazy(() => import('../../../core/src/useConfirmDialog/index.md'))
+const UseCssTransition = lazy(() => import('../../../core/src/useCssTransition/index.md'))
+const UseCssVar = lazy(() => import('../../../core/src/useCssVar/index.md'))
+const UseCycleList = lazy(() => import('../../../core/src/useCycleList/index.md'))
+const UseDark = lazy(() => import('../../../core/src/useDark/index.md'))
+const UseDebouncedHistoryTravel = lazy(() => import('../../../core/src/useDebouncedHistoryTravel/index.md'))
+const UseDeviceMotion = lazy(() => import('../../../core/src/useDeviceMotion/index.md'))
+const UseDeviceOrientation = lazy(() => import('../../../core/src/useDeviceOrientation/index.md'))
+const UseDevicePixelRatio = lazy(() => import('../../../core/src/useDevicePixelRatio/index.md'))
+const UseDevicesList = lazy(() => import('../../../core/src/useDevicesList/index.md'))
+const UseDisplayMedia = lazy(() => import('../../../core/src/useDisplayMedia/index.md'))
+const UseDocumentVisibility = lazy(() => import('../../../core/src/useDocumentVisibility/index.md'))
+const UseDraggable = lazy(() => import('../../../core/src/useDraggable/index.md'))
+const UseDropZone = lazy(() => import('../../../core/src/useDropZone/index.md'))
+const UseElementBounding = lazy(() => import('../../../core/src/useElementBounding/index.md'))
+const UseElementByPoint = lazy(() => import('../../../core/src/useElementByPoint/index.md'))
+const UseElementHover = lazy(() => import('../../../core/src/useElementHover/index.md'))
+const UseElementSize = lazy(() => import('../../../core/src/useElementSize/index.md'))
+const UseElementVisibility = lazy(() => import('../../../core/src/useElementVisibility/index.md'))
+const UseEventBus = lazy(() => import('../../../core/src/useEventBus/index.md'))
+const UseEventListener = lazy(() => import('../../../core/src/useEventListener/index.md'))
+const UseEventSource = lazy(() => import('../../../core/src/useEventSource/index.md'))
+const UseEyeDropper = lazy(() => import('../../../core/src/useEyeDropper/index.md'))
+const UseFavicon = lazy(() => import('../../../core/src/useFavicon/index.md'))
+const UseFetch = lazy(() => import('../../../core/src/useFetch/index.md'))
+const UseFileDialog = lazy(() => import('../../../core/src/useFileDialog/index.md'))
+const UseFileSystemAccess = lazy(() => import('../../../core/src/useFileSystemAccess/index.md'))
+const UseFocus = lazy(() => import('../../../core/src/useFocus/index.md'))
+const UseFocusWithin = lazy(() => import('../../../core/src/useFocusWithin/index.md'))
+const UseFps = lazy(() => import('../../../core/src/useFps/index.md'))
+const UseFullscreen = lazy(() => import('../../../core/src/useFullscreen/index.md'))
+const UseGamepad = lazy(() => import('../../../core/src/useGamepad/index.md'))
+const UseGeolocation = lazy(() => import('../../../core/src/useGeolocation/index.md'))
+const UseHistoryTravel = lazy(() => import('../../../core/src/useHistoryTravel/index.md'))
+const UseIdle = lazy(() => import('../../../core/src/useIdle/index.md'))
+const UseImage = lazy(() => import('../../../core/src/useImage/index.md'))
+const UseInfiniteScroll = lazy(() => import('../../../core/src/useInfiniteScroll/index.md'))
+const UseIntersectionObserver = lazy(() => import('../../../core/src/useIntersectionObserver/index.md'))
+const UseKeyModifier = lazy(() => import('../../../core/src/useKeyModifier/index.md'))
+const UseLocalStorage = lazy(() => import('../../../core/src/useLocalStorage/index.md'))
+const UseMagicKeys = lazy(() => import('../../../core/src/useMagicKeys/index.md'))
+const UseManualHistoryTravel = lazy(() => import('../../../core/src/useManualHistoryTravel/index.md'))
+const UseMediaControls = lazy(() => import('../../../core/src/useMediaControls/index.md'))
+const UseMediaQuery = lazy(() => import('../../../core/src/useMediaQuery/index.md'))
+const UseMemoize = lazy(() => import('../../../core/src/useMemoize/index.md'))
+const UseMemory = lazy(() => import('../../../core/src/useMemory/index.md'))
+const UseMounted = lazy(() => import('../../../core/src/useMounted/index.md'))
+const UseMouse = lazy(() => import('../../../core/src/useMouse/index.md'))
+const UseMouseInElement = lazy(() => import('../../../core/src/useMouseInElement/index.md'))
+const UseMousePressed = lazy(() => import('../../../core/src/useMousePressed/index.md'))
+const UseMutationObserver = lazy(() => import('../../../core/src/useMutationObserver/index.md'))
+const UseNavigatorLanguage = lazy(() => import('../../../core/src/useNavigatorLanguage/index.md'))
+const UseNetwork = lazy(() => import('../../../core/src/useNetwork/index.md'))
+const UseNow = lazy(() => import('../../../core/src/useNow/index.md'))
+const UseObjectUrl = lazy(() => import('../../../core/src/useObjectUrl/index.md'))
+const UseOffsetPagination = lazy(() => import('../../../core/src/useOffsetPagination/index.md'))
+const UseOnline = lazy(() => import('../../../core/src/useOnline/index.md'))
+const UsePageLeave = lazy(() => import('../../../core/src/usePageLeave/index.md'))
+const UseParallax = lazy(() => import('../../../core/src/useParallax/index.md'))
+const UsePermission = lazy(() => import('../../../core/src/usePermission/index.md'))
+const UsePointer = lazy(() => import('../../../core/src/usePointer/index.md'))
+const UsePointerSwipe = lazy(() => import('../../../core/src/usePointerSwipe/index.md'))
+const UsePreferredColorScheme = lazy(() => import('../../../core/src/usePreferredColorScheme/index.md'))
+const UsePreferredContrast = lazy(() => import('../../../core/src/usePreferredContrast/index.md'))
+const UsePreferredDark = lazy(() => import('../../../core/src/usePreferredDark/index.md'))
+const UsePreferredLanguages = lazy(() => import('../../../core/src/usePreferredLanguages/index.md'))
+const UsePreferredReducedMotion = lazy(() => import('../../../core/src/usePreferredReducedMotion/index.md'))
+const UseRafFn = lazy(() => import('../../../core/src/useRafFn/index.md'))
+const UseResizeObserver = lazy(() => import('../../../core/src/useResizeObserver/index.md'))
+const UseScreenOrientation = lazy(() => import('../../../core/src/useScreenOrientation/index.md'))
+const UseScreenSafeArea = lazy(() => import('../../../core/src/useScreenSafeArea/index.md'))
+const UseScriptTag = lazy(() => import('../../../core/src/useScriptTag/index.md'))
+const UseScroll = lazy(() => import('../../../core/src/useScroll/index.md'))
+const UseScrollLock = lazy(() => import('../../../core/src/useScrollLock/index.md'))
+const UseSessionStorage = lazy(() => import('../../../core/src/useSessionStorage/index.md'))
+const UseShare = lazy(() => import('../../../core/src/useShare/index.md'))
+const UseSpeechRecognition = lazy(() => import('../../../core/src/useSpeechRecognition/index.md'))
+const UseSpeechSynthesis = lazy(() => import('../../../core/src/useSpeechSynthesis/index.md'))
+const UseStepper = lazy(() => import('../../../core/src/useStepper/index.md'))
+const UseStorage = lazy(() => import('../../../core/src/useStorage/index.md'))
+const UseStorageAsync = lazy(() => import('../../../core/src/useStorageAsync/index.md'))
+const UseStyleTag = lazy(() => import('../../../core/src/useStyleTag/index.md'))
+const UseSupported = lazy(() => import('../../../core/src/useSupported/index.md'))
+const UseSwipe = lazy(() => import('../../../core/src/useSwipe/index.md'))
+const UseTextareaAutoSize = lazy(() => import('../../../core/src/useTextareaAutoSize/index.md'))
+const UseTextDirection = lazy(() => import('../../../core/src/useTextDirection/index.md'))
+const UseTextSelection = lazy(() => import('../../../core/src/useTextSelection/index.md'))
+const UseThrottledHistoryTravel = lazy(() => import('../../../core/src/useThrottledHistoryTravel/index.md'))
+const UseTimeAgo = lazy(() => import('../../../core/src/useTimeAgo/index.md'))
+const UseTimestamp = lazy(() => import('../../../core/src/useTimestamp/index.md'))
+const UseTitle = lazy(() => import('../../../core/src/useTitle/index.md'))
+const UseUrlSearchParams = lazy(() => import('../../../core/src/useUrlSearchParams/index.md'))
+const UseUserMedia = lazy(() => import('../../../core/src/useUserMedia/index.md'))
+const UseVibrate = lazy(() => import('../../../core/src/useVibrate/index.md'))
+const UseVirtualList = lazy(() => import('../../../core/src/useVirtualList/index.md'))
+const UseWakeLock = lazy(() => import('../../../core/src/useWakeLock/index.md'))
+const UseWebNotification = lazy(() => import('../../../core/src/useWebNotification/index.md'))
+const UseWebSocket = lazy(() => import('../../../core/src/useWebSocket/index.md'))
+const UseWebWorker = lazy(() => import('../../../core/src/useWebWorker/index.md'))
+const UseWebWorkerFn = lazy(() => import('../../../core/src/useWebWorkerFn/index.md'))
+const UseWindowFocus = lazy(() => import('../../../core/src/useWindowFocus/index.md'))
+const UseWindowScroll = lazy(() => import('../../../core/src/useWindowScroll/index.md'))
+const UseWindowSize = lazy(() => import('../../../core/src/useWindowSize/index.md'))
+const CreateGenericProjection = lazy(() => import('../../../math/src/createGenericProjection/index.md'))
+const CreateProjection = lazy(() => import('../../../math/src/createProjection/index.md'))
+const LogicAnd = lazy(() => import('../../../math/src/logicAnd/index.md'))
+const LogicNot = lazy(() => import('../../../math/src/logicNot/index.md'))
+const LogicOr = lazy(() => import('../../../math/src/logicOr/index.md'))
+const UseAbs = lazy(() => import('../../../math/src/useAbs/index.md'))
+const UseAverage = lazy(() => import('../../../math/src/useAverage/index.md'))
+const UseCeil = lazy(() => import('../../../math/src/useCeil/index.md'))
+const UseClamp = lazy(() => import('../../../math/src/useClamp/index.md'))
+const UseFloor = lazy(() => import('../../../math/src/useFloor/index.md'))
+const UseMath = lazy(() => import('../../../math/src/useMath/index.md'))
+const UseMax = lazy(() => import('../../../math/src/useMax/index.md'))
+const UseMin = lazy(() => import('../../../math/src/useMin/index.md'))
+const UsePrecision = lazy(() => import('../../../math/src/usePrecision/index.md'))
+const UseProjection = lazy(() => import('../../../math/src/useProjection/index.md'))
+const UseRound = lazy(() => import('../../../math/src/useRound/index.md'))
+const UseSum = lazy(() => import('../../../math/src/useSum/index.md'))
+const UseTrunc = lazy(() => import('../../../math/src/useTrunc/index.md'))
+const UseAsyncValidator = lazy(() => import('../../../integrations/src/useAsyncValidator/index.md'))
+const UseAxios = lazy(() => import('../../../integrations/src/useAxios/index.md'))
+const UseChangeCase = lazy(() => import('../../../integrations/src/useChangeCase/index.md'))
+const UseCookies = lazy(() => import('../../../integrations/src/useCookies/index.md'))
+const UseDrauu = lazy(() => import('../../../integrations/src/useDrauu/index.md'))
+const UseFocusTrap = lazy(() => import('../../../integrations/src/useFocusTrap/index.md'))
+const UseFuse = lazy(() => import('../../../integrations/src/useFuse/index.md'))
+const UseIdbKeyval = lazy(() => import('../../../integrations/src/useIDBKeyval/index.md'))
+const UseJwt = lazy(() => import('../../../integrations/src/useJwt/index.md'))
+const UseNProgress = lazy(() => import('../../../integrations/src/useNProgress/index.md'))
+const UseQrCode = lazy(() => import('../../../integrations/src/useQRCode/index.md'))
+const UseAuth = lazy(() => import('../../../firebase/src/useAuth/index.md'))
+const UseFirestore = lazy(() => import('../../../firebase/src/useFirestore/index.md'))
+const UseRtdb = lazy(() => import('../../../firebase/src/useRTDB/index.md'))
+const From = lazy(() => import('../../../rxjs/src/from/index.md'))
+const ToObserver = lazy(() => import('../../../rxjs/src/toObserver/index.md'))
+const UseObservable = lazy(() => import('../../../rxjs/src/useObservable/index.md'))
+const UseSubject = lazy(() => import('../../../rxjs/src/useSubject/index.md'))
+const UseSubscription = lazy(() => import('../../../rxjs/src/useSubscription/index.md'))
+const UseIpcRenderer = lazy(() => import('../../../electron/src/useIpcRenderer/index.md'))
+const UseIpcRendererInvoke = lazy(() => import('../../../electron/src/useIpcRendererInvoke/index.md'))
+const UseIpcRendererOn = lazy(() => import('../../../electron/src/useIpcRendererOn/index.md'))
+const UseZoomFactor = lazy(() => import('../../../electron/src/useZoomFactor/index.md'))
+const UseZoomLevel = lazy(() => import('../../../electron/src/useZoomLevel/index.md'))
+
+const ComponentsPage = () => {
+  return (
+    <>      <Route path="/shared/README" element={<SharedReadMe components={markdownComponents} />} />
+      <Route path="/core/README" element={<CoreReadMe components={markdownComponents} />} />
+      <Route path="/math/README" element={<MathReadMe components={markdownComponents} />} />
+      <Route path="/integrations/README" element={<IntegrationsReadMe components={markdownComponents} />} />
+      <Route path="/firebase/README" element={<FirebaseReadMe components={markdownComponents} />} />
+      <Route path="/rxjs/README" element={<RxjsReadMe components={markdownComponents} />} />
+      <Route path="/electron/README" element={<ElectronReadMe components={markdownComponents} />} />
+      <Route path="/shared/accessorDebounced" element={<AccessorDebounced components={markdownComponents} />} />
+      <Route path="/shared/accessorDefault" element={<AccessorDefault components={markdownComponents} />} />
+      <Route path="/shared/accessorThrottled" element={<AccessorThrottled components={markdownComponents} />} />
+      <Route path="/shared/createEventHook" element={<CreateEventHook components={markdownComponents} />} />
+      <Route path="/shared/createSharedComposable" element={<CreateSharedComposable components={markdownComponents} />} />
+      <Route path="/shared/get" element={<Get components={markdownComponents} />} />
+      <Route path="/shared/isDefined" element={<IsDefined components={markdownComponents} />} />
+      <Route path="/shared/makeDestructurable" element={<MakeDestructurable components={markdownComponents} />} />
+      <Route path="/shared/mutableMemo" element={<MutableMemo components={markdownComponents} />} />
+      <Route path="/shared/omitMutable" element={<OmitMutable components={markdownComponents} />} />
+      <Route path="/shared/pickMutable" element={<PickMutable components={markdownComponents} />} />
+      <Route path="/shared/reactify" element={<Reactify components={markdownComponents} />} />
+      <Route path="/shared/reactifyObject" element={<ReactifyObject components={markdownComponents} />} />
+      <Route path="/shared/resolveAccessor" element={<ResolveAccessor components={markdownComponents} />} />
+      <Route path="/shared/signalAutoReset" element={<SignalAutoReset components={markdownComponents} />} />
+      <Route path="/shared/syncSignal" element={<SyncSignal components={markdownComponents} />} />
+      <Route path="/shared/syncSignals" element={<SyncSignals components={markdownComponents} />} />
+      <Route path="/shared/toAccessors" element={<ToAccessors components={markdownComponents} />} />
+      <Route path="/shared/toReactive" element={<ToReactive components={markdownComponents} />} />
+      <Route path="/shared/tryOnCleanup" element={<TryOnCleanup components={markdownComponents} />} />
+      <Route path="/shared/tryOnMount" element={<TryOnMount components={markdownComponents} />} />
+      <Route path="/shared/unAccessor" element={<UnAccessor components={markdownComponents} />} />
+      <Route path="/shared/until" element={<Until components={markdownComponents} />} />
+      <Route path="/shared/useArrayEvery" element={<UseArrayEvery components={markdownComponents} />} />
+      <Route path="/shared/useArrayFilter" element={<UseArrayFilter components={markdownComponents} />} />
+      <Route path="/shared/useArrayFind" element={<UseArrayFind components={markdownComponents} />} />
+      <Route path="/shared/useArrayFindIndex" element={<UseArrayFindIndex components={markdownComponents} />} />
+      <Route path="/shared/useArrayJoin" element={<UseArrayJoin components={markdownComponents} />} />
+      <Route path="/shared/useArrayMap" element={<UseArrayMap components={markdownComponents} />} />
+      <Route path="/shared/useArrayReduce" element={<UseArrayReduce components={markdownComponents} />} />
+      <Route path="/shared/useArraySome" element={<UseArraySome components={markdownComponents} />} />
+      <Route path="/shared/useArrayUnique" element={<UseArrayUnique components={markdownComponents} />} />
+      <Route path="/shared/useAsyncQueue" element={<UseAsyncQueue components={markdownComponents} />} />
+      <Route path="/shared/useCounter" element={<UseCounter components={markdownComponents} />} />
+      <Route path="/shared/useDateFormat" element={<UseDateFormat components={markdownComponents} />} />
+      <Route path="/shared/useDebounceFn" element={<UseDebounceFn components={markdownComponents} />} />
+      <Route path="/shared/useInterval" element={<UseInterval components={markdownComponents} />} />
+      <Route path="/shared/useIntervalFn" element={<UseIntervalFn components={markdownComponents} />} />
+      <Route path="/shared/useLastChanged" element={<UseLastChanged components={markdownComponents} />} />
+      <Route path="/shared/useSorted" element={<UseSorted components={markdownComponents} />} />
+      <Route path="/shared/useThrottleFn" element={<UseThrottleFn components={markdownComponents} />} />
+      <Route path="/shared/useTimeout" element={<UseTimeout components={markdownComponents} />} />
+      <Route path="/shared/useTimeoutFn" element={<UseTimeoutFn components={markdownComponents} />} />
+      <Route path="/shared/useTimeoutPoll" element={<UseTimeoutPoll components={markdownComponents} />} />
+      <Route path="/shared/useToggle" element={<UseToggle components={markdownComponents} />} />
+      <Route path="/shared/useToNumber" element={<UseToNumber components={markdownComponents} />} />
+      <Route path="/shared/useToString" element={<UseToString components={markdownComponents} />} />
+      <Route path="/shared/watch" element={<Watch components={markdownComponents} />} />
+      <Route path="/shared/watchArray" element={<WatchArray components={markdownComponents} />} />
+      <Route path="/shared/watchAtMost" element={<WatchAtMost components={markdownComponents} />} />
+      <Route path="/shared/watchDebounced" element={<WatchDebounced components={markdownComponents} />} />
+      <Route path="/shared/watchIgnorable" element={<WatchIgnorable components={markdownComponents} />} />
+      <Route path="/shared/watchOnce" element={<WatchOnce components={markdownComponents} />} />
+      <Route path="/shared/watchPausable" element={<WatchPausable components={markdownComponents} />} />
+      <Route path="/shared/watchThrottled" element={<WatchThrottled components={markdownComponents} />} />
+      <Route path="/shared/watchTriggerable" element={<WatchTriggerable components={markdownComponents} />} />
+      <Route path="/shared/watchWithFilter" element={<WatchWithFilter components={markdownComponents} />} />
+      <Route path="/shared/whenever" element={<Whenever components={markdownComponents} />} />
+      <Route path="/core/createAsyncMemo" element={<CreateAsyncMemo components={markdownComponents} />} />
+      <Route path="/core/createUnAccessorFn" element={<CreateUnAccessorFn components={markdownComponents} />} />
+      <Route path="/core/onClickOutside" element={<OnClickOutside components={markdownComponents} />} />
+      <Route path="/core/onKeyStroke" element={<OnKeyStroke components={markdownComponents} />} />
+      <Route path="/core/onLongPress" element={<OnLongPress components={markdownComponents} />} />
+      <Route path="/core/onStartTyping" element={<OnStartTyping components={markdownComponents} />} />
+      <Route path="/core/useActiveElement" element={<UseActiveElement components={markdownComponents} />} />
+      <Route path="/core/useAsyncState" element={<UseAsyncState components={markdownComponents} />} />
+      <Route path="/core/useBase64" element={<UseBase64 components={markdownComponents} />} />
+      <Route path="/core/useBattery" element={<UseBattery components={markdownComponents} />} />
+      <Route path="/core/useBluetooth" element={<UseBluetooth components={markdownComponents} />} />
+      <Route path="/core/useBreakpoints" element={<UseBreakpoints components={markdownComponents} />} />
+      <Route path="/core/useBroadcastChannel" element={<UseBroadcastChannel components={markdownComponents} />} />
+      <Route path="/core/useBrowserLocation" element={<UseBrowserLocation components={markdownComponents} />} />
+      <Route path="/core/useClipboard" element={<UseClipboard components={markdownComponents} />} />
+      <Route path="/core/useCloned" element={<UseCloned components={markdownComponents} />} />
+      <Route path="/core/useColorMode" element={<UseColorMode components={markdownComponents} />} />
+      <Route path="/core/useConfirmDialog" element={<UseConfirmDialog components={markdownComponents} />} />
+      <Route path="/core/useCssTransition" element={<UseCssTransition components={markdownComponents} />} />
+      <Route path="/core/useCssVar" element={<UseCssVar components={markdownComponents} />} />
+      <Route path="/core/useCycleList" element={<UseCycleList components={markdownComponents} />} />
+      <Route path="/core/useDark" element={<UseDark components={markdownComponents} />} />
+      <Route path="/core/useDebouncedHistoryTravel" element={<UseDebouncedHistoryTravel components={markdownComponents} />} />
+      <Route path="/core/useDeviceMotion" element={<UseDeviceMotion components={markdownComponents} />} />
+      <Route path="/core/useDeviceOrientation" element={<UseDeviceOrientation components={markdownComponents} />} />
+      <Route path="/core/useDevicePixelRatio" element={<UseDevicePixelRatio components={markdownComponents} />} />
+      <Route path="/core/useDevicesList" element={<UseDevicesList components={markdownComponents} />} />
+      <Route path="/core/useDisplayMedia" element={<UseDisplayMedia components={markdownComponents} />} />
+      <Route path="/core/useDocumentVisibility" element={<UseDocumentVisibility components={markdownComponents} />} />
+      <Route path="/core/useDraggable" element={<UseDraggable components={markdownComponents} />} />
+      <Route path="/core/useDropZone" element={<UseDropZone components={markdownComponents} />} />
+      <Route path="/core/useElementBounding" element={<UseElementBounding components={markdownComponents} />} />
+      <Route path="/core/useElementByPoint" element={<UseElementByPoint components={markdownComponents} />} />
+      <Route path="/core/useElementHover" element={<UseElementHover components={markdownComponents} />} />
+      <Route path="/core/useElementSize" element={<UseElementSize components={markdownComponents} />} />
+      <Route path="/core/useElementVisibility" element={<UseElementVisibility components={markdownComponents} />} />
+      <Route path="/core/useEventBus" element={<UseEventBus components={markdownComponents} />} />
+      <Route path="/core/useEventListener" element={<UseEventListener components={markdownComponents} />} />
+      <Route path="/core/useEventSource" element={<UseEventSource components={markdownComponents} />} />
+      <Route path="/core/useEyeDropper" element={<UseEyeDropper components={markdownComponents} />} />
+      <Route path="/core/useFavicon" element={<UseFavicon components={markdownComponents} />} />
+      <Route path="/core/useFetch" element={<UseFetch components={markdownComponents} />} />
+      <Route path="/core/useFileDialog" element={<UseFileDialog components={markdownComponents} />} />
+      <Route path="/core/useFileSystemAccess" element={<UseFileSystemAccess components={markdownComponents} />} />
+      <Route path="/core/useFocus" element={<UseFocus components={markdownComponents} />} />
+      <Route path="/core/useFocusWithin" element={<UseFocusWithin components={markdownComponents} />} />
+      <Route path="/core/useFps" element={<UseFps components={markdownComponents} />} />
+      <Route path="/core/useFullscreen" element={<UseFullscreen components={markdownComponents} />} />
+      <Route path="/core/useGamepad" element={<UseGamepad components={markdownComponents} />} />
+      <Route path="/core/useGeolocation" element={<UseGeolocation components={markdownComponents} />} />
+      <Route path="/core/useHistoryTravel" element={<UseHistoryTravel components={markdownComponents} />} />
+      <Route path="/core/useIdle" element={<UseIdle components={markdownComponents} />} />
+      <Route path="/core/useImage" element={<UseImage components={markdownComponents} />} />
+      <Route path="/core/useInfiniteScroll" element={<UseInfiniteScroll components={markdownComponents} />} />
+      <Route path="/core/useIntersectionObserver" element={<UseIntersectionObserver components={markdownComponents} />} />
+      <Route path="/core/useKeyModifier" element={<UseKeyModifier components={markdownComponents} />} />
+      <Route path="/core/useLocalStorage" element={<UseLocalStorage components={markdownComponents} />} />
+      <Route path="/core/useMagicKeys" element={<UseMagicKeys components={markdownComponents} />} />
+      <Route path="/core/useManualHistoryTravel" element={<UseManualHistoryTravel components={markdownComponents} />} />
+      <Route path="/core/useMediaControls" element={<UseMediaControls components={markdownComponents} />} />
+      <Route path="/core/useMediaQuery" element={<UseMediaQuery components={markdownComponents} />} />
+      <Route path="/core/useMemoize" element={<UseMemoize components={markdownComponents} />} />
+      <Route path="/core/useMemory" element={<UseMemory components={markdownComponents} />} />
+      <Route path="/core/useMounted" element={<UseMounted components={markdownComponents} />} />
+      <Route path="/core/useMouse" element={<UseMouse components={markdownComponents} />} />
+      <Route path="/core/useMouseInElement" element={<UseMouseInElement components={markdownComponents} />} />
+      <Route path="/core/useMousePressed" element={<UseMousePressed components={markdownComponents} />} />
+      <Route path="/core/useMutationObserver" element={<UseMutationObserver components={markdownComponents} />} />
+      <Route path="/core/useNavigatorLanguage" element={<UseNavigatorLanguage components={markdownComponents} />} />
+      <Route path="/core/useNetwork" element={<UseNetwork components={markdownComponents} />} />
+      <Route path="/core/useNow" element={<UseNow components={markdownComponents} />} />
+      <Route path="/core/useObjectUrl" element={<UseObjectUrl components={markdownComponents} />} />
+      <Route path="/core/useOffsetPagination" element={<UseOffsetPagination components={markdownComponents} />} />
+      <Route path="/core/useOnline" element={<UseOnline components={markdownComponents} />} />
+      <Route path="/core/usePageLeave" element={<UsePageLeave components={markdownComponents} />} />
+      <Route path="/core/useParallax" element={<UseParallax components={markdownComponents} />} />
+      <Route path="/core/usePermission" element={<UsePermission components={markdownComponents} />} />
+      <Route path="/core/usePointer" element={<UsePointer components={markdownComponents} />} />
+      <Route path="/core/usePointerSwipe" element={<UsePointerSwipe components={markdownComponents} />} />
+      <Route path="/core/usePreferredColorScheme" element={<UsePreferredColorScheme components={markdownComponents} />} />
+      <Route path="/core/usePreferredContrast" element={<UsePreferredContrast components={markdownComponents} />} />
+      <Route path="/core/usePreferredDark" element={<UsePreferredDark components={markdownComponents} />} />
+      <Route path="/core/usePreferredLanguages" element={<UsePreferredLanguages components={markdownComponents} />} />
+      <Route path="/core/usePreferredReducedMotion" element={<UsePreferredReducedMotion components={markdownComponents} />} />
+      <Route path="/core/useRafFn" element={<UseRafFn components={markdownComponents} />} />
+      <Route path="/core/useResizeObserver" element={<UseResizeObserver components={markdownComponents} />} />
+      <Route path="/core/useScreenOrientation" element={<UseScreenOrientation components={markdownComponents} />} />
+      <Route path="/core/useScreenSafeArea" element={<UseScreenSafeArea components={markdownComponents} />} />
+      <Route path="/core/useScriptTag" element={<UseScriptTag components={markdownComponents} />} />
+      <Route path="/core/useScroll" element={<UseScroll components={markdownComponents} />} />
+      <Route path="/core/useScrollLock" element={<UseScrollLock components={markdownComponents} />} />
+      <Route path="/core/useSessionStorage" element={<UseSessionStorage components={markdownComponents} />} />
+      <Route path="/core/useShare" element={<UseShare components={markdownComponents} />} />
+      <Route path="/core/useSpeechRecognition" element={<UseSpeechRecognition components={markdownComponents} />} />
+      <Route path="/core/useSpeechSynthesis" element={<UseSpeechSynthesis components={markdownComponents} />} />
+      <Route path="/core/useStepper" element={<UseStepper components={markdownComponents} />} />
+      <Route path="/core/useStorage" element={<UseStorage components={markdownComponents} />} />
+      <Route path="/core/useStorageAsync" element={<UseStorageAsync components={markdownComponents} />} />
+      <Route path="/core/useStyleTag" element={<UseStyleTag components={markdownComponents} />} />
+      <Route path="/core/useSupported" element={<UseSupported components={markdownComponents} />} />
+      <Route path="/core/useSwipe" element={<UseSwipe components={markdownComponents} />} />
+      <Route path="/core/useTextareaAutoSize" element={<UseTextareaAutoSize components={markdownComponents} />} />
+      <Route path="/core/useTextDirection" element={<UseTextDirection components={markdownComponents} />} />
+      <Route path="/core/useTextSelection" element={<UseTextSelection components={markdownComponents} />} />
+      <Route path="/core/useThrottledHistoryTravel" element={<UseThrottledHistoryTravel components={markdownComponents} />} />
+      <Route path="/core/useTimeAgo" element={<UseTimeAgo components={markdownComponents} />} />
+      <Route path="/core/useTimestamp" element={<UseTimestamp components={markdownComponents} />} />
+      <Route path="/core/useTitle" element={<UseTitle components={markdownComponents} />} />
+      <Route path="/core/useUrlSearchParams" element={<UseUrlSearchParams components={markdownComponents} />} />
+      <Route path="/core/useUserMedia" element={<UseUserMedia components={markdownComponents} />} />
+      <Route path="/core/useVibrate" element={<UseVibrate components={markdownComponents} />} />
+      <Route path="/core/useVirtualList" element={<UseVirtualList components={markdownComponents} />} />
+      <Route path="/core/useWakeLock" element={<UseWakeLock components={markdownComponents} />} />
+      <Route path="/core/useWebNotification" element={<UseWebNotification components={markdownComponents} />} />
+      <Route path="/core/useWebSocket" element={<UseWebSocket components={markdownComponents} />} />
+      <Route path="/core/useWebWorker" element={<UseWebWorker components={markdownComponents} />} />
+      <Route path="/core/useWebWorkerFn" element={<UseWebWorkerFn components={markdownComponents} />} />
+      <Route path="/core/useWindowFocus" element={<UseWindowFocus components={markdownComponents} />} />
+      <Route path="/core/useWindowScroll" element={<UseWindowScroll components={markdownComponents} />} />
+      <Route path="/core/useWindowSize" element={<UseWindowSize components={markdownComponents} />} />
+      <Route path="/math/createGenericProjection" element={<CreateGenericProjection components={markdownComponents} />} />
+      <Route path="/math/createProjection" element={<CreateProjection components={markdownComponents} />} />
+      <Route path="/math/logicAnd" element={<LogicAnd components={markdownComponents} />} />
+      <Route path="/math/logicNot" element={<LogicNot components={markdownComponents} />} />
+      <Route path="/math/logicOr" element={<LogicOr components={markdownComponents} />} />
+      <Route path="/math/useAbs" element={<UseAbs components={markdownComponents} />} />
+      <Route path="/math/useAverage" element={<UseAverage components={markdownComponents} />} />
+      <Route path="/math/useCeil" element={<UseCeil components={markdownComponents} />} />
+      <Route path="/math/useClamp" element={<UseClamp components={markdownComponents} />} />
+      <Route path="/math/useFloor" element={<UseFloor components={markdownComponents} />} />
+      <Route path="/math/useMath" element={<UseMath components={markdownComponents} />} />
+      <Route path="/math/useMax" element={<UseMax components={markdownComponents} />} />
+      <Route path="/math/useMin" element={<UseMin components={markdownComponents} />} />
+      <Route path="/math/usePrecision" element={<UsePrecision components={markdownComponents} />} />
+      <Route path="/math/useProjection" element={<UseProjection components={markdownComponents} />} />
+      <Route path="/math/useRound" element={<UseRound components={markdownComponents} />} />
+      <Route path="/math/useSum" element={<UseSum components={markdownComponents} />} />
+      <Route path="/math/useTrunc" element={<UseTrunc components={markdownComponents} />} />
+      <Route path="/integrations/useAsyncValidator" element={<UseAsyncValidator components={markdownComponents} />} />
+      <Route path="/integrations/useAxios" element={<UseAxios components={markdownComponents} />} />
+      <Route path="/integrations/useChangeCase" element={<UseChangeCase components={markdownComponents} />} />
+      <Route path="/integrations/useCookies" element={<UseCookies components={markdownComponents} />} />
+      <Route path="/integrations/useDrauu" element={<UseDrauu components={markdownComponents} />} />
+      <Route path="/integrations/useFocusTrap" element={<UseFocusTrap components={markdownComponents} />} />
+      <Route path="/integrations/useFuse" element={<UseFuse components={markdownComponents} />} />
+      <Route path="/integrations/useIDBKeyval" element={<UseIdbKeyval components={markdownComponents} />} />
+      <Route path="/integrations/useJwt" element={<UseJwt components={markdownComponents} />} />
+      <Route path="/integrations/useNProgress" element={<UseNProgress components={markdownComponents} />} />
+      <Route path="/integrations/useQRCode" element={<UseQrCode components={markdownComponents} />} />
+      <Route path="/firebase/useAuth" element={<UseAuth components={markdownComponents} />} />
+      <Route path="/firebase/useFirestore" element={<UseFirestore components={markdownComponents} />} />
+      <Route path="/firebase/useRTDB" element={<UseRtdb components={markdownComponents} />} />
+      <Route path="/rxjs/from" element={<From components={markdownComponents} />} />
+      <Route path="/rxjs/toObserver" element={<ToObserver components={markdownComponents} />} />
+      <Route path="/rxjs/useObservable" element={<UseObservable components={markdownComponents} />} />
+      <Route path="/rxjs/useSubject" element={<UseSubject components={markdownComponents} />} />
+      <Route path="/rxjs/useSubscription" element={<UseSubscription components={markdownComponents} />} />
+      <Route path="/electron/useIpcRenderer" element={<UseIpcRenderer components={markdownComponents} />} />
+      <Route path="/electron/useIpcRendererInvoke" element={<UseIpcRendererInvoke components={markdownComponents} />} />
+      <Route path="/electron/useIpcRendererOn" element={<UseIpcRendererOn components={markdownComponents} />} />
+      <Route path="/electron/useZoomFactor" element={<UseZoomFactor components={markdownComponents} />} />
+      <Route path="/electron/useZoomLevel" element={<UseZoomLevel components={markdownComponents} />} />
+    </>
+  )
+}
+
+export default ComponentsPage

@@ -1,0 +1,62 @@
+{
+  "name": "@solidjs-use/firebase",
+  "version": "0.0.1",
+  "description": "firebase renderer process modules for solidjs-use inspired completely by VueUse",
+  "license": "MIT",
+  "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/firebase#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/firebase"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solidjs-use",
+    "utils",
+    "firebase",
+    "renderer"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*",
+    "./useAuth": {
+      "types": "./dist/useAuth.d.ts",
+      "require": "./dist/useAuth.cjs",
+      "import": "./dist/useAuth.mjs"
+    },
+    "./useFirestore": {
+      "types": "./dist/useFirestore.d.ts",
+      "require": "./dist/useFirestore.cjs",
+      "import": "./dist/useFirestore.mjs"
+    },
+    "./useRTDB": {
+      "types": "./dist/useRTDB.d.ts",
+      "require": "./dist/useRTDB.cjs",
+      "import": "./dist/useRTDB.mjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "firebase": ">=9.0.0"
+  },
+  "dependencies": {
+    "solidjs-use": "workspace:*"
+  },
+  "devDependencies": {
+    "firebase": "^9.0.0",
+    "solid-js": "^1.6.9"
+  }
+}

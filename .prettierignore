@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+screenshots
+packages/docs/src/pages/contributing.md
+meta/index.json
+cache
+pnpm-lock.yaml
+.editorconfig
+.eslintignore
+.gitignore
+.prettierignore
+.github
+packages/docs/src/pages/components-page.tsx
+*.png
+*.ico
+*.svg

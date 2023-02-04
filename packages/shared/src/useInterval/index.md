@@ -1,0 +1,20 @@
+---
+category: Animation
+---
+
+# useInterval
+
+Reactive counter increases on every interval
+
+## Usage
+
+```js {4}
+import { useInterval } from 'solidjs-use'
+
+// count will increase every 200ms
+const counter = useInterval(200)
+```
+
+```ts
+const { counter, pause, resume } = useInterval(200, { controls: true })
+```

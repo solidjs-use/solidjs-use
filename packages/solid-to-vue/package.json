@@ -1,0 +1,42 @@
+{
+  "name": "@solidjs-use/solid-to-vue",
+  "version": "0.0.1",
+  "description": "SolidJS API to VueJS API",
+  "sideEffects": false,
+  "author": "dream2023 <https://github.com/dream2023>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/solid-to-vue#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/solid-to-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solidjs-use",
+    "utils"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "solid-js": "^1.6.9"
+  }
+}

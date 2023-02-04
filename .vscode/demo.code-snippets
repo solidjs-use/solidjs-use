@@ -1,0 +1,26 @@
+{
+  "createSolidJSUseDemo": {
+    "scope": "typescriptreact",
+    "prefix": "solidjs-use-demo",
+    "body": ["const Demo = () => {", "  $1", "  return <>", "  </>", "}", "", "export default Demo;", ""],
+    "description": "create solidjs-use demo"
+  },
+  "runAsyncHookSnippet": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "runAsyncHookSnippet",
+    "body": [" () => {", "  return runAsyncHook($1)", "}"],
+    "description": "create solidjs-use demo"
+  },
+  "runHookSnippet": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "runHookSnippet",
+    "body": ["runHook(() => {", "$1", "})"],
+    "description": "create solidjs-use demo"
+  },
+  "runHookWithOwnerSnippet": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "runHookWithOwnerSnippet",
+    "body": ["runHook(() => {", "  $1", "}, owner)"],
+    "description": "create solidjs-use demo"
+  }
+}

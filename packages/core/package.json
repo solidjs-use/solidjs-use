@@ -1,0 +1,51 @@
+{
+  "name": "solidjs-use",
+  "version": "0.0.1",
+  "description": "Collection of Solid utilities inspired completely by VueUse",
+  "files": [
+    "dist"
+  ],
+  "author": "dream2023 <https://github.com/dream2023>",
+  "homepage": "https://github.com/solidjs-use/solidjs-use#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solidjs-use",
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./solid-to-vue": {
+      "types": "./dist/solid-to-vue.d.ts",
+      "require": "./dist/solid-to-vue.cjs",
+      "import": "./dist/solid-to-vue.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@types/web-bluetooth": "^0.0.16",
+    "@solidjs-use/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "solid-js": "^1.6.9"
+  }
+}

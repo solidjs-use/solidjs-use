@@ -1,0 +1,88 @@
+html {
+  scroll-padding-top: 112px;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.hope-ui-dark {
+  background-color: rgba(var(--hope-colors-neutral12), 0.98);
+}
+
+header {
+  background-color: white;
+}
+
+header .black-icon {
+  display: inline-block;
+}
+
+header .white-icon {
+  display: none;
+}
+
+.hope-ui-dark header {
+  background-color: var(--hope-colors-neutral1);
+}
+
+.bg {
+  background-color: var(--hope-colors-neutral1);
+}
+
+.hope-ui-dark header .black-icon {
+  display: none;
+}
+
+.hope-ui-dark header .white-icon {
+  display: inline-block;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* -------------------------------------------------------------------------------------------------
+ * Prism.js
+ * -----------------------------------------------------------------------------------------------*/
+
+.hope-ui-dark :not(pre) > code[class*='language-'],
+.hope-ui-dark pre[class*='language-'] {
+  background: var(--hope-colors-neutral3);
+}
+
+pre[class*='language-'] {
+  margin: 0;
+}
+
+.copy-to-clipboard-button {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  padding: 0 12px !important;
+  height: 24px;
+  border-radius: 4px !important;
+  background: var(--hope-colors-primary9) !important;
+  color: var(--hope-colors-neutral1) !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer !important;
+}
+
+.copy-to-clipboard-button:hover {
+  background: var(--hope-colors-primary10) !important;
+  color: var(--hope-colors-neutral1) !important;
+}
+
+#aside-container div {
+  position: sticky;
+  top: 72px;
+}

@@ -1,0 +1,6 @@
+tasks:
+  - init: npm i -g pnpm && pnpm install
+    command: pnpm run dev
+ports:
+  - port: 5173
+    onOpen: open-preview

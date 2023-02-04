@@ -1,0 +1,72 @@
+/**
+ * Lists
+ * -------------------------------------------------------------------------- */
+
+.vp-doc ul,
+.vp-doc ol {
+  padding-left: 1.25rem;
+  margin: 16px 0;
+}
+
+.vp-doc ul {
+  list-style: disc;
+}
+
+.vp-doc ol {
+  list-style: decimal;
+}
+
+.vp-doc li+li {
+  margin-top: 8px;
+}
+
+.vp-doc li>ol,
+.vp-doc li>ul {
+  margin: 8px 0 0;
+}
+
+.vp-doc p,
+.vp-doc summary {
+  margin: 16px 0;
+}
+
+.vp-doc p {
+  line-height: 28px;
+}
+
+.vp-doc blockquote {
+  margin: 16px 0;
+  border-left: 2px solid var(--vp-c-divider);
+  padding-left: 16px;
+  transition: border-color 0.5s;
+}
+
+.vp-doc blockquote>p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--vp-c-text-2);
+  transition: color 0.5s;
+}
+
+.vp-doc :not(pre)>code {
+  border-radius: 4px;
+  padding: 3px 6px;
+  color: var(--vp-c-text-code);
+}
+
+.vp-doc :not(a)>code {
+  color: var(--vp-c-text-code);
+}
+
+.vp-doc table {
+  margin: 20px 0;
+}
+
+.vp-doc tr {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc th,
+.vp-doc td {
+  border: 1px solid var(--vp-c-divider);
+}

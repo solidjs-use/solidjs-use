@@ -1,0 +1,49 @@
+{
+  "name": "@solidjs-use/shared",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "author": "dream2023 <https://github.com/dream2023>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/shared#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solidjs-use/solidjs-use.git",
+    "directory": "packages/shared"
+  },
+  "bugs": {
+    "url": "https://github.com/solidjs-use/solidjs-use/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solidjs-use",
+    "utils"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./solid-to-vue": {
+      "types": "./dist/solid-to-vue.d.ts",
+      "require": "./dist/solid-to-vue.cjs",
+      "import": "./dist/solid-to-vue.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "unpkg": "./dist/index.mjs",
+  "jsdelivr": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@solidjs-use/solid-to-vue": "workspace:*"
+  },
+  "devDependencies": {
+    "solid-js": "^1.6.9"
+  }
+}
