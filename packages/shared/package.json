@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/shared",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "sideEffects": false,
   "author": "dream2023 <https://github.com/dream2023>",
   "license": "MIT",

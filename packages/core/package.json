@@ -1,6 +1,6 @@
 {
   "name": "solidjs-use",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Collection of Solid utilities inspired completely by VueUse",
   "files": [
     "dist"

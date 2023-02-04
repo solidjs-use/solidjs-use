@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/firebase",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "firebase renderer process modules for solidjs-use inspired completely by VueUse",
   "license": "MIT",
   "homepage": "https://github.com/solidjs-use/solidjs-use/tree/main/packages/firebase#readme",

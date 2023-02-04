@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/monorepo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "vueuse-version": "9.10.1-beta.0",
   "private": true,
   "packageManager": "pnpm@7.11.0",
