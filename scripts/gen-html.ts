@@ -14,3 +14,12 @@ fg.sync(['*/**/index.md', '*/**/README.md'], {
   .forEach(item => {
     fs.createLink(indexHtmlPath, path.join(docsDist, `${item}.html`))
   })
+
+fg.sync(['*.md', '*.tsx'], {
+  cwd: path.join(__dirname, '../packages/docs/src/pages'),
+  onlyFiles: true
+})
+  .map(item => item.replace('.md', '').replace('.tsx', ''))
+  .forEach(item => {
+    fs.createLink(indexHtmlPath, path.join(docsDist, `${item}.html`))
+  })
