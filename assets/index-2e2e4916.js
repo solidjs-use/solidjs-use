@@ -1,0 +1,1 @@
+import{z as p,L as m,a0 as F,J as b}from"./index-4bd6c1a1.js";function g(c={}){const{controls:u=!1,offset:t=0,immediate:s=!0,interval:e="requestAnimationFrame",callback:a}=c,n=p(m()+t),[o,l]=n,r=()=>l(m()+t),i=a?()=>{r(),a(o())}:r,f=e==="requestAnimationFrame"?F(i,{immediate:s}):b(i,e,{immediate:s});return u?{timestamp:o,...f}:n}export{g as u};
