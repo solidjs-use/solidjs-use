@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "npm run build && npm run update && npm run docs",
     "docs": "cd packages/docs && npm run dev",
-    "docs:build": "npm run build && cd packages/docs && npm run build",
+    "docs:build": "npm run build && cd packages/docs && npm run build && cd ../../ && tsx scripts/gen-html.ts",
     "docs:serve": "cd packages/docs && npm run serve",
     "build": "tsx scripts/gen-metadata.ts && tsx scripts/build.ts && npm run build:types",
     "build:types": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c && tsx scripts/move-types.ts",
@@ -59,6 +59,7 @@
     "export-size": "^0.5.2",
     "fast-glob": "^3.2.12",
     "filesize": "^10.0.6",
+    "fs-extra": "^11.1.0",
     "fuse.js": "^6.6.2",
     "gray-matter": "^4.0.3",
     "lint-staged": "^13.1.0",
