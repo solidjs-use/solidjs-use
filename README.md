@@ -10,8 +10,8 @@ Collection of Solid utilities inspired completely by VueUse.
 
 [github-ci-image]: https://github.com/solidjs-use/solidjs-use/actions/workflows/ci.yml/badge.svg
 [github-ci-url]: https://github.com/solidjs-use/solidjs-use/actions/workflows/ci.yml
-[github-docs-image]: https://github.com/solidjs-use/solidjs-use/actions/workflows/pages.yml/badge.svg
-[github-docs-url]: https://github.com/solidjs-use/solidjs-use/actions/workflows/pages.yml
+[github-docs-image]: https://github.com/solidjs-use/solidjs-use/actions/workflows/docs.yml/badge.svg
+[github-docs-url]: https://github.com/solidjs-use/solidjs-use/actions/workflows/docs.yml
 [npm-image]: https://img.shields.io/npm/v/solidjs-use?style=flat-square
 [npm-url]: http://npmjs.org/package/solidjs-use
 [download-image]: https://img.shields.io/npm/dm/solidjs-use?style=flat-square
