@@ -1,8 +1,29 @@
-<p>
-  <img width="100%" src="./logo.svg" alt="Solid Docs" />
-<br />
-Collection of Solid utilities inspired completely by VueUse
-</p>
+<h1 align="center">SOLIDJS-USE</h1>
+
+<div align="center">
+
+Collection of Solid utilities inspired completely by VueUse.
+
+[![CI status][github-ci-image]][github-ci-url] [![Docs status][github-docs-image]][github-docs-url] [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] ![GitHub](https://img.shields.io/github/license/solidjs-use/solidjs-use?style=flat-square)
+
+</div>
+
+[github-ci-image]: https://github.com/solidjs-use/solidjs-use/actions/workflows/ci.yml/badge.svg
+[github-ci-url]: https://github.com/solidjs-use/solidjs-use/actions/workflows/ci.yml
+[github-docs-image]: https://github.com/solidjs-use/solidjs-use/actions/workflows/pages.yml/badge.svg
+[github-docs-url]: https://github.com/solidjs-use/solidjs-use/actions/workflows/pages.yml
+[npm-image]: https://img.shields.io/npm/v/solidjs-use?style=flat-square
+[npm-url]: http://npmjs.org/package/solidjs-use
+[download-image]: https://img.shields.io/npm/dm/solidjs-use?style=flat-square
+[download-url]: https://npmjs.org/package/solidjs-use
+
+<div align="center">
+
+**[Docs](https://solidjs-use.github.io/solidjs-use/) • [Playground](https://solidjs-use.github.io/solidjs-use-playground/) • [Demo](https://github.com/solidjs-use/solidjs-use-vite-starter)**
+
+</div>
+
+[![](./show.png)](https://solidjs-use.github.io/solidjs-use)
 
 ## 🚀 Features
 
@@ -38,11 +59,7 @@ npm i solidjs-use
 
 [Add ons](https://solidjs-use.github.io/solidjs-use/add-ons.html)
 
-## playground
-
-[playground](https://solidjs-use.github.io/solidjs-use-playground/)
-
-## Demos
+## Demo
 
 - [Vite + SolidJS + solidjs-use](https://github.com/solidjs-use/solidjs-use-vite-starter)
 
