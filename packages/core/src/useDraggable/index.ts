@@ -1,5 +1,6 @@
 import { isClient, unAccessor } from '@solidjs-use/shared'
-import { createMemo, createSignal } from 'solid-js'
+import { createMemo } from 'solid-js'
+import { createMutable } from 'solid-js/store'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -80,8 +81,8 @@ export function useDraggable(
 ) {
   const draggingElement = options.draggingElement ?? defaultWindow
   const draggingHandle = options.handle ?? target
-  const [position, setPosition] = createSignal<Position>(unAccessor(options.initialValue) ?? { x: 0, y: 0 })
-  const [pressedDelta, setPressedDelta] = createSignal<Position | undefined>()
+  const position = createMutable<{ value: Position }>({ value: unAccessor(options.initialValue) ?? { x: 0, y: 0 } })
+  const pressedDelta = createMutable<{ value: Position | undefined }>({ value: undefined })
 
   const filterEvent = (e: PointerEvent) => {
     if (options.pointerTypes) return options.pointerTypes.includes(e.pointerType as PointerType)
@@ -102,26 +103,24 @@ export function useDraggable(
       y: e.clientY - rect.top
     }
     if (options.onStart?.(pos, e) === false) return
-    setPosition(pos)
+    pressedDelta.value = pos
     handleEvent(e)
   }
   const move = (e: PointerEvent) => {
     if (!filterEvent(e)) return
-    const pressedDeltaVal = pressedDelta()
-    if (!pressedDeltaVal) return
-    setPosition({
-      x: e.clientX - pressedDeltaVal.x,
-      y: e.clientY - pressedDeltaVal.y
-    })
-    options.onMove?.(position(), e)
+    if (!pressedDelta.value) return
+    position.value = {
+      x: e.clientX - pressedDelta.value.x,
+      y: e.clientY - pressedDelta.value.y
+    }
+    options.onMove?.(position.value, e)
     handleEvent(e)
   }
   const end = (e: PointerEvent) => {
     if (!filterEvent(e)) return
-    const pressedDeltaVal = pressedDelta()
-    if (!pressedDeltaVal) return
-    setPressedDelta(undefined)
-    options.onEnd?.(position(), e)
+    if (!pressedDelta.value) return
+    pressedDelta.value = undefined
+    options.onEnd?.(position.value, e)
     handleEvent(e)
   }
 
@@ -132,11 +131,11 @@ export function useDraggable(
   }
 
   return {
-    x: () => position().x,
-    y: () => position().x,
+    x: () => position.value.x,
+    y: () => position.value.x,
     position,
-    isDragging: createMemo(() => !!pressedDelta()),
-    style: createMemo(() => ({ left: `${position().x}px`, top: `${position().y}px` }))
+    isDragging: createMemo(() => !!pressedDelta.value),
+    style: createMemo(() => ({ left: `${position.value.x}px`, top: `${position.value.y}px` }))
   }
 }
 
