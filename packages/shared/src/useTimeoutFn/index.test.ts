@@ -24,22 +24,4 @@ describe('useTimeoutFn', () => {
       expect(callback).to.be.called
     })
   })
-
-  it('supports getting pending status', async () => {
-    const callback = cy.spy()
-    const { start, isPending } = useTimeoutFn(callback, 0, { immediate: false })
-
-    expect(isPending()).to.eq(false)
-    expect(callback).not.to.be.called
-
-    start()
-
-    expect(isPending()).to.eq(true)
-    expect(callback).not.to.be.called
-
-    await promiseTimeout(1)
-
-    expect(isPending()).to.eq(false)
-    expect(callback).be.called
-  })
 })

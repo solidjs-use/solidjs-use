@@ -48,12 +48,11 @@ export function useIntervalFn(
   }
 
   function resume() {
-    const intervalValue = unAccessor(interval)
-    if (intervalValue <= 0) return
+    if (unAccessor(interval) <= 0) return
     setIsActive(true)
     if (immediateCallback) cb()
     clean()
-    timer = setInterval(cb, intervalValue)
+    timer = setInterval(cb, unAccessor(interval))
   }
 
   if (immediate && isClient) resume()

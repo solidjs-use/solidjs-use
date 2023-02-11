@@ -48,7 +48,7 @@ const Demo = () => {
 If you prefer working with promises:
 
 ```tsx
-import { useConfirmDialog } from 'solidjs-use'
+import { useConfirmDialog, onClickOutside } from 'solidjs-use'
 import { Portal } from 'solid-js/web'
 
 const Demo = () => {

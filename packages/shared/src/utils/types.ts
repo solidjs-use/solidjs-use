@@ -60,7 +60,7 @@ export interface Pausable {
   resume: Fn
 }
 
-export interface Stoppable<StartFnArgs extends any[] = any[]> {
+export interface Stoppable {
   /**
    * A Accessor indicate whether a stoppable instance is executing
    */
@@ -74,7 +74,7 @@ export interface Stoppable<StartFnArgs extends any[] = any[]> {
   /**
    * Start the effects
    */
-  start: (...args: StartFnArgs) => void
+  start: Fn
 }
 
 /**

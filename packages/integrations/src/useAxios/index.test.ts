@@ -2,11 +2,11 @@ import { runAsyncHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/solid-to-vue'
 import axios from 'axios'
 import { useAxios } from '.'
-import type { RawAxiosRequestConfig } from 'axios'
+import type { AxiosRequestConfig } from 'axios'
 
 describe('useAxios', () => {
   const url = `${window.origin}/todos/1.json`
-  const config: RawAxiosRequestConfig = {
+  const config: AxiosRequestConfig = {
     method: 'GET'
   }
   const instance = axios.create({
@@ -218,7 +218,7 @@ describe('useAxios', () => {
     return runAsyncHook(async () => {
       const { isLoading, then, execute } = useAxios('/comments.json', config, instance, options)
       expect(isLoading()).to.be.false
-      const paramConfig: RawAxiosRequestConfig = { params: { postId: 1 } }
+      const paramConfig: AxiosRequestConfig = { params: { postId: 1 } }
       execute(paramConfig)
       expect(isLoading()).to.be.true
       const onRejected = cy.spy()
@@ -254,7 +254,7 @@ describe('useAxios', () => {
         body: string
         userId: number
       }
-      const typeConfig: RawAxiosRequestConfig<ReqType> = {
+      const typeConfig: AxiosRequestConfig<ReqType> = {
         method: 'POST'
       }
       const { isLoading, then, execute } = useAxios<ResType, ReqType>('/posts.json', typeConfig, instance, options)

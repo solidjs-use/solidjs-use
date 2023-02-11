@@ -15,18 +15,11 @@ const [source, setSource] = createSignal('Hello')
 const { text, copy, copied, isSupported } = useClipboard({ source })
 ```
 
-```tsx
-<Show
-  when={isSupported()}
-  fallback={<p>Your browser does not support Clipboard API</p>}
->
-  <button onClick={() => copy(source())}>
-    {/* by default, `copied` will be reset in 1.5s */}
-    <Show when={!copied()} fallback={<span>Copied!</span>}>
-      <span>Copy</span>
-    <Show>
-  </button>
-</Show>
+```jsx
+<button onClick={click}>
+  {/* by default, `copied` will be reset in 1.5s */}
+  {!copied() ? <span>Copy</span> : <span>Copied!</span>}
+</button>
 ```
 
 Set `legacy: true` to keep the ability to copy if [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) is not available. It will handle copy with [execCommand](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand) as fallback.

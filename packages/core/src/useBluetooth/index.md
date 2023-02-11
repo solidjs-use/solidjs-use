@@ -73,7 +73,7 @@ const { stop } = pausableWatch(isConnected, newIsConnected => {
   if (!newIsConnected || !server() || isGettingBatteryLevels()) return
   // Attempt to get the battery levels of the device:
   getBatteryLevels()
-  // We only want to run this on the initial connection, as we will use an event listener to handle updates:
+  // We only want to run this on the initial connection, as we will use a event listener to handle updates:
   stop()
 })
 ```

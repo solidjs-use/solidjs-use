@@ -22,8 +22,6 @@ export const VueUseToSolidJSUse: Record<string, string> = {
   computedEager: '❌', // solidjs 不能掌握 effect 的回调时机
   computedWithControl: '❌', // 内部依赖了 Object.defineProperty 对 value 属性的定义，solidjs 没有
   extendRef: '❌', // 不适合，依赖了 .value 的能力
-  reactiveOmit: 'OmitMutable',
-  reactivePick: 'pickMutable',
   reactiveComputed: 'mutableMemo',
   refAutoReset: 'signalAutoReset',
   refDebounced: 'accessorDebounced',

@@ -2,9 +2,7 @@ import { watch } from '@solidjs-use/shared'
 import { toAccessor } from '@solidjs-use/shared/solid-to-vue'
 import { createSignal } from 'solid-js'
 import { useMouse } from '../useMouse'
-import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
-
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
 import type { UseMouseOptions } from '../useMouse'
 
@@ -50,10 +48,6 @@ export function useMouseInElement(target?: MaybeElementAccessor, options: MouseI
         setElementX(elX)
         setElementY(elY)
       }
-    })
-
-    useEventListener(document, 'mouseleave', () => {
-      setIsOutside(true)
     })
   }
 

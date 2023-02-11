@@ -143,7 +143,7 @@ function resolveNestedOptions<T>(options: T | true): T {
  * Reactive WebSocket client.
  */
 export function useWebSocket<Data = any>(
-  url: MaybeAccessor<string | URL | undefined>,
+  url: MaybeAccessor<string | URL>,
   options: UseWebSocketOptions = {}
 ): UseWebSocketReturn<Data> {
   const {
@@ -205,10 +205,9 @@ export function useWebSocket<Data = any>(
   }
 
   const _init = () => {
-    const urlValue = urlAccessor()
-    if (explicitlyClosed || typeof urlValue === 'undefined') return
+    if (explicitlyClosed) return
 
-    const ws = new WebSocket(urlValue, protocols)
+    const ws = new WebSocket(urlAccessor(), protocols)
     setWs(ws)
     setStatus('CONNECTING')
 
