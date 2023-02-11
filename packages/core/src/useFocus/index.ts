@@ -1,7 +1,8 @@
-import { isDef, resolveAccessor } from '@solidjs-use/shared'
+import { resolveAccessor } from '@solidjs-use/shared'
 import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, on } from 'solid-js'
-import { useActiveElement } from '../useActiveElement'
+import { createEffect, createSignal, on } from 'solid-js'
+import { useEventListener } from '../useEventListener'
+
 import type { WritableComputedReturn } from '@solidjs-use/shared/solid-to-vue'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
 import type { ConfigurableWindow } from '../_configurable'
@@ -21,15 +22,19 @@ export interface UseFocusOptions extends ConfigurableWindow {
 export function useFocus(target: MaybeElementAccessor, options: UseFocusOptions = {}): WritableComputedReturn<boolean> {
   const { initialValue = false } = options
 
-  const activeElement = useActiveElement(options)
+  const [innerFocused, setInnerFocused] = createSignal(false)
   const targetElement = resolveAccessor(target)
+
+  useEventListener(targetElement, 'focus', () => setInnerFocused(true))
+  useEventListener(targetElement, 'blur', () => setInnerFocused(false))
+
   const [focused, setFocused] = writableComputed({
     get() {
-      return isDef(activeElement()) && isDef(targetElement()) && activeElement() === targetElement()
+      return innerFocused()
     },
     set(value: boolean) {
-      if (!value && focused()) targetElement()?.blur()
-      if (value && !focused()) targetElement()?.focus()
+      if (!value && innerFocused()) targetElement()?.blur()
+      if (value && !innerFocused()) targetElement()?.focus()
     }
   })
 

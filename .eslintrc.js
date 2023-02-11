@@ -23,6 +23,7 @@ const rules = {
   '@typescript-eslint/no-confusing-void-expression': 'off',
   'no-unused-vars': 'off',
   'solid/components-return-once': 'off',
+  '@typescript-eslint/method-signature-style': 'off',
   '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
   'import/order': [
     'error',

@@ -189,8 +189,11 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
  * alert('Counter is now larger than 7!')
  * ```
  */
-export function until<T extends unknown[]>(r: EffectOnDeps<T> | MaybeAccessor<T>): UntilArrayInstance<T>
-export function until<T>(r: EffectOnDeps<T> | MaybeAccessor<T>): UntilValueInstance<T>
-export function until<T>(r: any): UntilValueInstance<T> | UntilArrayInstance<T> {
-  return createUntil(r)
+export function until<T extends unknown[]>(
+  r: EffectOnDeps<T> | MaybeAccessor<T>,
+  owner?: Owner | null
+): UntilArrayInstance<T>
+export function until<T>(r: EffectOnDeps<T> | MaybeAccessor<T>, owner?: Owner | null): UntilValueInstance<T>
+export function until<T>(r: any, owner?: Owner | null): UntilValueInstance<T> | UntilArrayInstance<T> {
+  return createUntil(r, false, owner)
 }

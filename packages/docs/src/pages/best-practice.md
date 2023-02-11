@@ -26,7 +26,7 @@ stop()
 
 ### Passing `Accessor` or `Signal` as Argument
 
-Most solidjs-use functions can accept both normal type and Accessor type.
+Most solidjs-use functions can accepts both normal type and Accessor type.
 
 Taking `useTitle` as an example:
 

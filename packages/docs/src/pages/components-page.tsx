@@ -145,12 +145,14 @@ const UsePageLeave = lazy(() => import('../../../core/src/usePageLeave/index.md'
 const UseParallax = lazy(() => import('../../../core/src/useParallax/index.md'))
 const UsePermission = lazy(() => import('../../../core/src/usePermission/index.md'))
 const UsePointer = lazy(() => import('../../../core/src/usePointer/index.md'))
+const UsePointerLock = lazy(() => import('../../../core/src/usePointerLock/index.md'))
 const UsePointerSwipe = lazy(() => import('../../../core/src/usePointerSwipe/index.md'))
 const UsePreferredColorScheme = lazy(() => import('../../../core/src/usePreferredColorScheme/index.md'))
 const UsePreferredContrast = lazy(() => import('../../../core/src/usePreferredContrast/index.md'))
 const UsePreferredDark = lazy(() => import('../../../core/src/usePreferredDark/index.md'))
 const UsePreferredLanguages = lazy(() => import('../../../core/src/usePreferredLanguages/index.md'))
 const UsePreferredReducedMotion = lazy(() => import('../../../core/src/usePreferredReducedMotion/index.md'))
+const UsePrevious = lazy(() => import('../../../core/src/usePrevious/index.md'))
 const UseRafFn = lazy(() => import('../../../core/src/useRafFn/index.md'))
 const UseResizeObserver = lazy(() => import('../../../core/src/useResizeObserver/index.md'))
 const UseScreenOrientation = lazy(() => import('../../../core/src/useScreenOrientation/index.md'))
@@ -375,12 +377,14 @@ const ComponentsPage = () => {
       <Route path="/core/useParallax" element={<UseParallax components={markdownComponents} />} />
       <Route path="/core/usePermission" element={<UsePermission components={markdownComponents} />} />
       <Route path="/core/usePointer" element={<UsePointer components={markdownComponents} />} />
+      <Route path="/core/usePointerLock" element={<UsePointerLock components={markdownComponents} />} />
       <Route path="/core/usePointerSwipe" element={<UsePointerSwipe components={markdownComponents} />} />
       <Route path="/core/usePreferredColorScheme" element={<UsePreferredColorScheme components={markdownComponents} />} />
       <Route path="/core/usePreferredContrast" element={<UsePreferredContrast components={markdownComponents} />} />
       <Route path="/core/usePreferredDark" element={<UsePreferredDark components={markdownComponents} />} />
       <Route path="/core/usePreferredLanguages" element={<UsePreferredLanguages components={markdownComponents} />} />
       <Route path="/core/usePreferredReducedMotion" element={<UsePreferredReducedMotion components={markdownComponents} />} />
+      <Route path="/core/usePrevious" element={<UsePrevious components={markdownComponents} />} />
       <Route path="/core/useRafFn" element={<UseRafFn components={markdownComponents} />} />
       <Route path="/core/useResizeObserver" element={<UseResizeObserver components={markdownComponents} />} />
       <Route path="/core/useScreenOrientation" element={<UseScreenOrientation components={markdownComponents} />} />

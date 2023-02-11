@@ -18,8 +18,8 @@ export function usePrecision(
   value: MaybeAccessor<number>,
   digits: MaybeAccessor<number>,
   options?: MaybeAccessor<UsePrecisionOptions>
-): Accessor<number | string> {
-  return createMemo<number | string>(() => {
+): Accessor<number> {
+  return createMemo<number>(() => {
     const _value = unAccessor(value)
     const _digits = unAccessor(digits)
     const power = 10 ** _digits

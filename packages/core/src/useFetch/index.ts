@@ -219,16 +219,19 @@ export interface CreateFetchOptions {
  * to include the new options
  */
 function isFetchOptions(obj: object): obj is UseFetchOptions {
-  return containsProp(
-    obj,
-    'immediate',
-    'refetch',
-    'initialData',
-    'timeout',
-    'beforeFetch',
-    'afterFetch',
-    'onFetchError',
-    'fetch'
+  return (
+    obj &&
+    containsProp(
+      obj,
+      'immediate',
+      'refetch',
+      'initialData',
+      'timeout',
+      'beforeFetch',
+      'afterFetch',
+      'onFetchError',
+      'fetch'
+    )
   )
 }
 

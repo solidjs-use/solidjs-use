@@ -1,3 +1,4 @@
+import { isAccessor } from '@solidjs-use/solid-to-vue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -5,5 +6,5 @@ import type { MaybeAccessor } from '../utils'
  * Normalize value/accessor/getter to `Accessor`.
  */
 export function resolveAccessor<T>(r: MaybeAccessor<T>): Accessor<T> {
-  return typeof r === 'function' ? (r as any) : () => r
+  return isAccessor<T>(r) ? r : () => r
 }
