@@ -1,25 +1,37 @@
+import { createMemo } from 'solid-js'
+import { createMutable } from 'solid-js/store'
 /**
  * Reactively omit fields from a reactive object
  */
 export function omitMutable<T extends object, K extends keyof T>(obj: T, ...keys: Array<K | K[]>): Omit<T, K> {
-  const flatKeys = keys.flat() as K[]
-  const res: any = {}
-  const allKeys = Object.keys(obj) as K[]
-  allKeys
-    .filter(key => !flatKeys.includes(key))
-    .forEach(key => {
-      if (key in obj) {
-        Object.defineProperty(res, key, {
-          enumerable: true,
-          get() {
-            return obj[key]
-          },
-          set(val) {
-            obj[key] = val
-            return val
-          }
-        })
+  const res: any = createMutable({})
+  const validKeys = createMemo<any>(() => {
+    const flatKeys = keys.flat() as K[]
+    const allKeys = Object.keys(obj) as K[]
+    const validKeys = allKeys.filter(key => !flatKeys.includes(key))
+    return validKeys
+  })
+  return new Proxy({} as any, {
+    get(_, p, receiver) {
+      if (validKeys().includes(p)) {
+        return Reflect.get(obj, p, receiver)
       }
-    })
-  return res
+      return Reflect.get(res, p, receiver)
+    },
+    set(_, p, newValue, receiver) {
+      if (validKeys().includes(p)) {
+        return Reflect.set(obj, p, newValue, receiver)
+      }
+      return Reflect.set(res, p, newValue, receiver)
+    },
+    ownKeys() {
+      return [...validKeys(), ...Object.keys(res)]
+    },
+    getOwnPropertyDescriptor() {
+      return {
+        enumerable: true,
+        configurable: true
+      }
+    }
+  })
 }
