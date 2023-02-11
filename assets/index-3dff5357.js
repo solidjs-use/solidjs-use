@@ -1,1 +1,0 @@
-import{p as e}from"./index-60a4a5ae.js";function i(){const t=[],r=o=>{const n=t.indexOf(o);n!==-1&&t.splice(n,1)};return{on:o=>{t.push(o);const n=()=>r(o);return e(n),{off:n}},off:r,trigger:o=>{t.forEach(n=>n(o))}}}export{i as c};
