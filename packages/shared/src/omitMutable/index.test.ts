@@ -1,3 +1,4 @@
+import { runHook } from '@dream2023/cypress-solidjs'
 import { createMutable } from 'solid-js/store'
 import { omitMutable } from '.'
 
@@ -10,29 +11,31 @@ interface TargetObject {
 
 describe('omitMutable', () => {
   it('should work', () => {
-    const source = createMutable<TargetObject>({
-      foo: 'foo',
-      bar: 'bar'
-    })
+    runHook(() => {
+      const source = createMutable<TargetObject>({
+        foo: 'foo',
+        bar: 'bar'
+      })
 
-    const state = omitMutable(source, 'bar', 'baz')
+      const state = omitMutable(source, 'bar', 'baz')
 
-    expect(state).to.deep.eq({
-      foo: 'foo'
-    })
+      expect(state).to.deep.eq({
+        foo: 'foo'
+      })
 
-    source.qux = true
+      source.qux = true
 
-    expect(state).to.deep.eq({
-      foo: 'foo',
-      qux: true
-    })
+      expect(state).to.deep.eq({
+        foo: 'foo',
+        qux: true
+      })
 
-    source.baz = 'should be omit'
+      source.baz = 'should be omit'
 
-    expect(state).to.deep.eq({
-      foo: 'foo',
-      qux: true
+      expect(state).to.deep.eq({
+        foo: 'foo',
+        qux: true
+      })
     })
   })
 })
