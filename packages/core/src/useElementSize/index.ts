@@ -1,6 +1,8 @@
-import { resolveAccessor } from '@solidjs-use/shared'
-import { createEffect, createSignal, on } from 'solid-js'
+import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
+import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useResizeObserver } from '../useResizeObserver'
+import { defaultWindow } from '../_configurable'
+
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
 import type { UseResizeObserverOptions } from '../useResizeObserver'
 
@@ -17,7 +19,9 @@ export function useElementSize(
   initialSize: ElementSize = { width: 0, height: 0 },
   options: UseResizeObserverOptions = {}
 ) {
-  const { box = 'content-box' } = options
+  const { window = defaultWindow, box = 'content-box' } = options
+
+  const isSVG = createMemo(() => unAccessor(target)?.namespaceURI?.includes('svg'))
   const [width, setWidth] = createSignal(initialSize.width)
   const [height, setHeight] = createSignal(initialSize.height)
 
@@ -31,13 +35,23 @@ export function useElementSize(
           ? entry.contentBoxSize
           : entry.devicePixelContentBoxSize
 
-      if (boxSize) {
-        setWidth(boxSize.reduce((acc, { inlineSize }) => acc + inlineSize, 0))
-        setHeight(boxSize.reduce((acc, { blockSize }) => acc + blockSize, 0))
+      if (window && isSVG()) {
+        const $elem = unAccessor(target)
+        if ($elem) {
+          const styles = window.getComputedStyle($elem)
+          setWidth(parseFloat(styles.width))
+          setHeight(parseFloat(styles.height))
+        }
       } else {
-        // fallback
-        setWidth(entry.contentRect.width)
-        setHeight(entry.contentRect.height)
+        if (boxSize) {
+          const formatBoxSize = Array.isArray(boxSize) ? boxSize : [boxSize]
+          setWidth(formatBoxSize.reduce<number>((acc, { inlineSize }) => acc + Number(inlineSize), 0))
+          setHeight(formatBoxSize.reduce<number>((acc, { blockSize }) => acc + Number(blockSize), 0))
+        } else {
+          // fallback
+          setWidth(entry.contentRect.width)
+          setHeight(entry.contentRect.height)
+        }
       }
     },
     options

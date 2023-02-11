@@ -1,7 +1,8 @@
 import { createSignal } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
 import { unAccessor } from '../unAccessor'
-import { isClient, type MaybeAccessor, type Stoppable } from '../utils'
+import { isClient } from '../utils'
+import type { MaybeAccessor, Stoppable } from '../utils'
 
 export interface UseTimeoutFnOptions {
   /**
@@ -15,16 +16,16 @@ export interface UseTimeoutFnOptions {
 /**
  * Wrapper for `setTimeout` with controls.
  */
-export function useTimeoutFn(
-  cb: (...args: unknown[]) => any,
+export function useTimeoutFn<CallbackFn extends (...args: any[]) => any>(
+  cb: CallbackFn,
   interval: MaybeAccessor<number>,
   options: UseTimeoutFnOptions = {}
-): Stoppable {
+): Stoppable<Parameters<CallbackFn> | []> {
   const { immediate = true } = options
 
   const [isPending, setIsPending] = createSignal(false)
 
-  let timer: number | null = null
+  let timer: ReturnType<typeof setTimeout> | null = null
 
   function clear() {
     if (timer) {
@@ -38,7 +39,7 @@ export function useTimeoutFn(
     clear()
   }
 
-  function start(...args: unknown[]) {
+  function start(...args: Parameters<CallbackFn> | []) {
     clear()
     setIsPending(true)
     timer = setTimeout(() => {
@@ -46,7 +47,7 @@ export function useTimeoutFn(
       timer = null
 
       cb(...args)
-    }, unAccessor(interval)) as unknown as number
+    }, unAccessor(interval))
   }
 
   if (immediate) {

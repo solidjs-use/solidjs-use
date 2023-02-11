@@ -402,7 +402,10 @@ export function useMediaControls(
   useEventListener(target, 'seeking', () => setSeeking(true))
   useEventListener(target, 'seeked', () => setSeeking(false))
   useEventListener(target, 'waiting', () => setWaiting(true))
-  useEventListener(target, 'playing', () => setWaiting(false))
+  useEventListener(target, 'playing', () => {
+    setWaiting(false)
+    setEnded(false)
+  })
   useEventListener(target, 'ratechange', () => setRate(() => unAccessor(target)!.playbackRate))
   useEventListener(target, 'stalled', () => setStalled(true))
   useEventListener(target, 'ended', () => setEnded(ended))

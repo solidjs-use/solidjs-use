@@ -27,7 +27,7 @@ const Demo = () => {
       <div class="flex flex-col md:flex-row">
         <img
           src="/solidjs.svg"
-          class="h-38 py-8 m-auto transform transistion duration-500"
+          class="h-38 py-8 m-auto transform transition duration-500"
           classList={{ 'opacity-0': !s_o_l_i_d_j_s(), 'rotate-180': shift() }}
         />
 

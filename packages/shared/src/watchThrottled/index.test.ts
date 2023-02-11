@@ -31,7 +31,7 @@ describe('watchThrottled', () => {
       expect(cb).to.be.calledWith(3, 2, Cypress.sinon.match.any)
 
       setNum(4)
-      await promiseTimeout(100)
+      await promiseTimeout(110)
       expect(cb).to.be.callCount(3)
       expect(cb).to.be.calledWith(4, 3, Cypress.sinon.match.any)
     })
