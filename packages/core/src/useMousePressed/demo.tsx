@@ -6,10 +6,7 @@ import { useMousePressed } from 'solidjs-use'
 const Demo = () => {
   const [el, setEl] = createSignal<HTMLElement>()
   const [withTarget, toggle] = useToggle()
-  const target = createMemo<HTMLElement | undefined>(() => {
-    if (withTarget()) return el()
-    return window as any as HTMLElement
-  })
+  const target = createMemo<HTMLElement | undefined>(() => (withTarget() ? el() : window) as HTMLElement)
 
   const mouse = useMousePressed({ target })
 

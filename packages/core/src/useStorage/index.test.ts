@@ -1,7 +1,7 @@
 import { runAsyncHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
 import { createSignal } from 'solid-js'
-import { StorageSerializers, useStorage } from '.'
+import { StorageSerializers, customStorageEventName, useStorage } from '.'
 
 describe('useStorage', () => {
   afterEach(() => {
@@ -282,6 +282,34 @@ describe('useStorage', () => {
       await nextTick()
 
       expect(localStorage.getItem(KEY)).to.be.deep.eq(null)
+    })
+  })
+
+  it('emits custom storage events on change', () => {
+    const eventFn = cy.spy()
+    const KEY = 'custom-key-custom-storage-on-change'
+    return runAsyncHook(async () => {
+      const [data0, setData0] = useStorage(KEY, 0, localStorage)
+      const [data1] = useStorage(KEY, 0, localStorage)
+      expect(data0()).to.eq(0)
+      expect(data1()).to.eq(0)
+
+      await nextTick()
+      window.addEventListener(customStorageEventName, eventFn, { once: true })
+
+      setData0(1)
+      await nextTick()
+      await nextTick()
+
+      expect(data0()).to.eq(1)
+      expect(data1()).to.eq(1)
+      expect(eventFn).to.be.called
+      const call = eventFn.args[0] as [CustomEvent]
+
+      expect(call[0].detail.storageArea).to.eq(localStorage)
+      expect(call[0].detail.key).to.eq(KEY)
+      expect(call[0].detail.oldValue).to.eq('0')
+      expect(call[0].detail.newValue).to.eq('1')
     })
   })
 })

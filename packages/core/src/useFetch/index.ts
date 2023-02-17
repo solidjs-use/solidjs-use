@@ -385,7 +385,10 @@ export function useFetch<T>(
   let timer: Stoppable | undefined
 
   const abort = () => {
-    if (supportsAbort && controller) controller.abort()
+    if (supportsAbort && controller) {
+      controller.abort()
+      controller = undefined
+    }
   }
 
   const loading = (isLoading: boolean) => {

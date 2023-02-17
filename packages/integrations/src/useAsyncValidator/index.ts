@@ -5,6 +5,9 @@ import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { Rules, ValidateError, ValidateOption } from 'async-validator'
 
+// @ts-expect-error Schema.default is exist in ssr mode
+const AsyncValidatorSchema = Schema || Schema.default
+
 export type AsyncValidatorError = Error & {
   errors: ValidateError[]
   fields: Record<string, ValidateError[]>
@@ -46,7 +49,7 @@ export function useAsyncValidator(
   createEffect(async () => {
     setIsFinish(false)
     setPass(false)
-    const validator = new Schema(unAccessor(rules))
+    const validator = new AsyncValidatorSchema(unAccessor(rules))
     try {
       await validator.validate(unAccessor(value), validateOption)
       setPass(true)

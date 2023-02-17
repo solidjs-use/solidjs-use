@@ -5,7 +5,6 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive window scroll.
- * @deprecated Please use `useScroll` instead.
  */
 export function useWindowScroll({ window = defaultWindow }: ConfigurableWindow = {}) {
   if (!window) {
