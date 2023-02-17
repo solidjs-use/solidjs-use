@@ -80,7 +80,7 @@ const Demo = () => {
         </div>
       </div>
       <style>{`textarea {
-  min-width: 0px !important;
+  min-width: 0 !important;
   width: 100%;
 }`}</style>
     </>

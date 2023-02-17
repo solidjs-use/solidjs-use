@@ -2,12 +2,12 @@ import { noop, promiseTimeout } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import type { Accessor } from 'solid-js'
 
-export interface UseAsyncStateReturn<Data> {
+export interface UseAsyncStateReturn<Data, Params extends any[]> {
   state: Accessor<Data>
   isReady: Accessor<boolean>
   isLoading: Accessor<boolean>
   error: Accessor<unknown>
-  execute: (delay?: number, ...args: any[]) => Promise<Data>
+  execute: (delay?: number, ...args: Params) => Promise<Data>
 }
 
 export interface UseAsyncStateOptions<T = any> {
@@ -62,11 +62,11 @@ export interface UseAsyncStateOptions<T = any> {
  * Reactive async state. Will not block your setup function and will trigger changes once
  * the promise is ready.
  */
-export function useAsyncState<Data>(
-  promise: Promise<Data> | ((...args: any[]) => Promise<Data>),
+export function useAsyncState<Data, Params extends any[] = []>(
+  promise: Promise<Data> | ((...args: Params) => Promise<Data>),
   initialState: Data,
   options?: UseAsyncStateOptions<Data>
-): UseAsyncStateReturn<Data> {
+): UseAsyncStateReturn<Data, Params> {
   const {
     immediate = true,
     delay = 0,
@@ -89,7 +89,7 @@ export function useAsyncState<Data>(
 
     if (delay > 0) await promiseTimeout(delay)
 
-    const _promise = typeof promise === 'function' ? promise(...args) : promise
+    const _promise = typeof promise === 'function' ? promise(...(args as Params)) : promise
 
     try {
       const data = await _promise

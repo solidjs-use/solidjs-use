@@ -23,10 +23,10 @@ export function useScreenSafeArea() {
     const [_bottomCssVar, setBottomCssVar] = useCssVar(bottomVarName)
     const [_leftCssVar, setLeftCssVar] = useCssVar(leftVarName)
 
-    setTopCssVar('env(safe-area-inset-top, 0px)')
-    setRightCssVar('env(safe-area-inset-right, 0px)')
-    setBottomCssVar('env(safe-area-inset-bottom, 0px)')
-    setLeftCssVar('env(safe-area-inset-left, 0px)')
+    setTopCssVar('env(safe-area-inset-top, 0)')
+    setRightCssVar('env(safe-area-inset-right, 0)')
+    setBottomCssVar('env(safe-area-inset-bottom, 0)')
+    setLeftCssVar('env(safe-area-inset-left, 0)')
 
     update()
 

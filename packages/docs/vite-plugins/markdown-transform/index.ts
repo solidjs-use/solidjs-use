@@ -93,6 +93,7 @@ ${code}
 import Demo from './${demoPath}';
 
 <DemoContainer>
+<p class="demo-source-link"><a href="${URL}/${demoPath}" target="_blank">source</a></p>
   <Demo />
 </DemoContainer>
 `

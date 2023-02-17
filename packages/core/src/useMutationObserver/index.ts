@@ -29,7 +29,6 @@ export function useMutationObserver(
 
   const stopWatch = watch(resolveAccessor(target), el => {
     cleanup()
-
     if (isSupported() && window && el) {
       observer = new MutationObserver(callback)
       observer.observe(el, mutationOptions)

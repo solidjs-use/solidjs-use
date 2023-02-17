@@ -181,11 +181,14 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   const [isAborted, setIsAborted] = createSignal(false)
   const [error, setError] = createSignal<AxiosError<T> | undefined>()
 
-  const cancelToken: CancelTokenSource = axios.CancelToken.source()
+  const cancelTokenSource = axios.CancelToken.source
+  let cancelToken: CancelTokenSource = cancelTokenSource()
+
   const abort = (message?: string) => {
     if (isFinished() || !isLoading()) return
 
     cancelToken.cancel(message)
+    cancelToken = cancelTokenSource()
     setIsAborted(true)
     setIsLoading(false)
     setIsFinish(false)
@@ -221,6 +224,7 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
       return { then }
     }
 
+    abort()
     loading(true)
     instance(_url, {
       ...defaultConfig,
