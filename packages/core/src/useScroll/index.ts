@@ -141,14 +141,16 @@ export function useScroll(
     bottom: false
   })
 
-  const onScrollEnd = useDebounceFn((e: Event) => {
+  const onScrollEnd = (e: Event) => {
+    if (!isScrolling()) return
     setIsScrolling(false)
     directions.left = false
     directions.right = false
     directions.top = false
     directions.bottom = false
     onStop(e)
-  }, throttle + idle)
+  }
+  const onScrollEndDebounced = useDebounceFn(onScrollEnd, throttle + idle)
 
   const onScrollHandler = (e: Event) => {
     const eventTarget = (e.target === document ? (e.target as Document).documentElement : e.target) as HTMLElement
@@ -175,7 +177,7 @@ export function useScroll(
       eventTarget.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
     setInternalY(scrollTop)
     setIsScrolling(true)
-    onScrollEnd(e)
+    onScrollEndDebounced(e)
     onScroll(e)
   }
 
@@ -185,6 +187,8 @@ export function useScroll(
     throttle ? useThrottleFn(onScrollHandler, throttle, true, false) : onScrollHandler,
     eventListenerOptions
   )
+
+  useEventListener(element, 'scrollend', onScrollEnd, eventListenerOptions)
 
   return {
     x,

@@ -23,6 +23,11 @@ export interface UseIntervalOptions<Controls extends boolean> {
   callback?: (count: number) => void
 }
 
+export interface UseIntervalControls {
+  counter: Accessor<number>
+  reset: () => void
+}
+
 /**
  * Reactive counter increases on every interval
  */
@@ -30,12 +35,15 @@ export function useInterval(interval?: MaybeAccessor<number>, options?: UseInter
 export function useInterval(
   interval: MaybeAccessor<number>,
   options: UseIntervalOptions<true>
-): { counter: Accessor<number> } & Pausable
+): UseIntervalControls & Pausable
 export function useInterval(interval: MaybeAccessor<number> = 1000, options: UseIntervalOptions<boolean> = {}) {
   const { controls: exposeControls = false, immediate = true, callback } = options
 
   const [counter, setCounter] = createSignal(0)
   const update = () => setCounter(count => count + 1)
+  const reset = () => {
+    setCounter(0)
+  }
   const controls = useIntervalFn(
     callback
       ? () => {
@@ -50,6 +58,7 @@ export function useInterval(interval: MaybeAccessor<number> = 1000, options: Use
   if (exposeControls) {
     return {
       counter,
+      reset,
       ...controls
     }
   }

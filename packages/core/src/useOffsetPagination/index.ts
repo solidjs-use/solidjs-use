@@ -80,7 +80,7 @@ export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOff
   } = options
 
   const [currentPageSize, setCurrentPageSize] = useClamp(
-    setPageSize === undefined || isNumber(pageSize) ? pageSize : [pageSize, setPageSize],
+    setPageSize === undefined || isNumber(pageSize) ? (pageSize as number) : [pageSize, setPageSize],
     1,
     Infinity
   )
@@ -88,7 +88,7 @@ export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOff
   const pageCount = createMemo(() => Math.max(1, Math.ceil(unAccessor(total) / unAccessor(currentPageSize))))
 
   const [currentPage, setCurrentPage] = useClamp(
-    setPage === undefined || isNumber(page) ? page : [page, setPage],
+    setPage === undefined || isNumber(page) ? (page as number) : [page, setPage],
     1,
     pageCount
   )

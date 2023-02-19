@@ -164,20 +164,16 @@ export function throttleFilter(ms: MaybeAccessor<number>, trailing = true, leadi
         invoke()
       })
     } else if (trailing) {
-      const timeout = duration - elapsed
-      return new Promise((resolve, reject) => {
+      lastValue = new Promise((resolve, reject) => {
         lastRejector = rejectOnCancel ? reject : resolve
-        timer = setTimeout(
-          () => {
-            lastExec = Date.now()
-            isLeading = true
-            runWithOwner(owner!, () => {
-              resolve(invoke())
-            })
-            clear()
-          },
-          timeout < 0 ? 0 : timeout
-        )
+        timer = setTimeout(() => {
+          lastExec = Date.now()
+          isLeading = true
+          runWithOwner(owner!, () => {
+            resolve(invoke())
+          })
+          clear()
+        }, Math.max(0, duration - elapsed))
       })
     }
 

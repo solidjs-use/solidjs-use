@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/rxjs",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Enables RxJS reactive functions in solidjs completely by VueUse",
   "author": "dream2023 <https://github.com/dream2023>",
   "license": "MIT",
@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "rxjs": "^6.6.7",
-    "solid-js": "^1.6.9"
+    "solid-js": "^1.6.11"
   }
 }

@@ -1,10 +1,10 @@
 {
   "name": "@solidjs-use/monorepo",
   "version": "1.0.0",
-  "vueuse-git-commit-id": "192c8e3b6e63d03199c437702398f1400fadde08",
+  "vueuse-git-commit-id": "0eeb2f7ee5d43805478e4ff0efcc806815e242c4",
   "private": true,
   "packageManager": "pnpm@7.11.0",
-  "description": "Collection of Solid utilities inspired completely by VueUse",
+  "description": "Collection of SolidJS utilities inspired completely by VueUse",
   "author": "dream2023 <https://github.com/dream2023>",
   "repository": {
     "type": "git",

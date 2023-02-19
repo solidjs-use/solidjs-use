@@ -10,7 +10,6 @@ import {
   hope,
   HStack,
   IconButton,
-  Tag,
   Text,
   useColorMode,
   useColorModeValue
@@ -71,14 +70,11 @@ export default function Header() {
               icon={<IconMenu />}
               onClick={toggleMainNavOverlay}
             />
-            <Text as={Link} href="/" textDecoration="none" letterSpacing="$wide" fontSize="$2xl">
+            <Text as={Link} href="/solidjs-use" textDecoration="none" letterSpacing="$wide" fontSize="$2xl">
               <hope.span color="$primary9" fontWeight="$bold">
                 SolidJS-USE
               </hope.span>
             </Text>
-            <Tag size="sm" rounded="$sm" fontWeight="$semibold">
-              beta
-            </Tag>
           </HStack>
           <HStack spacing="$2">
             <Text
