@@ -40,7 +40,7 @@ const Demo = () => {
   }
 
   const stop = () => {
-    window.speechSynthesis.cancel()
+    speech.stop()
   }
 
   return (

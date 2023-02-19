@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/math",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Math functions for solidjs-use inspired completely by VueUse",
   "author": "dream2023 <https://github.com/dream2023>",
   "license": "MIT",
@@ -41,6 +41,6 @@
     "solidjs-use": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.6.9"
+    "solid-js": "^1.6.11"
   }
 }

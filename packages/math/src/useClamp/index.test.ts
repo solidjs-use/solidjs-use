@@ -20,11 +20,11 @@ describe('useClamp', () => {
       const [min] = createSignal(0)
       const [max, setMax] = createSignal(100)
 
-      const [v] = useClamp(value, min, max)
+      const [v, setV] = useClamp([value, setValue], min, max)
 
       expect(v()).to.eq(10)
 
-      setValue(1000)
+      setV(1000)
       expect(v()).to.eq(100)
 
       setMax(90)
@@ -41,19 +41,58 @@ describe('useClamp', () => {
       const [min, setMin] = createSignal(0)
       const [max] = createSignal(100)
 
-      const [v] = useClamp(value, min, max)
+      const [v, setV] = useClamp([value, setValue], min, max)
 
       expect(v()).to.eq(10)
 
-      setValue(-10)
+      setV(-10)
       expect(v()).to.eq(0)
 
       setMin(20)
       expect(v()).to.eq(20)
 
       setMin(-10)
-      setValue(-100)
+      setV(-100)
       expect(v()).to.eq(-10)
+    })
+  })
+
+  it('should work with plain number', () => {
+    runHook(() => {
+      const [min, setMin] = createSignal(0)
+      const [max] = createSignal(100)
+
+      const [v, setV] = useClamp(10, min, max)
+
+      expect(v()).to.eq(10)
+
+      setV(-10)
+      expect(v()).to.eq(0)
+
+      setMin(20)
+      expect(v()).to.eq(20)
+
+      setMin(-10)
+      setV(-100)
+      expect(v()).to.eq(-10)
+    })
+  })
+
+  it('should work with Accessor', () => {
+    runHook(() => {
+      const [base, setBase] = createSignal(10)
+      const [min] = createSignal(0)
+      const [max] = createSignal(100)
+
+      const v = useClamp(base, min, max)
+
+      expect(v()).to.eq(10)
+
+      setBase(-10)
+      expect(v()).to.eq(0)
+
+      setBase(110)
+      expect(v()).to.eq(100)
     })
   })
 })

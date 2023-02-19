@@ -36,6 +36,7 @@ const UseArrayEvery = lazy(() => import('../../../shared/src/useArrayEvery/index
 const UseArrayFilter = lazy(() => import('../../../shared/src/useArrayFilter/index.md'))
 const UseArrayFind = lazy(() => import('../../../shared/src/useArrayFind/index.md'))
 const UseArrayFindIndex = lazy(() => import('../../../shared/src/useArrayFindIndex/index.md'))
+const UseArrayFindLast = lazy(() => import('../../../shared/src/useArrayFindLast/index.md'))
 const UseArrayJoin = lazy(() => import('../../../shared/src/useArrayJoin/index.md'))
 const UseArrayMap = lazy(() => import('../../../shared/src/useArrayMap/index.md'))
 const UseArrayReduce = lazy(() => import('../../../shared/src/useArrayReduce/index.md'))
@@ -268,6 +269,7 @@ const ComponentsPage = () => {
       <Route path="/shared/useArrayFilter" element={<UseArrayFilter components={markdownComponents} />} />
       <Route path="/shared/useArrayFind" element={<UseArrayFind components={markdownComponents} />} />
       <Route path="/shared/useArrayFindIndex" element={<UseArrayFindIndex components={markdownComponents} />} />
+      <Route path="/shared/useArrayFindLast" element={<UseArrayFindLast components={markdownComponents} />} />
       <Route path="/shared/useArrayJoin" element={<UseArrayJoin components={markdownComponents} />} />
       <Route path="/shared/useArrayMap" element={<UseArrayMap components={markdownComponents} />} />
       <Route path="/shared/useArrayReduce" element={<UseArrayReduce components={markdownComponents} />} />

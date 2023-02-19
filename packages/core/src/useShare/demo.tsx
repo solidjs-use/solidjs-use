@@ -4,7 +4,7 @@ import { isClient, useShare } from 'solidjs-use'
 const Demo = () => {
   const [options, setOptions] = createSignal({
     title: 'solidjs-use',
-    text: 'Collection of Solid utilities inspired completely by VueUse!',
+    text: 'Collection of SolidJS utilities inspired completely by VueUse!',
     url: isClient ? location.href : ''
   })
 

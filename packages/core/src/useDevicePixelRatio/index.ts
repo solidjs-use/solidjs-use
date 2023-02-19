@@ -1,40 +1,34 @@
 import { tryOnCleanup } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
+import { createSignal, getOwner, runWithOwner } from 'solid-js'
 import { defaultWindow } from '../_configurable'
 import type { ConfigurableWindow } from '../_configurable'
-import type { Fn } from '@solidjs-use/shared'
 
 /**
  * Reactively track `window.devicePixelRatio`.
  */
 export function useDevicePixelRatio({ window = defaultWindow }: ConfigurableWindow = {}) {
-  if (!window) {
-    return {
-      pixelRatio: createSignal(1)[0]
-    }
-  }
-
   const [pixelRatio, setPixelRatio] = createSignal(1)
 
-  const cleanups: Fn[] = []
+  const owner = getOwner()
+  if (window) {
+    let media: MediaQueryList
+    function observe() {
+      setPixelRatio(window!.devicePixelRatio)
+      cleanup()
+      media = window!.matchMedia(`(resolution: ${pixelRatio()}dppx)`)
+      media.addEventListener('change', observe, { once: true })
+    }
 
-  const cleanup = () => {
-    cleanups.map(i => i())
-    cleanups.length = 0
-  }
+    function cleanup() {
+      media?.removeEventListener('change', observe)
+    }
 
-  const observe = () => {
-    setPixelRatio(window.devicePixelRatio)
-    cleanup()
-    const media = window.matchMedia(`(resolution: ${pixelRatio()}dppx)`)
-    media.addEventListener('change', observe, { once: true })
-    cleanups.push(() => {
-      media.removeEventListener('change', observe)
+    observe()
+
+    runWithOwner(owner!, () => {
+      tryOnCleanup(cleanup)
     })
   }
-
-  observe()
-  tryOnCleanup(cleanup)
 
   return { pixelRatio }
 }

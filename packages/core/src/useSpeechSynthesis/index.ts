@@ -105,6 +105,11 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
     utterance && synth!.speak(utterance())
   }
 
+  const stop = () => {
+    synth!.cancel()
+    setIsPlaying(false)
+  }
+
   if (isSupported()) {
     bindEventsForUtterance(utterance())
 
@@ -153,6 +158,7 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
     utterance,
     error,
 
+    stop,
     toggle,
     speak
   }

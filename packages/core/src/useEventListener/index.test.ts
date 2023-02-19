@@ -264,4 +264,28 @@ describe('useEventListener', () => {
     testTarget(false)
     // testTarget(true)
   })
+
+  it.only('should auto re-register', () => {
+    return runAsyncHook(async () => {
+      const [target, setTarget] = createSignal<HTMLElement>()
+      const listener = cy.spy()
+      const [options, setOptions] = createSignal<any>(false)
+      useEventListener(target, 'click', listener, options)
+
+      const el = document.createElement('div')
+      const addSpy = cy.spy(el, 'addEventListener')
+      const removeSpy = cy.spy(el, 'removeEventListener')
+      setTarget(el)
+      await nextTick()
+      expect(addSpy).to.be.callCount(1)
+      expect(addSpy).to.be.calledWith('click', listener, false)
+      expect(removeSpy).to.be.callCount(0)
+
+      setOptions(true)
+      await nextTick()
+      expect(addSpy).to.be.callCount(2)
+      expect(addSpy).to.be.calledWith('click', listener, true)
+      expect(removeSpy).to.be.callCount(1)
+    })
+  })
 })

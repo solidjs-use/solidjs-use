@@ -2,7 +2,7 @@
 
 <div align="center">
 
-Collection of Solid utilities inspired completely by VueUse.
+Collection of SolidJS utilities inspired completely by VueUse.
 
 [![CI status][github-ci-image]][github-ci-url] [![Docs status][github-docs-image]][github-docs-url] [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] ![GitHub](https://img.shields.io/github/license/solidjs-use/solidjs-use?style=flat-square)
 
@@ -27,6 +27,7 @@ Collection of Solid utilities inspired completely by VueUse.
 
 ## 🚀 Features
 
+- 🎛 **Feature Rich**: 300+ functions for you to choose from
 - 🎪 [**Interactive docs & demos**](https://solidjs-use.github.io/solidjs-use)
 - ⚡ **Fully tree shakeable**: Only take what you want, [bundle size](https://solidjs-use.github.io/solidjs-use/export-size)
 - 🦾 **Type Strong**: Written in [TypeScript](https://www.typescriptlang.org/), with [TS Docs](https://github.com/microsoft/tsdoc)

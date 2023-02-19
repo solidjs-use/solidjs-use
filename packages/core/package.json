@@ -1,7 +1,7 @@
 {
   "name": "solidjs-use",
-  "version": "1.1.0",
-  "description": "Collection of Solid utilities inspired completely by VueUse",
+  "version": "1.0.0",
+  "description": "Collection of SolidJS utilities inspired completely by VueUse",
   "files": [
     "dist"
   ],
@@ -20,7 +20,12 @@
     "solid",
     "solidjs",
     "solidjs-use",
-    "utils"
+    "solid use",
+    "utils",
+    "solidjs hooks",
+    "solid hooks",
+    "hooks",
+    "solidjs-core"
   ],
   "sideEffects": false,
   "exports": {
@@ -46,6 +51,6 @@
     "@solidjs-use/shared": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.6.9"
+    "solid-js": "^1.6.11"
   }
 }
