@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/electron",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Electron renderer process modules for solidjs-use inspired completely by VueUse",
   "license": "MIT",
   "files": [

@@ -557,6 +557,14 @@
       "description": "reactive `Array.findIndex`"
     },
     {
+      "name": "useArrayFindLast",
+      "package": "shared",
+      "lastUpdated": 1676796664000,
+      "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFindLast/",
+      "category": "Array",
+      "description": "reactive `Array.findLast`"
+    },
+    {
       "name": "useArrayJoin",
       "package": "shared",
       "lastUpdated": 1675478575000,
@@ -607,7 +615,7 @@
     {
       "name": "useAsyncState",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useAsyncState/",
       "category": "State",
       "description": "reactive async state"
@@ -615,7 +623,7 @@
     {
       "name": "useAsyncValidator",
       "package": "integrations",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAsyncValidator/",
       "category": "@Integrations",
       "description": "wrapper for [`async-validator`](https://github.com/yiminghe/async-validator)",
@@ -641,7 +649,7 @@
     {
       "name": "useAxios",
       "package": "integrations",
-      "lastUpdated": 1676085934000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAxios/",
       "category": "@Integrations",
       "description": "wrapper for [`axios`](https://github.com/axios/axios)",
@@ -716,7 +724,7 @@
     {
       "name": "useClamp",
       "package": "math",
-      "lastUpdated": 1675479155000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useClamp/",
       "category": "@Math",
       "description": "reactively clamp a value between two other values"
@@ -862,7 +870,7 @@
     {
       "name": "useDevicePixelRatio",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDevicePixelRatio/",
       "category": "Sensors",
       "description": "reactively track [`window.devicePixelRatio`](https://developer.mozilla.org/ru/docs/Web/API/Window/devicePixelRatio)"
@@ -941,7 +949,7 @@
     {
       "name": "useElementHover",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementHover/",
       "category": "Sensors",
       "description": "reactive element's hover state"
@@ -973,7 +981,7 @@
     {
       "name": "useEventListener",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useEventListener/",
       "category": "Browser",
       "description": "use EventListener with ease"
@@ -1005,7 +1013,7 @@
     {
       "name": "useFetch",
       "package": "core",
-      "lastUpdated": 1676085934000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFetch/",
       "category": "Network",
       "description": "reactive [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides the ability to abort requests"
@@ -1158,7 +1166,7 @@
     {
       "name": "useIntersectionObserver",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useIntersectionObserver/",
       "category": "Elements",
       "description": "detects that a target element's visibility"
@@ -1166,7 +1174,7 @@
     {
       "name": "useInterval",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useInterval/",
       "category": "Animation",
       "description": "reactive counter increases on every interval"
@@ -1349,7 +1357,7 @@
     {
       "name": "useMutationObserver",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMutationObserver/",
       "category": "Elements",
       "description": "watch for changes being made to the DOM tree"
@@ -1408,7 +1416,7 @@
     {
       "name": "useOffsetPagination",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useOffsetPagination/",
       "category": "Utilities",
       "description": "reactive offset pagination"
@@ -1598,7 +1606,7 @@
     {
       "name": "useScreenSafeArea",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScreenSafeArea/",
       "category": "Browser",
       "description": "reactive `env(safe-area-inset-*)`"
@@ -1614,7 +1622,7 @@
     {
       "name": "useScroll",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScroll/",
       "category": "Sensors",
       "description": "reactive scroll position and state"
@@ -1622,7 +1630,7 @@
     {
       "name": "useScrollLock",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScrollLock/",
       "category": "Sensors",
       "description": "lock scrolling of the element"
@@ -1665,7 +1673,7 @@
     {
       "name": "useSpeechSynthesis",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676796664000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSpeechSynthesis/",
       "category": "Sensors",
       "description": "reactive [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)"
@@ -1681,7 +1689,7 @@
     {
       "name": "useStorage",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStorage/",
       "category": "State",
       "description": "reactive [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)/[SessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)",
@@ -1696,7 +1704,7 @@
     {
       "name": "useStorageAsync",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStorageAsync/",
       "category": "State",
       "description": "reactive Storage in with async support",
@@ -1977,7 +1985,7 @@
     {
       "name": "useWindowScroll",
       "package": "core",
-      "lastUpdated": 1676085934000,
+      "lastUpdated": 1676638055000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWindowScroll/",
       "category": "Elements",
       "description": "reactive window scroll",

@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/integrations",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "integrations functions for solidjs-use inspired completely by VueUse",
   "author": "dream2023 <https://github.com/dream2023>",
   "license": "MIT",
