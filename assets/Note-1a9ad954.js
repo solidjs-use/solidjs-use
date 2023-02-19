@@ -1,0 +1,1 @@
+import{i as s,g as r,E as a,t as n}from"./index-24ac6e1e.js";const c=n("<div></div>",2),l=t=>(()=>{const e=c.cloneNode(!0);return s(e,()=>t.children),r(()=>a(e,`note ${t.class??""}`)),e})();export{l as N};
