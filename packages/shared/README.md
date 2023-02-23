@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-npm i solidjs-use/shared
+npm i @solidjs-use/shared
 ```
 
 ## Links

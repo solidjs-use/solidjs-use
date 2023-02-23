@@ -1,5 +1,7 @@
 import { createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
+import { defaultWindow } from '../_configurable'
+
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { ConfigurableWindow } from '../_configurable'
@@ -13,8 +15,7 @@ export function useElementHover(
   el: MaybeAccessor<EventTarget | null | undefined>,
   options: UseElementHoverOptions = {}
 ): Accessor<boolean> {
-  const delayEnter = options ? options.delayEnter : 0
-  const delayLeave = options ? options.delayLeave : 0
+  const { delayEnter = 0, delayLeave = 0, window = defaultWindow } = options
 
   const [isHovered, setIsHovered] = createSignal(false)
   let timer: ReturnType<typeof setTimeout> | undefined
