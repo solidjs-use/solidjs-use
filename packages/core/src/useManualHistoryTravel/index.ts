@@ -32,7 +32,7 @@ export interface UseManualHistoryTravelOptions<Raw, Serialized = Raw> {
   parse?: (v: Serialized) => Raw
 
   /**
-   * Deserialize data from the history
+   * set data source
    */
   setSource?: (setSource: Setter<Raw>, v: Raw) => void
 }
