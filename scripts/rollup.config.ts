@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 import dts from 'rollup-plugin-dts'
 import fg from 'fast-glob'
 import { nodeResolve } from '@rollup/plugin-node-resolve'

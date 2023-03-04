@@ -1,4 +1,4 @@
-import { resolve, dirname } from 'path'
+import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import solidPlugin from 'vite-plugin-solid'

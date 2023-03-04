@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import UnoCSS from 'unocss/vite'
 import { defineConfig, mergeConfig } from 'vite'
 import { prismjsPlugin } from 'vite-plugin-prismjs'

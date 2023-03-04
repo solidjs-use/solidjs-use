@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from 'path'
+import path from 'node:path'
 import { compile } from '@mdx-js/mdx'
 import remarkFrontmatter from 'remark-frontmatter'
 import rehypePrettyCode from 'rehype-pretty-code'
