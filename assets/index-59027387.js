@@ -1,1 +1,0 @@
-import{z as f,H as i,C as l,D as u,u as d}from"./index-65d68e39.js";function S(n){return JSON.parse(JSON.stringify(n))}function p(n,c={}){const[a,s]=f({}),{manual:o,clone:t=S,defer:r=!1}=c;function e(){s(t(d(n)))}return!o&&i(n)?l(u(n,e,{defer:r})):e(),{cloned:a,setCloned:s,sync:e}}export{S as c,p as u};
