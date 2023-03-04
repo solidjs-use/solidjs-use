@@ -1,4 +1,4 @@
-import { join, resolve } from 'path'
+import { join, resolve } from 'node:path'
 import { getExportsSize } from 'export-size'
 import { filesize } from 'filesize'
 import fs from 'fs-extra'

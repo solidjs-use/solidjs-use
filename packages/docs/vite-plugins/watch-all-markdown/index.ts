@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import chokidar from 'chokidar'
 import { packages } from '../../../../meta/packages'
 import { genMetadata } from '../../../../scripts/gen-metadata-fn'

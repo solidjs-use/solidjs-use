@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import fs from 'fs-extra'
 import fg from 'fast-glob'
 import { pascalCase } from 'change-case'

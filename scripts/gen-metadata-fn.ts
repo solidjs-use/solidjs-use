@@ -1,4 +1,4 @@
-import { join, relative, resolve } from 'path'
+import { join, relative, resolve } from 'node:path'
 import fg from 'fast-glob'
 import fs from 'fs-extra'
 import matter from 'gray-matter'
