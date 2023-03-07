@@ -1,0 +1,1 @@
+import{z as l,H as n,u as o}from"./index-bb12af8a.js";function m(e=!1,c={}){const{truthyValue:a=!0,falsyValue:f=!1}=c,[r,s]=l(n(e)?e():e);function t(g){if(arguments.length)return s(g),r();const u=o(a);return s(r()===u?o(f):u),r()}return n(e)?t:[r,t]}export{m as u};
