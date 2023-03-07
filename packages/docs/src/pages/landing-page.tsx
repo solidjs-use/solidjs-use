@@ -141,7 +141,7 @@ function FeatureSection(props: HTMLHopeProps<'div'>) {
               <Text fontSize="$lg" fontWeight="$semibold" mt="-8px" mb="$3">
                 Fully tree shakeable
               </Text>
-              <Text color="$neutral11">Written in TypeScript, with full TS docs.</Text>
+              <Text color="$neutral11">Only take what you want</Text>
             </GridItem>
             <GridItem as={VStack} bg="$neutral3" rounded="$sm" px="$6" pb="$6" maxW="$sm" textAlign="center">
               <Center
@@ -159,7 +159,7 @@ function FeatureSection(props: HTMLHopeProps<'div'>) {
               <Text fontSize="$lg" fontWeight="$semibold" mt="-8px" mb="$3">
                 Type Strong
               </Text>
-              <Text color="$neutral11">Written in TypeScript, with full TS docs.</Text>
+              <Text color="$neutral11">Written in TypeScript.</Text>
             </GridItem>
           </SimpleGrid>
         </VStack>
