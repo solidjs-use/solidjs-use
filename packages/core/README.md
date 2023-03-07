@@ -83,3 +83,5 @@ And thanks to [all the contributors on GitHub](https://github.com/solidjs-use/so
 ## 📄 License
 
 [MIT License](https://github.com/solidjs-use/solidjs-use/blob/main/LICENSE) © 2023-PRESENT [dream2023](https://github.com/dream2023)
+
+![Star History Chart](https://api.star-history.com/svg?repos=solidjs-use/solidjs-use&type=Date)
