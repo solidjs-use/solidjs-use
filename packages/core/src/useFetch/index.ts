@@ -385,9 +385,14 @@ export function useFetch<T>(
   let timer: Stoppable | undefined
 
   const abort = () => {
-    if (supportsAbort && controller) {
-      controller.abort()
-      controller = undefined
+    if (supportsAbort) {
+      controller?.abort()
+      controller = new AbortController()
+      controller.signal.onabort = () => setAborted(aborted)
+      fetchOptions = {
+        ...fetchOptions,
+        signal: controller.signal
+      }
     }
   }
 
@@ -399,20 +404,13 @@ export function useFetch<T>(
   if (timeout) timer = useTimeoutFn(abort, timeout, { immediate: false })
 
   const execute = async (throwOnFailed = false) => {
+    abort()
+
     loading(true)
     setError(null)
     setStatusCode(null)
     setAborted(false)
     controller = undefined
-
-    if (supportsAbort) {
-      controller = new AbortController()
-      controller.signal.onabort = () => setAborted(true)
-      fetchOptions = {
-        ...fetchOptions,
-        signal: controller.signal
-      }
-    }
 
     const defaultFetchOptions: RequestInit = {
       method: config.method,

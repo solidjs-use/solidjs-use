@@ -1,7 +1,7 @@
 import { createSignal } from 'solid-js'
 import { useArrayUnique } from '../useArrayUnique'
 
-describe('useArraySome', () => {
+describe('useArrayUnique', () => {
   it('should be defined', () => {
     expect(useArrayUnique).to.be.exist
   })

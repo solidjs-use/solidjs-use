@@ -4,7 +4,7 @@ import { isString, until } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { AxiosInstance, AxiosResponse, CancelTokenSource, RawAxiosRequestConfig } from 'axios'
 
-export interface UseAxiosReturn<T, R = AxiosResponse<T>, D = any> {
+export interface UseAxiosReturn<T, R = AxiosResponse<T>> {
   /**
    * Axios Response
    */
@@ -33,7 +33,7 @@ export interface UseAxiosReturn<T, R = AxiosResponse<T>, D = any> {
   /**
    * Any errors that may have occurred
    */
-  error: Accessor<AxiosError<T, D> | undefined>
+  error: Accessor<unknown | undefined>
 
   /**
    * Aborts the current request
@@ -74,7 +74,7 @@ export interface UseAxiosReturn<T, R = AxiosResponse<T>, D = any> {
    */
   isCanceled: Accessor<boolean>
 }
-export interface StrictUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R, D> {
+export interface StrictUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
   /**
    * Manually call the axios request
    */
@@ -83,7 +83,7 @@ export interface StrictUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R, D> {
     config?: RawAxiosRequestConfig<D>
   ) => PromiseLike<StrictUseAxiosReturn<T, R, D>>
 }
-export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R, D> {
+export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
   /**
    * Manually call the axios request
    */
@@ -179,7 +179,7 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   const [isFinished, setIsFinish] = createSignal(false)
   const [isLoading, setIsLoading] = createSignal(false)
   const [isAborted, setIsAborted] = createSignal(false)
-  const [error, setError] = createSignal<AxiosError<T> | undefined>()
+  const [error, setError] = createSignal<unknown>()
 
   const cancelTokenSource = axios.CancelToken.source
   let cancelToken: CancelTokenSource = cancelTokenSource()

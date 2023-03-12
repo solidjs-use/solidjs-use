@@ -1,16 +1,14 @@
 import {
-  clamp,
   identity as linear,
   isFunction,
   isNumber,
-  noop,
+  promiseTimeout,
   resolveAccessor,
-  unAccessor,
-  useTimeoutFn
+  tryOnCleanup,
+  unAccessor
 } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { useRafFn } from '../useRafFn'
-import type { Accessor } from 'solid-js'
+import type { Accessor, Signal } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 
 /**
@@ -26,7 +24,27 @@ export type EasingFunction = (n: number) => number
 /**
  * Transition options
  */
-export interface UseCssTransitionOptions {
+export interface CssTransitionOptions {
+  /**
+   * Manually abort a transition
+   */
+  abort?: () => any
+
+  /**
+   * Transition duration in milliseconds
+   */
+  duration?: MaybeAccessor<number>
+
+  /**
+   * Easing function or cubic bezier points for calculating transition values
+   */
+  transition?: MaybeAccessor<EasingFunction | CubicBezierPoints>
+}
+
+/**
+ * Transition options
+ */
+export interface UseCssTransitionOptions extends CssTransitionOptions {
   /**
    * Milliseconds to wait before starting transition
    */
@@ -38,11 +56,6 @@ export interface UseCssTransitionOptions {
   disabled?: MaybeAccessor<boolean>
 
   /**
-   * Transition duration in milliseconds
-   */
-  duration?: MaybeAccessor<number>
-
-  /**
    * Callback to execute after transition finishes
    */
   onFinished?: () => void
@@ -51,11 +64,6 @@ export interface UseCssTransitionOptions {
    * Callback to execute after transition starts
    */
   onStarted?: () => void
-
-  /**
-   * Easing function or cubic bezier points for calculating transition values
-   */
-  transition?: MaybeAccessor<EasingFunction | CubicBezierPoints>
 }
 
 const _TransitionPresets = {
@@ -123,6 +131,65 @@ function createEasingFunction([p0, p1, p2, p3]: CubicBezierPoints): EasingFuncti
   return (x: number) => (p0 === p1 && p2 === p3 ? x : calcBezier(getTforX(x), p1, p3))
 }
 
+const lerp = (a: number, b: number, alpha: number) => a + alpha * (b - a)
+
+const toVec = (t: number | number[] | undefined) => (isNumber(t) ? [t] : t) ?? []
+
+/**
+ * Transition from one value to another.
+ *
+ * @param source
+ * @param from
+ * @param to
+ * @param options
+ */
+export function executeTransition<T extends number | number[]>(
+  [source, setSource]: Signal<T>,
+  from: MaybeAccessor<T>,
+  to: MaybeAccessor<T>,
+  options: CssTransitionOptions = {}
+): PromiseLike<void> {
+  const fromVal = unAccessor(from)
+  const toVal = unAccessor(to)
+  const v1 = toVec(fromVal)
+  const v2 = toVec(toVal)
+  const duration = unAccessor(options.duration) ?? 1000
+  const startedAt = Date.now()
+  const endAt = Date.now() + duration
+  const trans = unAccessor(options.transition) ?? linear
+
+  const ease = isFunction(trans) ? trans : createEasingFunction(trans)
+
+  return new Promise<void>(resolve => {
+    setSource(() => fromVal)
+
+    const tick = () => {
+      if (options.abort?.()) {
+        resolve()
+
+        return
+      }
+
+      const now = Date.now()
+      const alpha = ease((now - startedAt) / duration)
+      const arr = toVec(source()).map((_n, i) => lerp(v1[i], v2[i], alpha))
+
+      if (Array.isArray(source())) setSource(() => arr.map((_n, i) => lerp(v1[i] ?? 0, v2[i] ?? 0, alpha)) as T)
+      else if (isNumber(source())) setSource(() => arr[0] as T)
+
+      if (now < endAt) {
+        requestAnimationFrame(tick)
+      } else {
+        setSource(() => toVal)
+
+        resolve()
+      }
+    }
+
+    tick()
+  })
+}
+
 // option 1: reactive number
 export function useCssTransition(source: Accessor<number>, options?: UseCssTransitionOptions): Accessor<number>
 
@@ -139,109 +206,61 @@ export function useCssTransition<T extends Accessor<number[]>>(
 ): Accessor<number[]>
 
 /**
- * Transition between values.
+ * Follow value with a transition.
  */
 export function useCssTransition(
   source: Accessor<number | number[]> | Array<MaybeAccessor<number>>,
   options: UseCssTransitionOptions = {}
 ): Accessor<any> {
-  const {
-    delay = 0,
-    disabled = false,
-    duration = 1000,
-    onFinished = noop,
-    onStarted = noop,
-    transition = linear
-  } = options
-  // current easing function
-  const currentTransition = createMemo<EasingFunction>(() => {
-    const t = transition.length ? transition : unAccessor(transition) // maybe Accessor (no length)
-    return isFunction(t) ? (t as EasingFunction) : createEasingFunction(t)
-  })
+  let currentId = 0
 
-  // raw source value
-  const sourceValue = createMemo<number | number[]>(() => {
-    const s = unAccessor<number | Array<MaybeAccessor<number>>>(source)
-    return isNumber(s) ? s : s.map(unAccessor)
-  })
+  const sourceVal = () => {
+    const v = unAccessor<number | Array<MaybeAccessor<number>>>(source)
 
-  // normalized source vector
-  const sourceVector = createMemo<number[]>(() =>
-    isNumber(sourceValue()) ? ([sourceValue()] as number[]) : (sourceValue() as number[])
-  )
-
-  // transitioned output vector
-  const [outputVector, setOutputVector] = createSignal(sourceVector().slice(0))
-
-  // current transition values
-  let currentDuration: number
-  let diffVector: number[]
-  let endAt: number
-  let startAt: number
-  let startVector: number[]
-
-  // transition loop
-  const { resume, pause } = useRafFn(
-    () => {
-      const now = Date.now()
-      const progress = clamp(1 - (endAt - now) / currentDuration, 0, 1)
-
-      setOutputVector(
-        startVector.map((val, i) => {
-          return val + (diffVector[i] ?? 0) * currentTransition()(progress)
-        })
-      )
-      if (progress >= 1) {
-        pause()
-        onFinished()
-      }
-    },
-    { immediate: false }
-  )
-
-  // start the animation loop when source vector changes
-  const start = () => {
-    pause()
-
-    currentDuration = unAccessor(duration)
-    diffVector = outputVector().map((n, i) => (sourceVector()[i] ?? 0) - (outputVector()[i] ?? 0))
-    startVector = outputVector().slice(0)
-    startAt = Date.now()
-    endAt = startAt + currentDuration
-
-    resume()
-    onStarted()
+    return isNumber(v) ? v : v.map(unAccessor)
   }
 
-  const timeout = useTimeoutFn(start, delay, { immediate: false })
+  const [output, setOutput] = createSignal(sourceVal())
 
   createEffect(
     on(
-      sourceVector,
-      () => {
-        if (unAccessor(disabled)) return
-        if (unAccessor(delay) <= 0) start()
-        else timeout.start()
-      },
-      { defer: true }
+      () => sourceVal(),
+      async to => {
+        if (unAccessor(options.disabled)) return
+
+        const id = ++currentId
+
+        if (options.delay) await promiseTimeout(unAccessor(options.delay))
+
+        if (id !== currentId) return
+
+        const toVal = Array.isArray(to) ? to.map(unAccessor) : unAccessor(to)
+
+        options.onStarted?.()
+
+        await executeTransition([output, setOutput], output(), toVal, {
+          ...options,
+          abort: () => id !== currentId || options.abort?.()
+        })
+
+        options.onFinished?.()
+      }
     )
   )
 
   createEffect(
-    on(
-      resolveAccessor(disabled),
-      v => {
-        if (v) {
-          setOutputVector(sourceVector().slice(0))
-          pause()
-        }
-      },
-      { defer: true }
-    )
+    on(resolveAccessor(options.disabled), disabled => {
+      if (disabled) {
+        currentId++
+
+        setOutput(sourceVal())
+      }
+    })
   )
 
-  return createMemo(() => {
-    const targetVector = unAccessor(disabled) ? sourceVector : outputVector
-    return isNumber(sourceValue()) ? targetVector()[0] : targetVector()
+  tryOnCleanup(() => {
+    currentId++
   })
+
+  return createMemo(() => (unAccessor(options.disabled) ? sourceVal() : output()))
 }

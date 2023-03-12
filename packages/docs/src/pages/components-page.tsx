@@ -32,11 +32,13 @@ const TryOnCleanup = lazy(() => import('../../../shared/src/tryOnCleanup/index.m
 const TryOnMount = lazy(() => import('../../../shared/src/tryOnMount/index.md'))
 const UnAccessor = lazy(() => import('../../../shared/src/unAccessor/index.md'))
 const Until = lazy(() => import('../../../shared/src/until/index.md'))
+const UseArrayDifference = lazy(() => import('../../../shared/src/useArrayDifference/index.md'))
 const UseArrayEvery = lazy(() => import('../../../shared/src/useArrayEvery/index.md'))
 const UseArrayFilter = lazy(() => import('../../../shared/src/useArrayFilter/index.md'))
 const UseArrayFind = lazy(() => import('../../../shared/src/useArrayFind/index.md'))
 const UseArrayFindIndex = lazy(() => import('../../../shared/src/useArrayFindIndex/index.md'))
 const UseArrayFindLast = lazy(() => import('../../../shared/src/useArrayFindLast/index.md'))
+const UseArrayIncludes = lazy(() => import('../../../shared/src/useArrayIncludes/index.md'))
 const UseArrayJoin = lazy(() => import('../../../shared/src/useArrayJoin/index.md'))
 const UseArrayMap = lazy(() => import('../../../shared/src/useArrayMap/index.md'))
 const UseArrayReduce = lazy(() => import('../../../shared/src/useArrayReduce/index.md'))
@@ -144,6 +146,7 @@ const UseOffsetPagination = lazy(() => import('../../../core/src/useOffsetPagina
 const UseOnline = lazy(() => import('../../../core/src/useOnline/index.md'))
 const UsePageLeave = lazy(() => import('../../../core/src/usePageLeave/index.md'))
 const UseParallax = lazy(() => import('../../../core/src/useParallax/index.md'))
+const UsePerformanceObserver = lazy(() => import('../../../core/src/usePerformanceObserver/index.md'))
 const UsePermission = lazy(() => import('../../../core/src/usePermission/index.md'))
 const UsePointer = lazy(() => import('../../../core/src/usePointer/index.md'))
 const UsePointerLock = lazy(() => import('../../../core/src/usePointerLock/index.md'))
@@ -265,11 +268,13 @@ const ComponentsPage = () => {
       <Route path="/shared/tryOnMount" element={<TryOnMount components={markdownComponents} />} />
       <Route path="/shared/unAccessor" element={<UnAccessor components={markdownComponents} />} />
       <Route path="/shared/until" element={<Until components={markdownComponents} />} />
+      <Route path="/shared/useArrayDifference" element={<UseArrayDifference components={markdownComponents} />} />
       <Route path="/shared/useArrayEvery" element={<UseArrayEvery components={markdownComponents} />} />
       <Route path="/shared/useArrayFilter" element={<UseArrayFilter components={markdownComponents} />} />
       <Route path="/shared/useArrayFind" element={<UseArrayFind components={markdownComponents} />} />
       <Route path="/shared/useArrayFindIndex" element={<UseArrayFindIndex components={markdownComponents} />} />
       <Route path="/shared/useArrayFindLast" element={<UseArrayFindLast components={markdownComponents} />} />
+      <Route path="/shared/useArrayIncludes" element={<UseArrayIncludes components={markdownComponents} />} />
       <Route path="/shared/useArrayJoin" element={<UseArrayJoin components={markdownComponents} />} />
       <Route path="/shared/useArrayMap" element={<UseArrayMap components={markdownComponents} />} />
       <Route path="/shared/useArrayReduce" element={<UseArrayReduce components={markdownComponents} />} />
@@ -377,6 +382,7 @@ const ComponentsPage = () => {
       <Route path="/core/useOnline" element={<UseOnline components={markdownComponents} />} />
       <Route path="/core/usePageLeave" element={<UsePageLeave components={markdownComponents} />} />
       <Route path="/core/useParallax" element={<UseParallax components={markdownComponents} />} />
+      <Route path="/core/usePerformanceObserver" element={<UsePerformanceObserver components={markdownComponents} />} />
       <Route path="/core/usePermission" element={<UsePermission components={markdownComponents} />} />
       <Route path="/core/usePointer" element={<UsePointer components={markdownComponents} />} />
       <Route path="/core/usePointerLock" element={<UsePointerLock components={markdownComponents} />} />

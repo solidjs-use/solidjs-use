@@ -18,7 +18,10 @@ npm install solidjs-use @solidjs-use/integrations idb-keyval
 import { useIDBKeyval } from '@solidjs-use/integrations/useIDBKeyval'
 
 // bind object
-const [storedObject, setStoredObject] = useIDBKeyval('my-idb-keyval-store', { hello: 'hi', greeting: 'Hello' })
+const { data: storedObject, setData: setStoredObject } = useIDBKeyval('my-idb-keyval-store', {
+  hello: 'hi',
+  greeting: 'Hello'
+})
 
 // update object
 setStoredObject(state => ({
@@ -27,10 +30,10 @@ setStoredObject(state => ({
 }))
 
 // bind boolean
-const [flag, setFlag] = useIDBKeyval('my-flag', true) // returns Signal<boolean>
+const { data: flag, setData: setFlag } = useIDBKeyval('my-flag', true) // returns Signal<boolean>
 
 // bind number
-const [count, setCount] = useIDBKeyval('my-count', 0) // returns Signal<number>
+const { data: count, setData: setCount } = useIDBKeyval('my-count', 0) // returns Signal<number>
 
 // delete data from idb storage
 setStoredObject(null)

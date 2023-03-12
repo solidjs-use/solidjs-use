@@ -1,6 +1,6 @@
 import { toSignal } from 'solidjs-use/solid-to-vue'
 import { del, get, set, update } from 'idb-keyval'
-import { createEffect, on } from 'solid-js'
+import { createEffect, createSignal, on } from 'solid-js'
 import { unAccessor } from 'solidjs-use'
 import type { Accessor, Setter } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
@@ -12,19 +12,31 @@ export interface UseIDBOptions {
    * Default log error to `console.error`
    */
   onError?: (error: unknown) => void
+  /**
+   * Write the default value to the storage when it does not exist
+   *
+   * @default true
+   */
+  writeDefaults?: boolean
 }
 
 export function useIDBKeyval<T>(
   key: IDBValidKey,
   initialValue: MaybeAccessor<T>,
   options: UseIDBOptions = {}
-): [Accessor<T>, Setter<T | null | undefined>] {
+): {
+  data: Accessor<T>
+  setData: Setter<T | null | undefined>
+  isFinished: Accessor<boolean>
+} {
   const {
     onError = e => {
       console.error(e)
-    }
+    },
+    writeDefaults = true
   } = options
 
+  const [isFinished, setIsFinished] = createSignal(false)
   const [data, setData] = toSignal(initialValue) as [Accessor<T>, Setter<T | null | undefined>]
   const rawInit: T = unAccessor(initialValue)
 
@@ -32,7 +44,7 @@ export function useIDBKeyval<T>(
     try {
       const rawValue = await get<T>(key)
       if (rawValue === undefined) {
-        if (rawInit !== undefined && rawInit !== null) {
+        if (rawInit !== undefined && rawInit !== null && writeDefaults) {
           await set(key, rawInit)
         }
       } else {
@@ -41,6 +53,7 @@ export function useIDBKeyval<T>(
     } catch (e) {
       onError(e)
     }
+    setIsFinished(true)
   }
 
   read()
@@ -62,5 +75,9 @@ export function useIDBKeyval<T>(
     })
   )
 
-  return [data, setData]
+  return {
+    data,
+    setData,
+    isFinished
+  }
 }

@@ -38,7 +38,9 @@ const currentCamera = createMemo(() => cameras()[0]?.deviceId)
 const currentMicrophone = createMemo(() => microphones()[0]?.deviceId)
 
 const { stream } = useUserMedia({
-  videoDeviceId: currentCamera,
-  audioDeviceId: currentMicrophone
+  constraints: {
+    video: { deviceId: currentCamera },
+    audio: { deviceId: currentMicrophone }
+  }
 })
 ```
