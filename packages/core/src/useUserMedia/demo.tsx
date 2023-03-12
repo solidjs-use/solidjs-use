@@ -12,7 +12,7 @@ const Demo = () => {
 
   const [video, setVideo] = createSignal<HTMLVideoElement>()
   const { stream, enabled, setEnabled } = useUserMedia({
-    videoDeviceId: currentCamera
+    constraints: { video: { deviceId: currentCamera() } }
   })
 
   createEffect(() => {

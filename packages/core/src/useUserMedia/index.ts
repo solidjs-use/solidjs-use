@@ -2,6 +2,7 @@
 
 import { createEffect, createSignal, on } from 'solid-js'
 import { resolveAccessor } from '@solidjs-use/shared'
+import { toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { useSupported } from '../useSupported'
 import { defaultNavigator } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -15,7 +16,7 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
    */
   enabled?: MaybeAccessor<boolean>
   /**
-   * Recreate stream when the input devices id changed
+   * Recreate stream when deviceIds or constraints changed
    *
    * @default true
    */
@@ -27,6 +28,7 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
    * Pass `false` or "none" to disabled video input
    *
    * @default undefined
+   * @deprecated in favor of constraints
    */
   videoDeviceId?: MaybeAccessor<string | undefined | false | 'none'>
   /**
@@ -36,8 +38,16 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
    * Pass `false` or "none" to disabled audi input
    *
    * @default undefined
+   * @deprecated in favor of constraints
    */
   audioDeviceId?: MaybeAccessor<string | undefined | false | 'none'>
+  /**
+   * MediaStreamConstraints to be applied to the requested MediaStream
+   * If provided, the constraints will override videoDeviceId and audioDeviceId
+   *
+   * @default {}
+   */
+  constraints?: MaybeAccessor<MediaStreamConstraints>
 }
 
 /**
@@ -48,30 +58,43 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
   const [autoSwitch, setAutoSwitch] = createSignal(options.autoSwitch ?? true)
   const videoDeviceId = resolveAccessor(options.videoDeviceId)
   const audioDeviceId = resolveAccessor(options.audioDeviceId)
+  const [constraints, setConstraints] = toSignal(options.constraints)
   const { navigator = defaultNavigator } = options
   const isSupported = useSupported(() => navigator?.mediaDevices?.getUserMedia)
 
   const [stream, setStream] = createSignal<MediaStream | undefined>()
 
-  function getDeviceOptions(device: string | undefined | false | 'none') {
-    if (device === 'none' || device === false) return false
-    if (device == null) return true
-    return {
-      deviceId: device
+  function getDeviceOptions(type: 'video' | 'audio') {
+    const constraintsValue = constraints()
+    const videoDeviceIdValue = videoDeviceId()
+    const audioDeviceIdValue = audioDeviceId()
+    switch (type) {
+      case 'video': {
+        if (constraintsValue) return constraintsValue.video ?? false
+        if (videoDeviceIdValue === 'none' || videoDeviceIdValue === false) return false
+        if (videoDeviceIdValue == null) return true
+        return { deviceId: videoDeviceIdValue }
+      }
+      case 'audio': {
+        if (constraintsValue) return constraintsValue.audio ?? false
+        if (audioDeviceIdValue === 'none' || audioDeviceIdValue === false) return false
+        if (audioDeviceIdValue == null) return true
+        return { deviceId: audioDeviceIdValue }
+      }
     }
   }
 
   async function _start() {
     if (!isSupported() || stream()) return
     const streamValue = await navigator!.mediaDevices.getUserMedia({
-      video: getDeviceOptions(videoDeviceId()),
-      audio: getDeviceOptions(audioDeviceId())
+      video: getDeviceOptions('video'),
+      audio: getDeviceOptions('audio')
     })
     setStream(streamValue)
     return streamValue
   }
 
-  async function _stop() {
+  function _stop() {
     stream()
       ?.getTracks()
       .forEach(t => t.stop())
@@ -101,7 +124,7 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
     })
   )
   createEffect(
-    on([videoDeviceId, audioDeviceId] as AccessorArray<string | false | undefined>, () => {
+    on([videoDeviceId, audioDeviceId, constraints] as AccessorArray<string | false | undefined>, () => {
       if (autoSwitch() && stream()) restart()
     })
   )
@@ -114,6 +137,8 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
     restart,
     videoDeviceId,
     audioDeviceId,
+    constraints,
+    setConstraints,
     enabled,
     setEnabled,
     autoSwitch,

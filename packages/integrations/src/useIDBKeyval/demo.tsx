@@ -3,14 +3,14 @@ import { useIDBKeyval } from '@solidjs-use/integrations/useIDBKeyval'
 
 const Demo = () => {
   const KEY = 'vue-use-idb-keyval'
-  const [stateObject, setStateObject] = useIDBKeyval(`${KEY}-object`, {
+  const { data: stateObject, setData: setStateObject } = useIDBKeyval(`${KEY}-object`, {
     name: 'Banana',
     color: 'Yellow',
     size: 'Medium',
     count: 0
   })
-  const [stateString, setStateString] = useIDBKeyval(`${KEY}-string`, 'foobar')
-  const [stateArray, setStateArray] = useIDBKeyval(`${KEY}-array`, ['foo', 'bar', 'baz'])
+  const { data: stateString, setData: setStateString } = useIDBKeyval(`${KEY}-string`, 'foobar')
+  const { data: stateArray, setData: setStateArray } = useIDBKeyval(`${KEY}-array`, ['foo', 'bar', 'baz'])
   return (
     <>
       <h5>Object</h5>

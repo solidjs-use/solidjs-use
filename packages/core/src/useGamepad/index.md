@@ -27,6 +27,7 @@ const gamepad = createMemo(() => gamepads().find(g => g.mapping === 'standard'))
 Currently the Gamepad API does not have event support to update the state of the gamepad. To update the gamepad state, `requestAnimationFrame` is used to poll for gamepad changes. You can control this polling by using the `pause` and `resume` functions provided by `useGamepad`
 
 ```ts
+import { useGamepad } from 'solidjs-use'
 const { pause, resume, gamepads } = useGamepad()
 
 pause()
@@ -59,6 +60,7 @@ onDisconnected(index => {
 > The Gamepad Haptics API is sparse, so check the [compatibility table](https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator#browser_compatibility) before using.
 
 ```ts
+import { createMemo } from 'solidjs-use'
 const supportsVibration = createMemo(() => gamepad().hapticActuators.length > 0)
 const vibrate = () => {
   if (supportsVibration()) {
@@ -85,10 +87,10 @@ import { mapGamepadToXbox360Controller } from 'solidjs-use'
 const controller = mapGamepadToXbox360Controller(gamepad)
 
 <div>
-  <span>{ controller().buttons.a.pressed }<span>
-  <span>{ controller().buttons.b.pressed }<span>
-  <span>{ controller().buttons.x.pressed }<span>
-  <span>{ controller().buttons.y.pressed }<span>
+  <span>{ controller().buttons.a.pressed }</span>
+  <span>{ controller().buttons.b.pressed }</span>
+  <span>{ controller().buttons.x.pressed }</span>
+  <span>{ controller().buttons.y.pressed }</span>
 </div>
 ```
 

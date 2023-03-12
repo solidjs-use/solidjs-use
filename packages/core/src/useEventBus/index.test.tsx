@@ -44,19 +44,6 @@ describe('useEventBus', () => {
       expect(events).to.deep.equal(emptyMap)
     })
   })
-  it('on callback off event', () => {
-    runHook(() => {
-      const bus = useEventBus<number>('on-callback-off')
-      const { count, inc } = useCounter(0)
-      const off = bus.on(inc)
-      bus.on(inc)
-      off()
-      bus.emit()
-      bus.reset()
-      expect(count()).to.deep.equal(1)
-      expect(events).to.deep.equal(emptyMap)
-    })
-  })
   it('not off non-exist listener', () => {
     runHook(() => {
       const bus1 = useEventBus<number>('foo')
@@ -91,19 +78,16 @@ describe('useEventBus', () => {
       const { emit, on, reset } = useEventBus<number>('useEventBus-off')
       const { count, inc } = useCounter(0)
       on(inc)
-      on(inc)
-      on(inc)
 
       emit()
       reset()
 
       on(inc)
-      on(inc)
 
       emit()
       reset()
 
-      expect(count()).to.deep.equal(5)
+      expect(count()).to.deep.equal(2)
       expect(events).to.deep.equal(emptyMap)
     })
   })
@@ -112,22 +96,20 @@ describe('useEventBus', () => {
       const event1 = useEventBus<number>('event-off-1')
       const event2 = useEventBus<number>('event-off-2')
       const { count, inc } = useCounter(0)
-      event1.on(inc)
       event2.on(inc)
       event1.emit() // 1
-      event2.emit() // 2
+      event2.emit() // 1
 
       event1.reset()
 
-      event1.on(inc)
       event2.on(inc)
-      event1.emit() // 3
-      event2.emit() // 5
+      event1.emit() // 2
+      event2.emit() // 2
 
       event1.reset()
       event2.reset()
 
-      expect(count()).to.deep.equal(5)
+      expect(count()).to.be.eq(2)
       expect(events).to.deep.equal(emptyMap)
     })
   })
@@ -156,6 +138,19 @@ describe('useEventBus', () => {
       expect(counter.count()).to.deep.equal(3)
       emit('dec', 1)
       expect(counter.count()).to.deep.equal(2)
+    })
+  })
+
+  it('the same key, the same listener, will only be triggered once', () => {
+    runHook(() => {
+      const listener = cy.spy()
+      const { on, emit, off } = useEventBus<'inc' | 'dec', number>('counter')
+      on(listener)
+      on(listener)
+      emit()
+      off(listener)
+      expect(listener).to.be.callCount(1)
+      expect(events).to.deep.eq(emptyMap)
     })
   })
 })

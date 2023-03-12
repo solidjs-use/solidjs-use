@@ -297,7 +297,7 @@ describe('useAxios', () => {
       const { isLoading, isFinished, isAborted, execute, abort } = useAxios(url, config, options)
       expect(isLoading()).to.be.false
       execute(`${window.origin}/todos/2.json`).then(result => {
-        expect(result.error()?.message).to.be.eq('aborted')
+        expect((result.error() as Error)?.message).to.be('aborted')
         expect(isFinished()).to.be.true
         expect(isLoading()).to.be.false
         expect(isAborted()).to.be.true

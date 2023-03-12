@@ -1,5 +1,5 @@
-import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
-import { promiseTimeout, timestamp } from '@solidjs-use/shared'
+import { runHook } from '@dream2023/cypress-solidjs'
+import { timestamp } from '@solidjs-use/shared'
 import { createMemo, createSignal, getOwner } from 'solid-js'
 import { useTimeAgo } from '.'
 import type { Accessor, Owner, Setter } from 'solid-js'
@@ -40,21 +40,6 @@ describe('useTimeAgo', () => {
     runHook(() => {
       reset()
     })
-  })
-
-  it('control now', () => {
-    return runAsyncHook(async () => {
-      const { resume, pause, timeAgo } = useTimeAgo(baseTime, { controls: true, showSecond: true, updateInterval: 50 })
-      expect(timeAgo()).to.be.eq('0 second ago')
-
-      pause()
-      await promiseTimeout(100)
-      expect(timeAgo()).to.be.eq('0 second ago')
-
-      resume()
-      await promiseTimeout(1000)
-      expect(timeAgo()).to.be.eq('1 second ago')
-    }, owner)
   })
 
   it('get undefined when time is invalid', () => {

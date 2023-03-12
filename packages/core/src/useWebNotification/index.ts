@@ -99,10 +99,10 @@ export const useWebNotification = (defaultOptions: UseWebNotificationOptions = {
     if ('permission' in Notification && Notification.permission !== 'denied') await Notification.requestPermission()
   }
 
-  const onClick: EventHook = createEventHook<Event>()
-  const onShow: EventHook = createEventHook<Event>()
-  const onError: EventHook = createEventHook<Event>()
-  const onClose: EventHook = createEventHook<Event>()
+  const { on: onClick, trigger: clickTrigger }: EventHook = createEventHook<Event>()
+  const { on: onShow, trigger: showTrigger }: EventHook = createEventHook<Event>()
+  const { on: onError, trigger: errorTrigger }: EventHook = createEventHook<Event>()
+  const { on: onClose, trigger: closeTrigger }: EventHook = createEventHook<Event>()
 
   // Show notification method:
   const show = async (overrides?: WebNotificationOptions) => {
@@ -113,10 +113,10 @@ export const useWebNotification = (defaultOptions: UseWebNotificationOptions = {
     const notificationValue = new Notification(options.title ?? '', options)
     setNotification(notificationValue)
 
-    notificationValue.onclick = (event: Event) => onClick.trigger(event)
-    notificationValue.onshow = (event: Event) => onShow.trigger(event)
-    notificationValue.onerror = (event: Event) => onError.trigger(event)
-    notificationValue.onclose = (event: Event) => onClose.trigger(event)
+    notificationValue.onclick = clickTrigger
+    notificationValue.onshow = showTrigger
+    notificationValue.onerror = errorTrigger
+    notificationValue.onclose = closeTrigger
     return notificationValue
   }
 

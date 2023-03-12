@@ -6,7 +6,7 @@ import { tryOnCleanup } from '../tryOnCleanup'
  */
 export type EventHookOn<T = any> = (fn: (param: T) => void) => { off: () => void }
 export type EventHookOff<T = any> = (fn: (param: T) => void) => void
-export type EventHookTrigger<T = any> = (param: T) => void
+export type EventHookTrigger<T = any> = (param: T) => Promise<unknown[]>
 
 export interface EventHook<T = any> {
   on: EventHookOn<T>
@@ -18,15 +18,14 @@ export interface EventHook<T = any> {
  * Utility for creating event hooks
  */
 export function createEventHook<T = any>(): EventHook<T> {
-  const fns: Array<(param: T) => void> = []
+  const fns: Set<(param: T) => void> = new Set()
 
   const off = (fn: (param: T) => void) => {
-    const index = fns.indexOf(fn)
-    if (index !== -1) fns.splice(index, 1)
+    fns.delete(fn)
   }
 
   const on = (fn: (param: T) => void) => {
-    fns.push(fn)
+    fns.add(fn)
     const offFn = () => off(fn)
 
     tryOnCleanup(offFn)
@@ -37,7 +36,7 @@ export function createEventHook<T = any>(): EventHook<T> {
   }
 
   const trigger = (param: T) => {
-    fns.forEach(fn => fn(param))
+    return Promise.all(Array.from(fns).map(fn => fn(param)))
   }
 
   return {

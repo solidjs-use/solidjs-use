@@ -3,7 +3,7 @@ import { nextTick } from '@solidjs-use/solid-to-vue'
 import { createEffect, createSignal } from 'solid-js'
 import { toReactive } from '.'
 
-describe('toRefs', () => {
+describe('toReactive', () => {
   it('should be defined', () => {
     expect(toReactive).to.be.exist
   })
