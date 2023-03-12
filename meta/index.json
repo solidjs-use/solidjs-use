@@ -202,7 +202,7 @@
     {
       "name": "createEventHook",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/createEventHook/",
       "category": "Utilities",
       "description": "utility for creating event hooks"
@@ -525,6 +525,14 @@
       "description": "reactive `document.activeElement`"
     },
     {
+      "name": "useArrayDifference",
+      "package": "shared",
+      "lastUpdated": 1678613306000,
+      "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayDifference/",
+      "category": "Array",
+      "description": "reactive get array difference of two array"
+    },
+    {
       "name": "useArrayEvery",
       "package": "shared",
       "lastUpdated": 1675478575000,
@@ -563,6 +571,14 @@
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFindLast/",
       "category": "Array",
       "description": "reactive `Array.findLast`"
+    },
+    {
+      "name": "useArrayIncludes",
+      "package": "shared",
+      "lastUpdated": 1678613306000,
+      "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayIncludes/",
+      "category": "Array",
+      "description": "reactive `Array.includes`"
     },
     {
       "name": "useArrayJoin",
@@ -623,7 +639,7 @@
     {
       "name": "useAsyncValidator",
       "package": "integrations",
-      "lastUpdated": 1676638055000,
+      "lastUpdated": 1677151594000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAsyncValidator/",
       "category": "@Integrations",
       "description": "wrapper for [`async-validator`](https://github.com/yiminghe/async-validator)",
@@ -649,7 +665,7 @@
     {
       "name": "useAxios",
       "package": "integrations",
-      "lastUpdated": 1676638055000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAxios/",
       "category": "@Integrations",
       "description": "wrapper for [`axios`](https://github.com/axios/axios)",
@@ -698,7 +714,7 @@
     {
       "name": "useBrowserLocation",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "component": true,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useBrowserLocation/",
       "category": "Browser",
@@ -748,7 +764,7 @@
     {
       "name": "useColorMode",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1677409982000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useColorMode/",
       "category": "Browser",
       "description": "reactive color mode (dark / light / customs) with auto data persistence",
@@ -786,7 +802,7 @@
     {
       "name": "useCssTransition",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssTransition/",
       "category": "Animation",
       "description": "transition between values"
@@ -794,7 +810,7 @@
     {
       "name": "useCssVar",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1677898697000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssVar/",
       "category": "Browser",
       "description": "manipulate CSS variables"
@@ -949,7 +965,7 @@
     {
       "name": "useElementHover",
       "package": "core",
-      "lastUpdated": 1676796664000,
+      "lastUpdated": 1677151594000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementHover/",
       "category": "Sensors",
       "description": "reactive element's hover state"
@@ -973,7 +989,7 @@
     {
       "name": "useEventBus",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useEventBus/",
       "category": "Utilities",
       "description": "a basic event bus"
@@ -1013,7 +1029,7 @@
     {
       "name": "useFetch",
       "package": "core",
-      "lastUpdated": 1676638055000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFetch/",
       "category": "Network",
       "description": "reactive [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides the ability to abort requests"
@@ -1133,7 +1149,7 @@
     {
       "name": "useIDBKeyval",
       "package": "integrations",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useIDBKeyval/",
       "category": "@Integrations",
       "description": "wrapper for [`idb-keyval`](https://www.npmjs.com/package/idb-keyval)",
@@ -1258,7 +1274,7 @@
     {
       "name": "useManualHistoryTravel",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1677409982000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useManualHistoryTravel/",
       "category": "State",
       "description": "manually track the change history of a `Signal` or `Accessor` when the using calls `commit()`",
@@ -1444,6 +1460,14 @@
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useParallax/",
       "category": "Sensors",
       "description": "create parallax effect easily"
+    },
+    {
+      "name": "usePerformanceObserver",
+      "package": "core",
+      "lastUpdated": 1678613306000,
+      "docs": "https://solidjs-use.github.io/solidjs-use/core/usePerformanceObserver/",
+      "category": "Browser",
+      "description": "observe performance metrics"
     },
     {
       "name": "usePermission",
@@ -1902,7 +1926,7 @@
     {
       "name": "useUserMedia",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useUserMedia/",
       "category": "Sensors",
       "description": "reactive [`mediaDevices.getUserMedia`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) streaming",
@@ -1939,7 +1963,7 @@
     {
       "name": "useWebNotification",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWebNotification/",
       "category": "Browser",
       "description": "reactive [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification)"
@@ -2018,7 +2042,7 @@
     {
       "name": "utils",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1678613306000,
       "internal": true
     },
     {

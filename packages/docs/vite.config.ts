@@ -30,14 +30,7 @@ export default defineConfig(
         watchAllMarkdown()
         // devtools()
       ],
-      optimizeDeps: {
-        exclude: [
-          '@iconify/utils/lib/loader/fs',
-          '@iconify/utils/lib/loader/install-pkg',
-          '@iconify/utils/lib/loader/node-loader',
-          '@iconify/utils/lib/loader/node-loaders'
-        ]
-      },
+      optimizeDeps: {},
       resolve: {
         conditions: ['development', 'browser'],
         alias: {
