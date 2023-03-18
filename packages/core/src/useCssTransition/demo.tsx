@@ -19,7 +19,7 @@ const Demo = () => {
 
   const customFnNumber = useCssTransition(baseNumber, {
     duration,
-    transition: easeOutElastic
+    transition: () => easeOutElastic
   })
 
   const vector = useCssTransition(baseVector, {

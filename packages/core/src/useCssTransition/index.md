@@ -78,7 +78,7 @@ const easeOutElastic = n => {
 }
 
 useCssTransition(source, {
-  transition: easeOutElastic
+  transition: () => easeOutElastic
 })
 ```
 

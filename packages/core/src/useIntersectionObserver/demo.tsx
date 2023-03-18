@@ -44,7 +44,7 @@ const Demo = () => {
   opacity: 0.8;
 }
 .target {
-  border: 2px dashed var(--c-brand);
+  border: 2px dashed var(--hope-colors-primary11);
   padding: 10px;
   max-height: 150px;
   margin: 0 2rem 400px;

@@ -1,6 +1,6 @@
 import { createEventHook, noop } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
-import type { Accessor, Setter } from 'solid-js'
+import { createMemo, createSignal } from 'solid-js'
+import type { Signal } from 'solid-js'
 import type { EventHook, EventHookOn } from '@solidjs-use/shared'
 
 export type UseConfirmDialogRevealResult<C, D> =
@@ -54,28 +54,13 @@ export interface UseConfirmDialogReturn<RevealData, ConfirmData, CancelData> {
 
 /**
  * Hooks for creating confirm dialogs. Useful for modal windows, popups and logins.
- *
- * @param setRevealed `Setter<boolean>` that handles a modal window
  */
-export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData = any>(): UseConfirmDialogReturn<
-  RevealData,
-  ConfirmData,
-  CancelData
-> & {
-  isRevealed: Accessor<boolean>
-}
 export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData = any>(
-  setRevealed: Setter<boolean>
-): UseConfirmDialogReturn<RevealData, ConfirmData, CancelData>
-export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData = any>(setRevealed?: Setter<boolean>) {
+  [revealed, setRevealed]: Signal<boolean> = createSignal(false)
+) {
   const confirmHook: EventHook = createEventHook<ConfirmData>()
   const cancelHook: EventHook = createEventHook<CancelData>()
   const revealHook: EventHook = createEventHook<RevealData>()
-  let revealed: Accessor<boolean> | undefined
-  if (setRevealed === undefined) {
-    ;[revealed, setRevealed] = createSignal(false)
-  }
-
   let _resolve: (arg0: UseConfirmDialogRevealResult<ConfirmData, CancelData>) => void = noop
 
   const reveal = (data?: RevealData) => {
@@ -100,7 +85,8 @@ export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData
     _resolve({ data, isCanceled: true })
   }
 
-  const res = {
+  return {
+    isRevealed: createMemo(() => revealed()),
     reveal,
     confirm,
     cancel,
@@ -108,12 +94,4 @@ export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData
     onConfirm: confirmHook.on,
     onCancel: cancelHook.on
   }
-  if (revealed) {
-    return {
-      isRevealed: reveal,
-      ...res
-    }
-  }
-
-  return res
 }

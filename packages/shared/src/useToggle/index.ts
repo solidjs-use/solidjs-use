@@ -1,5 +1,4 @@
-import { isAccessor } from '@solidjs-use/solid-to-vue'
-import { createSignal } from 'solid-js'
+import { isAccessor, toSignal } from '@solidjs-use/solid-to-vue'
 import { unAccessor } from '../unAccessor'
 import type { Accessor, Signal } from 'solid-js'
 import type { MaybeAccessor, MaybeSignal } from '../utils'
@@ -25,8 +24,7 @@ export function useToggle<Truthy = true, Falsy = false, T = Truthy | Falsy>(
 export function useToggle(initialValue: MaybeSignal<boolean> = false, options: UseToggleOptions<any, any> = {}) {
   const { truthyValue = true, falsyValue = false } = options
 
-  const [_value, setValue] = createSignal(isAccessor(initialValue) ? initialValue() : initialValue)
-
+  const [_value, setValue] = toSignal(initialValue)
   function toggle(value?: boolean) {
     // has arguments
     if (arguments.length) {

@@ -1,7 +1,8 @@
 import { pausableWatch } from '@solidjs-use/shared'
-import { createMutable } from 'solid-js/store'
+import { createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
+import type { Signal } from 'solid-js'
 import type { ConfigurableWindow } from '../_configurable'
 
 export type UrlParams = Record<string, string[] | string>
@@ -36,7 +37,7 @@ export interface UseUrlSearchParamsOptions<T> extends ConfigurableWindow {
 export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
   mode: 'history' | 'hash' | 'hash-params' = 'history',
   options: UseUrlSearchParamsOptions<T> = {}
-): T {
+): Signal<T> {
   const {
     initialValue = {},
     removeNullishValues = true,
@@ -45,9 +46,9 @@ export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
     window = defaultWindow!
   } = options
 
-  if (!window) return createMutable(initialValue) as T
+  if (!window) return createSignal<Record<string, any>>(initialValue) as Signal<T>
 
-  const state: Record<string, any> = createMutable({})
+  const [state, setState] = createSignal<Record<string, any>>({})
 
   function getRawParams() {
     if (mode === 'history') {
@@ -76,18 +77,22 @@ export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
   }
 
   function updateState(params: URLSearchParams) {
-    const unusedKeys = new Set(Object.keys(state))
-    for (const key of params.keys()) {
-      const paramsForKey = params.getAll(key)
-      state[key] = paramsForKey.length > 1 ? paramsForKey : params.get(key) ?? ''
-      unusedKeys.delete(key)
-    }
-    Array.from(unusedKeys).forEach(key => delete state[key])
+    const unusedKeys = new Set(Object.keys(state()))
+
+    setState(({ ...newState }) => {
+      for (const key of params.keys()) {
+        const paramsForKey = params.getAll(key)
+        newState[key] = paramsForKey.length > 1 ? paramsForKey : params.get(key) ?? ''
+        unusedKeys.delete(key)
+      }
+      Array.from(unusedKeys).forEach(key => delete newState[key])
+      return newState
+    })
   }
 
   const { pause, resume } = pausableWatch(
     state,
-    () => {
+    state => {
       const params = new URLSearchParams('')
       Object.keys(state).forEach(key => {
         const mapEntry = state[key]
@@ -96,7 +101,9 @@ export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
         else if (removeFalsyValues && !mapEntry) params.delete(key)
         else params.set(key, mapEntry)
       })
-      write(params)
+      setTimeout(() => {
+        write(params)
+      })
     },
     { defer: false }
   )
@@ -128,5 +135,5 @@ export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
   if (initial.keys().next().value) updateState(initial)
   else Object.assign(state, initialValue)
 
-  return state as T
+  return [state, setState] as Signal<T>
 }

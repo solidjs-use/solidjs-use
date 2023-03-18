@@ -29,7 +29,7 @@ export function useIntersectionObserver(
   callback: IntersectionObserverCallback,
   options: UseIntersectionObserverOptions = {}
 ) {
-  const { root, rootMargin = '0', threshold = 0.1, window = defaultWindow } = options
+  const { root, rootMargin = '0px', threshold = 0.1, window = defaultWindow } = options
 
   const isSupported = useSupported(() => window && 'IntersectionObserver' in window)
 
@@ -45,7 +45,6 @@ export function useIntersectionObserver(
           cleanup()
 
           if (!el) return
-
           const observer = new IntersectionObserver(callback, {
             root,
             rootMargin,

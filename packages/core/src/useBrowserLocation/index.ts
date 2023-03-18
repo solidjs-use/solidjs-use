@@ -50,6 +50,7 @@ export function useBrowserLocation({ window = defaultWindow }: ConfigurableWindo
   }
 
   const buildState = (trigger: string): BrowserLocationState => {
+    const { state, length } = window?.history ?? {}
     const { origin } = window?.location ?? {}
 
     for (const key of WRITABLE_PROPERTIES) signals[key][1](window?.location?.[key])

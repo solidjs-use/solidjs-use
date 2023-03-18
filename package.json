@@ -1,7 +1,7 @@
 {
   "name": "@solidjs-use/monorepo",
   "version": "1.2.0",
-  "vueuse-git-commit-id": "6aaa66e2a3c50dc46968a46faa0dd0786225c9c6",
+  "vueuse-git-commit-id": "da0d7263db5f0cb8a83bfb80c6ad09e1813542ee",
   "private": true,
   "packageManager": "pnpm@7.11.0",
   "description": "Collection of SolidJS utilities inspired completely by VueUse",
