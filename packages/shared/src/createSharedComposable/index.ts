@@ -1,10 +1,11 @@
 import { createRoot } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
+import type { AnyFn } from '../utils'
 
 /**
  * Make a composable function usable with multiple SolidJS component instances.
  */
-export function createSharedComposable<Fn extends (...args: any[]) => any>(composable: Fn): Fn {
+export function createSharedComposable<Fn extends AnyFn>(composable: Fn): Fn {
   let subscribers = 0
   let state: ReturnType<Fn> | undefined
   let disposer: () => void | undefined

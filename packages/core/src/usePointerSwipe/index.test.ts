@@ -1,6 +1,5 @@
 import { runAsyncHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
-import { SwipeDirection } from '../useSwipe'
 import { usePointerSwipe } from './index'
 import type { UsePointerSwipeOptions } from './index'
 
@@ -75,7 +74,7 @@ describe('usePointerSwipe', () => {
       expect(onSwipeStart).to.be.called
       expect(onSwipe).to.be.called
       expect(onSwipeEnd).to.be.called
-      expect(onSwipeEnd).to.be.calledWith(Cypress.sinon.match.any, SwipeDirection.RIGHT)
+      expect(onSwipeEnd).to.be.calledWith(Cypress.sinon.match.any, 'right')
     })
   })
 
@@ -95,7 +94,7 @@ describe('usePointerSwipe', () => {
       expect(onSwipeStart).to.be.called
       expect(onSwipe).to.be.callCount(2)
       expect(onSwipeEnd).to.be.called
-      expect(onSwipeEnd).to.be.calledWith(Cypress.sinon.match.any, SwipeDirection.NONE)
+      expect(onSwipeEnd).to.be.calledWith(Cypress.sinon.match.any, 'none')
     })
   })
 
@@ -106,19 +105,19 @@ describe('usePointerSwipe', () => {
 
       target.dispatchEvent(mockPointerDown(0, 0))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
 
       target.dispatchEvent(mockPointerMove(threshold, threshold / 2))
       expect(isSwiping()).to.be.true
-      expect(direction()).to.eq(SwipeDirection.RIGHT)
+      expect(direction()).to.eq('right')
       expect(distanceX()).to.eq(-threshold)
       expect(distanceY()).to.eq(-threshold / 2)
 
       target.dispatchEvent(mockPointerUp(threshold, threshold / 2))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.RIGHT)
+      expect(direction()).to.eq('right')
       expect(distanceX()).to.eq(-threshold)
       expect(distanceY()).to.eq(-threshold / 2)
     })
@@ -134,19 +133,19 @@ describe('usePointerSwipe', () => {
 
       target.dispatchEvent(mockPointerDown(0, 0))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
 
       target.dispatchEvent(mockPointerMove(threshold, threshold / 2))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
 
       target.dispatchEvent(mockPointerUp(threshold, threshold / 2))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
     })
@@ -158,7 +157,7 @@ describe('usePointerSwipe', () => {
 
       target.dispatchEvent(mockPointerMove(threshold, threshold / 2))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
     })
@@ -173,7 +172,7 @@ describe('usePointerSwipe', () => {
 
       target.dispatchEvent(mockPointerDown(0, 0))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
 
@@ -181,7 +180,7 @@ describe('usePointerSwipe', () => {
 
       target.dispatchEvent(mockPointerMove(threshold, threshold / 2))
       expect(isSwiping()).to.be.false
-      expect(direction()).to.eq(SwipeDirection.NONE)
+      expect(direction()).to.eq('none')
       expect(distanceX()).to.eq(0)
       expect(distanceY()).to.eq(0)
     })

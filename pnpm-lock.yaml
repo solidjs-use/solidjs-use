@@ -178,6 +178,7 @@ importers:
     specifiers:
       '@types/nprogress': ^0.2.0
       '@types/qrcode': ^1.5.0
+      '@types/sortablejs': ^1.15.0
       async-validator: ^4.2.5
       axios: ^1.3.3
       change-case: ^4.1.2
@@ -190,12 +191,14 @@ importers:
       qrcode: ^1.5.1
       solid-js: ^1.6.11
       solidjs-use: workspace:*
+      sortablejs: ^1.15.0
       universal-cookie: ^4.0.4
     dependencies:
       solidjs-use: link:../core
     devDependencies:
       '@types/nprogress': 0.2.0
       '@types/qrcode': 1.5.0
+      '@types/sortablejs': 1.15.1
       async-validator: 4.2.5
       axios: 1.3.3
       change-case: 4.1.2
@@ -207,6 +210,7 @@ importers:
       nprogress: 0.2.0
       qrcode: 1.5.1
       solid-js: 1.6.11
+      sortablejs: 1.15.0
       universal-cookie: 4.0.4
 
   packages/math:
@@ -1957,6 +1961,10 @@ packages:
 
   /@types/sizzle/2.3.3:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
+    dev: true
+
+  /@types/sortablejs/1.15.1:
+    resolution: {integrity: sha512-g/JwBNToh6oCTAwNS8UGVmjO7NLDKsejVhvE4x1eWiPTC3uCuNsa/TD4ssvX3du+MLiM+SHPNDuijp8y76JzLQ==}
     dev: true
 
   /@types/web-bluetooth/0.0.16:
@@ -6259,6 +6267,10 @@ packages:
       '@babel/helper-module-imports': 7.18.6
       '@babel/types': 7.20.7
       solid-js: 1.6.11
+    dev: true
+
+  /sortablejs/1.15.0:
+    resolution: {integrity: sha512-bv9qgVMjUMf89wAvM6AxVvS/4MX3sPeN0+agqShejLU5z5GX4C75ow1O2e5k4L6XItUyAK3gH6AxSbXrOM5e8w==}
     dev: true
 
   /source-map-js/1.0.2:

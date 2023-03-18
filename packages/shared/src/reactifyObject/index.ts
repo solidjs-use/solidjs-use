@@ -1,8 +1,9 @@
 import { reactify } from '../reactify'
 import type { Reactified } from '../reactify'
+import type { AnyFn } from '../utils'
 
 export type ReactifyNested<T, Keys extends keyof T = keyof T> = {
-  [K in Keys]: T[K] extends (...args: any[]) => any ? Reactified<T[K]> : T[K]
+  [K in Keys]: T[K] extends AnyFn ? Reactified<T[K]> : T[K]
 }
 
 export interface ReactifyObjectOptions {

@@ -1,7 +1,8 @@
 import { toSignal } from '@solidjs-use/shared/solid-to-vue'
-import { createMemo } from 'solid-js'
-import type { Accessor, Signal, Setter } from 'solid-js'
+import { createEffect, createMemo, on } from 'solid-js'
+import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
 import type { MaybeAccessor } from '@solidjs-use/shared'
+import type { Accessor, Signal, Setter } from 'solid-js'
 
 export interface UseCycleListOptions<T> {
   /**
@@ -24,11 +25,14 @@ export interface UseCycleListOptions<T> {
 /**
  * Cycle through a list of items
  */
-export function useCycleList<T>(list: T[], options?: UseCycleListOptions<T>): UseCycleListReturn<T> {
-  const [state, setState] = toSignal(options?.initialValue ?? list[0]) as Signal<T>
+export function useCycleList<T>(list: MaybeAccessor<T[]>, options?: UseCycleListOptions<T>): UseCycleListReturn<T> {
+  const [state, setState] = toSignal(getInitialValue())
+  const listAccessor = resolveAccessor(list)
 
   const index = createMemo<number>(() => {
-    let index = options?.getIndexOf ? options.getIndexOf(state(), list) : list.indexOf(state())
+    const targetList = unAccessor<T[]>(list)
+
+    let index = options?.getIndexOf ? options.getIndexOf(state(), targetList) : targetList.indexOf(state())
 
     if (index < 0) index = options?.fallbackIndex ?? 0
 
@@ -36,9 +40,11 @@ export function useCycleList<T>(list: T[], options?: UseCycleListOptions<T>): Us
   })
 
   function set(i: number) {
-    const length = list.length
+    const targetList = listAccessor()
+    const length = targetList.length
+
     const index = ((i % length) + length) % length
-    const value = list[index]
+    const value = targetList[index]
     setState(() => value)
     return value
   }
@@ -55,9 +61,20 @@ export function useCycleList<T>(list: T[], options?: UseCycleListOptions<T>): Us
     return shift(-n)
   }
 
+  function getInitialValue() {
+    return options?.initialValue ?? unAccessor<T[]>(list)[0]
+  }
+
+  createEffect(
+    on(listAccessor, () => {
+      set(index())
+    })
+  )
+
   return {
     state,
     setState,
+    setIndex: set,
     index,
     next,
     prev
@@ -68,6 +85,7 @@ export interface UseCycleListReturn<T> {
   state: Accessor<T>
   setState: Setter<T>
   index: Accessor<number>
+  setIndex: (i: number) => T
   next: (n?: number) => T
   prev: (n?: number) => T
 }

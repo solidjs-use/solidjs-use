@@ -1,7 +1,8 @@
+import { createSignal } from 'solid-js'
 import { useCycleList } from 'solidjs-use'
 
 const Demo = () => {
-  const list = ['Dog', 'Cat', 'Lizard', 'Shark', 'Whale', 'Dolphin', 'Octopus', 'Seal']
+  const [list] = createSignal(['Dog', 'Cat', 'Lizard', 'Shark', 'Whale', 'Dolphin', 'Octopus', 'Seal'])
 
   const { state, next, prev } = useCycleList(list)
 
