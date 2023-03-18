@@ -17,14 +17,14 @@ const FunctionsList = () => {
     if ((e.target as any).tagName === 'A') window.dispatchEvent(new Event('hashchange'))
   })
 
-  const query = useUrlSearchParams('hash-params', { removeFalsyValues: true })
-  const showCategory = createMemo(() => !query.search && (!query.sortMethod || query.sortMethod === 'category'))
+  const [query, setQuery] = useUrlSearchParams('hash-params', { removeFalsyValues: true })
+  const showCategory = createMemo(() => !query().search && (!query().sortMethod || query().sortMethod === 'category'))
   const items = createMemo(() => {
     let fn = functions.filter(i => !i.internal)
-    if (query.component) fn = fn.filter(i => i.component)
-    if (query.directive) fn = fn.filter(i => i.directive)
-    if (!query.category) return fn
-    return fn.filter(item => item.category === query.category)
+    if (query().component) fn = fn.filter(i => i.component)
+    if (query().directive) fn = fn.filter(i => i.directive)
+    if (!query().category) return fn
+    return fn.filter(item => item.category === query().category)
   })
 
   const fuse = createMemo(
@@ -34,31 +34,41 @@ const FunctionsList = () => {
       })
   )
   const result = createMemo(() => {
-    if (query.search) {
+    if (query().search) {
       return fuse()
-        .search(String(query.search))
+        .search(String(query().search))
         .map(i => i.item)
     }
     const fns = [...items()]
-    if (query.sortMethod === 'updated') fns.sort((a, b) => b.lastUpdated ?? 0 - (a.lastUpdated ?? 0))
-    else if (query.sortMethod === 'name') fns.sort((a, b) => a.name.localeCompare(b.name))
+    if (query().sortMethod === 'updated') fns.sort((a, b) => b.lastUpdated ?? 0 - (a.lastUpdated ?? 0))
+    else if (query().sortMethod === 'name') fns.sort((a, b) => a.name.localeCompare(b.name))
     else fns.sort((a, b) => categoryNames.indexOf(a.category ?? '') - categoryNames.indexOf(b.category ?? ''))
     return fns
   })
 
-  const hasFilters = createMemo(() => Boolean(query.search || query.category || query.component || query.sortMethod))
+  const hasFilters = createMemo(() =>
+    Boolean(query().search || query().category || query().component || query().sortMethod)
+  )
 
   function resetFilters() {
-    query.sortMethod = ''
-    query.category = ''
-    query.component = ''
-    query.search = ''
+    setQuery({
+      sortMethod: '',
+      category: '',
+      component: '',
+      search: ''
+    })
   }
   function toggleCategory(cate: string) {
-    query.category = query.category === cate ? '' : cate
+    setQuery(({ ...newQuery }) => ({
+      ...newQuery,
+      category: newQuery.category === cate ? '' : cate
+    }))
   }
   function toggleSort(method: string) {
-    query.sortMethod = method as any
+    setQuery(({ ...newQuery }) => ({
+      ...newQuery,
+      sortMethod: method
+    }))
   }
 
   function styledName(name: string) {
@@ -120,7 +130,7 @@ const FunctionsList = () => {
             {cate => (
               <button
                 class="select-button"
-                classList={{ active: query.category === cate }}
+                classList={{ active: query().category === cate }}
                 onClick={() => toggleCategory(cate)}
               >
                 {cate}
@@ -136,7 +146,7 @@ const FunctionsList = () => {
             {cate => (
               <button
                 class="select-button"
-                classList={{ active: query.category === cate }}
+                classList={{ active: query().category === cate }}
                 onClick={() => toggleCategory(cate)}
               >
                 {cate}
@@ -148,14 +158,14 @@ const FunctionsList = () => {
           Sort by
         </div>
         <div flex="~ wrap" gap="2" m="b-2">
-          <Show when={query.search}>
+          <Show when={query().search}>
             <button class="select-button active">Search</button>
           </Show>
           <For each={sortMethods}>
             {method => (
               <button
                 class="select-button capitalize"
-                classList={{ active: method === (query.sortMethod || 'category') }}
+                classList={{ active: method === (query().sortMethod || 'category') }}
                 onClick={() => toggleSort(method)}
               >
                 {method}
@@ -168,11 +178,11 @@ const FunctionsList = () => {
       </div>
       <div flex="~ gap-4">
         <CheckboxLabel class="checkbox">
-          <Input checked={!!query.component} onChange={() => query.component = (!query.component) as any} type="checkbox" />
+          <Input checked={!!query().component} onChange={() => query().component = (!query().component) as any} type="checkbox" />
           <CheckboxSpan>Has Component</CheckboxSpan>
         </CheckboxLabel>
         <CheckboxLabel class="checkbox">
-          <Input checked={!!query.directive} onChange={() => query.directive = (!query.directive) as any} type="checkbox" />
+          <Input checked={!!query().directive} onChange={() => query().directive = (!query().directive) as any} type="checkbox" />
           <CheckboxSpan>Has Directive</CheckboxSpan>
         </CheckboxLabel>
       </div> */}
@@ -181,8 +191,8 @@ const FunctionsList = () => {
       <div flex="~" class="children:my-auto" p="2">
         <FiSearch style={{ 'margin-right': '0.5rem', opacity: '0.5' }} />
         <input
-          value={query.search || ''}
-          onInput={e => (query.search = e.currentTarget.value)}
+          value={query().search || ''}
+          onInput={e => (query().search = e.currentTarget.value)}
           class="w-full"
           type="text"
           role="search"
