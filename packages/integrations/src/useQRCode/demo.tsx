@@ -3,7 +3,7 @@ import { useQRCode } from '@solidjs-use/integrations/useQRCode'
 import { createSignal } from 'solid-js'
 
 const Demo = () => {
-  const [text, setText] = createSignal('https://www.solidjs.com')
+  const [text, setText] = createSignal('https://solidjs-use.github.io/solidjs-use/integrations/useQRCode')
   const qrcode = useQRCode(text, {
     errorCorrectionLevel: 'H',
     margin: 3

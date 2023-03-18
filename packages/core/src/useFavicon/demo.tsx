@@ -6,7 +6,7 @@ const Demo = () => {
 
   const favicon = createMemo(() => (type() === 'solid' ? 'solidjs.png' : 'solidjs-use-32x32.png'))
   useFavicon(favicon, {
-    baseUrl: '/',
+    baseUrl: window.origin + (process.env.NODE_ENV === 'production' ? '/solidjs-use/' : '/'),
     rel: 'icon'
   })
   return (

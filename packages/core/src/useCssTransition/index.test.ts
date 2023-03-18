@@ -138,7 +138,7 @@ describe('useCssTransition', () => {
       const linear = cy.spy(n => n)
       const transition = useCssTransition(source, {
         duration: 100,
-        transition: linear
+        transition: () => linear
       })
 
       expect(linear).not.to.be.called

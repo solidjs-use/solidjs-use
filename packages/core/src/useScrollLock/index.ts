@@ -87,8 +87,9 @@ export function useScrollLock(
 
   return [
     isLocked,
-    (v?: boolean) => {
-      if (v) lock()
+    (v?: boolean | (() => boolean)) => {
+      const bool = typeof v === 'function' ? v() : v
+      if (bool) lock()
       else unlock()
     }
   ] as Signal<boolean>

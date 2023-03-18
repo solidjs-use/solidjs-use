@@ -38,7 +38,7 @@ export interface CssTransitionOptions {
   /**
    * Easing function or cubic bezier points for calculating transition values
    */
-  transition?: MaybeAccessor<EasingFunction | CubicBezierPoints>
+  transition?: MaybeAccessor<CubicBezierPoints> | (() => EasingFunction)
 }
 
 /**
@@ -155,7 +155,7 @@ export function executeTransition<T extends number | number[]>(
   const duration = unAccessor(options.duration) ?? 1000
   const startedAt = Date.now()
   const endAt = Date.now() + duration
-  const trans = unAccessor(options.transition) ?? linear
+  const trans = unAccessor<CubicBezierPoints | EasingFunction | undefined>(options.transition) ?? linear
 
   const ease = isFunction(trans) ? trans : createEasingFunction(trans)
 

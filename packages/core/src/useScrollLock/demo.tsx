@@ -32,10 +32,10 @@ const Demo = () => {
 
         <div class="m-auto px-6 py-4 rounded flex flex-col w-60 gap-2 bg-gray-500/5">
           <div>
-            <span opacity="75">isLocked</span>&nbsp;
+            <span opacity={isLocked() ? '75' : '100'}>isLocked</span>&nbsp;
             <BooleanDisplay value={isLocked()} />
           </div>
-          <button opacity="75" onClick={() => toggleLock()}>
+          <button opacity={isLocked() ? '75' : '100'} onClick={() => toggleLock()}>
             {isLocked() ? 'Unlock' : 'Lock'}
           </button>
         </div>

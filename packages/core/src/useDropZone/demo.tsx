@@ -28,7 +28,7 @@ const Demo = () => {
       <div class="flex">
         <div class="w-full h-auto relative">
           <p>Drop files into dropZone</p>
-          <img src="/favicon.ico" alt="Drop me" />
+          <img src={`${process.env.NODE_ENV === 'production' ? '/solidjs-use/' : '/'}favicon.ico`} alt="Drop me" />
           <div
             ref={setDropZone}
             class="flex flex-col w-full min-h-200px h-auto bg-gray-400/10 justify-center items-center pt-6"
