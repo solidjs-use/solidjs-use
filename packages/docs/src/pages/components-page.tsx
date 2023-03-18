@@ -222,6 +222,7 @@ const UseIdbKeyval = lazy(() => import('../../../integrations/src/useIDBKeyval/i
 const UseJwt = lazy(() => import('../../../integrations/src/useJwt/index.md'))
 const UseNProgress = lazy(() => import('../../../integrations/src/useNProgress/index.md'))
 const UseQrCode = lazy(() => import('../../../integrations/src/useQRCode/index.md'))
+const UseSortable = lazy(() => import('../../../integrations/src/useSortable/index.md'))
 const UseAuth = lazy(() => import('../../../firebase/src/useAuth/index.md'))
 const UseFirestore = lazy(() => import('../../../firebase/src/useFirestore/index.md'))
 const UseRtdb = lazy(() => import('../../../firebase/src/useRTDB/index.md'))
@@ -458,6 +459,7 @@ const ComponentsPage = () => {
       <Route path="/integrations/useJwt" element={<UseJwt components={markdownComponents} />} />
       <Route path="/integrations/useNProgress" element={<UseNProgress components={markdownComponents} />} />
       <Route path="/integrations/useQRCode" element={<UseQrCode components={markdownComponents} />} />
+      <Route path="/integrations/useSortable" element={<UseSortable components={markdownComponents} />} />
       <Route path="/firebase/useAuth" element={<UseAuth components={markdownComponents} />} />
       <Route path="/firebase/useFirestore" element={<UseFirestore components={markdownComponents} />} />
       <Route path="/firebase/useRTDB" element={<UseRtdb components={markdownComponents} />} />

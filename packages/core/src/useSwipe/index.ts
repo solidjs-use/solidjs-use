@@ -8,13 +8,7 @@ import type { ConfigurableWindow } from '../_configurable'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 
-export enum SwipeDirection {
-  UP = 'UP',
-  RIGHT = 'RIGHT',
-  DOWN = 'DOWN',
-  LEFT = 'LEFT',
-  NONE = 'NONE'
-}
+export type UseSwipeDirection = 'up' | 'down' | 'left' | 'right' | 'none'
 
 export interface UseSwipeOptions extends ConfigurableWindow {
   /**
@@ -42,13 +36,13 @@ export interface UseSwipeOptions extends ConfigurableWindow {
   /**
    * Callback on swipe ends
    */
-  onSwipeEnd?: (e: TouchEvent, direction: SwipeDirection) => void
+  onSwipeEnd?: (e: TouchEvent, direction: UseSwipeDirection) => void
 }
 
 export interface UseSwipeReturn {
   isPassiveEventSupported: boolean
   isSwiping: Accessor<boolean>
-  direction: Accessor<SwipeDirection | null>
+  direction: Accessor<UseSwipeDirection>
   coordsStart: Readonly<Position>
   coordsEnd: Readonly<Position>
   lengthX: Accessor<number>
@@ -76,13 +70,13 @@ export function useSwipe(
 
   const [isSwiping, setIsSwiping] = createSignal(false)
 
-  const direction = createMemo(() => {
-    if (!isThresholdExceeded()) return SwipeDirection.NONE
+  const direction = createMemo<UseSwipeDirection>(() => {
+    if (!isThresholdExceeded()) return 'none'
 
     if (abs(diffX()) > abs(diffY())) {
-      return diffX() > 0 ? SwipeDirection.LEFT : SwipeDirection.RIGHT
+      return diffX() > 0 ? 'left' : 'right'
     }
-    return diffY() > 0 ? SwipeDirection.UP : SwipeDirection.DOWN
+    return diffY() > 0 ? 'up' : 'down'
   })
 
   const getTouchEventCoords = (e: TouchEvent) => [e.touches[0].clientX, e.touches[0].clientY]

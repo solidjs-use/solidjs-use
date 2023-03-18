@@ -1679,6 +1679,15 @@
       "description": "reactive [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share)"
     },
     {
+      "name": "useSortable",
+      "package": "integrations",
+      "lastUpdated": 0,
+      "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useSortable/",
+      "category": "@Integrations",
+      "description": "wrapper for [`sortable`](https://github.com/SortableJS/Sortable)",
+      "importPath": "integrations/useSortable"
+    },
+    {
       "name": "useSorted",
       "package": "shared",
       "lastUpdated": 1675478575000,

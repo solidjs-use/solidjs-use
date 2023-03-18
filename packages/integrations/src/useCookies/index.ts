@@ -1,7 +1,7 @@
 import { createSignal } from 'solid-js'
 import { tryOnCleanup } from 'solidjs-use'
 import Cookie from 'universal-cookie'
-import type { IncomingMessage } from 'http'
+import type { IncomingMessage } from 'node:http'
 
 type RawCookies = Record<string, string>
 

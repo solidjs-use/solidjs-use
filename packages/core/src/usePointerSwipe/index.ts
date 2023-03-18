@@ -2,10 +2,10 @@ import { resolveAccessor } from '@solidjs-use/shared'
 import { createMemo, createSignal } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 import { useEventListener } from '../useEventListener'
-import { SwipeDirection } from '../useSwipe/index'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { PointerType, Position } from '../types'
+import type { UseSwipeDirection } from '../useSwipe'
 
 export interface UsePointerSwipeOptions {
   /**
@@ -26,7 +26,7 @@ export interface UsePointerSwipeOptions {
   /**
    * Callback on swipe end.
    */
-  onSwipeEnd?: (e: PointerEvent, direction: SwipeDirection) => void
+  onSwipeEnd?: (e: PointerEvent, direction: UseSwipeDirection) => void
 
   /**
    * Pointer types to listen to.
@@ -38,7 +38,7 @@ export interface UsePointerSwipeOptions {
 
 export interface UsePointerSwipeReturn {
   isSwiping: Accessor<boolean>
-  direction: Accessor<SwipeDirection | null>
+  direction: Accessor<UseSwipeDirection>
   readonly posStart: Position
   readonly posEnd: Position
   distanceX: Accessor<number>
@@ -77,12 +77,12 @@ export function usePointerSwipe(
   const [isPointerDown, setIsPointerDown] = createSignal(false)
 
   const direction = createMemo(() => {
-    if (!isThresholdExceeded()) return SwipeDirection.NONE
+    if (!isThresholdExceeded()) return 'none'
 
     if (abs(distanceX()) > abs(distanceY())) {
-      return distanceX() > 0 ? SwipeDirection.LEFT : SwipeDirection.RIGHT
+      return distanceX() > 0 ? 'left' : 'right'
     }
-    return distanceY() > 0 ? SwipeDirection.UP : SwipeDirection.DOWN
+    return distanceY() > 0 ? 'up' : 'down'
   })
 
   const eventIsAllowed = (e: PointerEvent): boolean => {

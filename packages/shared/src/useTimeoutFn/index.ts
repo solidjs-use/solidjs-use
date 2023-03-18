@@ -2,7 +2,7 @@ import { createSignal } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
 import { unAccessor } from '../unAccessor'
 import { isClient } from '../utils'
-import type { MaybeAccessor, Stoppable } from '../utils'
+import type { MaybeAccessor, Stoppable, AnyFn } from '../utils'
 
 export interface UseTimeoutFnOptions {
   /**
@@ -16,7 +16,7 @@ export interface UseTimeoutFnOptions {
 /**
  * Wrapper for `setTimeout` with controls.
  */
-export function useTimeoutFn<CallbackFn extends (...args: any[]) => any>(
+export function useTimeoutFn<CallbackFn extends AnyFn>(
   cb: CallbackFn,
   interval: MaybeAccessor<number>,
   options: UseTimeoutFnOptions = {}

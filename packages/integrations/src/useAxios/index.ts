@@ -2,9 +2,9 @@ import axios, { AxiosError } from 'axios'
 import { createSignal, getOwner, runWithOwner } from 'solid-js'
 import { isString, until } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
-import type { AxiosInstance, AxiosResponse, CancelTokenSource, RawAxiosRequestConfig } from 'axios'
+import type { AxiosInstance, AxiosResponse, CancelTokenSource, AxiosRequestConfig } from 'axios'
 
-export interface UseAxiosReturn<T, R = AxiosResponse<T>> {
+export interface UseAxiosReturn<T, R = AxiosResponse<T>, _D = any> {
   /**
    * Axios Response
    */
@@ -79,15 +79,15 @@ export interface StrictUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
    * Manually call the axios request
    */
   execute: (
-    url?: string | RawAxiosRequestConfig<D>,
-    config?: RawAxiosRequestConfig<D>
+    url?: string | AxiosRequestConfig<D>,
+    config?: AxiosRequestConfig<D>
   ) => PromiseLike<StrictUseAxiosReturn<T, R, D>>
 }
 export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
   /**
    * Manually call the axios request
    */
-  execute: (url: string, config?: RawAxiosRequestConfig<D>) => PromiseLike<EasyUseAxiosReturn<T, R, D>>
+  execute: (url: string, config?: AxiosRequestConfig<D>) => PromiseLike<EasyUseAxiosReturn<T, R, D>>
 }
 export interface UseAxiosOptions<T = any> {
   /**
@@ -116,7 +116,7 @@ type OverallUseAxiosReturn<T, R, D> = StrictUseAxiosReturn<T, R, D> | EasyUseAxi
 
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   url: string,
-  config?: RawAxiosRequestConfig<D>,
+  config?: AxiosRequestConfig<D>,
   options?: UseAxiosOptions<T>
 ): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
@@ -126,18 +126,18 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
 ): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   url: string,
-  config: RawAxiosRequestConfig<D>,
+  config: AxiosRequestConfig<D>,
   instance: AxiosInstance,
   options?: UseAxiosOptions<T>
 ): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
-  config?: RawAxiosRequestConfig<D>
+  config?: AxiosRequestConfig<D>
 ): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   instance?: AxiosInstance
 ): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
-  config?: RawAxiosRequestConfig<D>,
+  config?: AxiosRequestConfig<D>,
   instance?: AxiosInstance
 ): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
 
@@ -149,7 +149,7 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
 ): OverallUseAxiosReturn<T, R, D> & PromiseLike<OverallUseAxiosReturn<T, R, D>> {
   const url: string | undefined = typeof args[0] === 'string' ? args[0] : undefined
   const argsPlaceholder = isString(url) ? 1 : 0
-  let defaultConfig: RawAxiosRequestConfig<D> = {}
+  let defaultConfig: AxiosRequestConfig<D> = {}
   let instance: AxiosInstance = axios
   let options: UseAxiosOptions<T> = { immediate: !!argsPlaceholder, shallow: true }
 
@@ -211,8 +211,8 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   const then: PromiseLike<OverallUseAxiosReturn<T, R, D>>['then'] = (onFulfilled, onRejected) =>
     waitUntilFinished().then(onFulfilled, onRejected)
   const execute: OverallUseAxiosReturn<T, R, D>['execute'] = (
-    executeUrl: string | RawAxiosRequestConfig<D> | undefined = url,
-    config: RawAxiosRequestConfig<D> = {}
+    executeUrl: string | AxiosRequestConfig<D> | undefined = url,
+    config: AxiosRequestConfig<D> = {}
   ) => {
     setError(undefined)
     const _url = typeof executeUrl === 'string' ? executeUrl : url ?? ''

@@ -27,7 +27,7 @@ export interface UseFetchReturn<T> {
   error: Accessor<any>
 
   /**
-   * The fetch response body, may either be JSON or text
+   * The fetch response body on success, may either be JSON or text
    */
   data: Accessor<T | null>
 
@@ -377,7 +377,7 @@ export function useFetch<T>(
   const [statusCode, setStatusCode] = createSignal<number | null>(null)
   const [response, setResponse] = createSignal<Response | null>(null)
   const [error, setError] = createSignal<any>(null)
-  const [data, setData] = createSignal<T | null>(initialData)
+  const [data, setData] = createSignal<T | null>(initialData || null)
 
   const canAbort = createMemo(() => supportsAbort && isFetching())
 
@@ -461,13 +461,17 @@ export function useFetch<T>(
 
           responseData = await fetchResponse[config.type]()
 
-          if (options.afterFetch && statusCodeVal >= 200 && statusCodeVal < 300)
-            ({ data: responseData } = await options.afterFetch({ data: responseData, response: fetchResponse }))
+          // see: https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
+          if (!fetchResponse.ok) {
+            setData(initialData || null)
+            throw new Error(fetchResponse.statusText)
+          }
+
+          if (options.afterFetch) {
+            ;({ data: responseData } = await options.afterFetch({ data: responseData, response: fetchResponse }))
+          }
 
           setData(responseData)
-
-          // see: https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
-          if (!fetchResponse.ok) throw new Error(fetchResponse.statusText)
 
           responseEvent.trigger(fetchResponse)
           return resolve(fetchResponse)
@@ -475,13 +479,13 @@ export function useFetch<T>(
         .catch(async fetchError => {
           let errorData = fetchError.message || fetchError.name
 
-          if (options.onFetchError)
-            ({ data: responseData, error: errorData } = await options.onFetchError({
+          if (options.onFetchError) {
+            ;({ error: errorData } = await options.onFetchError({
               data: responseData,
               error: fetchError,
               response: response()
             }))
-          setData(responseData)
+          }
           setError(errorData)
 
           errorEvent.trigger(fetchError)
