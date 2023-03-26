@@ -11,7 +11,11 @@ Open file dialog with ease.
 ```ts
 import { useFileDialog } from 'solidjs-use'
 
-const { files, open, reset } = useFileDialog()
+const { files, open, reset, onChange } = useFileDialog()
+
+onChange(files => {
+  /** do something with files */
+})
 ```
 
 ```tsx

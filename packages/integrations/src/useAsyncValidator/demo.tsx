@@ -33,19 +33,20 @@ const Demo = () => {
   return (
     <>
       <div>
-        pass: <BooleanDisplay value={pass()} />
+        <code>pass:</code> <BooleanDisplay value={pass()} />
       </div>
       <div>
-        isFinished: <BooleanDisplay value={isFinished()} />
+        <code>isFinished:</code> <BooleanDisplay value={isFinished()} />
       </div>
-      <div class="border-main rounded shadow max-w-96 p-8 bg">
+      <hr />
+      <div flex="~ col gap-2">
         <div>
-          email:
+          Email:
           <input
             value={form.email}
             classList={{ '!border-red': !!errorFields()?.email?.length }}
             type="text"
-            placeholder="email"
+            placeholder="Email"
             onInput={e => (form.email = e.currentTarget.value)}
           />
           <Show when={!!errorFields()?.email?.length}>
@@ -53,12 +54,12 @@ const Demo = () => {
           </Show>
         </div>
         <div>
-          name:{' '}
+          Name:{' '}
           <input
             value={form.name}
             classList={{ '!border-red': !!errorFields()?.name?.length }}
             type="text"
-            placeholder="name"
+            placeholder="Name"
             onInput={e => (form.name = e.currentTarget.value)}
           />
           <Show when={!!errorFields()?.name?.length}>
@@ -66,20 +67,22 @@ const Demo = () => {
           </Show>
         </div>
         <div>
-          age:{' '}
+          Age:{' '}
           <input
             value={form.age}
             onInput={e => (form.age = Number(e.currentTarget.value))}
             classList={{ '!border-red': !!errorFields()?.age?.length }}
             type="number"
-            placeholder="age"
+            placeholder="Age"
           />
           <Show when={!!errorFields()?.age?.length}>
             <div text-red>{errorFields()!.age[0].message}</div>
           </Show>
         </div>
 
-        <button disabled={!pass()}>submit</button>
+        <div>
+          <button disabled={!pass()}>Submit</button>
+        </div>
       </div>
     </>
   )

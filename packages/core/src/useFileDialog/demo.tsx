@@ -2,7 +2,10 @@ import { For } from 'solid-js'
 import { useFileDialog } from 'solidjs-use'
 
 const Demo = () => {
-  const { files, open, reset } = useFileDialog()
+  const { files, open, reset, onChange } = useFileDialog()
+  onChange(() => {
+    /** do something with files */
+  })
 
   return (
     <>

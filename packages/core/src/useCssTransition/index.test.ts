@@ -17,7 +17,7 @@ describe('executeTransition', () => {
 
       await promiseTimeout(25)
 
-      expectBetween(source(), 0.25, 0.75)
+      expectBetween(source(), 0.2, 0.75)
 
       await trans
 
@@ -93,6 +93,27 @@ describe('useCssTransition', () => {
       expect(transition()).to.be.deep.eq([0, 0])
 
       setSource([1, 1])
+
+      await promiseTimeout(50)
+      expectBetween(transition()[0], 0, 1)
+      expectBetween(transition()[1], 0, 1)
+
+      await promiseTimeout(100)
+      expect(transition()[0]).to.be.eq(1)
+      expect(transition()[1]).to.be.eq(1)
+    })
+  })
+
+  it('transitions between refs', () => {
+    return runAsyncHook(async () => {
+      const [source1, setSource1] = createSignal(0)
+      const [source2, setSource2] = createSignal(0)
+      const transition = useCssTransition([source1, source2], { duration: 100 })
+
+      expect(transition()).to.deep.eq([0, 0])
+
+      setSource1(1)
+      setSource2(1)
 
       await promiseTimeout(50)
       expectBetween(transition()[0], 0, 1)

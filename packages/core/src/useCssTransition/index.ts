@@ -190,7 +190,7 @@ export function executeTransition<T extends number | number[]>(
 }
 
 // option 1: reactive number
-export function useCssTransition(source: Accessor<number>, options?: UseCssTransitionOptions): Accessor<number>
+export function useCssTransition(source: MaybeAccessor<number>, options?: UseCssTransitionOptions): Accessor<number>
 
 // option 2: static array of possibly reactive numbers
 export function useCssTransition<T extends Array<MaybeAccessor<number>>>(
@@ -199,7 +199,7 @@ export function useCssTransition<T extends Array<MaybeAccessor<number>>>(
 ): Accessor<{ [K in keyof T]: number }>
 
 // option 3: reactive array of numbers
-export function useCssTransition<T extends Accessor<number[]>>(
+export function useCssTransition<T extends MaybeAccessor<number[]>>(
   source: T,
   options?: UseCssTransitionOptions
 ): Accessor<number[]>
@@ -208,7 +208,7 @@ export function useCssTransition<T extends Accessor<number[]>>(
  * Follow value with a transition.
  */
 export function useCssTransition(
-  source: Accessor<number | number[]> | Array<MaybeAccessor<number>>,
+  source: MaybeAccessor<number | number[]> | Array<MaybeAccessor<number>>,
   options: UseCssTransitionOptions = {}
 ): Accessor<any> {
   let currentId = 0

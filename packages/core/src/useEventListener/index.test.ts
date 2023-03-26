@@ -265,7 +265,7 @@ describe('useEventListener', () => {
     // testTarget(true)
   })
 
-  it.only('should auto re-register', () => {
+  it('should auto re-register', () => {
     return runAsyncHook(async () => {
       const [target, setTarget] = createSignal<HTMLElement>()
       const listener = cy.spy()

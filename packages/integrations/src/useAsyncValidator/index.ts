@@ -1,6 +1,6 @@
 import Schema from 'async-validator'
-import { createEffect, createMemo, createSignal, getOwner, runWithOwner } from 'solid-js'
-import { unAccessor, until } from 'solidjs-use'
+import { createEffect, createMemo, createSignal, getOwner, on, runWithOwner } from 'solid-js'
+import { resolveAccessor, unAccessor, until } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { Rules, ValidateError, ValidateOption } from 'async-validator'
@@ -13,12 +13,20 @@ export type AsyncValidatorError = Error & {
   fields: Record<string, ValidateError[]>
 }
 
+export interface UseAsyncValidatorExecuteReturn {
+  pass: boolean
+  errors: AsyncValidatorError['errors'] | undefined
+  errorInfo: AsyncValidatorError | null
+  errorFields: AsyncValidatorError['fields'] | undefined
+}
+
 export interface UseAsyncValidatorReturn {
   pass: Accessor<boolean>
   errorInfo: Accessor<AsyncValidatorError | null | undefined>
   isFinished: Accessor<boolean>
   errors: Accessor<AsyncValidatorError['errors'] | undefined>
   errorFields: Accessor<AsyncValidatorError['fields'] | undefined>
+  execute: () => Promise<UseAsyncValidatorExecuteReturn>
 }
 
 export interface UseAsyncValidatorOptions {
@@ -26,6 +34,7 @@ export interface UseAsyncValidatorOptions {
    * @see https://github.com/yiminghe/async-validator#options
    */
   validateOption?: ValidateOption
+  immediate?: boolean
 }
 
 /**
@@ -38,20 +47,23 @@ export function useAsyncValidator(
   rules: MaybeAccessor<Rules>,
   options: UseAsyncValidatorOptions = {}
 ): UseAsyncValidatorReturn & PromiseLike<UseAsyncValidatorReturn> {
-  const [errorInfo, setErrorInfo] = createSignal<AsyncValidatorError | null>()
-  const [isFinished, setIsFinish] = createSignal(false)
-  const [pass, setPass] = createSignal(false)
+  const { validateOption = {}, immediate = true } = options
+
+  const valueAccessor = resolveAccessor(value)
+
+  const [errorInfo, setErrorInfo] = createSignal<AsyncValidatorError | null>(null)
+  const [isFinished, setIsFinish] = createSignal(true)
+  const [pass, setPass] = createSignal(!immediate)
   const errors = createMemo(() => errorInfo()?.errors ?? [])
   const errorFields = createMemo(() => errorInfo()?.fields ?? {})
+  const validator = createMemo(() => new AsyncValidatorSchema(unAccessor(rules)))
 
-  const { validateOption = {} } = options
-
-  createEffect(async () => {
+  const execute = async (): Promise<UseAsyncValidatorExecuteReturn> => {
     setIsFinish(false)
     setPass(false)
-    const validator = new AsyncValidatorSchema(unAccessor(rules))
+
     try {
-      await validator.validate(unAccessor(value), validateOption)
+      await validator().validate(valueAccessor(), validateOption)
       setPass(true)
       setErrorInfo(null)
     } catch (err) {
@@ -59,14 +71,24 @@ export function useAsyncValidator(
     } finally {
       setIsFinish(true)
     }
-  })
+
+    return {
+      pass: pass(),
+      errorInfo: errorInfo(),
+      errors: errors(),
+      errorFields: errorFields()
+    }
+  }
+
+  createEffect(on([valueAccessor, validator], () => execute(), { defer: !immediate as true }))
 
   const shell = {
-    pass,
     isFinished,
+    pass,
     errorInfo,
     errors,
-    errorFields
+    errorFields,
+    execute
   }
 
   const owner = getOwner()!
