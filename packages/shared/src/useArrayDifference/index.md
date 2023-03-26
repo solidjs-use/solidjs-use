@@ -28,6 +28,6 @@ import { useArrayDifference } from 'solidjs-use'
 const [list1, setList1] = createSignal([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }])
 const [list2, setList2] = createSignal([{ id: 4 }, { id: 5 }, { id: 6 }])
 
-const result = useArrayDifference(list1, list2, value => a.id)
+const result = useArrayDifference(list1, list2, (value, othVal) => value.id === othVal.id)
 // result(): [{ id: 1 }, { id: 2 }, { id: 3 }]
 ```

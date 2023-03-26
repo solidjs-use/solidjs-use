@@ -14,7 +14,7 @@
   "runHookSnippet": {
     "scope": "typescript,typescriptreact",
     "prefix": "runHookSnippet",
-    "body": ["runHook(() => {", "$1", "})"],
+    "body": ["runHook(() => {", "  $1", "})"],
     "description": "create solidjs-use demo"
   },
   "runHookWithOwnerSnippet": {

@@ -1,6 +1,7 @@
-import { hasOwn } from '@solidjs-use/shared'
+import { createEventHook, hasOwn } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { defaultDocument } from '../_configurable'
+import type { EventHookOn } from '@solidjs-use/shared'
 import type { Accessor } from 'solid-js'
 import type { ConfigurableDocument } from '../_configurable'
 
@@ -29,6 +30,7 @@ export interface UseFileDialogReturn {
   files: Accessor<FileList | null>
   open: (localOptions?: Partial<UseFileDialogOptions>) => void
   reset: () => void
+  onChange: EventHookOn<FileList | null>
 }
 
 /**
@@ -38,6 +40,7 @@ export function useFileDialog(options: UseFileDialogOptions = {}): UseFileDialog
   const { document = defaultDocument } = options
 
   const [files, setFiles] = createSignal<FileList | null>(null)
+  const { on: onChange, trigger } = createEventHook()
 
   let input: HTMLInputElement | undefined
   if (document) {
@@ -47,6 +50,7 @@ export function useFileDialog(options: UseFileDialogOptions = {}): UseFileDialog
     input.onchange = (event: Event) => {
       const result = event.target as HTMLInputElement
       setFiles(result.files)
+      trigger(result.files)
     }
   }
 
@@ -72,6 +76,7 @@ export function useFileDialog(options: UseFileDialogOptions = {}): UseFileDialog
   return {
     files,
     open,
-    reset
+    reset,
+    onChange
   }
 }

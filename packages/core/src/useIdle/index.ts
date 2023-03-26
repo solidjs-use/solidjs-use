@@ -34,6 +34,7 @@ export interface UseIdleOptions extends ConfigurableWindow, ConfigurableEventFil
 export interface UseIdleReturn {
   idle: Accessor<boolean>
   lastActive: Accessor<number>
+  reset: () => void
 }
 
 /**
@@ -55,11 +56,15 @@ export function useIdle(timeout: number = oneMinute, options: UseIdleOptions = {
 
   let timer: any
 
-  const onEvent = createFilterWrapper(eventFilter, () => {
+  const reset = () => {
     setIdle(false)
-    setLastActive(timestamp())
     clearTimeout(timer)
     timer = setTimeout(() => setIdle(true), timeout)
+  }
+
+  const onEvent = createFilterWrapper(eventFilter, () => {
+    setLastActive(timestamp())
+    reset()
   })
 
   if (window) {
@@ -71,9 +76,14 @@ export function useIdle(timeout: number = oneMinute, options: UseIdleOptions = {
         if (!document.hidden) onEvent()
       })
     }
+    reset()
   }
 
   timer = setTimeout(() => setIdle(true), timeout)
 
-  return { idle, lastActive }
+  return {
+    idle,
+    lastActive,
+    reset
+  }
 }

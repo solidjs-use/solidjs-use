@@ -83,6 +83,48 @@ describe('useAsyncValidator', () => {
     })
   })
 
+  it('immediate should can be work', () => {
+    return runAsyncHook(async () => {
+      const rules: Rules = {
+        name: {
+          type: 'string'
+        },
+        age: {
+          type: 'number'
+        }
+      }
+      const { pass, errors, isFinished, then } = useAsyncValidator(form, rules, { immediate: false })
+      expect(isFinished()).to.be.eq(true)
+      expect(pass()).to.be.eq(true)
+      expect(errors()).to.be.deep.eq([])
+
+      then(() => {
+        expect(isFinished()).to.be.eq(true)
+        expect(pass()).to.be.eq(true)
+        expect(errors()).to.be.deep.eq([])
+      })
+    })
+  })
+
+  it('execute should can be work', () => {
+    return runAsyncHook(async () => {
+      const rules: Rules = {
+        name: {
+          type: 'string'
+        },
+        age: {
+          type: 'number'
+        }
+      }
+      const { isFinished, execute } = useAsyncValidator(form, rules, { immediate: false })
+      const { pass, errors } = await execute()
+
+      expect(isFinished()).to.be.eq(true)
+      expect(pass).to.be.eq(true)
+      expect(errors).to.be.deep.eq([])
+    })
+  })
+
   it('should fail to validate', () => {
     return runAsyncHook(async () => {
       const rules: Rules = {
@@ -105,6 +147,40 @@ describe('useAsyncValidator', () => {
       expect(isFinished()).to.be.eq(true)
       expect(pass()).to.be.eq(false)
       expect(errors()).to.to.be.deep.eq([
+        {
+          field: 'name',
+          fieldValue: 'jelf',
+          message: 'name length must be 5-20'
+        }
+      ])
+    })
+  })
+
+  it('should fail to validate when use execute', () => {
+    return runAsyncHook(async () => {
+      const rules: Rules = {
+        name: {
+          type: 'string',
+          min: 5,
+          max: 20,
+          message: 'name length must be 5-20'
+        },
+        age: {
+          type: 'number'
+        }
+      }
+
+      const { execute } = useAsyncValidator(form, rules, {
+        validateOption: {
+          suppressWarning: true
+        },
+        immediate: false
+      })
+
+      const { pass, errors } = await execute()
+
+      expect(pass).to.be.eq(false)
+      expect(errors).to.deep.eq([
         {
           field: 'name',
           fieldValue: 'jelf',

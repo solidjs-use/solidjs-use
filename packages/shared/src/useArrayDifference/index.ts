@@ -29,5 +29,5 @@ export function useArrayDifference<T>(...args: any[]): Accessor<T[]> {
     const key = compareFn as keyof T
     compareFn = (value: T, othVal: T) => value[key] === othVal[key]
   }
-  return createMemo(() => unAccessor(list).filter(x => !unAccessor(values).find(y => compareFn(x, y))))
+  return createMemo(() => unAccessor(list).filter(x => unAccessor(values).findIndex(y => compareFn(x, y)) === -1))
 }

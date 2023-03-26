@@ -104,6 +104,27 @@ describe('useCssTransition', () => {
     })
   })
 
+  it('transitions between refs', () => {
+    return runAsyncHook(async () => {
+      const [source1, setSource1] = createSignal(0)
+      const [source2, setSource2] = createSignal(0)
+      const transition = useCssTransition([source1, source2], { duration: 100 })
+
+      expect(transition()).to.deep.eq([0, 0])
+
+      setSource1(1)
+      setSource2(1)
+
+      await promiseTimeout(50)
+      expectBetween(transition()[0], 0, 1)
+      expectBetween(transition()[1], 0, 1)
+
+      await promiseTimeout(100)
+      expect(transition()[0]).to.be.eq(1)
+      expect(transition()[1]).to.be.eq(1)
+    })
+  })
+
   it('supports cubic bezier curves', () => {
     return runAsyncHook(async () => {
       const [source, setSource] = createSignal(0)
