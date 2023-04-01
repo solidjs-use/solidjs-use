@@ -1,0 +1,1 @@
+import{r as a,q as m}from"./index-e7c76cc9.js";import{u}from"./index-fbef3f5b.js";function s(n={}){const{window:e=m}=n,t=n.document??e?.document,[c,r]=a(t?.activeElement);return e&&(u(e,"blur",i=>{i.relatedTarget===null&&r(()=>t?.activeElement)},!0),u(e,"focus",()=>{r(()=>t?.activeElement)},!0)),c}export{s as u};
