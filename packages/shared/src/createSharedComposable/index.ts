@@ -4,6 +4,8 @@ import type { AnyFn } from '../utils'
 
 /**
  * Make a composable function usable with multiple SolidJS component instances.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/createSharedComposable
  */
 export function createSharedComposable<Fn extends AnyFn>(composable: Fn): Fn {
   let subscribers = 0

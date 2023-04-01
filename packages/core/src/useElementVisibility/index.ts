@@ -10,6 +10,8 @@ export interface UseElementVisibilityOptions extends ConfigurableWindow {
 
 /**
  * Tracks the visibility of an element within the viewport.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementVisibility
  */
 export function useElementVisibility(
   element: MaybeElementAccessor,

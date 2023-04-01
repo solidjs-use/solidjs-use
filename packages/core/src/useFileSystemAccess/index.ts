@@ -95,6 +95,8 @@ export type UseFileSystemAccessOptions = ConfigurableWindow &
 
 /**
  * Create and read and write local files.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFileSystemAccess
  */
 export function useFileSystemAccess(
   options: UseFileSystemAccessOptions & { dataType: 'Text' }

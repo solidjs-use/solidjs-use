@@ -26,7 +26,11 @@ export function watchThrottled<T extends object>(
   options?: WatchThrottledOptions
 ): WatchStopHandle
 
-// implementation
+/**
+ * Similar to `watch`, but offering an extra option `throttle` which will be applied to the callback function.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchThrottled
+ */
 export function watchThrottled(source: any, cb: any, options: WatchThrottledOptions = {}): WatchStopHandle {
   const { throttle = 0, trailing = true, leading = true, defer = true } = options
 

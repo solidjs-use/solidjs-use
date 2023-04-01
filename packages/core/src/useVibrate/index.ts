@@ -31,7 +31,9 @@ export interface UseVibrateOptions extends ConfigurableNavigator {
 }
 
 /**
- * Reactive vibrate
+ * Reactive vibrate.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useVibrate
  */
 export function useVibrate(options?: UseVibrateOptions) {
   const { pattern = [], interval = 0, navigator = defaultNavigator } = options ?? {}

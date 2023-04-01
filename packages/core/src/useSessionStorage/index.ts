@@ -53,6 +53,8 @@ export function useSessionStorage<T = unknown>(
 
 /**
  * Reactive SessionStorage.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useSessionStorage
  */
 export function useSessionStorage<T extends string | number | boolean | object | null>(
   key: string,

@@ -15,6 +15,8 @@ export interface UseTimeoutFnOptions {
 
 /**
  * Wrapper for `setTimeout` with controls.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useTimeoutFn
  */
 export function useTimeoutFn<CallbackFn extends AnyFn>(
   cb: CallbackFn,

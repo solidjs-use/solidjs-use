@@ -37,6 +37,8 @@ export type MouseSourceType = 'mouse' | 'touch' | null
 
 /**
  * Reactive mouse position.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMouse
  */
 export function useMouse(options: UseMouseOptions = {}) {
   const {

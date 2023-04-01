@@ -3,6 +3,11 @@ import { tryOnCleanup } from '../tryOnCleanup'
 import { type UseTimeoutFnOptions, useTimeoutFn } from '../useTimeoutFn'
 import type { Awaitable, MaybeAccessor, Pausable } from '../utils'
 
+/**
+ * Use timeout to poll something.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useTimeoutPoll
+ */
 export function useTimeoutPoll(
   fn: () => Awaitable<void>,
   interval: MaybeAccessor<number>,

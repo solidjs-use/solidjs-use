@@ -41,6 +41,11 @@ export interface UseBluetoothOptions extends UseBluetoothRequestDeviceOptions, C
   acceptAllDevices?: boolean
 }
 
+/**
+ * Reactive Web Bluetooth API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBluetooth
+ */
 export function useBluetooth(options?: UseBluetoothOptions): UseBluetoothReturn {
   let { acceptAllDevices = false } = options ?? {}
 

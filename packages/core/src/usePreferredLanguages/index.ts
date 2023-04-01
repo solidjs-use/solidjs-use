@@ -6,6 +6,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive Navigator Languages.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePreferredLanguages
  */
 export function usePreferredLanguages(options: ConfigurableWindow = {}): Accessor<readonly string[]> {
   const { window = defaultWindow } = options

@@ -14,6 +14,8 @@ export interface MouseInElementOptions extends UseMouseOptions {
 
 /**
  * Reactive mouse position related to an element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMouseInElement
  */
 export function useMouseInElement(target?: MaybeElementAccessor, options: MouseInElementOptions = {}) {
   const { handleOutside = true, window = defaultWindow } = options

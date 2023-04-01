@@ -37,6 +37,11 @@ export function cloneFnJSON<T>(source: T): T {
   return JSON.parse(JSON.stringify(source))
 }
 
+/**
+ * Reactive clone of a Accessor.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useCloned
+ */
 export function useCloned<T>(source: MaybeAccessor<T>, options: UseClonedOptions = {}) {
   const [cloned, setCloned] = createSignal<T>({} as T)
   const { manual, clone = cloneFnJSON, defer = false } = options

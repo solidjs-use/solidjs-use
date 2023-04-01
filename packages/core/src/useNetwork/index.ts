@@ -53,6 +53,8 @@ export interface NetworkState {
 
 /**
  * Reactive Network status.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useNetwork
  */
 export function useNetwork(options: ConfigurableWindow = {}): Readonly<NetworkState> {
   const { window = defaultWindow } = options

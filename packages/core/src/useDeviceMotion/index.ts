@@ -11,6 +11,8 @@ export interface DeviceMotionOptions extends ConfigurableWindow, ConfigurableEve
 
 /**
  * Reactive DeviceMotionEvent.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDeviceMotion
  */
 export function useDeviceMotion(options: DeviceMotionOptions = {}) {
   const { window = defaultWindow, eventFilter = bypassFilter } = options

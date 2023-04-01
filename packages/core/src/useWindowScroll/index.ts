@@ -5,6 +5,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive window scroll.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWindowScroll
  */
 export function useWindowScroll({ window = defaultWindow }: ConfigurableWindow = {}) {
   if (!window) {

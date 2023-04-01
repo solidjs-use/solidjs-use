@@ -32,8 +32,7 @@ export interface UseParallaxReturn {
  * Create parallax effect easily. It uses `useDeviceOrientation` and fallback to `useMouse`
  * if orientation is not supported.
  *
- * @param target
- * @param options
+ * @see https://solidjs-use.github.io/solidjs-use/core/useParallax
  */
 export function useParallax(target: MaybeElementAccessor, options: UseParallaxOptions = {}): UseParallaxReturn {
   const {

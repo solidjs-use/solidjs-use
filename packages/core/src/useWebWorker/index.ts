@@ -26,9 +26,10 @@ export function useWebWorker<T = any>(
 
 /**
  * Simple Web Workers registration and communication.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWebWorker
  */
 export function useWebWorker<T = any>(worker: Worker | WorkerFn): UseWebWorkerReturn<T>
-
 export function useWebWorker<Data = any>(
   arg0: string | WorkerFn | Worker,
   workerOptions?: WorkerOptions,

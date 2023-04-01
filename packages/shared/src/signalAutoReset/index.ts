@@ -7,6 +7,7 @@ import type { MaybeAccessor } from '../utils'
 /**
  * Create a Signal which will be reset to the default value after some time.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/signalAutoReset
  * @param defaultValue The value which will be set.
  * @param afterMs      A zero-or-greater delay in milliseconds.
  */

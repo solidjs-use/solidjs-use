@@ -13,7 +13,9 @@ export interface UseBroadcastChannelOptions extends ConfigurableWindow {
 }
 
 /**
- * Reactive BroadcastChannel
+ * Reactive BroadcastChannel.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBroadcastChannel
  */
 export const useBroadcastChannel = <D, P>(options: UseBroadcastChannelOptions): UseBroadcastChannelReturn<D, P> => {
   const { name, window = defaultWindow } = options

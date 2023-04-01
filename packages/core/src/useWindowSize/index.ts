@@ -23,6 +23,8 @@ export interface UseWindowSizeOptions extends ConfigurableWindow {
 
 /**
  * Reactive window size.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWindowSize
  */
 export function useWindowSize(options: UseWindowSizeOptions = {}) {
   const {

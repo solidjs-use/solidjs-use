@@ -23,6 +23,8 @@ export interface UseIntersectionObserverOptions extends ConfigurableWindow {
 
 /**
  * Detects that a target element's visibility.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useIntersectionObserver
  */
 export function useIntersectionObserver(
   target: MaybeElementAccessor,

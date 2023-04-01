@@ -3,7 +3,9 @@ import type { WatchCallback } from '../watch'
 import type { Accessor, OnOptions } from 'solid-js/types/reactive/signal'
 
 /**
- * Shorthand for watching value to be truthy
+ * Shorthand for watching value to be truthy.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/whenever
  */
 export function whenever<T>(
   source: Accessor<T | false | null | undefined>,

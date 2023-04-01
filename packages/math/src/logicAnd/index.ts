@@ -4,6 +4,8 @@ import type { MaybeAccessor } from 'solidjs-use'
 
 /**
  * `AND` conditions for Signals.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/logicAnd
  */
 export function logicAnd(...args: Array<MaybeAccessor<any>>): Accessor<boolean> {
   return createMemo(() => args.every(i => unAccessor(i)))

@@ -274,7 +274,7 @@
       "lastUpdated": 1675478575000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/isDefined/",
       "category": "Utilities",
-      "description": "non-nullish checking type guard for Ref"
+      "description": "non-nullish checking type guard for Signal"
     },
     {
       "name": "logicAnd",
@@ -1769,7 +1769,7 @@
       "lastUpdated": 1675478575000,
       "docs": "https://solidjs-use.github.io/solidjs-use/rxjs/useSubject/",
       "category": "@RxJS",
-      "description": "bind an RxJS [`Subject`](https://rxjs.dev/guide/subject) to a `ref` and propagate value changes both ways"
+      "description": "bind an RxJS [`Subject`](https://rxjs.dev/guide/subject) to a `Signal` and propagate value changes both ways"
     },
     {
       "name": "useSubscription",

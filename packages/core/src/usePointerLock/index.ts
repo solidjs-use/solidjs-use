@@ -24,6 +24,8 @@ export interface UsePointerLockOptions extends ConfigurableDocument {
 
 /**
  * Reactive pointer lock.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePointerLock
  */
 export function usePointerLock(target?: MaybeElementAccessor<MaybeHTMLElement>, options: UsePointerLockOptions = {}) {
   const { document = defaultDocument, pointerLockOptions } = options

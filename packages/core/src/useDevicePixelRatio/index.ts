@@ -5,6 +5,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactively track `window.devicePixelRatio`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDevicePixelRatio
  */
 export function useDevicePixelRatio({ window = defaultWindow }: ConfigurableWindow = {}) {
   const [pixelRatio, setPixelRatio] = createSignal(1)

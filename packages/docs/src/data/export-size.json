@@ -67,6 +67,7 @@
   "onKeyDown": "967 B",
   "useEventSource": "965 B",
   "useCssVar": "963 B",
+  "useParentElement": "962 B",
   "useTextSelection": "962 B",
   "onLongPress": "954 B",
   "useDeviceOrientation": "950 B",

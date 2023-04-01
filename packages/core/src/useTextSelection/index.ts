@@ -15,6 +15,8 @@ function getRangesFromSelection(selection: Selection) {
 
 /**
  * Reactively track user text selection based on [`Window.getSelection`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection).
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTextSelection
  */
 export function useTextSelection(options: ConfigurableWindow = {}) {
   const { window = defaultWindow } = options

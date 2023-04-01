@@ -83,7 +83,9 @@ export interface WebNotificationOptions {
 export interface UseWebNotificationOptions extends WebNotificationOptions, ConfigurableWindow {}
 
 /**
- * Reactive useWebNotification
+ * Reactive useWebNotification.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWebNotification
  */
 export const useWebNotification = (defaultOptions: UseWebNotificationOptions = {}) => {
   const { window = defaultWindow } = defaultOptions

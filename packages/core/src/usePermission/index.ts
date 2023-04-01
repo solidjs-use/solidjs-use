@@ -43,6 +43,8 @@ export interface UsePermissionReturnWithControls {
 
 /**
  * Reactive Permissions API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePermission
  */
 export function usePermission(
   permissionDesc: GeneralPermissionDescriptor | GeneralPermissionDescriptor['name'],

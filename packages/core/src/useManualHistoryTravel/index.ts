@@ -117,6 +117,8 @@ function defaultParse<R, S>(clone?: boolean | CloneFn<R>) {
 
 /**
  * Manually track the change history of a `Signal` or `Accessor` when the using calls `commit()`, when the parameter is a Signal, it provides undo and redo functionality.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useManualHistoryTravel
  */
 export function useManualHistoryTravel<Raw, Serialized = Raw>(
   source: Accessor<Raw>,

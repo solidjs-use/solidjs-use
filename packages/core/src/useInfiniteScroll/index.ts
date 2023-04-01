@@ -30,6 +30,8 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
 
 /**
  * Reactive infinite scroll.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useInfiniteScroll
  */
 export function useInfiniteScroll(
   element: MaybeAccessor<HTMLElement | SVGElement | Window | Document | null | undefined>,

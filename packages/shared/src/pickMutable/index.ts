@@ -2,7 +2,9 @@ import { createMemo } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 
 /**
- * Reactively pick fields from a reactive object
+ * Reactively pick fields from a reactive object.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/pickMutable
  */
 export function pickMutable<T extends object, K extends keyof T>(obj: T, ...keys: Array<K | K[]>): { [S in K]: T[S] } {
   const res: any = createMutable({})

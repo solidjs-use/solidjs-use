@@ -8,6 +8,8 @@ export function useMin(...args: Array<MaybeAccessor<number>>): Accessor<number>
 
 /**
  * Reactive `Math.min`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useMin
  */
 export function useMin(...args: MaybeAccessorArgs<number>) {
   return createMemo<number>(() => {

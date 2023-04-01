@@ -9,6 +9,7 @@ export interface UseMutationObserverOptions extends MutationObserverInit, Config
 /**
  * Watch for changes being made to the DOM tree.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMutationObserver
  * @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver MutationObserver MDN
  */
 export function useMutationObserver(

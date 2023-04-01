@@ -29,6 +29,8 @@ let _iOSWorkaround = false
 
 /**
  * Listen for clicks outside of an element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/onClickOutside
  */
 export function onClickOutside<T extends OnClickOutsideOptions>(
   target: MaybeElementAccessor,

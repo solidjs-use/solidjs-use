@@ -78,6 +78,8 @@ export function onKeyStroke(...args: any[]) {
 
 /**
  * Listen to the keydown event of the given key.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/onKeyDown
  */
 export function onKeyDown(
   key: KeyFilter,

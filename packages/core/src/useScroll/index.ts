@@ -70,8 +70,9 @@ const ARRIVED_STATE_THRESHOLD_PIXELS = 1
 
 /**
  * Reactive scroll.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useScroll
  */
-
 export function useScroll(
   element: MaybeAccessor<HTMLElement | SVGElement | Window | Document | null | undefined>,
   options: UseScrollOptions = {}

@@ -31,6 +31,11 @@ export function watchTriggerable<T extends object, FnReturnT>(
   options?: WatchWithFilterOptions
 ): WatchTriggerableReturn<FnReturnT>
 
+/**
+ * A `watch` wrapper that supports manual triggering of `WatchCallback`, which returns an additional `trigger` to execute a `WatchCallback` immediately.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchTriggerable
+ */
 export function watchTriggerable(source: any, cb: any, options: WatchWithFilterOptions = {}): WatchTriggerableReturn {
   let cleanupFn: (() => void) | undefined
 

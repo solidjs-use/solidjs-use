@@ -27,6 +27,8 @@ export interface UseRafFnOptions extends ConfigurableWindow {
 
 /**
  * Call function on every `requestAnimationFrame`. With controls of pausing and resuming.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useRafFn
  */
 export function useRafFn(fn: (args: UseRafFnCallbackArguments) => void, options: UseRafFnOptions = {}): Pausable {
   const { immediate = true, window = defaultWindow } = options

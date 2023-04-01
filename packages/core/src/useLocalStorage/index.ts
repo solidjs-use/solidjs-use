@@ -49,6 +49,8 @@ export function useLocalStorage<T = unknown>(
 
 /**
  * Reactive LocalStorage.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useLocalStorage
  */
 export function useLocalStorage<T extends string | number | boolean | object | null>(
   key: string,

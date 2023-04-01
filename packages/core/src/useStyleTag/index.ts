@@ -49,7 +49,7 @@ let _id = 0
 /**
  * Inject <style> element in head.
  *
- * Overload: Omitted id
+ * @see https://solidjs-use.github.io/solidjs-use/core/useStyleTag
  */
 export function useStyleTag(css: MaybeSignal<string>, options: UseStyleTagOptions = {}): UseStyleTagReturn {
   const [isLoaded, setIsLoaded] = createSignal(false)

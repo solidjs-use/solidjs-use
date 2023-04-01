@@ -38,6 +38,8 @@ export interface UseAsyncQueueOptions {
 
 /**
  * Asynchronous queue task controller.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useAsyncQueue
  */
 export function useAsyncQueue<T1>(
   tasks: [UseAsyncQueueTask<T1>],

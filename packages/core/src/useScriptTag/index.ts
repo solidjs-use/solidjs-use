@@ -59,6 +59,8 @@ export interface UseScriptTagOptions extends ConfigurableDocument {
 
 /**
  * Async script tag loading.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useScriptTag
  */
 export function useScriptTag(
   src: MaybeAccessor<string>,

@@ -20,7 +20,9 @@ export function useChangeCase(
   options?: Options | undefined
 ): Accessor<string>
 /**
- * Reactive wrapper for `change-case`
+ * Reactive wrapper for `change-case`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useChangeCase
  */
 export function useChangeCase(input: any, type: ChangeCaseType, options?: Options | undefined) {
   if (isAccessor<string>(input)) return createMemo(() => changeCase[type](unAccessor(input), options))

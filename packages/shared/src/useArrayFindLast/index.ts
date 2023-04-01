@@ -15,6 +15,7 @@ function findLast<T>(arr: T[], cb: (element: T, index: number, array: T[]) => bo
 /**
  * Reactive `Array.findLast`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayFindLast
  * @param {Array} list - the array was called upon.
  * @param fn - a function to test each element.
  *

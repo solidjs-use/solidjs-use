@@ -173,6 +173,8 @@ export function useStorage<T = unknown>(
 
 /**
  * Reactive LocalStorage/SessionStorage.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useStorage
  */
 export function useStorage<T extends string | number | boolean | object | null>(
   key: string,

@@ -11,6 +11,12 @@ export interface UseFuseOptions<T> {
   matchAllWhenSearchEmpty?: boolean
 }
 
+/**
+ * Easily implement fuzzy search using a composable with Fuse.js.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useFuse
+ * @see https://github.com/krisk/fuse
+ */
 export function useFuse<DataItem>(
   search: MaybeAccessor<string>,
   data: MaybeAccessor<DataItem[]>,

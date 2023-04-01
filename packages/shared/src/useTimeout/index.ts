@@ -20,6 +20,8 @@ export interface UseTimeoutOptions<Controls extends boolean> extends UseTimeoutF
 
 /**
  * Update value after a given time with controls.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useTimeout
  */
 export function useTimeout(interval?: number, options?: UseTimeoutOptions<false>): Accessor<boolean>
 export function useTimeout(interval: number, options: UseTimeoutOptions<true>): { ready: Accessor<boolean> } & Stoppable

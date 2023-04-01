@@ -160,6 +160,11 @@ const defaultOptions: UseMediaControlsOptions = {
   tracks: []
 }
 
+/**
+ * Reactive media controls for both `audio` and `video` elements.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMediaControls
+ */
 export function useMediaControls(
   target: MaybeAccessor<HTMLMediaElement | null | undefined>,
   options: UseMediaControlsOptions = {}

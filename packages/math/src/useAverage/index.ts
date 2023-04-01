@@ -7,7 +7,9 @@ export function useAverage(array: MaybeAccessor<Array<MaybeAccessor<number>>>): 
 export function useAverage(...args: Array<MaybeAccessor<number>>): Accessor<number>
 
 /**
- * Get the average of an array reactively
+ * Get the average of an array reactively.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useAverage
  */
 export function useAverage(...args: MaybeAccessorArgs<number>): Accessor<number> {
   return createMemo(() => {

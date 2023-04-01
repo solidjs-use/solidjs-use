@@ -6,6 +6,8 @@ import type { ConfigurableDocument } from '../_configurable'
 
 /**
  * Reactively track `document.visibilityState`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDocumentVisibility
  */
 export function useDocumentVisibility({
   document = defaultDocument

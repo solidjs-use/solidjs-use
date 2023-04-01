@@ -6,7 +6,9 @@ import type { MaybeElementAccessor } from '@solidjs-use/shared'
 import type { ConfigurableWindow } from '../_configurable'
 
 /**
- * Track if focus is contained within the target element
+ * Track if focus is contained within the target element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFocusWithin
  */
 export function useFocusWithin(target: MaybeElementAccessor, options: ConfigurableWindow = {}): Accessor<boolean> {
   const activeElement = useActiveElement(options)

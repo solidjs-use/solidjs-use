@@ -8,6 +8,8 @@ export type unAccessorFn<T> = T extends (...args: infer A) => infer R
 /**
  * Make a plain function accepting Accessor and raw values as arguments.
  * Returns the same value the unconverted function returns, with proper typing.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/createUnAccessorFn
  */
 export const createUnAccessorFn = <T extends Function>(fn: T): unAccessorFn<T> => {
   return function (this: any, ...args: any[]) {

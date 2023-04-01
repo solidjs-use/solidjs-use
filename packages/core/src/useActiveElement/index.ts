@@ -7,6 +7,8 @@ export interface UseActiveElementOptions extends ConfigurableWindow, Configurabl
 
 /**
  * Reactive `document.activeElement`
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useActiveElement
  */
 export function useActiveElement<T extends HTMLElement>(options: UseActiveElementOptions = {}) {
   const { window = defaultWindow } = options

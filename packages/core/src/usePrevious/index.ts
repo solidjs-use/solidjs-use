@@ -7,6 +7,8 @@ import type { Accessor } from 'solid-js'
 
 /**
  * Holds the previous value of a Accessor.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePrevious
  */
 export function usePrevious<T>(value: MaybeAccessor<T>): Accessor<T | undefined>
 export function usePrevious<T>(value: MaybeAccessor<T>, initialValue: T): Accessor<T>

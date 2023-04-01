@@ -44,6 +44,11 @@ export interface UseStepperReturn<StepName, Steps, Step> {
   isAfter: (step: StepName) => boolean
 }
 
+/**
+ * Provides helpers for building a multi-step wizard interface.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useStepper
+ */
 export function useStepper<T extends string | number>(
   steps: MaybeAccessor<T[]>,
   initialStep?: T

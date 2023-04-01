@@ -6,6 +6,11 @@ const defaultNumericProjector = (input: number, from: readonly [number, number],
   return ((input - from[0]) / (from[1] - from[0])) * (to[1] - to[0]) + to[0]
 }
 
+/**
+ * Reactive numeric projection from one domain to another.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/createGenericProjection
+ */
 export function createProjection(
   fromDomain: MaybeAccessor<readonly [number, number]>,
   toDomain: MaybeAccessor<readonly [number, number]>,

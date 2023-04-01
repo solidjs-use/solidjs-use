@@ -33,6 +33,7 @@ export interface UseSpeechRecognitionOptions extends ConfigurableWindow {
 /**
  * Reactive SpeechRecognition.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useSpeechRecognition
  * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition SpeechRecognition
  */
 export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) {

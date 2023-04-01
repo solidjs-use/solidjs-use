@@ -181,6 +181,8 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
 /**
  * Promised one-time watch for changes
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/unAccessor
+ * @example
  * ```
  * const { count } = useCounter()
  *

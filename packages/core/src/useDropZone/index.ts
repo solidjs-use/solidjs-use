@@ -8,6 +8,11 @@ export interface UseDropZoneReturn {
   isOverDropZone: Accessor<boolean>
 }
 
+/**
+ * Create an zone where files can be dropped.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDropZone
+ */
 export function useDropZone(
   target: MaybeAccessor<HTMLElement | null | undefined>,
   onDrop?: (files: File[] | null) => void

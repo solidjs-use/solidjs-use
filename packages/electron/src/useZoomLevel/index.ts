@@ -12,6 +12,7 @@ export function useZoomLevel(): Signal<number>
 /**
  * Reactive WebFrame zoom level
  *
+ * @see https://solidjs-use.github.io/solidjs-use/electron/useZoomLevel
  * @see https://www.electronjs.org/docs/api/web-frame#webframesetzoomlevellevel
  */
 export function useZoomLevel(...args: any[]): Signal<number> {

@@ -39,6 +39,11 @@ export interface UseModifierOptions<Initial> extends ConfigurableDocument {
 
 export type UseKeyModifierReturn<Initial> = Accessor<Initial extends boolean ? boolean : boolean | null>
 
+/**
+ * Reactive [Modifier State](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState).
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useKeyModifier
+ */
 export function useKeyModifier<Initial extends boolean | null>(
   modifier: KeyModifier,
   options: UseModifierOptions<Initial> = {}

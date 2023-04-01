@@ -35,6 +35,8 @@ export interface UseFileDialogReturn {
 
 /**
  * Open file dialog with ease.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFileDialog
  */
 export function useFileDialog(options: UseFileDialogOptions = {}): UseFileDialogReturn {
   const { document = defaultDocument } = options

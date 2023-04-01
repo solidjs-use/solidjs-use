@@ -18,6 +18,8 @@ export interface UseCssVarOptions extends ConfigurableWindow {
 
 /**
  * Manipulate CSS variables.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useCssVar
  */
 export function useCssVar(
   prop: MaybeAccessor<string>,

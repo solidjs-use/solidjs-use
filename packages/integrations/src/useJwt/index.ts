@@ -26,6 +26,8 @@ export interface UseJwtReturn<Payload, Header, Fallback> {
 
 /**
  * Reactive decoded jwt token.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useJwt
  */
 export function useJwt<Payload extends object = JwtPayload, Header extends object = JwtHeader, Fallback = null>(
   encodedJwt: MaybeAccessor<string>,

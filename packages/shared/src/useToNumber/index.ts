@@ -27,6 +27,8 @@ export interface UseToNumberOptions {
 
 /**
  * Computed reactive object.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useToNumber
  */
 export function useToNumber(value: MaybeAccessor<number | string>, options: UseToNumberOptions = {}): Accessor<number> {
   const { method = 'parseFloat', radix, nanToZero } = options

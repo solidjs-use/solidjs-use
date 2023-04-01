@@ -12,6 +12,7 @@ export function useZoomFactor(): Signal<number>
 /**
  * Reactive WebFrame zoom factor
  *
+ * @see https://solidjs-use.github.io/solidjs-use/electron/useZoomFactor
  * @see https://www.electronjs.org/docs/api/web-frame#webframesetzoomfactorfactor
  */
 export function useZoomFactor(...args: any[]): Signal<number> {

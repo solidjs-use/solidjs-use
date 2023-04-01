@@ -90,6 +90,7 @@ export const normalizeDate = (date: DateLike) => {
 /**
  * Get the formatted date according to the string of tokens passed in.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useDateFormat
  * @param date - The date to format, can either be a `Date` object, a timestamp, or a string
  * @param formatStr - The combination of tokens to format the date
  * @param options - UseDateFormatOptions

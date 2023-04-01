@@ -14,6 +14,11 @@ export interface WatchIgnorableReturn {
   stop: WatchStopHandle
 }
 
+/**
+ * Ignorable watch
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchIgnorable
+ */
 export function watchIgnorable<S, Next extends Prev, Prev = Next>(
   source: WatchDeps<S>,
   cb: WatchCallback<S, Next, Prev>,

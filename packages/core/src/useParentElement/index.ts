@@ -4,6 +4,11 @@ import { useActiveElement } from '../useActiveElement'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { Accessor } from 'solid-js'
 
+/**
+ * Get parent element of the given element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useParentElement
+ */
 export function useParentElement(
   element: MaybeAccessor<HTMLElement | SVGElement | null | undefined> = useActiveElement()
 ): Accessor<HTMLElement | SVGElement | null | undefined> {

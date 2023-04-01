@@ -5,6 +5,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive state to show whether mouse leaves the page.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePageLeave
  */
 export function usePageLeave(options: ConfigurableWindow = {}) {
   const { window = defaultWindow } = options

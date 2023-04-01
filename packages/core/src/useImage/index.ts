@@ -30,6 +30,7 @@ async function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
 /**
  * Reactive load an image in the browser, you can wait the result to display it or show a fallback.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useImage
  * @param options Image attributes, as used in the <img> tag
  */
 export const useImage = (options: MaybeAccessor<UseImageOptions>, asyncStateOptions: UseAsyncStateOptions = {}) => {

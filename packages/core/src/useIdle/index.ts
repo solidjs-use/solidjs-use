@@ -40,6 +40,7 @@ export interface UseIdleReturn {
 /**
  * Tracks whether the user is being inactive.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useIdle
  * @param timeout default to 1 minute
  * @param options IdleOptions
  */

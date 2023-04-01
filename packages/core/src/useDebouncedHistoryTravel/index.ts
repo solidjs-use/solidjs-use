@@ -16,6 +16,8 @@ export type UseDebouncedHistoryTravelSignalReturn<Raw, Serialized = Raw> = UseHi
 
 /**
  * Shorthand for `useHistoryTravel` with debounce filter.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDebouncedHistoryTravel
  */
 export function useDebouncedHistoryTravel<Raw, Serialized = Raw>(
   source: Accessor<Raw>,

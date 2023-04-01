@@ -41,6 +41,8 @@ export function useTitle(
 
 /**
  * Reactive document title.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTitle
  */
 export function useTitle(newTitle: MaybeAccessor<string | null | undefined> = null, options: UseTitleOptions = {}) {
   /*

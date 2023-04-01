@@ -24,7 +24,11 @@ export function watchDebounced<T extends object>(
   options?: WatchDebouncedOptions
 ): WatchStopHandle
 
-// implementation
+/**
+ * Debounced watch.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchDebounced
+ */
 export function watchDebounced(source: any, cb: any, options: WatchDebouncedOptions = {}): WatchStopHandle {
   const { debounce = 0, maxWait = undefined, defer = true } = options
 

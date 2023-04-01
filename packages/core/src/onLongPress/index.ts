@@ -23,6 +23,11 @@ export interface OnLongPressModifiers {
   self?: boolean
 }
 
+/**
+ * Listen for a long press on an element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/onLongPress
+ */
 export function onLongPress(
   target: MaybeElementAccessor,
   handler: (evt: PointerEvent) => void,

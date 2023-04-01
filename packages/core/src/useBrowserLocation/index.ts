@@ -33,6 +33,8 @@ export interface BrowserLocationState {
 
 /**
  * Reactive browser location.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBrowserLocation
  */
 export function useBrowserLocation({ window = defaultWindow }: ConfigurableWindow = {}) {
   const signals = Object.fromEntries(WRITABLE_PROPERTIES.map(key => [key, createSignal()])) as Record<

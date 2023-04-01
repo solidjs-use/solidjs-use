@@ -39,7 +39,9 @@ export interface UseDevicesListReturn {
 }
 
 /**
- * Reactive `enumerateDevices` listing available input/output devices
+ * Reactive `enumerateDevices` listing available input/output devices.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDevicesList
  */
 export function useDevicesList(options: UseDevicesListOptions = {}): UseDevicesListReturn {
   const {

@@ -23,7 +23,11 @@ export function watchWithFilter<T extends object>(
   options?: WatchWithFilterOptions
 ): WatchStopHandle
 
-// implementation
+/**
+ * `watch` with additional EventFilter control.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchWithFilter
+ */
 export function watchWithFilter(source: any, cb: any, options: WatchWithFilterOptions = {}): WatchStopHandle {
   const { eventFilter = bypassFilter, ...watchOptions } = options
 
