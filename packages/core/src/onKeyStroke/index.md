@@ -48,6 +48,25 @@ onKeyStroke(
 )
 ```
 
+### Ignore Repeated Events
+
+The callback will trigger only once when pressing `A` and **hold down**.
+
+```js
+import { onKeyStroke } from 'solidjs-use'
+
+// use `autoRepeat` option
+onKeyStroke(
+  'A',
+  e => {
+    console.log('Key A pressed')
+  },
+  { autoRepeat: false }
+)
+```
+
+Reference: [KeyboardEvent.repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat)
+
 ### Custom Keyboard Event
 
 ```js

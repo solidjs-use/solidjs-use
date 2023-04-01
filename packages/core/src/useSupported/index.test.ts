@@ -3,8 +3,10 @@ import { useSupported } from './index'
 
 describe('useSupported', () => {
   it('should return boolean accessor', () => {
-    const value = useSupported(() => true)
-    expect(value()).to.eq(true)
+    runHook(() => {
+      const value = useSupported(() => true)
+      expect(value()).to.eq(true)
+    })
   })
 
   it('should update on mount', () => {

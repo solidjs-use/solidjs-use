@@ -106,7 +106,7 @@ You might have some `<input />` elements in your apps, and you don't want to tri
 
 ```ts
 import { useActiveElement, useMagicKeys, whenever } from 'solidjs-use'
-import { logicAnd } from 'solidjs-use/math'
+import { logicAnd } from 'solidjs-use'
 
 const activeElement = useActiveElement()
 const notUsingInput = createMemo(() => activeElement()?.tagName !== 'INPUT' && activeElement()?.tagName !== 'TEXTAREA')

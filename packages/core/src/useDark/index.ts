@@ -2,7 +2,7 @@ import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
 import { useColorMode } from '../useColorMode'
 import { usePreferredDark } from '../usePreferredDark'
 import { defaultWindow } from '../_configurable'
-import type { UseColorModeOptions } from '../useColorMode'
+import type { UseColorModeOptions, BasicColorSchema } from '../useColorMode'
 
 export interface UseDarkOptions extends Omit<UseColorModeOptions, 'modes' | 'onChanged'> {
   /**
@@ -25,7 +25,7 @@ export interface UseDarkOptions extends Omit<UseColorModeOptions, 'modes' | 'onC
    *
    * @default undefined
    */
-  onChanged?: (isDark: boolean) => void
+  onChanged?: (isDark: boolean, defaultHandler: (mode: BasicColorSchema) => void, mode: BasicColorSchema) => void
 }
 
 /**
@@ -37,7 +37,7 @@ export function useDark(options: UseDarkOptions = {}) {
   const [mode, setMode] = useColorMode({
     ...options,
     onChanged: (mode, defaultHandler) => {
-      if (options.onChanged) options.onChanged?.(mode === 'dark')
+      if (options.onChanged) options.onChanged?.(mode === 'dark', defaultHandler, mode)
       else defaultHandler(mode)
     },
     modes: {

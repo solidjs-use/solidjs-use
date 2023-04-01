@@ -1,4 +1,5 @@
 import { increaseWithUnit } from '@solidjs-use/shared'
+import { createMemo } from 'solid-js'
 import { useMediaQuery } from '../useMediaQuery'
 import { defaultWindow } from '../_configurable'
 import type { Accessor } from 'solid-js'
@@ -41,7 +42,7 @@ export function useBreakpoints<K extends string>(breakpoints: Breakpoints<K>, op
     return shortcuts
   }, {} as Record<K, Accessor<boolean>>)
 
-  return {
+  return Object.assign(shortcutMethods, {
     greater(k: K) {
       return useMediaQuery(`(min-width: ${getValue(k, 0.1)})`, options)
     },
@@ -70,8 +71,11 @@ export function useBreakpoints<K extends string>(breakpoints: Breakpoints<K>, op
     isInBetween(a: K, b: K) {
       return match(`(min-width: ${getValue(a)}) and (max-width: ${getValue(b, -0.1)})`)
     },
-    ...shortcutMethods
-  }
+    current() {
+      const points = Object.keys(breakpoints).map(i => [i, greaterOrEqual(i as K)] as const)
+      return createMemo(() => points.filter(([, v]) => v()).map(([k]) => k))
+    }
+  })
 }
 
 export type UseBreakpointsReturn<K extends string = string> = {
@@ -85,4 +89,5 @@ export type UseBreakpointsReturn<K extends string = string> = {
   isSmaller: (k: K) => boolean
   isSmallerOrEqual: (k: K) => boolean
   isInBetween: (a: K, b: K) => boolean
+  current(): Accessor<string[]>
 } & Record<K, Accessor<boolean>>

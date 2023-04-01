@@ -1,4 +1,5 @@
-import { resolveAccessor, tryOnCleanup, watch } from '@solidjs-use/shared'
+import { tryOnCleanup, unAccessor, watch } from '@solidjs-use/shared'
+import { createMemo } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
@@ -40,7 +41,7 @@ declare class ResizeObserver {
  * Reports changes to the dimensions of an Element's content or the border-box
  */
 export function useResizeObserver(
-  target: MaybeElementAccessor,
+  target: MaybeElementAccessor | MaybeElementAccessor[],
   callback: ResizeObserverCallback,
   options: UseResizeObserverOptions = {}
 ) {
@@ -55,14 +56,20 @@ export function useResizeObserver(
     }
   }
 
-  const stopWatch = watch(resolveAccessor(target), el => {
-    cleanup()
+  const targets = createMemo(() => (Array.isArray(target) ? target.map(unAccessor) : [unAccessor(target)]))
 
-    if (isSupported() && window && el) {
-      observer = new ResizeObserver(callback)
-      observer.observe(el, observerOptions)
-    }
-  })
+  const stopWatch = watch(
+    targets,
+    els => {
+      cleanup()
+
+      if (isSupported() && window) {
+        observer = new ResizeObserver(callback)
+        for (const _el of els) _el && observer!.observe(_el, observerOptions)
+      }
+    },
+    { defer: false }
+  )
 
   const stop = () => {
     cleanup()

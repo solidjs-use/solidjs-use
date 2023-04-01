@@ -34,7 +34,17 @@ export interface UseAsyncValidatorOptions {
    * @see https://github.com/yiminghe/async-validator#options
    */
   validateOption?: ValidateOption
+  /**
+   * The validation will be triggered right away for the first time.
+   * Only works when `manual` is not set to true.
+   *
+   * @default true
+   */
   immediate?: boolean
+  /**
+   * If set to true, the validation will not be triggered automatically.
+   */
+  manual?: boolean
 }
 
 /**
@@ -47,13 +57,13 @@ export function useAsyncValidator(
   rules: MaybeAccessor<Rules>,
   options: UseAsyncValidatorOptions = {}
 ): UseAsyncValidatorReturn & PromiseLike<UseAsyncValidatorReturn> {
-  const { validateOption = {}, immediate = true } = options
+  const { validateOption = {}, immediate = true, manual = false } = options
 
   const valueAccessor = resolveAccessor(value)
 
   const [errorInfo, setErrorInfo] = createSignal<AsyncValidatorError | null>(null)
   const [isFinished, setIsFinish] = createSignal(true)
-  const [pass, setPass] = createSignal(!immediate)
+  const [pass, setPass] = createSignal(!immediate || manual)
   const errors = createMemo(() => errorInfo()?.errors ?? [])
   const errorFields = createMemo(() => errorInfo()?.fields ?? {})
   const validator = createMemo(() => new AsyncValidatorSchema(unAccessor(rules)))
@@ -80,7 +90,9 @@ export function useAsyncValidator(
     }
   }
 
-  createEffect(on([valueAccessor, validator], () => execute(), { defer: !immediate as true }))
+  if (!manual) {
+    createEffect(on([valueAccessor, validator], () => execute(), { defer: !immediate as true }))
+  }
 
   const shell = {
     isFinished,

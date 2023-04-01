@@ -1,3 +1,4 @@
+import { unAccessor } from '@solidjs-use/shared'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -9,9 +10,15 @@ export interface OnKeyStrokeOptions {
   eventName?: KeyStrokeEventName
   target?: MaybeAccessor<EventTarget | null | undefined>
   passive?: boolean
+  /**
+   * Set to `true` to ignore repeated events when the key is being held down.
+   *
+   * @default false
+   */
+  dedupe?: MaybeAccessor<boolean>
 }
 
-const createKeyPredicate = (keyFilter: KeyFilter): KeyPredicate => {
+function createKeyPredicate(keyFilter: KeyFilter): KeyPredicate {
   if (typeof keyFilter === 'function') return keyFilter
   else if (typeof keyFilter === 'string') return (event: KeyboardEvent) => event.key === keyFilter
   else if (Array.isArray(keyFilter)) return (event: KeyboardEvent) => keyFilter.includes(event.key)
@@ -58,9 +65,11 @@ export function onKeyStroke(...args: any[]) {
     handler = args[0]
   }
 
-  const { target = defaultWindow, eventName = 'keydown', passive = false } = options
+  const { target = defaultWindow, eventName = 'keydown', passive = false, dedupe = false } = options
   const predicate = createKeyPredicate(key)
   const listener = (e: KeyboardEvent) => {
+    if (e.repeat && unAccessor(dedupe)) return
+
     if (predicate(e)) handler(e)
   }
 
