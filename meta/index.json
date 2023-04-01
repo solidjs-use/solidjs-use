@@ -54,6 +54,7 @@
         "fuse.js",
         "async-validator",
         "idb-keyval",
+        "sortablejs",
         "solidjs-use",
         "solidjs-use/solid-to-vue"
       ],
@@ -68,7 +69,8 @@
         "fuse.js": "Fuse",
         "change-case": "changeCase",
         "async-validator": "AsyncValidator",
-        "idb-keyval": "idbKeyval"
+        "idb-keyval": "idbKeyval",
+        "sortablejs": "Sortable"
       },
       "dir": "packages/integrations/src",
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/README.html"
@@ -234,7 +236,7 @@
     {
       "name": "createSharedComposable",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/createSharedComposable/",
       "category": "State",
       "description": "make a composable function usable with multiple SolidJS component instances"
@@ -354,7 +356,7 @@
     {
       "name": "onKeyStroke",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onKeyStroke/",
       "category": "Sensors",
       "description": "listen for keyboard key being stroked"
@@ -400,7 +402,7 @@
     {
       "name": "reactifyObject",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/reactifyObject/",
       "category": "Reactivity",
       "description": "apply `reactify` to an object"
@@ -492,7 +494,7 @@
     {
       "name": "unAccessor",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/unAccessor/",
       "category": "Reactivity",
       "description": "get the value of value/Accessor",
@@ -527,7 +529,7 @@
     {
       "name": "useArrayDifference",
       "package": "shared",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1679822336000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayDifference/",
       "category": "Array",
       "description": "reactive get array difference of two array"
@@ -615,7 +617,7 @@
     {
       "name": "useArrayUnique",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayUnique/",
       "category": "Array",
       "description": "reactive unique array"
@@ -639,7 +641,7 @@
     {
       "name": "useAsyncValidator",
       "package": "integrations",
-      "lastUpdated": 1677151594000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAsyncValidator/",
       "category": "@Integrations",
       "description": "wrapper for [`async-validator`](https://github.com/yiminghe/async-validator)",
@@ -665,7 +667,7 @@
     {
       "name": "useAxios",
       "package": "integrations",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAxios/",
       "category": "@Integrations",
       "description": "wrapper for [`axios`](https://github.com/axios/axios)",
@@ -698,7 +700,7 @@
     {
       "name": "useBreakpoints",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useBreakpoints/",
       "category": "Browser",
       "description": "reactive viewport breakpoints"
@@ -714,7 +716,7 @@
     {
       "name": "useBrowserLocation",
       "package": "core",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1679134563000,
       "component": true,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useBrowserLocation/",
       "category": "Browser",
@@ -777,7 +779,7 @@
     {
       "name": "useConfirmDialog",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679134563000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useConfirmDialog/",
       "category": "Utilities",
       "description": "creates event hooks to support modals and confirmation dialog chains"
@@ -785,7 +787,7 @@
     {
       "name": "useCookies",
       "package": "integrations",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useCookies/",
       "category": "@Integrations",
       "description": "wrapper for [`universal-cookie`](https://www.npmjs.com/package/universal-cookie)",
@@ -802,7 +804,7 @@
     {
       "name": "useCssTransition",
       "package": "core",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1679822336000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssTransition/",
       "category": "Animation",
       "description": "transition between values"
@@ -818,7 +820,7 @@
     {
       "name": "useCycleList",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCycleList/",
       "category": "Utilities",
       "description": "cycle through a list of items"
@@ -826,7 +828,7 @@
     {
       "name": "useDark",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDark/",
       "category": "Browser",
       "description": "reactive dark mode with auto data persistence",
@@ -894,7 +896,7 @@
     {
       "name": "useDevicesList",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDevicesList/",
       "category": "Sensors",
       "description": "reactive [enumerateDevices](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices) listing available input/output devices",
@@ -981,7 +983,7 @@
     {
       "name": "useElementVisibility",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementVisibility/",
       "category": "Elements",
       "description": "tracks the visibility of an element within the viewport"
@@ -1029,7 +1031,7 @@
     {
       "name": "useFetch",
       "package": "core",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFetch/",
       "category": "Network",
       "description": "reactive [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides the ability to abort requests"
@@ -1037,7 +1039,7 @@
     {
       "name": "useFileDialog",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679822336000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFileDialog/",
       "category": "Browser",
       "description": "open file dialog with ease"
@@ -1103,7 +1105,7 @@
     {
       "name": "useFullscreen",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFullscreen/",
       "category": "Browser",
       "description": "reactive [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)"
@@ -1158,7 +1160,7 @@
     {
       "name": "useIdle",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679822336000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useIdle/",
       "category": "Sensors",
       "description": "tracks whether the user is being inactive"
@@ -1182,7 +1184,7 @@
     {
       "name": "useIntersectionObserver",
       "package": "core",
-      "lastUpdated": 1676638055000,
+      "lastUpdated": 1679134563000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useIntersectionObserver/",
       "category": "Elements",
       "description": "detects that a target element's visibility"
@@ -1341,7 +1343,7 @@
     {
       "name": "useMounted",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMounted/",
       "category": "Component",
       "description": "mounted state in Accessor"
@@ -1462,6 +1464,14 @@
       "description": "create parallax effect easily"
     },
     {
+      "name": "useParentElement",
+      "package": "core",
+      "lastUpdated": 1680336801000,
+      "docs": "https://solidjs-use.github.io/solidjs-use/core/useParentElement/",
+      "category": "Elements",
+      "description": "get parent element of the given element"
+    },
+    {
       "name": "usePerformanceObserver",
       "package": "core",
       "lastUpdated": 1678613306000,
@@ -1499,7 +1509,7 @@
     {
       "name": "usePointerSwipe",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/usePointerSwipe/",
       "category": "Sensors",
       "description": "reactive swipe detection based on [PointerEvents](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent)"
@@ -1597,7 +1607,7 @@
     {
       "name": "useResizeObserver",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useResizeObserver/",
       "category": "Elements",
       "description": "reports changes to the dimensions of an Element's content or the border-box"
@@ -1654,7 +1664,7 @@
     {
       "name": "useScrollLock",
       "package": "core",
-      "lastUpdated": 1676796664000,
+      "lastUpdated": 1679134563000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScrollLock/",
       "category": "Sensors",
       "description": "lock scrolling of the element"
@@ -1681,7 +1691,7 @@
     {
       "name": "useSortable",
       "package": "integrations",
-      "lastUpdated": 0,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useSortable/",
       "category": "@Integrations",
       "description": "wrapper for [`sortable`](https://github.com/SortableJS/Sortable)",
@@ -1780,7 +1790,7 @@
     {
       "name": "useSupported",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1680336801000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSupported/",
       "category": "Utilities",
       "description": "sSR compatibility `isSupported`"
@@ -1788,7 +1798,7 @@
     {
       "name": "useSwipe",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSwipe/",
       "category": "Sensors",
       "description": "reactive swipe detection based on [`TouchEvents`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent)"
@@ -1796,7 +1806,7 @@
     {
       "name": "useTextareaAutoSize",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTextareaAutoSize/",
       "category": "Browser",
       "description": "automatically update the height of a textarea depending on the content"
@@ -1863,7 +1873,7 @@
     {
       "name": "useTimeoutFn",
       "package": "shared",
-      "lastUpdated": 1676085934000,
+      "lastUpdated": 1679110667000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useTimeoutFn/",
       "category": "Animation",
       "description": "wrapper for `setTimeout` with controls"
@@ -1895,7 +1905,7 @@
     {
       "name": "useToggle",
       "package": "shared",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679134563000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useToggle/",
       "category": "Utilities",
       "description": "a boolean switcher with utility functions"
@@ -1927,7 +1937,7 @@
     {
       "name": "useUrlSearchParams",
       "package": "core",
-      "lastUpdated": 1675478575000,
+      "lastUpdated": 1679134563000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useUrlSearchParams/",
       "category": "Browser",
       "description": "reactive [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)"

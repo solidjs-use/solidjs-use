@@ -146,6 +146,7 @@ const UseOffsetPagination = lazy(() => import('../../../core/src/useOffsetPagina
 const UseOnline = lazy(() => import('../../../core/src/useOnline/index.md'))
 const UsePageLeave = lazy(() => import('../../../core/src/usePageLeave/index.md'))
 const UseParallax = lazy(() => import('../../../core/src/useParallax/index.md'))
+const UseParentElement = lazy(() => import('../../../core/src/useParentElement/index.md'))
 const UsePerformanceObserver = lazy(() => import('../../../core/src/usePerformanceObserver/index.md'))
 const UsePermission = lazy(() => import('../../../core/src/usePermission/index.md'))
 const UsePointer = lazy(() => import('../../../core/src/usePointer/index.md'))
@@ -383,6 +384,7 @@ const ComponentsPage = () => {
       <Route path="/core/useOnline" element={<UseOnline components={markdownComponents} />} />
       <Route path="/core/usePageLeave" element={<UsePageLeave components={markdownComponents} />} />
       <Route path="/core/useParallax" element={<UseParallax components={markdownComponents} />} />
+      <Route path="/core/useParentElement" element={<UseParentElement components={markdownComponents} />} />
       <Route path="/core/usePerformanceObserver" element={<UsePerformanceObserver components={markdownComponents} />} />
       <Route path="/core/usePermission" element={<UsePermission components={markdownComponents} />} />
       <Route path="/core/usePointer" element={<UsePointer components={markdownComponents} />} />
