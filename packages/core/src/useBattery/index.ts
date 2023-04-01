@@ -17,6 +17,8 @@ type NavigatorWithBattery = Navigator & {
 
 /**
  * Reactive Battery Status API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBattery
  */
 export function useBattery({ navigator = defaultNavigator }: ConfigurableNavigator = {}) {
   const events = ['chargingchange', 'chargingtimechange', 'dischargingtimechange', 'levelchange']

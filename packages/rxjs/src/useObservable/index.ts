@@ -11,6 +11,12 @@ export interface UseObservableOptions<I> {
   initialValue?: I | undefined
 }
 
+/**
+ * Use an RxJS Observable.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/rxjs/from
+ * @see https://rxjs.dev/guide/observable
+ */
 export function useObservable<H, I = undefined>(
   observable: Observable<H>,
   options?: UseObservableOptions<I | undefined>

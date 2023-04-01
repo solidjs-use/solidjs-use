@@ -16,12 +16,12 @@
   list-style: decimal;
 }
 
-.vp-doc li+li {
+.vp-doc li + li {
   margin-top: 8px;
 }
 
-.vp-doc li>ol,
-.vp-doc li>ul {
+.vp-doc li > ol,
+.vp-doc li > ul {
   margin: 8px 0 0;
 }
 
@@ -41,20 +41,20 @@
   transition: border-color 0.5s;
 }
 
-.vp-doc blockquote>p {
+.vp-doc blockquote > p {
   margin: 0;
   font-size: 16px;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
 }
 
-.vp-doc :not(pre)>code {
+.vp-doc :not(pre) > code {
   border-radius: 4px;
   padding: 3px 6px;
   color: var(--vp-c-text-code);
 }
 
-.vp-doc :not(a)>code {
+.vp-doc :not(a) > code {
   color: var(--vp-c-text-code);
 }
 
@@ -73,7 +73,7 @@
 
 .vp-doc .demo h2 {
   margin: 48px 0 16px;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   line-height: 32px;
   font-size: 24px;
   font-weight: bold;
@@ -81,8 +81,8 @@
 
 .vp-doc .demo h3 {
   margin: 32px 0 0;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 28px;
   font-weight: bold;
-    font-size: 20px
+  font-size: 20px;
 }

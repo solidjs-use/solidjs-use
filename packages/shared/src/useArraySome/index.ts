@@ -6,6 +6,7 @@ import type { MaybeAccessor } from '../utils'
 /**
  * Reactive `Array.some`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArraySome
  * @param {Array} list - the array was called upon.
  * @param fn - a function to test each element.
  *

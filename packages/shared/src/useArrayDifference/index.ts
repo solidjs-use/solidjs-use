@@ -18,7 +18,9 @@ export function useArrayDifference<T>(
 ): Accessor<T[]>
 
 /**
- * Reactive get array difference of two array
+ * Reactive get array difference of two array.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayDifference
  */
 export function useArrayDifference<T>(...args: any[]): Accessor<T[]> {
   const list: MaybeAccessor<T[]> = args[0]

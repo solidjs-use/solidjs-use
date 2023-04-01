@@ -4,7 +4,7 @@ category: Utilities
 
 # isDefined
 
-Non-nullish checking type guard for Ref.
+Non-nullish checking type guard for Signal.
 
 ## Usage
 

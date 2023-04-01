@@ -18,6 +18,8 @@ export function useClamp(
 
 /**
  * Reactively clamp a value between two other values.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useClamp
  */
 export function useClamp(value: MaybeSignal<number>, min: MaybeAccessor<number>, max: MaybeAccessor<number>) {
   if (isAccessor(value)) {

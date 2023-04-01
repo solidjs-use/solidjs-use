@@ -29,7 +29,9 @@ export interface UseIntervalControls {
 }
 
 /**
- * Reactive counter increases on every interval
+ * Reactive counter increases on every interval.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useInterval
  */
 export function useInterval(interval?: MaybeAccessor<number>, options?: UseIntervalOptions<false>): Accessor<number>
 export function useInterval(

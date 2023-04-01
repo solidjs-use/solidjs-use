@@ -7,6 +7,7 @@ export type UseEventSourceOptions = EventSourceInit
 /**
  * Reactive wrapper for EventSource.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventSource
  * @see https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource EventSource
  */
 export function useEventSource(url: string, events: string[] = [], options: UseEventSourceOptions = {}) {

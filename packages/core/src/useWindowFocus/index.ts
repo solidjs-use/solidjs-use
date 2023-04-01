@@ -6,6 +6,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactively track window focus with `window.onfocus` and `window.onblur`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWindowFocus
  */
 export function useWindowFocus({ window = defaultWindow }: ConfigurableWindow = {}): Accessor<boolean> {
   if (!window) {

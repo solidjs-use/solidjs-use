@@ -147,6 +147,8 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
 
 /**
  * Wrapper for axios.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useAxios
  */
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   ...args: any[]

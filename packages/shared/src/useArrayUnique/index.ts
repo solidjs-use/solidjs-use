@@ -15,7 +15,9 @@ function uniqueElementsBy<T>(array: T[], fn: (a: T, b: T, array: T[]) => boolean
 }
 
 /**
- * reactive unique array
+ * reactive unique array.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayUnique
  */
 export function useArrayUnique<T>(
   list: MaybeAccessor<Array<MaybeAccessor<T>>>,

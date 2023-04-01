@@ -12,6 +12,8 @@ export interface UseElementByPointOptions extends ConfigurableDocument {
 
 /**
  * Reactive element by point.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementByPoint
  */
 export function useElementByPoint(options: UseElementByPointOptions) {
   const [element, setElement] = createSignal<HTMLElement | null>(null)

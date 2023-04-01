@@ -9,7 +9,9 @@ export interface UseFirebaseAuthReturn {
 }
 
 /**
- * Reactive Firebase Auth binding
+ * Reactive Firebase Auth binding.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/firebase/useAuth
  */
 export function useAuth(auth: Auth): UseFirebaseAuthReturn {
   const [user, setUser] = createSignal<User | null>(auth.currentUser)

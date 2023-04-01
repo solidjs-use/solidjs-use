@@ -10,6 +10,11 @@ export interface UseFpsOptions {
   every?: number
 }
 
+/**
+ * Reactive FPS (frames per second).
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFps
+ */
 export function useFps(options?: UseFpsOptions): Accessor<number> {
   const [fps, setFps] = createSignal(0)
   if (typeof performance === 'undefined') return fps

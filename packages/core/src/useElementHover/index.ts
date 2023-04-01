@@ -11,6 +11,11 @@ export interface UseElementHoverOptions extends ConfigurableWindow {
   delayLeave?: number
 }
 
+/**
+ * Reactive element's hover state.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementHover
+ */
 export function useElementHover(
   el: MaybeAccessor<EventTarget | null | undefined>,
   options: UseElementHoverOptions = {}

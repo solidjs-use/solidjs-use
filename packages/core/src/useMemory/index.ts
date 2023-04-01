@@ -35,6 +35,8 @@ type PerformanceMemory = Performance & {
 
 /**
  * Reactive Memory Info.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMemory
  */
 export function useMemory(options: UseMemoryOptions = {}) {
   const [memory, setMemory] = createSignal<MemoryInfo>()

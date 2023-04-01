@@ -50,6 +50,7 @@ export interface UseAsyncValidatorOptions {
 /**
  * Wrapper for async-validator.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useAsyncValidator
  * @see https://github.com/yiminghe/async-validator
  */
 export function useAsyncValidator(

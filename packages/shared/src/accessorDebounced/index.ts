@@ -5,6 +5,8 @@ import type { DebounceFilterOptions, MaybeAccessor } from '../utils'
 
 /**
  * Debounce updates of a Accessor.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/accessorDebounced
  */
 export function accessorDebounced<T>(
   value: Accessor<T>,

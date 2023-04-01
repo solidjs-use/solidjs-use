@@ -10,6 +10,8 @@ export interface UseRTDBOptions {
 
 /**
  * Reactive Firebase Realtime Database binding.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/firebase/useRTDB
  */
 export function useRTDB<T = any>(docRef: DatabaseReference, options: UseRTDBOptions = {}) {
   const { autoDispose = true } = options

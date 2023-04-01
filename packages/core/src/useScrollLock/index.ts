@@ -39,6 +39,8 @@ function preventDefault(rawEvent: TouchEvent): boolean {
 
 /**
  * Lock scrolling of the element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useScrollLock
  */
 export function useScrollLock(
   element: MaybeAccessor<HTMLElement | SVGElement | Window | Document | null | undefined>,

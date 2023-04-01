@@ -25,6 +25,7 @@ export interface AsyncComputedOptions {
 /**
  * Create an asynchronous computed dependency.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/createAsyncMemo
  * @param evaluationCallback     The promise-returning callback which generates the computed value
  * @param initialState           The initial state, used until the first evaluation finishes
  * @param optionsOrSignal           Additional options or a Signal passed to receive the updates of the async evaluation

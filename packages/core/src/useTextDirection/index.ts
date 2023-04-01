@@ -30,6 +30,8 @@ export interface UseTextDirectionOptions extends ConfigurableDocument {
 
 /**
  * Reactive dir of the element's text.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTextDirection
  */
 export function useTextDirection(options: UseTextDirectionOptions = {}) {
   const { document = defaultDocument, selector = 'html', observe = false, initialValue = 'ltr' } = options

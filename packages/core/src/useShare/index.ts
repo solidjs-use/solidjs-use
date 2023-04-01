@@ -18,6 +18,8 @@ interface NavigatorWithShare {
 
 /**
  * Reactive Web Share API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useShare
  */
 export function useShare(shareOptions: MaybeAccessor<UseShareOptions> = {}, options: ConfigurableNavigator = {}) {
   const { navigator = defaultNavigator } = options

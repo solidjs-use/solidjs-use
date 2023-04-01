@@ -4,7 +4,7 @@ category: Browser
 
 # useMediaControls
 
-Reactive media controls for both `audio` and `video` elements
+Reactive media controls for both `audio` and `video` elements.
 
 ## Usage
 

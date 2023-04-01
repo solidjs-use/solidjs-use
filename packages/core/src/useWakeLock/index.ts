@@ -20,6 +20,8 @@ export type UseWakeLockOptions = ConfigurableNavigator & ConfigurableDocument
 
 /**
  * Reactive Screen Wake Lock API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWakeLock
  */
 export const useWakeLock = (options: UseWakeLockOptions = {}) => {
   const { navigator = defaultNavigator, document = defaultDocument } = options

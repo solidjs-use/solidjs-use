@@ -206,6 +206,8 @@ export function useCssTransition<T extends MaybeAccessor<number[]>>(
 
 /**
  * Follow value with a transition.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useCssTransition
  */
 export function useCssTransition(
   source: MaybeAccessor<number | number[]> | Array<MaybeAccessor<number>>,

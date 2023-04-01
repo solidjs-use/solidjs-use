@@ -27,8 +27,7 @@ export interface SyncSignalOptions<L, R = L> {
 /**
  * Two-way signal synchronization.
  *
- * @param left
- * @param right
+ * @see https://solidjs-use.github.io/solidjs-use/shared/syncSignal
  */
 export function syncSignal<L, R = L>(
   [left, setLeft]: Signal<L>,

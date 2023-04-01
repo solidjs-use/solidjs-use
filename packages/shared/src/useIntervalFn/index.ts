@@ -23,7 +23,9 @@ export interface UseIntervalFnOptions {
 }
 
 /**
- * Wrapper for `setInterval` with controls
+ * Wrapper for `setInterval` with controls.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useIntervalFn
  */
 export function useIntervalFn(
   cb: Fn,

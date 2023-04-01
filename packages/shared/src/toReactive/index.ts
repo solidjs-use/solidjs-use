@@ -5,6 +5,8 @@ import type { MaybeAccessor } from '../utils'
 
 /**
  * Converts Accessor to reactive.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/toReactive
  */
 export function toReactive<T extends object>(objectAccessor: MaybeAccessor<T>): T {
   if (!isAccessor<T>(objectAccessor)) return createMutable(objectAccessor)

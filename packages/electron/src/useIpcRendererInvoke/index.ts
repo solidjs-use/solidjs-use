@@ -9,6 +9,7 @@ import type { IpcRenderer } from 'electron'
  *
  * You need to provide `ipcRenderer` to this function.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/electron/useIpcRendererInvoke
  * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args
  */
 export function useIpcRendererInvoke<T>(ipcRenderer: IpcRenderer, channel: string, ...args: any[]): Accessor<T | null>
@@ -20,6 +21,7 @@ export function useIpcRendererInvoke<T>(ipcRenderer: IpcRenderer, channel: strin
  *
  * `ipcRenderer` will be automatically gotten.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/electron/useIpcRendererInvoke
  * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args
  */
 export function useIpcRendererInvoke<T>(channel: string, ...args: any[]): Accessor<T | null>

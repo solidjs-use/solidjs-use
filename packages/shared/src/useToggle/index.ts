@@ -19,6 +19,7 @@ export function useToggle<Truthy = true, Falsy = false, T = Truthy | Falsy>(
 /**
  * A boolean Signal with a toggler
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useToggle
  * @param [initialValue=false]
  */
 export function useToggle(initialValue: MaybeSignal<boolean> = false, options: UseToggleOptions<any, any> = {}) {

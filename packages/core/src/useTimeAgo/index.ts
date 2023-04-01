@@ -111,6 +111,8 @@ export type UseTimeAgoReturn<Controls extends boolean = false> = Controls extend
 
 /**
  * Reactive time ago formatter.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTimeAgo
  */
 export function useTimeAgo<UnitNames extends string = UseTimeAgoUnitNamesDefault>(
   time: MaybeAccessor<Date | number | string>,

@@ -70,6 +70,8 @@ export type UseHistoryTravelSignalReturn<Raw, Serialized> = UseHistoryTravelBase
 
 /**
  * Track the change history of a `Signal` or `Accessor`, when the parameter is a Signal, it provides undo and redo functionality.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useHistoryTravel
  */
 export function useHistoryTravel<Raw, Serialized = Raw>(
   source: Accessor<Raw>,

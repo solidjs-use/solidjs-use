@@ -20,6 +20,11 @@ export interface UseIDBOptions {
   writeDefaults?: boolean
 }
 
+/**
+ * Wrapper for idb-keyval
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useIDBKeyval
+ */
 export function useIDBKeyval<T>(
   key: IDBValidKey,
   initialValue: MaybeAccessor<T>,

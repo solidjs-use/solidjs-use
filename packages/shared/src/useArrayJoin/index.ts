@@ -6,6 +6,7 @@ import type { MaybeAccessor } from '../utils'
 /**
  * Reactive `Array.join`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayJoin
  * @param {Array} list - the array was called upon.
  * @param {string} separator - a string to separate each pair of adjacent elements of the array. If omitted, the array elements are separated with a comma (",").
  *

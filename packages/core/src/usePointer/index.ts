@@ -53,6 +53,8 @@ const keys = /* #__PURE__ */ Object.keys(defaultState) as Array<keyof UsePointer
 
 /**
  * Reactive pointer state.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePointer
  */
 export function usePointer(options: UsePointerOptions = {}) {
   const { target = defaultWindow } = options

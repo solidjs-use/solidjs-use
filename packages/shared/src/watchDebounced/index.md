@@ -5,7 +5,7 @@ alias: debouncedWatch
 
 # watchDebounced
 
-Debounced watch
+Debounced watch.
 
 ## Usage
 

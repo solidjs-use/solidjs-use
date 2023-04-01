@@ -15,6 +15,8 @@ export type UsePerformanceObserverOptions = PerformanceObserverInit &
 
 /**
  * Observe performance metrics.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePerformanceObserver
  */
 export function usePerformanceObserver(options: UsePerformanceObserverOptions, callback: PerformanceObserverCallback) {
   const { window = defaultWindow, immediate = true, ...performanceOptions } = options

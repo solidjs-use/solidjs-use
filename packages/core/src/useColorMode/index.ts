@@ -92,6 +92,8 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
 
 /**
  * Reactive color mode with auto data persistence.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useColorMode
  */
 export function useColorMode<T extends string = BasicColorSchema>(
   options: UseColorModeOptions<T> = {}

@@ -23,6 +23,8 @@ export interface UseWebWorkerOptions extends ConfigurableWindow {
 
 /**
  * Run expensive function without blocking the UI, using a simple syntax that makes use of Promise.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWebWorkerFn
  */
 export const useWebWorkerFn = <T extends (...fnArgs: any[]) => any>(fn: T, options: UseWebWorkerOptions = {}) => {
   const { dependencies = [], timeout, window = defaultWindow } = options

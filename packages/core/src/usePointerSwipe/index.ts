@@ -48,6 +48,8 @@ export interface UsePointerSwipeReturn {
 
 /**
  * Reactive swipe detection based on PointerEvents.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePointerSwipe
  */
 export function usePointerSwipe(
   target: MaybeAccessor<HTMLElement | null | undefined>,

@@ -4,6 +4,8 @@ export type UseMathKeys = keyof { [K in keyof Math as Math[K] extends (...args: 
 
 /**
  * Reactive `Math` methods.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useMath
  */
 export function useMath<K extends keyof Math>(
   key: K,

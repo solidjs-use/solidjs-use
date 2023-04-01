@@ -8,8 +8,8 @@ type RawCookies = Record<string, string>
 /**
  * Creates a new {@link useCookies} function
  *
- * @param {Object} req - incoming http request (for SSR)
  * @see https://github.com/reactivestack/cookies/tree/master/packages/universal-cookie universal-cookie
+ * @param {Object} req - incoming http request (for SSR)
  * @description Creates universal-cookie instance using request (default is window.document.cookie) and returns {@link useCookies} function with provided universal-cookie instance
  */
 export function createCookies(req?: IncomingMessage) {
@@ -21,6 +21,8 @@ export function createCookies(req?: IncomingMessage) {
 
 /**
  * Reactive methods to work with cookies (use {@link createCookies} method instead if you are using SSR)
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useCookies
  * @param {string[]|null|undefined} dependencies - array of watching cookie's names. Pass empty array if don't want to watch cookies changes.
  * @param {Object} options
  * @param {boolean} options.doNotParse - don't try parse value as JSON

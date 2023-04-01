@@ -9,7 +9,9 @@ export * from './breakpoints'
 export type Breakpoints<K extends string = string> = Record<K, number | string>
 
 /**
- * Reactively viewport breakpoints
+ * Reactively viewport breakpoints.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBreakpoints
  */
 export function useBreakpoints<K extends string>(breakpoints: Breakpoints<K>, options: ConfigurableWindow = {}) {
   function getValue(k: K, delta?: number) {

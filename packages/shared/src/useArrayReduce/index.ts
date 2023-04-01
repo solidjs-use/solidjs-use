@@ -8,6 +8,7 @@ export type UseArrayReducer<PV, CV, R> = (previousValue: PV, currentValue: CV, c
 /**
  * Reactive `Array.reduce`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayReduce
  * @param {Array} list - the array was called upon.
  * @param reducer - a "reducer" function.
  *
@@ -21,6 +22,7 @@ export function useArrayReduce<T>(
 /**
  * Reactive `Array.reduce`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayReduce
  * @param {Array} list - the array was called upon.
  * @param reducer - a "reducer" function.
  * @param initialValue - a value to be initialized the first time when the callback is called.
@@ -36,6 +38,7 @@ export function useArrayReduce<T, U>(
 /**
  * Reactive `Array.reduce`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayReduce
  * @param {Array} list - the array was called upon.
  * @param reducer - a "reducer" function.
  * @param args

@@ -18,6 +18,8 @@ export interface UseFocusOptions extends ConfigurableWindow {
 
 /**
  * Track or set the focus state of a DOM element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFocus
  */
 export function useFocus(target: MaybeElementAccessor, options: UseFocusOptions = {}): WritableComputedReturn<boolean> {
   const { initialValue = false } = options

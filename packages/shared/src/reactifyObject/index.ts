@@ -16,7 +16,9 @@ export interface ReactifyObjectOptions {
 }
 
 /**
- * Apply `reactify` to an object
+ * Apply `reactify` to an object.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/reactifyObject
  */
 export function reactifyObject<T extends object, Keys extends keyof T>(
   obj: T,

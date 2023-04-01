@@ -9,6 +9,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive Media Query.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMediaQuery
  */
 export function useMediaQuery(query: MaybeAccessor<string>, options: ConfigurableWindow = {}) {
   const { window = defaultWindow } = options

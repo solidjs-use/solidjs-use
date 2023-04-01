@@ -324,6 +324,11 @@ export function createFetch(config: CreateFetchOptions = {}) {
   return useFactoryFetch as typeof useFetch
 }
 
+/**
+ * Reactive Fetch API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFetch
+ */
 export function useFetch<T>(url: MaybeAccessor<string>): UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
 export function useFetch<T>(
   url: MaybeAccessor<string>,

@@ -21,6 +21,8 @@ export type UseThrottledHistoryTravelSignalReturn<Raw, Serialized = Raw> = UseHi
 
 /**
  * Shorthand for `useHistoryTravel` with throttled filter.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useThrottledHistoryTravel
  */
 export function useThrottledHistoryTravel<Raw, Serialized = Raw>(
   source: Accessor<Raw>,

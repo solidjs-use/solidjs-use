@@ -12,6 +12,7 @@ export type Reactified<T> = T extends (...args: infer A) => infer R
  * The converted function accepts Signals as it's arguments
  * and returns a ComputedRef, with proper typing.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/reactify
  * @param fn - Source function
  */
 export function reactify<T extends Function>(fn: T): Reactified<T> {

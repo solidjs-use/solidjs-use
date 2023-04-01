@@ -7,6 +7,12 @@ import type { UseObservableOptions } from '../useObservable'
 
 export type UseSubjectOptions<I = undefined> = Omit<UseObservableOptions<I>, 'initialValue'>
 
+/**
+ * Bind an RxJS Subject to a `Signal` and propagate value changes both ways.
+ *
+ * @see https://rxjs.dev/guide/subject
+ * @see https://solidjs-use.github.io/solidjs-use/rxjs/from
+ */
 export function useSubject<H>(subject: BehaviorSubject<H>, options?: UseSubjectOptions): Signal<H>
 export function useSubject<H>(subject: Subject<H>, options?: UseSubjectOptions): Signal<H | undefined>
 export function useSubject<H>(subject: Subject<H>, options?: UseSubjectOptions) {

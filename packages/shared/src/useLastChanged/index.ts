@@ -9,7 +9,9 @@ export interface UseLastChangedOptions<InitialValue extends number | null | unde
 }
 
 /**
- * Records the timestamp of the last change
+ * Records the timestamp of the last change.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useLastChanged
  */
 export function useLastChanged<T>(deps: EffectOnDeps<T>, options?: UseLastChangedOptions): Accessor<number | null>
 export function useLastChanged<T>(deps: EffectOnDeps<T>, options: UseLastChangedOptions): Accessor<number>

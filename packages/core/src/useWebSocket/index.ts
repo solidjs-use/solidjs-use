@@ -141,6 +141,8 @@ function resolveNestedOptions<T>(options: T | true): T {
 
 /**
  * Reactive WebSocket client.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useWebSocket
  */
 export function useWebSocket<Data = any>(
   url: MaybeAccessor<string | URL | undefined>,

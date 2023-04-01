@@ -37,6 +37,8 @@ const isTypedCharValid = ({ keyCode, metaKey, ctrlKey, altKey }: KeyboardEvent) 
 
 /**
  * Fires when users start typing on non-editable elements.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/onStartTyping
  */
 export function onStartTyping(callback: (event: KeyboardEvent) => void, options: ConfigurableDocument = {}) {
   const { document = defaultDocument } = options

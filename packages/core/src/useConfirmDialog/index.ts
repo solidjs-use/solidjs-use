@@ -54,6 +54,8 @@ export interface UseConfirmDialogReturn<RevealData, ConfirmData, CancelData> {
 
 /**
  * Hooks for creating confirm dialogs. Useful for modal windows, popups and logins.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useConfirmDialog
  */
 export function useConfirmDialog<RevealData = any, ConfirmData = any, CancelData = any>(
   [revealed, setRevealed]: Signal<boolean> = createSignal(false)

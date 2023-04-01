@@ -35,7 +35,9 @@ export function useSorted<T = any>(
   options?: Omit<UseSortedOptions<T>, 'compareFn'>
 ): Accessor<T[]>
 /**
- * reactive sort array
+ * reactive sort array.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useSorted
  */
 export function useSorted(...args: any[]) {
   const [source, setSource] = toSignal(args[0])

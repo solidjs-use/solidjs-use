@@ -52,6 +52,8 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
 
 /**
  * Reactive `mediaDevices.getUserMedia` streaming
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useUserMedia
  */
 export function useUserMedia(options: UseUserMediaOptions = {}) {
   const [enabled, setEnabled] = createSignal(options.enabled ?? false)

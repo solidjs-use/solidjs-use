@@ -6,6 +6,8 @@ export type ContrastType = 'more' | 'less' | 'custom' | 'no-preference'
 
 /**
  * Reactive prefers-contrast media query.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePreferredContrast
  */
 export function usePreferredContrast(options?: ConfigurableWindow) {
   const isMore = useMediaQuery('(prefers-contrast: more)', options)

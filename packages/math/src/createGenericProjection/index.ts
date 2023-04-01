@@ -6,6 +6,11 @@ export type ProjectorFunction<F, T> = (input: F, from: readonly [F, F], to: read
 
 export type UseProjection<F, T> = (input: MaybeAccessor<F>) => Accessor<T>
 
+/**
+ * Generic version of `createProjection`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/createGenericProjection
+ */
 export function createGenericProjection<F = number, T = number>(
   fromDomain: MaybeAccessor<readonly [F, F]>,
   toDomain: MaybeAccessor<readonly [T, T]>,

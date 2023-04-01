@@ -15,7 +15,9 @@ export interface EventHook<T = any> {
 }
 
 /**
- * Utility for creating event hooks
+ * Utility for creating event hooks.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/createEventHook
  */
 export function createEventHook<T = any>(): EventHook<T> {
   const fns: Set<(param: T) => void> = new Set()

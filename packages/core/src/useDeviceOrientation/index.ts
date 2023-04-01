@@ -8,6 +8,8 @@ import type { ConfigurableWindow } from '../_configurable'
 
 /**
  * Reactive DeviceOrientationEvent.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDeviceOrientation
  */
 export function useDeviceOrientation(options: ConfigurableWindow = {}) {
   const { window = defaultWindow } = options

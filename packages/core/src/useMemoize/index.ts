@@ -84,7 +84,9 @@ export interface UseMemoizeOptions<Result, Args extends unknown[]> {
 }
 
 /**
- * Reactive function result cache based on arguments
+ * Reactive function result cache based on arguments.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMemoize
  */
 export function useMemoize<Result, Args extends unknown[]>(
   resolver: (...args: Args) => Result,

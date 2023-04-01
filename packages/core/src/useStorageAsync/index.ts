@@ -80,6 +80,8 @@ export function useStorageAsync<T = unknown>(
 
 /**
  * Reactive Storage in with async support.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useStorageAsync
  */
 export function useStorageAsync<T extends string | number | boolean | object | null>(
   key: string,

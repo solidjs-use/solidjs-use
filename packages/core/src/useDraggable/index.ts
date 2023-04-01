@@ -74,6 +74,8 @@ export interface UseDraggableOptions {
 
 /**
  * Make elements draggable.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDraggable
  */
 export function useDraggable(
   target: MaybeAccessor<HTMLElement | SVGElement | null | undefined>,

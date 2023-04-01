@@ -58,6 +58,11 @@ export function mapGamepadToXbox360Controller(gamepad: Accessor<Gamepad | undefi
   })
 }
 
+/**
+ * Provides reactive bindings for the [Gamepad API](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API).
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useGamepad
+ */
 export function useGamepad(options: UseGamepadOptions = {}) {
   const { navigator = defaultNavigator } = options
   const isSupported = useSupported(() => navigator && 'getGamepads' in navigator)

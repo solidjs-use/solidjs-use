@@ -39,6 +39,8 @@ declare class ResizeObserver {
 
 /**
  * Reports changes to the dimensions of an Element's content or the border-box
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useResizeObserver
  */
 export function useResizeObserver(
   target: MaybeElementAccessor | MaybeElementAccessor[],

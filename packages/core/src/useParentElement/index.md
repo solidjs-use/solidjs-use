@@ -4,7 +4,7 @@ category: Elements
 
 # useParentElement
 
-Get parent element of the given element
+Get parent element of the given element.
 
 ## Usage
 

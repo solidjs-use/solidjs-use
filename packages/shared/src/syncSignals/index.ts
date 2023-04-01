@@ -3,7 +3,9 @@ import type { WatchOptions, WatchSource } from '../watch'
 import type { Setter } from 'solid-js'
 
 /**
- * Keep target signal(s) in sync with the Signal
+ * Keep target signal(s) in sync with the Signal.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/syncSignals
  */
 export function syncSignals<T>(
   source: WatchSource<T>,

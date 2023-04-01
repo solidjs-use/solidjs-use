@@ -57,6 +57,8 @@ export interface UseFocusTrapReturn {
 /**
  * Reactive focus-trap
  *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useFocusTrap
+ * @see https://github.com/focus-trap/focus-trap
  * @param target The target element to trap focus within
  * @param options Focus trap options
  * @param autoFocus Focus trap automatically when mounted

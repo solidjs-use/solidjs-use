@@ -4,6 +4,8 @@ import type { MaybeAccessor } from 'solidjs-use'
 
 /**
  * Reactive `Math.ceil`.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useCeil
  */
 export function useCeil(value: MaybeAccessor<number>): Accessor<number> {
   return createMemo<number>(() => Math.ceil(unAccessor(value)))

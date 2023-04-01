@@ -61,6 +61,8 @@ export interface UseAsyncStateOptions<T = any> {
 /**
  * Reactive async state. Will not block your setup function and will trigger changes once
  * the promise is ready.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useAsyncState
  */
 export function useAsyncState<Data, Params extends any[] = []>(
   promise: Promise<Data> | ((...args: Params) => Promise<Data>),

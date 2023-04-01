@@ -1,7 +1,9 @@
 import { createMemo } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 /**
- * Reactively omit fields from a reactive object
+ * Reactively omit fields from a reactive object.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/omitMutable
  */
 export function omitMutable<T extends object, K extends keyof T>(obj: T, ...keys: Array<K | K[]>): Omit<T, K> {
   const res: any = createMutable({})

@@ -83,6 +83,8 @@ export interface UseFullscreenOptions extends ConfigurableDocument {
 
 /**
  * Reactive Fullscreen API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFullscreen
  */
 export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscreenOptions = {}) {
   const { document = defaultDocument, autoExit = false } = options

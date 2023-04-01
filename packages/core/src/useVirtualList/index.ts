@@ -67,6 +67,11 @@ export interface UseVirtualListReturn<T> {
   }>
 }
 
+/**
+ * Create virtual lists with ease.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useVirtualList
+ */
 export function useVirtualList<T = any>(
   list: MaybeAccessor<T[]>,
   options: UseVirtualListOptions

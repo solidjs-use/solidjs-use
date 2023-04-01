@@ -43,6 +43,11 @@ export function useBase64<T extends Set<unknown>>(
   target: MaybeAccessor<T>,
   options?: UseBase64ObjectOptions<T>
 ): UseBase64Return
+/**
+ * Reactive base64 transforming. Supports plain text, buffer, files, canvas, objects, maps, sets and images.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useBase64
+ */
 export function useBase64<T>(target: MaybeAccessor<T[]>, options?: UseBase64ObjectOptions<T[]>): UseBase64Return
 export function useBase64(target: any, options?: any) {
   const [base64, setBase64] = createSignal('')

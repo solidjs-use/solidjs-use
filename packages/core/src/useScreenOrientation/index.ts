@@ -5,7 +5,9 @@ import { defaultWindow } from '../_configurable'
 import type { ConfigurableWindow } from '../_configurable'
 
 /**
- * Reactive screen orientation
+ * Reactive screen orientation.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useScreenOrientation
  */
 export const useScreenOrientation = (options: ConfigurableWindow = {}) => {
   const { window = defaultWindow } = options

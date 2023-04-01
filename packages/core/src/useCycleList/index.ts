@@ -23,7 +23,9 @@ export interface UseCycleListOptions<T> {
 }
 
 /**
- * Cycle through a list of items
+ * Cycle through a list of items.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useCycleList
  */
 export function useCycleList<T>(list: MaybeAccessor<T[]>, options?: UseCycleListOptions<T>): UseCycleListReturn<T> {
   const [state, setState] = toSignal(getInitialValue())

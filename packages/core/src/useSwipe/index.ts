@@ -52,6 +52,8 @@ export interface UseSwipeReturn {
 
 /**
  * Reactive swipe detection.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useSwipe
  */
 export function useSwipe(
   target: MaybeAccessor<EventTarget | null | undefined>,

@@ -47,6 +47,8 @@ export interface UseClipboardReturn<Optional> {
 
 /**
  * Reactive Clipboard API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useClipboard
  */
 export function useClipboard(options?: UseClipboardOptions<undefined>): UseClipboardReturn<false>
 export function useClipboard(options: UseClipboardOptions<MaybeAccessor<string>>): UseClipboardReturn<true>

@@ -35,6 +35,8 @@ export interface UseElementBoundingOptions {
 
 /**
  * Reactive bounding box of an HTML element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementBounding
  */
 export function useElementBounding(target: MaybeElementAccessor, options: UseElementBoundingOptions = {}) {
   const { reset = true, windowResize = true, windowScroll = true, immediate = true } = options

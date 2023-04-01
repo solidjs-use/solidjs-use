@@ -4,7 +4,7 @@ category: '@RxJS'
 
 # useSubject
 
-Bind an RxJS [`Subject`](https://rxjs.dev/guide/subject) to a `ref` and propagate value changes both ways.
+Bind an RxJS [`Subject`](https://rxjs.dev/guide/subject) to a `Signal` and propagate value changes both ways.
 
 ## Usage
 

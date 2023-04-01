@@ -13,6 +13,8 @@ export interface UsePrecisionOptions {
 
 /**
  * Reactively set the precision of a number.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/usePrecision
  */
 export function usePrecision(
   value: MaybeAccessor<number>,

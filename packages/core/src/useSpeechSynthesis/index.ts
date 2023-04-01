@@ -41,6 +41,7 @@ export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
 /**
  * Reactive SpeechSynthesis.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useSpeechSynthesis
  * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis SpeechSynthesis
  */
 export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpeechSynthesisOptions = {}) {

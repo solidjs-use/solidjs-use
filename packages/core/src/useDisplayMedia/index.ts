@@ -23,7 +23,9 @@ export interface UseDisplayMediaOptions extends ConfigurableNavigator {
 }
 
 /**
- * Reactive `mediaDevices.getDisplayMedia` streaming
+ * Reactive `mediaDevices.getDisplayMedia` streaming.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDisplayMedia
  */
 export function useDisplayMedia(options: UseDisplayMediaOptions = {}) {
   const [enabled, setEnabled] = toSignal(options.enabled ?? false)

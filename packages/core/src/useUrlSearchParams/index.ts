@@ -32,7 +32,9 @@ export interface UseUrlSearchParamsOptions<T> extends ConfigurableWindow {
 }
 
 /**
- * Reactive URLSearchParams
+ * Reactive URLSearchParams.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useUrlSearchParams
  */
 export function useUrlSearchParams<T extends Record<string, any> = UrlParams>(
   mode: 'history' | 'hash' | 'hash-params' = 'history',

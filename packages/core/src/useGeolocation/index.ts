@@ -12,6 +12,8 @@ export interface UseGeolocationOptions extends Partial<PositionOptions>, Configu
 
 /**
  * Reactive Geolocation API.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useGeolocation
  */
 export function useGeolocation(options: UseGeolocationOptions = {}) {
   const {

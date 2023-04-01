@@ -39,6 +39,11 @@ export interface UseEventBusReturn<T, P> {
   reset: () => void
 }
 
+/**
+ * A basic event bus.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementVisibility
+ */
 export function useEventBus<T = unknown, P = any>(key: EventBusIdentifier<T>): UseEventBusReturn<T, P> {
   const owner = getOwner()
 

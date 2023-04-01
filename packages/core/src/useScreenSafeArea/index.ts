@@ -10,6 +10,8 @@ const leftVarName = '--vueuse-safe-area-left'
 
 /**
  * Reactive `env(safe-area-inset-*)`
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useScreenSafeArea
  */
 export function useScreenSafeArea() {
   const [top, setTop] = createSignal('')

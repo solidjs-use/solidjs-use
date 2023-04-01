@@ -26,10 +26,10 @@ export interface NavigatorLanguageState {
 }
 
 /**
- * Reactive useNavigatorLanguage
+ * Reactive useNavigatorLanguage.
  *
- * @description
- * Detects the currently selected user language and returns a reactive language
+ * @see https://solidjs-use.github.io/solidjs-use/core/useNavigatorLanguage
+ * @description Detects the currently selected user language and returns a reactive language
  */
 export const useNavigatorLanguage = (options: ConfigurableWindow = {}): Readonly<NavigatorLanguageState> => {
   const { window = defaultWindow } = options

@@ -15,7 +15,9 @@ export type WatchCallback<S, Next extends Prev = any, Prev = Next> = (
 ) => void | Next | Promise<void | Next>
 
 /**
- * Shorthand for `createEffect(on()))` and return stop handler
+ * Shorthand for `createEffect(on()))` and return stop handler.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watch
  */
 export function watch<S, Next extends Prev, Prev = Next>(
   deps: WatchDeps<S>,

@@ -13,6 +13,8 @@ export interface ElementSize {
 
 /**
  * Reactive size of an HTML element.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useElementSize
  */
 export function useElementSize(
   target: MaybeElementAccessor,

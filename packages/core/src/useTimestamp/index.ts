@@ -40,6 +40,8 @@ export interface UseTimestampOptions<Controls extends boolean> {
 
 /**
  * Reactive current timestamp.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTimestamp
  */
 export function useTimestamp(options?: UseTimestampOptions<false>): Signal<number>
 export function useTimestamp(options: UseTimestampOptions<true>): { timestamp: Accessor<number> } & Pausable

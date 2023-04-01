@@ -6,6 +6,8 @@ export type ReducedMotionType = 'reduce' | 'no-preference'
 
 /**
  * Reactive prefers-reduced-motion media query.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/usePreferredReducedMotion
  */
 export function usePreferredReducedMotion(options?: ConfigurableWindow) {
   const isReduced = useMediaQuery('(prefers-reduced-motion: reduce)', options)

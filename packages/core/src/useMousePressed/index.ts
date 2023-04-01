@@ -36,6 +36,8 @@ export interface MousePressedOptions extends ConfigurableWindow {
 
 /**
  * Reactive mouse position.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMousePressed
  */
 export function useMousePressed(options: MousePressedOptions = {}) {
   const { touch = true, drag = true, initialValue = false, window = defaultWindow } = options

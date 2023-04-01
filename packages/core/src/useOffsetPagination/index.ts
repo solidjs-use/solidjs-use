@@ -63,6 +63,11 @@ export interface UseOffsetPaginationReturn {
 
 export type UseOffsetPaginationInfinityPageReturn = Omit<UseOffsetPaginationReturn, 'isLastPage'>
 
+/**
+ * Reactive offset pagination.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useOffsetPagination
+ */
 export function useOffsetPagination(
   options: Omit<UseOffsetPaginationOptions, 'total'>
 ): UseOffsetPaginationInfinityPageReturn

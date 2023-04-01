@@ -8,6 +8,8 @@ export function useMax(...args: Array<MaybeAccessor<number>>): Accessor<number>
 
 /**
  * Reactively get maximum of values.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/math/useMax
  */
 export function useMax(...args: MaybeAccessorArgs<number>) {
   return createMemo<number>(() => {

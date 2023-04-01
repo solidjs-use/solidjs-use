@@ -10,6 +10,11 @@ export interface UseObjectUrlOptions {
   object: MaybeAccessor<ObjectType>
 }
 
+/**
+ * Reactive URL representing an object.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useObjectUrl
+ */
 export function useObjectUrl(object: UseObjectUrlOptions['object']): UseObjectUrlReturn {
   const [url, setUrl] = createSignal<string | undefined>('')
 

@@ -22,6 +22,8 @@ export interface UseNowOptions<Controls extends boolean> {
 
 /**
  * Reactive current Date instance.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useNow
  */
 export function useNow(options?: UseNowOptions<false>): Accessor<Date>
 export function useNow(options: UseNowOptions<true>): { now: Accessor<Date> } & Pausable

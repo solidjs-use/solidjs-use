@@ -64,6 +64,8 @@ export function useFirestore<T extends DocumentData>(
 /**
  * Reactive Firestore binding. Making it straightforward to always keep your
  * local data in sync with remotes databases.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/firebase/useFirestore
  */
 export function useFirestore<T extends DocumentData>(
   maybeDocAccessor: MaybeAccessor<FirebaseDocRef<T> | Falsy>,

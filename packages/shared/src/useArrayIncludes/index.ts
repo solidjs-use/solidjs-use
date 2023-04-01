@@ -38,6 +38,7 @@ export function useArrayIncludes<T, V = any>(
 /**
  * Reactive `Array.includes`
  *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useArrayIncludes
  * @returns {boolean} true if the `value` is found in the array. Otherwise, false.
  */
 export function useArrayIncludes<T, V = any>(...args: any[]): Accessor<boolean> {

@@ -16,6 +16,8 @@ export interface UserCounterReturn {
 
 /**
  * Basic counter with utility functions.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/useCounter
  */
 export function useCounter(initialValue = 0, options: UseCounterOptions = {}): UserCounterReturn {
   const [count, setCount] = createSignal(initialValue)

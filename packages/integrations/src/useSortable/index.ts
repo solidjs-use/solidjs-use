@@ -30,6 +30,8 @@ export function useSortable<T>(
 
 /**
  * Wrapper for sortablejs.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useSortable
  */
 export function useSortable<T>(
   el: MaybeAccessor<HTMLElement | null | undefined> | string,

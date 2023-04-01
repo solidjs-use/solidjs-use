@@ -100,6 +100,7 @@ function setSendSync(ipcRenderer: IpcRenderer) {
 /**
  * Get the `ipcRenderer` module with all APIs.
  *
+ * @see https://solidjs-use.github.io/solidjs-use/electron/useIpcRenderer
  * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrenderersendtohostchannel-args
  */
 export function useIpcRenderer(ipcRenderer?: IpcRenderer): UseIpcRendererReturn {

@@ -13,6 +13,8 @@ export interface UseFaviconOptions extends ConfigurableDocument {
 
 /**
  * Reactive favicon.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useFavicon
  */
 export function useFavicon(
   newIcon?: string | null | undefined | Signal<string | null | undefined>,

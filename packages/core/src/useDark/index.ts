@@ -30,6 +30,8 @@ export interface UseDarkOptions extends Omit<UseColorModeOptions, 'modes' | 'onC
 
 /**
  * Reactive dark mode with auto data persistence.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useDark
  */
 export function useDark(options: UseDarkOptions = {}) {
   const { valueDark = 'dark', valueLight = '', window = defaultWindow } = options

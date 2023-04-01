@@ -17,6 +17,11 @@ export interface UseTextareaAutoSizeOptions {
   styleTarget?: MaybeAccessor<HTMLElement>
 }
 
+/**
+ * Automatically update the height of a textarea depending on the content.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useTextareaAutoSize
+ */
 export function useTextareaAutoSize(options?: UseTextareaAutoSizeOptions) {
   const [textareaRef, setTextareaRef] = createSignal<HTMLTextAreaElement>(options?.element as any)
   const [value, setValue] = createSignal<string>(options?.input as any)

@@ -83,6 +83,8 @@ export const getSetCompat = <T>() => {
 
 /**
  * Reactive keys pressed state, with magical keys combination support.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useMagicKeys
  */
 export function useMagicKeys(options?: UseMagicKeysOptions): UseMagicKeysReturn
 export function useMagicKeys(options: UseMagicKeysOptions): UseMagicKeysReturn

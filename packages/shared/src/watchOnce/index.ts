@@ -12,7 +12,11 @@ export function watchOnce<T extends Readonly<Array<WatchSource<unknown>>>>(
 
 export function watchOnce<T>(sources: WatchSource<T>, cb: WatchCallback<T>, options?: WatchOptions): void
 
-// implementation
+/**
+ * `watch` that only triggers once.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchOnce
+ */
 export function watchOnce(source: any, cb: any, options: WatchOptions = { defer: true }): void {
   const stop = watch(
     source,

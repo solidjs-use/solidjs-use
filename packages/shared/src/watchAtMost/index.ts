@@ -29,7 +29,11 @@ export function watchAtMost<T>(
   options: WatchAtMostOptions
 ): WatchAtMostReturn
 
-// implementation
+/**
+ * `watch` with the number of times triggered.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchAtMost
+ */
 export function watchAtMost(source: any, cb: any, options: WatchAtMostOptions): WatchAtMostReturn {
   const { count, ...watchOptions } = options
 

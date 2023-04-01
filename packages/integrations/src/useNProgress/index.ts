@@ -9,6 +9,8 @@ export type UseNProgressOptions = Partial<NProgressOptions>
 
 /**
  * Reactive progress bar.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useNProgress
  */
 export function useNProgress(
   currentProgress: MaybeAccessor<number | null | undefined> = null,

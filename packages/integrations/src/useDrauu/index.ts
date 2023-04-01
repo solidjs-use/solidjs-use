@@ -30,6 +30,7 @@ export interface UseDrauuReturn {
 /**
  * Reactive drauu
  *
+ * @see https://solidjs-use.github.io/solidjs-use/integrations/useDrauu
  * @param target The target svg element
  * @param options Drauu Options
  */

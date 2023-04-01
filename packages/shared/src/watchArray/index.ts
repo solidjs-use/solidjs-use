@@ -5,6 +5,8 @@ export declare type WatchArrayCallback<V = any, OV = any> = (value: V, oldValue:
 
 /**
  * Watch for an array with additions and removals.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchArray
  */
 export function watchArray<T, Defer extends Readonly<boolean> = false>(
   source: Accessor<T[]>,

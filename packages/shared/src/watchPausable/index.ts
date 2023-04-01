@@ -25,7 +25,11 @@ export function watchPausable<T extends object>(
   options?: WatchWithFilterOptions
 ): WatchPausableReturn
 
-// implementation
+/**
+ * Use as normal the `watch`, but return extra `pause()` and `resume()` functions to control.
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/shared/watchPausable
+ */
 export function watchPausable(source: any, cb: any, options: WatchWithFilterOptions = {}): WatchPausableReturn {
   const { eventFilter: filter, defer = true } = options
 

@@ -16,6 +16,8 @@ export type GeneralEventListener<E = Event> = (evt: E) => void
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
  * Overload 1: Omitted Window target
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
 export function useEventListener<E extends keyof WindowEventMap>(
   event: Arrayable<E>,
@@ -27,6 +29,8 @@ export function useEventListener<E extends keyof WindowEventMap>(
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
  * Overload 2: Explicitly Window target
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
 export function useEventListener<E extends keyof WindowEventMap>(
   target: Window,
@@ -39,6 +43,8 @@ export function useEventListener<E extends keyof WindowEventMap>(
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
  * Overload 3: Explicitly Document target
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
 export function useEventListener<E extends keyof DocumentEventMap>(
   target: DocumentOrShadowRoot,
@@ -51,6 +57,8 @@ export function useEventListener<E extends keyof DocumentEventMap>(
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
  * Overload 4: Custom event target with event type infer
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
 export function useEventListener<Names extends string, EventType = Event>(
   target: InferEventTarget<Names>,
@@ -63,6 +71,8 @@ export function useEventListener<Names extends string, EventType = Event>(
  * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
  * Overload 5: Custom event target fallback
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
 export function useEventListener<EventType = Event>(
   target: MaybeAccessor<EventTarget | null | undefined>,
