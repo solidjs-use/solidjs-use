@@ -596,7 +596,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': registry.npmmirror.com/@babel/core/7.20.5
+      '@babel/core': 7.20.5
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 
@@ -606,7 +606,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': registry.npmmirror.com/@babel/core/7.20.5
+      '@babel/core': 7.20.5
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 

@@ -1,12 +1,14 @@
-import { tryOnMount } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
+import { createMemo } from 'solid-js'
+import { useMounted } from '../useMounted'
 import type { Accessor } from 'solid-js'
 
-export function useSupported(callback: () => unknown, sync = false): Accessor<boolean> {
-  const [isSupported, setIsSupport] = createSignal<boolean>(Boolean(callback()))
+export function useSupported(callback: () => unknown): Accessor<boolean> {
+  const isMounted = useMounted()
 
-  const update = () => setIsSupport(Boolean(callback()))
-
-  tryOnMount(update, sync)
-  return isSupported
+  return createMemo(() => {
+    // to trigger the signal
+    // eslint-disable-next-line no-unused-expressions
+    isMounted()
+    return Boolean(callback())
+  })
 }

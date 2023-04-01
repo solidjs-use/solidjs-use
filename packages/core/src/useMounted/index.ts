@@ -1,4 +1,4 @@
-import { createSignal, onMount } from 'solid-js'
+import { createSignal, getOwner, onMount } from 'solid-js'
 
 /**
  * Mounted state in Accessor.
@@ -6,9 +6,11 @@ import { createSignal, onMount } from 'solid-js'
 export function useMounted() {
   const [isMounted, setIsMounted] = createSignal(false)
 
-  onMount(() => {
-    setIsMounted(true)
-  })
+  if (getOwner()) {
+    onMount(() => {
+      setIsMounted(true)
+    })
+  }
 
   return isMounted
 }

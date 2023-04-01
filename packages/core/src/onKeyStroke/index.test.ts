@@ -14,8 +14,8 @@ describe('onKeyStroke', () => {
     callBackFn = cy.spy()
   })
 
-  function createKeyEvent(key: string, type: KeyStrokeEventName) {
-    const ev = new KeyboardEvent(type, { key })
+  function createKeyEvent(key: string, type: KeyStrokeEventName, repeat = false) {
+    const ev = new KeyboardEvent(type, { key, repeat })
     element().dispatchEvent(ev)
   }
 
@@ -89,6 +89,18 @@ describe('onKeyStroke', () => {
       createKeyEvent('B', 'keydown')
       createKeyEvent('A', 'keypress')
       createKeyEvent('B', 'keypress')
+      expect(callBackFn).to.be.callCount(1)
+    })
+  })
+
+  it('ignore repeated events', () => {
+    return runAsyncHook(async () => {
+      onKeyStroke('A', callBackFn, { target: element, dedupe: true })
+      await nextTick()
+      createKeyEvent('A', 'keydown', false)
+      createKeyEvent('A', 'keydown', true)
+      createKeyEvent('A', 'keydown', true)
+      createKeyEvent('A', 'keydown', true)
       expect(callBackFn).to.be.callCount(1)
     })
   })

@@ -55,6 +55,7 @@ export function useDevicesList(options: UseDevicesListOptions = {}): UseDevicesL
   const audioInputs = createMemo(() => devices().filter(i => i.kind === 'audioinput'))
   const audioOutputs = createMemo(() => devices().filter(i => i.kind === 'audiooutput'))
   const isSupported = useSupported(() => navigator?.mediaDevices?.enumerateDevices)
+  let stream: MediaStream | null
 
   async function update() {
     if (!isSupported()) return
@@ -62,6 +63,10 @@ export function useDevicesList(options: UseDevicesListOptions = {}): UseDevicesL
     const devicesValue = await navigator!.mediaDevices.enumerateDevices()
     setDevices(devicesValue)
     onUpdated?.(devicesValue)
+    if (stream) {
+      stream.getTracks().forEach(t => t.stop())
+      stream = null
+    }
   }
 
   async function ensurePermissions() {
@@ -72,8 +77,7 @@ export function useDevicesList(options: UseDevicesListOptions = {}): UseDevicesL
     const { state, query } = usePermission('camera', { controls: true })
     await query()
     if (state() !== 'granted') {
-      const stream = await navigator!.mediaDevices.getUserMedia(constraints)
-      stream.getTracks().forEach(t => t.stop())
+      stream = await navigator!.mediaDevices.getUserMedia(constraints)
       update()
       setPermissionGranted(true)
     } else {

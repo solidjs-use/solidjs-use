@@ -17,9 +17,13 @@ const Demo = () => {
     setTranslateX(v => v - 10)
   })
 
-  onKeyStroke(['d', 'D', 'ArrowRight'], () => {
-    setTranslateX(v => v + 10)
-  })
+  onKeyStroke(
+    ['d', 'D', 'ArrowRight'],
+    () => {
+      setTranslateX(v => v + 10)
+    },
+    { dedupe: true }
+  )
 
   const containerStyle = {
     display: 'flex',
@@ -50,7 +54,10 @@ const Demo = () => {
             }}
           />
         </div>
-        <div class="text-center mt-4">Use the arrow keys or w a s d keys to control the movement of the ball.</div>
+        <div class="text-center mt-4">
+          <p>Use the arrow keys or w a s d keys to control the movement of the ball.</p>
+          <p>Repeated events are ignored on the key `d` or `-&gt;`.</p>
+        </div>
       </div>
     </>
   )

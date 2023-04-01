@@ -306,4 +306,15 @@ describe('useAxios', () => {
       expect(isAborted()).to.be.true
     })
   })
+
+  it('should call onFinish', async () => {
+    const onFinish = cy.spy()
+    const { execute, isLoading, isFinished } = useAxios(url, config, { ...options, onFinish })
+    expect(isLoading()).to.be.false
+
+    await execute()
+    expect(onFinish).to.have.been.called
+    expect(isFinished()).to.be.true
+    expect(isLoading()).to.be.false
+  })
 })

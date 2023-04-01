@@ -43,6 +43,7 @@ export const packages: PackageManifest[] = [
       'fuse.js',
       'async-validator',
       'idb-keyval',
+      'sortablejs',
       'solidjs-use',
       'solidjs-use/solid-to-vue'
     ],
@@ -57,7 +58,8 @@ export const packages: PackageManifest[] = [
       'fuse.js': 'Fuse',
       'change-case': 'changeCase',
       'async-validator': 'AsyncValidator',
-      'idb-keyval': 'idbKeyval'
+      'idb-keyval': 'idbKeyval',
+      sortablejs: 'Sortable'
     }
   },
   {
