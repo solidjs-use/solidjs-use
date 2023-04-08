@@ -1,6 +1,6 @@
 {
   "name": "@solidjs-use/monorepo",
-  "version": "1.2.0",
+  "version": "2.0.0-beta.0",
   "vueuse-git-commit-id": "0565b1b7a58f83b9c64f789f8263344b433e3216",
   "private": true,
   "packageManager": "pnpm@7.11.0",
