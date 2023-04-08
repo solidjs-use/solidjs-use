@@ -1,0 +1,1 @@
+import{O as f,G as g,u as n}from"./index-39306e86.js";function h(e=!1,o={}){const{truthyValue:a=!0,falsyValue:c=!1}=o,[t,s]=f(e);function r(l){if(arguments.length)return s(l),t();const u=n(a);return s(t()===u?n(c):u),t()}return g(e)?r:[t,r]}export{h as u};

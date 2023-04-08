@@ -1,0 +1,1 @@
+import{r as i}from"./index-39306e86.js";function x(n=0,m={}){const[o,s]=i(n),{max:e=1/0,min:r=-1/0}=m,a=(t=1)=>s(Math.min(e,o()+t)),u=(t=1)=>s(Math.max(r,o()-t)),c=t=>s(Math.max(r,Math.min(e,t)));return{count:o,inc:a,dec:u,set:c,reset:(t=n)=>(n=t,c(t))}}export{x as u};
