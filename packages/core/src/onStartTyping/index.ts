@@ -26,10 +26,13 @@ const isTypedCharValid = ({ keyCode, metaKey, ctrlKey, altKey }: KeyboardEvent) 
   if (metaKey || ctrlKey || altKey) return false
 
   // 0...9
-  if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) return true
+  if (keyCode >= 48 && keyCode <= 57) return true
+
+  // A...Z
+  if (keyCode >= 65 && keyCode <= 90) return true
 
   // a...z
-  if (keyCode >= 65 && keyCode <= 90) return true
+  if (keyCode >= 97 && keyCode <= 122) return true
 
   // All other keys.
   return false
