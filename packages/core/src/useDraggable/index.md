@@ -15,7 +15,7 @@ const Demo = () => {
   const [el, setEl] = createSignal<HTMLElement>()
 
   // `style` will be a helper memo for `{left: ?px, top: ?px;}`
-  const { x, y } = useDraggable(el, {
+  const { x, y, style } = useDraggable(el, {
     initialValue: { x: 40, y: 40 }
   })
 
