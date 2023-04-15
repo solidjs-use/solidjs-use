@@ -11,13 +11,27 @@ export default function MainNavContent() {
     <>
       <MainNavTitle mb="$2">Getting started</MainNavTitle>
       <VStack alignItems="flex-start" spacing="$1" mb="$6">
-        <AppNavLink href="/solidjs-use/getting-started">Get Started</AppNavLink>
-        <AppNavLink href="/solidjs-use/best-practice">Best Practice</AppNavLink>
-        <AppNavLink href="/solidjs-use/config">Configurations</AppNavLink>
-        <AppNavLink href="/solidjs-use/contributing">Contributing</AppNavLink>
-        <AppNavLink href="/solidjs-use/guidelines">Guidelines</AppNavLink>
-        <AppNavLink href="/solidjs-use/export-size">Export size</AppNavLink>
-        <AppNavLink href="/solidjs-use/functions">Functions</AppNavLink>
+        <AppNavLink end href="/solidjs-use/getting-started">
+          Get Started
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/best-practice">
+          Best Practice
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/config">
+          Configurations
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/contributing">
+          Contributing
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/guidelines">
+          Guidelines
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/export-size">
+          Export size
+        </AppNavLink>
+        <AppNavLink end href="/solidjs-use/functions">
+          Functions
+        </AppNavLink>
       </VStack>
       <For each={categoryNames}>
         {(category: string) => {
@@ -28,7 +42,7 @@ export default function MainNavContent() {
               <VStack alignItems="flex-start" spacing="$1" mb="$6">
                 <For each={categoryFunctions[category]}>
                   {functionInfo => (
-                    <AppNavLink href={`/solidjs-use/${functionInfo.package}/${functionInfo.name}`}>
+                    <AppNavLink href={`/solidjs-use/${functionInfo.package}/${functionInfo.name}`} end>
                       {functionInfo.name}
                     </AppNavLink>
                   )}
