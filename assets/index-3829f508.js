@@ -1,0 +1,1 @@
+import{o as e}from"./index-cee51929.js";function c(){const t=new Set,n=o=>{t.delete(o)};return{on:o=>{t.add(o);const r=()=>n(o);return e(r),{off:r}},off:n,trigger:o=>Promise.all(Array.from(t).map(r=>r(o)))}}export{c};

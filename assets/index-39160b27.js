@@ -1,1 +1,0 @@
-import{r as f,Q as m,p,u as d}from"./index-3c801358.js";function T(u,r,a={}){const{immediate:l=!0}=a,[o,t]=f(!1);let e=null;function n(){e&&(clearTimeout(e),e=null)}function i(){t(!1),n()}function s(...c){n(),t(!0),e=setTimeout(()=>{t(!1),e=null,u(...c)},d(r))}return l&&(t(!0),m&&s()),p(i),{isPending:o,start:s,stop:i}}export{T as u};
