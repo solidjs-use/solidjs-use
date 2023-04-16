@@ -4,7 +4,7 @@ category: '@Math'
 
 # useSum
 
-Get the sum of an array reactively
+Get the sum of an array reactively.
 
 ## Usage
 

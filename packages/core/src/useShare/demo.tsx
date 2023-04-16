@@ -10,7 +10,7 @@ const Demo = () => {
 
   const { share, isSupported } = useShare(options)
 
-  const startShare = () => share().catch(err => err)
+  const startShare = () => share()?.catch(err => err)
   return (
     <>
       <div>

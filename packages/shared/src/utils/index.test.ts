@@ -1,24 +1,7 @@
 import { createSignal } from 'solid-js'
 import { createFilterWrapper, debounceFilter, throttleFilter } from './filters'
-import {
-  assert,
-  clamp,
-  hasOwn,
-  isBoolean,
-  isClient,
-  isDef,
-  isFunction,
-  isIOS,
-  isNumber,
-  isObject,
-  isString,
-  isWindow,
-  noop,
-  now,
-  rand,
-  timestamp
-} from './is'
-import { createSingletonPromise, increaseWithUnit, objectPick, promiseTimeout } from '.'
+import { assert, clamp, hasOwn, isClient, isDef, isIOS, isObject, noop, now, rand, timestamp } from './is'
+import { createSingletonPromise, increaseWithUnit, objectPick, promiseTimeout, objectOmit } from '.'
 
 describe('utils', () => {
   it('increaseWithUnit', () => {
@@ -35,6 +18,15 @@ describe('utils', () => {
   it('objectPick', () => {
     expect(objectPick({ a: 1, b: 2, c: 3 }, ['a', 'b'])).to.deep.equal({ a: 1, b: 2 })
     expect(objectPick({ a: 1, b: 2, c: undefined }, ['a', 'b'], true)).to.deep.equal({ a: 1, b: 2 })
+  })
+
+  it('objectOmit', () => {
+    const obj = { a: 1, b: 2, c: 3 }
+
+    expect(objectOmit(obj, ['a', 'b'])).to.deep.eq({ c: 3 })
+    expect(obj).to.deep.eq({ a: 1, b: 2, c: 3 })
+    expect(objectOmit({ a: 1, b: 2, c: undefined }, ['a', 'b'], true)).to.deep.eq({})
+    expect(objectOmit({ a: 1, b: 2, c: undefined }, ['b', 'c'], true)).to.deep.eq({ a: 1 })
   })
 })
 
@@ -269,13 +261,6 @@ describe('is', () => {
     console.warn = cy.spy()
   })
 
-  it('should be boolean', () => {
-    expect(isBoolean(true)).to.be.true
-    expect(isBoolean(false)).to.be.true
-    expect(isBoolean(0)).to.be.false
-    expect(isBoolean('')).to.be.false
-  })
-
   it('should be client', () => {
     expect(isClient).to.be.true
   })
@@ -298,30 +283,10 @@ describe('is', () => {
     expect(isDef(undefined)).to.be.false
   })
 
-  it('should be function', () => {
-    expect(isFunction(() => {})).to.be.true
-    expect(isFunction(() => {})).to.be.true
-  })
-
-  it('should be number', () => {
-    expect(isNumber(1)).to.be.true
-    expect(isNumber('1')).to.be.false
-  })
-
-  it('should be string', () => {
-    expect(isString('')).to.be.true
-    expect(isString(0)).to.be.false
-  })
-
   it('should be object', () => {
     expect(isObject({})).to.be.true
     expect(isObject(null)).to.be.false
     expect(isObject([])).to.be.false
-  })
-
-  it('should be window', () => {
-    expect(isWindow(window)).to.be.true
-    expect(isWindow({})).to.be.false
   })
 
   it('should be now', () => {

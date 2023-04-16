@@ -99,7 +99,7 @@ describe('until', () => {
         }, 100)
       })
     })
-    return new Promise<void>((resolve, reject) => {
+    return await new Promise<void>((resolve, reject) => {
       runHook(() => {
         const [r, setR] = createSignal(0)
 

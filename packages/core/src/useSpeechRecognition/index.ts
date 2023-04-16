@@ -1,7 +1,7 @@
 // ported from https://www.reddit.com/r/vuejs/comments/jksizl/speech_recognition_as_a_vue_3_hook
 // by https://github.com/wobsoriano
 
-import { resolveAccessor, tryOnCleanup, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, tryOnCleanup, toValue } from '@solidjs-use/shared'
 import { createEffect, createSignal, on } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
@@ -39,7 +39,7 @@ export interface UseSpeechRecognitionOptions extends ConfigurableWindow {
 export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) {
   const { interimResults = true, continuous = true, window = defaultWindow } = options
 
-  const lang = resolveAccessor(options.lang ?? 'en-US')
+  const lang = toAccessor(options.lang ?? 'en-US')
   const [isListening, setIsListening] = createSignal(false)
   const [isFinal, setIsFinal] = createSignal(false)
   const [result, setResult] = createSignal('')
@@ -67,7 +67,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) 
 
     recognition.continuous = continuous
     recognition.interimResults = interimResults
-    recognition.lang = unAccessor(lang)
+    recognition.lang = toValue(lang)
 
     recognition.onstart = () => {
       setIsFinal(false)
@@ -102,7 +102,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) 
 
     recognition.onend = () => {
       setIsListening(false)
-      recognition!.lang = unAccessor(lang)
+      recognition!.lang = toValue(lang)
     }
 
     createEffect(

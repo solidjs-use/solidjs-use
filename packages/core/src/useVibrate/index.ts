@@ -1,4 +1,4 @@
-import { resolveAccessor, useIntervalFn } from '@solidjs-use/shared'
+import { toAccessor, useIntervalFn } from '@solidjs-use/shared'
 import { useSupported } from '../useSupported'
 import { defaultNavigator } from '../_configurable'
 import type { ConfigurableNavigator } from '../_configurable'
@@ -40,7 +40,7 @@ export function useVibrate(options?: UseVibrateOptions) {
 
   const isSupported = useSupported(() => typeof navigator !== 'undefined' && 'vibrate' in navigator)
 
-  const patternAccessor = resolveAccessor(pattern)
+  const patternAccessor = toAccessor(pattern)
   let intervalControls: Pausable | undefined
 
   const vibrate = (pattern = patternAccessor()) => {

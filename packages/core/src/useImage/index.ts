@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { createEffect, on } from 'solid-js'
 import { useAsyncState } from '../useAsyncState'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -13,7 +13,7 @@ export interface UseImageOptions {
   sizes?: string
 }
 
-async function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
+function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     const { src, srcset, sizes } = options
@@ -34,14 +34,14 @@ async function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
  * @param options Image attributes, as used in the <img> tag
  */
 export const useImage = (options: MaybeAccessor<UseImageOptions>, asyncStateOptions: UseAsyncStateOptions = {}) => {
-  const state = useAsyncState<HTMLImageElement | undefined>(() => loadImage(unAccessor(options)), undefined, {
+  const state = useAsyncState<HTMLImageElement | undefined>(() => loadImage(toValue(options)), undefined, {
     resetOnExecute: true,
     ...asyncStateOptions
   })
 
   createEffect(
     on(
-      () => unAccessor(options),
+      () => toValue(options),
       () => {
         state.execute(asyncStateOptions.delay)
       },

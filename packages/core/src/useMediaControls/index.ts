@@ -1,11 +1,9 @@
 import {
   createEventHook,
-  isNumber,
   isObject,
-  isString,
-  resolveAccessor,
+  toAccessor,
   tryOnCleanup,
-  unAccessor,
+  toValue,
   watch,
   watchIgnorable
 } from '@solidjs-use/shared'
@@ -123,7 +121,7 @@ export interface UseMediaTextTrack {
  * Automatically check if the Accessor exists and if it does run the cb fn
  */
 function usingElRef<T = any>(source: MaybeAccessor<any>, cb: (el: T) => void) {
-  if (unAccessor(source)) cb(unAccessor(source))
+  if (toValue(source)) cb(toValue(source))
 }
 
 /**
@@ -205,7 +203,7 @@ export function useMediaControls(
   const disableTrack = (track?: number | UseMediaTextTrack) => {
     usingElRef<HTMLMediaElement>(target, el => {
       if (track) {
-        const id = isNumber(track) ? track : track.id
+        const id = typeof track === 'number' ? track : track.id
         el.textTracks[id].mode = 'disabled'
       } else {
         for (let i = 0; i < el.textTracks.length; ++i) el.textTracks[i].mode = 'disabled'
@@ -223,7 +221,7 @@ export function useMediaControls(
    */
   const enableTrack = (track: number | UseMediaTextTrack, disableTracks = true) => {
     usingElRef<HTMLMediaElement>(target, el => {
-      const id = isNumber(track) ? track : track.id
+      const id = typeof track === 'number' ? track : track.id
 
       if (disableTracks) disableTrack()
 
@@ -255,16 +253,16 @@ export function useMediaControls(
   createEffect(() => {
     if (!document) return
 
-    const el = unAccessor(target)
+    const el = toValue(target)
     if (!el) return
 
-    const src = unAccessor(options.src)
+    const src = toValue(options.src)
     let sources: UseMediaSource[] = []
 
     if (!src) return
 
     // Merge sources into an array
-    if (isString(src)) sources = [{ src }]
+    if (typeof src === 'string') sources = [{ src }]
     else if (Array.isArray(src)) sources = src
     else if (isObject(src)) sources = [src]
 
@@ -292,7 +290,7 @@ export function useMediaControls(
 
   // Remove source error listeners
   tryOnCleanup(() => {
-    const el = unAccessor(target)
+    const el = toValue(target)
     if (!el) return
 
     el.querySelectorAll('source').forEach(e => e.removeEventListener('error', sourceErrorEvent.trigger))
@@ -305,7 +303,7 @@ export function useMediaControls(
     on(
       volume,
       vol => {
-        const el = unAccessor(target)
+        const el = toValue(target)
         if (!el) return
 
         el.volume = vol
@@ -318,7 +316,7 @@ export function useMediaControls(
     on(
       muted,
       mute => {
-        const el = unAccessor(target)
+        const el = toValue(target)
         if (!el) return
 
         el.muted = mute
@@ -331,7 +329,7 @@ export function useMediaControls(
     on(
       rate,
       rate => {
-        const el = unAccessor(target)
+        const el = toValue(target)
         if (!el) return
 
         el.playbackRate = rate
@@ -346,8 +344,8 @@ export function useMediaControls(
   createEffect(() => {
     if (!document) return
 
-    const textTracks = unAccessor(options.tracks)
-    const el = unAccessor(target)
+    const textTracks = toValue(options.tracks)
+    const el = toValue(target)
 
     if (!textTracks?.length || !el) return
 
@@ -382,7 +380,7 @@ export function useMediaControls(
    * the timeupdate event would cause the media to stutter.
    */
   const { ignoreUpdates: ignoreCurrentTimeUpdates } = watchIgnorable(currentTime, time => {
-    const el = unAccessor(target)
+    const el = toValue(target)
     if (!el) return
 
     el.currentTime = time
@@ -393,17 +391,17 @@ export function useMediaControls(
    * a function
    */
   const { ignoreUpdates: ignorePlayingUpdates } = watchIgnorable(playing, isPlaying => {
-    const el = unAccessor(target)
+    const el = toValue(target)
     if (!el) return
 
     isPlaying ? el.play() : el.pause()
   })
 
   useEventListener(target, 'timeupdate', () =>
-    ignoreCurrentTimeUpdates(() => setCurrentTime(() => unAccessor(target)!.currentTime))
+    ignoreCurrentTimeUpdates(() => setCurrentTime(() => toValue(target)!.currentTime))
   )
-  useEventListener(target, 'durationchange', () => setDuration(() => unAccessor(target)!.duration))
-  useEventListener(target, 'progress', () => setBuffered(() => timeRangeToArray(unAccessor(target)!.buffered)))
+  useEventListener(target, 'durationchange', () => setDuration(() => toValue(target)!.duration))
+  useEventListener(target, 'progress', () => setBuffered(() => timeRangeToArray(toValue(target)!.buffered)))
   useEventListener(target, 'seeking', () => setSeeking(true))
   useEventListener(target, 'seeked', () => setSeeking(false))
   useEventListener(target, 'waiting', () => setWaiting(true))
@@ -411,7 +409,7 @@ export function useMediaControls(
     setWaiting(false)
     setEnded(false)
   })
-  useEventListener(target, 'ratechange', () => setRate(() => unAccessor(target)!.playbackRate))
+  useEventListener(target, 'ratechange', () => setRate(() => toValue(target)!.playbackRate))
   useEventListener(target, 'stalled', () => setStalled(true))
   useEventListener(target, 'ended', () => setEnded(ended))
   useEventListener(target, 'pause', () => ignorePlayingUpdates(() => setPlaying(false)))
@@ -419,7 +417,7 @@ export function useMediaControls(
   useEventListener(target, 'enterpictureinpicture', () => setIsPictureInPicture(true))
   useEventListener(target, 'leavepictureinpicture', () => setIsPictureInPicture(false))
   useEventListener(target, 'volumechange', () => {
-    const el = unAccessor(target)
+    const el = toValue(target)
     if (!el) return
 
     setVolume(el.volume)
@@ -434,9 +432,9 @@ export function useMediaControls(
   const listeners: Fn[] = []
 
   const stop = watch(
-    resolveAccessor(target),
+    toAccessor(target),
     () => {
-      const el = unAccessor(target)
+      const el = toValue(target)
       if (!el) return
 
       stop()

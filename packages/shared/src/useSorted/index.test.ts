@@ -1,6 +1,6 @@
 import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/solid-to-vue'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { useSorted } from '.'
 
 interface User {
@@ -56,8 +56,8 @@ describe('useSorted', () => {
   it('should pure sort function', () => {
     runHook(() => {
       const sorted = useSorted(arr)
-      expect(unAccessor(sorted)).to.be.deep.eq(arrSorted)
-      expect(unAccessor(arr)).to.be.deep.eq([10, 3, 5, 7, 2, 1, 8, 6, 9, 4])
+      expect(toValue(sorted)).to.be.deep.eq(arrSorted)
+      expect(toValue(arr)).to.be.deep.eq([10, 3, 5, 7, 2, 1, 8, 6, 9, 4])
     })
   })
 
@@ -66,8 +66,8 @@ describe('useSorted', () => {
       const dirtyArr = [...arr]
       const sorted = useSorted(dirtyArr, (a, b) => a - b, { dirty: true })
       await nextTick()
-      expect(unAccessor(sorted)).to.be.deep.eq(arrSorted)
-      expect(unAccessor(dirtyArr)).to.be.deep.eq(unAccessor(sorted))
+      expect(toValue(sorted)).to.be.deep.eq(arrSorted)
+      expect(toValue(dirtyArr)).to.be.deep.eq(toValue(sorted))
     })
   })
 
@@ -75,7 +75,7 @@ describe('useSorted', () => {
     runHook(() => {
       const sorted = useSorted(objArr, (a, b) => a.age - b.age)
 
-      expect(unAccessor(sorted)).to.be.deep.eq(objectSorted)
+      expect(toValue(sorted)).to.be.deep.eq(objectSorted)
     })
   })
 
@@ -85,7 +85,7 @@ describe('useSorted', () => {
         compareFn: (a, b) => a.age - b.age
       })
 
-      expect(unAccessor(sorted)).to.be.deep.eq(objectSorted)
+      expect(toValue(sorted)).to.be.deep.eq(objectSorted)
     })
   })
 })

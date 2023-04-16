@@ -1,6 +1,6 @@
 import { isAccessor } from '@solidjs-use/solid-to-vue'
 import { getOwner, runWithOwner } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { promiseTimeout } from '../utils'
 import { watch } from '../watch'
 import type { EffectOnDeps, ElementOf, MaybeAccessor } from '../utils'
@@ -75,7 +75,7 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
     if (timeout != null) {
       promises.push(
         promiseTimeout(timeout, throwOnTimeout)
-          .then(() => unAccessor(r))
+          .then(() => toValue(r))
           .finally(() => stop?.())
       )
     }
@@ -103,10 +103,10 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
     if (timeout != null) {
       promises.push(
         promiseTimeout(timeout, throwOnTimeout)
-          .then(() => unAccessor(r))
+          .then(() => toValue(r))
           .finally(() => {
             stop?.()
-            return unAccessor(r)
+            return toValue(r)
           })
       )
     }
@@ -133,7 +133,7 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
   function toContains(value: any, options?: UntilToMatchOptions) {
     return toMatch(v => {
       const array = Array.from(v)
-      return array.includes(value) || array.includes(unAccessor(value))
+      return array.includes(value) || array.includes(toValue(value))
     }, options)
   }
 
@@ -149,7 +149,7 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
     }, options)
   }
 
-  if (Array.isArray(unAccessor(r))) {
+  if (Array.isArray(toValue(r))) {
     const instance: UntilArrayInstance<T> = {
       toMatch,
       toContains,
@@ -181,7 +181,7 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
 /**
  * Promised one-time watch for changes
  *
- * @see https://solidjs-use.github.io/solidjs-use/shared/unAccessor
+ * @see https://solidjs-use.github.io/solidjs-use/shared/toValue
  * @example
  * ```
  * const { count } = useCounter()

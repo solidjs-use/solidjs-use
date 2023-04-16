@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode'
 import { createMemo } from 'solid-js'
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { JwtDecodeOptions, JwtHeader, JwtPayload } from 'jwt-decode'
@@ -44,8 +44,8 @@ export function useJwt<Payload extends object = JwtPayload, Header extends objec
     }
   }
 
-  const header = createMemo(() => decodeWithFallback<Header>(unAccessor(encodedJwt), { header: true }))
-  const payload = createMemo(() => decodeWithFallback<Payload>(unAccessor(encodedJwt)))
+  const header = createMemo(() => decodeWithFallback<Header>(toValue(encodedJwt), { header: true }))
+  const payload = createMemo(() => decodeWithFallback<Payload>(toValue(encodedJwt)))
 
   return {
     header,

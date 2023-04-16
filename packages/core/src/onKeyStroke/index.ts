@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -68,7 +68,7 @@ export function onKeyStroke(...args: any[]) {
   const { target = defaultWindow, eventName = 'keydown', passive = false, dedupe = false } = options
   const predicate = createKeyPredicate(key)
   const listener = (e: KeyboardEvent) => {
-    if (e.repeat && unAccessor(dedupe)) return
+    if (e.repeat && toValue(dedupe)) return
 
     if (predicate(e)) handler(e)
   }

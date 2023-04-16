@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { createSignal, getOwner, runWithOwner } from 'solid-js'
-import { isString, until } from 'solidjs-use'
+import { noop, until } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { AxiosInstance, AxiosResponse, CancelTokenSource, AxiosRequestConfig } from 'axios'
 
@@ -41,36 +41,12 @@ export interface UseAxiosReturn<T, R = AxiosResponse<T>, _D = any> {
   abort: (message?: string | undefined) => void
 
   /**
-   * isFinished alias
-   * @deprecated use `isFinished` instead
-   */
-  finished: Accessor<boolean>
-
-  /**
-   * isLoading alias
-   * @deprecated use `isLoading` instead
-   */
-  loading: Accessor<boolean>
-
-  /**
-   * isAborted alias
-   * @deprecated use `isAborted` instead
-   */
-  aborted: Accessor<boolean>
-
-  /**
-   * abort alias
+   * Alias to `abort`
    */
   cancel: (message?: string | undefined) => void
 
   /**
-   * isAborted alias
-   * @deprecated use `isCanceled` instead
-   */
-  canceled: Accessor<boolean>
-
-  /**
-   * isAborted alias
+   * Alias to `isAborted`
    */
   isCanceled: Accessor<boolean>
 }
@@ -81,13 +57,13 @@ export interface StrictUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
   execute: (
     url?: string | AxiosRequestConfig<D>,
     config?: AxiosRequestConfig<D>
-  ) => PromiseLike<StrictUseAxiosReturn<T, R, D>>
+  ) => Promise<StrictUseAxiosReturn<T, R, D>>
 }
 export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R> {
   /**
    * Manually call the axios request
    */
-  execute: (url: string, config?: AxiosRequestConfig<D>) => PromiseLike<EasyUseAxiosReturn<T, R, D>>
+  execute: (url: string, config?: AxiosRequestConfig<D>) => Promise<EasyUseAxiosReturn<T, R, D>>
 }
 export interface UseAxiosOptions<T = any> {
   /**
@@ -111,6 +87,17 @@ export interface UseAxiosOptions<T = any> {
    * Callback when success is caught.
    */
   onSuccess?: (data: T) => void
+
+  /**
+   * Initial data to use
+   */
+  initialData?: T
+
+  /**
+   * Sets the state to initialState before executing the promise.
+   */
+  resetOnExecute?: boolean
+
   /**
    * Callback when request is finished.
    */
@@ -122,28 +109,28 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   url: string,
   config?: AxiosRequestConfig<D>,
   options?: UseAxiosOptions<T>
-): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
+): StrictUseAxiosReturn<T, R, D> & Promise<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   url: string,
   instance?: AxiosInstance,
   options?: UseAxiosOptions<T>
-): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
+): StrictUseAxiosReturn<T, R, D> & Promise<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   url: string,
   config: AxiosRequestConfig<D>,
   instance: AxiosInstance,
   options?: UseAxiosOptions<T>
-): StrictUseAxiosReturn<T, R, D> & PromiseLike<StrictUseAxiosReturn<T, R, D>>
+): StrictUseAxiosReturn<T, R, D> & Promise<StrictUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   config?: AxiosRequestConfig<D>
-): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
+): EasyUseAxiosReturn<T, R, D> & Promise<EasyUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   instance?: AxiosInstance
-): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
+): EasyUseAxiosReturn<T, R, D> & Promise<EasyUseAxiosReturn<T, R, D>>
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   config?: AxiosRequestConfig<D>,
   instance?: AxiosInstance
-): EasyUseAxiosReturn<T, R, D> & PromiseLike<EasyUseAxiosReturn<T, R, D>>
+): EasyUseAxiosReturn<T, R, D> & Promise<EasyUseAxiosReturn<T, R, D>>
 
 /**
  * Wrapper for axios.
@@ -152,9 +139,9 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
  */
 export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   ...args: any[]
-): OverallUseAxiosReturn<T, R, D> & PromiseLike<OverallUseAxiosReturn<T, R, D>> {
+): OverallUseAxiosReturn<T, R, D> & Promise<OverallUseAxiosReturn<T, R, D>> {
   const url: string | undefined = typeof args[0] === 'string' ? args[0] : undefined
-  const argsPlaceholder = isString(url) ? 1 : 0
+  const argsPlaceholder = typeof url === 'string' ? 1 : 0
   let defaultConfig: AxiosRequestConfig<D> = {}
   let instance: AxiosInstance = axios
   let options: UseAxiosOptions<T> = { immediate: !!argsPlaceholder, shallow: true }
@@ -180,8 +167,10 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
   )
     options = args[args.length - 1]
 
+  const { initialData, onSuccess = noop, onError = noop, immediate, resetOnExecute = false } = options
+
   const [response, setResponse] = createSignal<AxiosResponse<T>>()
-  const [data, setData] = createSignal<T>()
+  const [data, setData] = createSignal<T>(initialData!)
   const [isFinished, setIsFinish] = createSignal(false)
   const [isLoading, setIsLoading] = createSignal(false)
   const [isAborted, setIsAborted] = createSignal(false)
@@ -203,6 +192,14 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
     setIsLoading(loading)
     setIsFinish(!loading)
   }
+
+  /**
+   * Reset data to initialData
+   */
+  const resetData = () => {
+    if (resetOnExecute) setData(() => initialData!)
+  }
+
   const owner = getOwner()!
   const waitUntilFinished = () =>
     new Promise<OverallUseAxiosReturn<T, R, D>>((resolve, reject) => {
@@ -210,12 +207,15 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
         until(isFinished)
           .toBe(true)
           // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          .then(() => resolve(result))
-          .catch(reject)
+          .then(() => (error() ? reject(error()) : resolve(result)))
       })
     })
-  const then: PromiseLike<OverallUseAxiosReturn<T, R, D>>['then'] = (onFulfilled, onRejected) =>
-    waitUntilFinished().then(onFulfilled, onRejected)
+
+  const promise = {
+    then: (...args) => waitUntilFinished().then(...args),
+    catch: (...args) => waitUntilFinished().catch(...args)
+  } as Promise<OverallUseAxiosReturn<T, R, D>>
+
   const execute: OverallUseAxiosReturn<T, R, D>['execute'] = (
     executeUrl: string | AxiosRequestConfig<D> | undefined = url,
     config: AxiosRequestConfig<D> = {}
@@ -227,9 +227,9 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
       const error = new AxiosError<T>(AxiosError.ERR_INVALID_URL)
       setError(() => error)
       setIsFinish(true)
-      return { then }
+      return promise
     }
-
+    resetData()
     abort()
     loading(true)
     instance(_url, {
@@ -241,32 +241,28 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
         setResponse(r)
         const result = r.data
         setData(result)
-        options.onSuccess?.(result)
+        onSuccess(result)
       })
       .catch((e: any) => {
         setError(e)
-        options.onError?.(e)
+        onError(e)
       })
       .finally(() => {
         options.onFinish?.()
         loading(false)
       })
-    return { then }
+    return promise
   }
-  if (options.immediate && url) (execute as StrictUseAxiosReturn<T, R, D>['execute'])()
+  if (immediate && url) (execute as StrictUseAxiosReturn<T, R, D>['execute'])()
 
   const result = {
     response,
     data,
     error,
-    finished: isFinished,
-    loading,
     isFinished,
     isLoading,
     cancel: abort,
     isAborted,
-    canceled: isAborted,
-    aborted: isAborted,
     isCanceled: isAborted,
     abort,
     execute
@@ -274,6 +270,6 @@ export function useAxios<T = any, R = AxiosResponse<T>, D = any>(
 
   return {
     ...result,
-    then
+    ...promise
   }
 }

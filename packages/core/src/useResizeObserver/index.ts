@@ -1,4 +1,4 @@
-import { tryOnCleanup, unAccessor, watch } from '@solidjs-use/shared'
+import { tryOnCleanup, toValue, watch } from '@solidjs-use/shared'
 import { createMemo } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
@@ -58,7 +58,7 @@ export function useResizeObserver(
     }
   }
 
-  const targets = createMemo(() => (Array.isArray(target) ? target.map(unAccessor) : [unAccessor(target)]))
+  const targets = createMemo(() => (Array.isArray(target) ? target.map(toValue) : [toValue(target)]))
 
   const stopWatch = watch(
     targets,

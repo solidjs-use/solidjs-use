@@ -1,6 +1,6 @@
 import { isSignal, toSignal } from '@solidjs-use/solid-to-vue'
 import { createEffect, createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeSignal } from '../utils'
 
@@ -57,11 +57,11 @@ export function useSorted(...args: any[]) {
 
   const { dirty = false, sortFn = defaultSortFn } = options
 
-  if (!dirty) return createMemo(() => sortFn([...unAccessor(source)], compareFn))
+  if (!dirty) return createMemo(() => sortFn([...toValue(source)], compareFn))
 
   // dirty
   createEffect(() => {
-    const result = sortFn(unAccessor(source), compareFn)
+    const result = sortFn(toValue(source), compareFn)
     if (isSignal(args[0])) setSource(result)
     else source().splice(0, source().length, ...result)
   })

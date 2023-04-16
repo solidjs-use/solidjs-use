@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -20,7 +20,7 @@ export function reactify<T extends Function>(fn: T): Reactified<T> {
     return createMemo(() =>
       fn.apply(
         this,
-        args.map(i => unAccessor(i))
+        args.map(i => toValue(i))
       )
     )
   } as any

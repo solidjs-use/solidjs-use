@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Setter, Signal } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -17,7 +17,7 @@ export function signalAutoReset<T>(defaultValue: T, afterMs: MaybeAccessor<numbe
   const resetAfter = () =>
     setTimeout(() => {
       setVal(() => defaultValue)
-    }, unAccessor(afterMs))
+    }, toValue(afterMs))
 
   tryOnCleanup(() => {
     clearTimeout(timer)

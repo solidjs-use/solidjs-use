@@ -1,4 +1,4 @@
-import { noop, tryOnCleanup, tryOnMount, unAccessor } from '@solidjs-use/shared'
+import { noop, tryOnCleanup, tryOnMount, toValue } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { defaultDocument } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -107,14 +107,14 @@ export function useScriptTag(
       // Local variable defining if the <script> tag should be appended or not.
       let shouldAppend = false
 
-      let el = document.querySelector<HTMLScriptElement>(`script[src="${unAccessor(src)}"]`)
+      let el = document.querySelector<HTMLScriptElement>(`script[src="${toValue(src)}"]`)
 
       // Script tag not found, preparing the element for appending
       if (!el) {
         el = document.createElement('script')
         el.type = type
         el.async = async
-        el.src = unAccessor(src)
+        el.src = toValue(src)
 
         // Optional attributes
         if (defer) el.defer = defer
@@ -171,7 +171,7 @@ export function useScriptTag(
 
     if (scriptTag()) setScriptTag(null)
 
-    const el = document.querySelector<HTMLScriptElement>(`script[src="${unAccessor(src)}"]`)
+    const el = document.querySelector<HTMLScriptElement>(`script[src="${toValue(src)}"]`)
     if (el) document.head.removeChild(el)
   }
 

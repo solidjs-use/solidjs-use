@@ -1,4 +1,3 @@
-import { isString } from '@solidjs-use/shared'
 import { isAccessor, toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, on } from 'solid-js'
 import { defaultDocument } from '../_configurable'
@@ -37,7 +36,7 @@ export function useFavicon(newIcon: MaybeSignal<string | null | undefined> = nul
 
   createEffect(
     on(favicon, (i, o) => {
-      if (isString(i) && i !== o) applyIcon(i)
+      if (typeof i === 'string' && i !== o) applyIcon(i)
     })
   )
 

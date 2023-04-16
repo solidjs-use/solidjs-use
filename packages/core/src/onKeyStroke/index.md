@@ -61,7 +61,7 @@ onKeyStroke(
   e => {
     console.log('Key A pressed')
   },
-  { autoRepeat: false }
+  { dedupe: false }
 )
 ```
 

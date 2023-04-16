@@ -119,7 +119,7 @@ export function useFetch<T>(url: MaybeAccessor<string>): UseFetchReturn<T> & Pro
   const [error, setError] = createSignal<Error | undefined>()
   const [isFinished, setIsFinished] = createSignal(false)
 
-  fetch(unAccessor(url))
+  fetch(toValue(url))
     .then(r => r.json())
     .then(r => setData(r))
     .catch(e => setError(e))

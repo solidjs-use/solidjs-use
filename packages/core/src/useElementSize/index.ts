@@ -1,4 +1,4 @@
-import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, toValue } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useResizeObserver } from '../useResizeObserver'
 import { defaultWindow } from '../_configurable'
@@ -23,7 +23,7 @@ export function useElementSize(
 ) {
   const { window = defaultWindow, box = 'content-box' } = options
 
-  const isSVG = createMemo(() => unAccessor(target)?.namespaceURI?.includes('svg'))
+  const isSVG = createMemo(() => toValue(target)?.namespaceURI?.includes('svg'))
   const [width, setWidth] = createSignal(initialSize.width)
   const [height, setHeight] = createSignal(initialSize.height)
 
@@ -38,7 +38,7 @@ export function useElementSize(
           : entry.devicePixelContentBoxSize
 
       if (window && isSVG()) {
-        const $elem = unAccessor(target)
+        const $elem = toValue(target)
         if ($elem) {
           const styles = window.getComputedStyle($elem)
           setWidth(parseFloat(styles.width))
@@ -61,7 +61,7 @@ export function useElementSize(
 
   createEffect(
     on(
-      resolveAccessor(target),
+      toAccessor(target),
       ele => {
         setWidth(ele ? initialSize.width : 0)
         setHeight(ele ? initialSize.height : 0)

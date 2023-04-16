@@ -1,4 +1,4 @@
-import { resolveAccessor, tryOnMount, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, tryOnMount, toValue } from '@solidjs-use/shared'
 import { createEffect, createSignal, on } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { useResizeObserver } from '../useResizeObserver'
@@ -51,7 +51,7 @@ export function useElementBounding(target: MaybeElementAccessor, options: UseEle
   const [y, setY] = createSignal(0)
 
   function update() {
-    const el = unAccessor(target)
+    const el = toValue(target)
 
     if (!el) {
       if (reset) {
@@ -81,7 +81,7 @@ export function useElementBounding(target: MaybeElementAccessor, options: UseEle
   useResizeObserver(target, update)
   createEffect(
     on(
-      resolveAccessor(target),
+      toAccessor(target),
       ele => {
         !ele && update()
       },

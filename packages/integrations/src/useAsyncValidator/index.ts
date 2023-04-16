@@ -1,6 +1,6 @@
 import Schema from 'async-validator'
 import { createEffect, createMemo, createSignal, getOwner, on, runWithOwner } from 'solid-js'
-import { resolveAccessor, unAccessor, until } from 'solidjs-use'
+import { toAccessor, toValue, until } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { Rules, ValidateError, ValidateOption } from 'async-validator'
@@ -60,14 +60,14 @@ export function useAsyncValidator(
 ): UseAsyncValidatorReturn & PromiseLike<UseAsyncValidatorReturn> {
   const { validateOption = {}, immediate = true, manual = false } = options
 
-  const valueAccessor = resolveAccessor(value)
+  const valueAccessor = toAccessor(value)
 
   const [errorInfo, setErrorInfo] = createSignal<AsyncValidatorError | null>(null)
   const [isFinished, setIsFinish] = createSignal(true)
   const [pass, setPass] = createSignal(!immediate || manual)
   const errors = createMemo(() => errorInfo()?.errors ?? [])
   const errorFields = createMemo(() => errorInfo()?.fields ?? {})
-  const validator = createMemo(() => new AsyncValidatorSchema(unAccessor(rules)))
+  const validator = createMemo(() => new AsyncValidatorSchema(toValue(rules)))
 
   const execute = async (): Promise<UseAsyncValidatorExecuteReturn> => {
     setIsFinish(false)

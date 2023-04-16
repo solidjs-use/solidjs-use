@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -34,7 +34,7 @@ export function useToNumber(value: MaybeAccessor<number | string>, options: UseT
   const { method = 'parseFloat', radix, nanToZero } = options
 
   return createMemo(() => {
-    let resolved = unAccessor(value)
+    let resolved = toValue(value)
     if (typeof resolved === 'string') resolved = Number[method](resolved, radix)
     if (nanToZero && isNaN(resolved)) resolved = 0
     return resolved

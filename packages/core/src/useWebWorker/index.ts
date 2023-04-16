@@ -1,6 +1,6 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { isFunction, isString, tryOnCleanup } from '@solidjs-use/shared'
+import { tryOnCleanup } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { defaultWindow } from '../_configurable'
 import type { Accessor } from 'solid-js'
@@ -55,8 +55,8 @@ export function useWebWorker<Data = any>(
   }
 
   if (window) {
-    if (isString(arg0)) setWorker(new Worker(arg0, workerOptions))
-    else if (isFunction(arg0)) setWorker((arg0 as any)())
+    if (typeof arg0 === 'string') setWorker(new Worker(arg0, workerOptions))
+    else if (typeof arg0 === 'function') setWorker((arg0 as any)())
     else setWorker(arg0)
 
     const workValue = worker()!

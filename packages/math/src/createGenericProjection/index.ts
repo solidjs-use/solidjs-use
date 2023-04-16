@@ -1,4 +1,4 @@
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import { createMemo, type Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -17,6 +17,6 @@ export function createGenericProjection<F = number, T = number>(
   projector: ProjectorFunction<F, T>
 ): UseProjection<F, T> {
   return (input: MaybeAccessor<F>) => {
-    return createMemo(() => projector(unAccessor(input), unAccessor(fromDomain), unAccessor(toDomain)))
+    return createMemo(() => projector(toValue(input), toValue(fromDomain), toValue(toDomain)))
   }
 }

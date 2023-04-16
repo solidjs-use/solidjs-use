@@ -208,10 +208,25 @@ describe('useAxios', () => {
 
       await then(result => {
         expect(result.data().id).to.be.eq(1)
-        expect(isLoading()).to.be.false
-        expect(onRejected).to.be.callCount(0)
       }, onRejected)
+      expect(isLoading()).to.be.false
+
+      expect(onRejected).callCount(0)
     })
+  })
+
+  it('execute rejects on error', async () => {
+    const { isLoading, then, execute } = useAxios(config, instance)
+    expect(isLoading()).to.be.false
+    execute(`${path}/wrong-url`)
+    expect(isLoading()).to.be.true
+    const onResolved = cy.spy()
+    const onRejected = cy.spy()
+
+    await then(onResolved, onRejected)
+    expect(isLoading()).to.be.false
+    expect(onResolved).callCount(0)
+    expect(onRejected).callCount(1)
   })
 
   it('calling axios with config change(param/data etc.) only', () => {
@@ -296,14 +311,15 @@ describe('useAxios', () => {
     return runAsyncHook(async () => {
       const { isLoading, isFinished, isAborted, execute, abort } = useAxios(url, config, options)
       expect(isLoading()).to.be.false
-      execute(`${window.origin}/todos/2.json`).then(result => {
-        expect((result.error() as Error)?.message).to.be('aborted')
-        expect(isFinished()).to.be.true
-        expect(isLoading()).to.be.false
-        expect(isAborted()).to.be.true
+      let error: any
+      const promise = execute(`${window.origin}/todos/2.json`).catch(e => {
+        error = e
       })
       abort('aborted')
+      await promise
       expect(isAborted()).to.be.true
+      expect(isFinished()).to.be.true
+      expect(error).to.be.exist
     })
   })
 
@@ -316,5 +332,59 @@ describe('useAxios', () => {
     expect(onFinish).to.have.been.called
     expect(isFinished()).to.be.true
     expect(isLoading()).to.be.false
+  })
+
+  it('should use initialData', () => {
+    return runAsyncHook(async () => {
+      const { data } = useAxios(url, config, { ...options, initialData: { value: 1 } })
+      await nextTick()
+      expect(data()).to.be.deep.eq({ value: 1 })
+    })
+  })
+
+  it('should reset data when execute', () => {
+    return runAsyncHook(async () => {
+      interface ResType {
+        id: number
+        title: string
+        body: string
+        userId: number
+      }
+      const initialData: ResType = {
+        id: 2,
+        title: 'title',
+        body: 'body',
+        userId: 2
+      }
+      const { data, execute } = useAxios<ResType>(url, config, { ...options, initialData, resetOnExecute: true })
+      expect(data()).to.be.deep.eq(initialData)
+      await execute().catch(() => ({}))
+      expect(data()).to.be.deep.eq({ completed: false, id: 1, title: 'delectus aut autem', userId: 1 })
+      await execute('/todos/312').catch(() => ({}))
+      expect(data()).to.be.deep.eq(initialData)
+    })
+  })
+
+  it('should not reset data when execute', () => {
+    return runAsyncHook(async () => {
+      interface ResType {
+        id: number
+        title: string
+        body: string
+        userId: number
+      }
+      const initialData: ResType = {
+        id: 2,
+        title: 'title',
+        body: 'body',
+        userId: 2
+      }
+      const { data, execute } = useAxios<ResType>(url, config, { ...options, initialData })
+      expect(data()).to.be.deep.eq(initialData)
+      await execute().catch(() => ({}))
+      expect(data()).to.be.deep.eq({ completed: false, id: 1, title: 'delectus aut autem', userId: 1 })
+      await execute('/todos/312').catch(() => ({}))
+      expect(data()).to.be.deep.eq({ completed: false, id: 1, title: 'delectus aut autem', userId: 1 })
+    })
   })
 })

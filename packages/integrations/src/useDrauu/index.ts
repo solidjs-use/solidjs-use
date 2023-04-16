@@ -1,6 +1,6 @@
 import { createDrauu } from 'drauu'
 import { createEffect, createSignal, on } from 'solid-js'
-import { createEventHook, resolveAccessor, tryOnCleanup } from 'solidjs-use'
+import { createEventHook, toAccessor, tryOnCleanup } from 'solidjs-use'
 import type { Accessor, Setter } from 'solid-js'
 import type { EventHookOn, Fn, MaybeElementAccessor } from 'solidjs-use'
 import type { Brush, Drauu, Options } from 'drauu'
@@ -92,7 +92,7 @@ export function useDrauu(target: MaybeElementAccessor, options?: UseDrauuOptions
   }
 
   createEffect(
-    on(resolveAccessor(target), el => {
+    on(toAccessor(target), el => {
       if (!el || typeof SVGSVGElement === 'undefined' || !(el instanceof SVGSVGElement)) return
 
       let drauuInstanceVal = drauuInstance()

@@ -1,4 +1,4 @@
-import { unAccessor, type MaybeAccessor } from '@solidjs-use/shared'
+import { toValue, type MaybeAccessor } from '@solidjs-use/shared'
 import { isAccessor } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createSignal, on } from 'solid-js'
 import type { Accessor } from 'solid-js'
@@ -47,7 +47,7 @@ export function useCloned<T>(source: MaybeAccessor<T>, options: UseClonedOptions
   const { manual, clone = cloneFnJSON, defer = false } = options
 
   function sync() {
-    setCloned(clone(unAccessor(source)))
+    setCloned(clone(toValue(source)))
   }
 
   if (!manual && isAccessor(source)) {

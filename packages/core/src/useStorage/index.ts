@@ -1,5 +1,5 @@
-import { pausableWatch, unAccessor } from '@solidjs-use/shared'
-import { isAccessor, isFunction, nextTick, toSignal } from '@solidjs-use/shared/solid-to-vue'
+import { pausableWatch, toValue } from '@solidjs-use/shared'
+import { isAccessor, nextTick, toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { getSSRHandler } from '../ssr-handlers'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
@@ -205,7 +205,7 @@ export function useStorage<T extends string | number | boolean | object | null>(
 
   if (!storage) return isAccessor(defaults) ? data : [data, setData]
 
-  const rawInit: T = unAccessor(defaults)
+  const rawInit: T = toValue(defaults)
   const type = guessSerializerType<T>(rawInit)
   const serializer = options.serializer ?? StorageSerializers[type]
 
@@ -262,7 +262,7 @@ export function useStorage<T extends string | number | boolean | object | null>(
       return rawInit
     } else if (!event && mergeDefaults) {
       const value = serializer.read(rawValue)
-      if (isFunction(mergeDefaults)) return mergeDefaults(value, rawInit)
+      if (typeof mergeDefaults === 'function') return mergeDefaults(value, rawInit)
       else if (type === 'object' && !Array.isArray(value)) return { ...(rawInit as any), ...value }
       return value
     } else if (typeof rawValue !== 'string') {

@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { useSupported } from '../useSupported'
 import { defaultNavigator } from '../_configurable'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -27,11 +27,11 @@ export function useShare(shareOptions: MaybeAccessor<UseShareOptions> = {}, opti
   const _navigator = navigator as NavigatorWithShare
   const isSupported = useSupported(() => _navigator && 'canShare' in _navigator)
 
-  const share = async (overrideOptions: MaybeAccessor<UseShareOptions> = {}) => {
+  const share = (overrideOptions: MaybeAccessor<UseShareOptions> = {}) => {
     if (isSupported()) {
       const data = {
-        ...unAccessor(shareOptions),
-        ...unAccessor(overrideOptions)
+        ...toValue(shareOptions),
+        ...toValue(overrideOptions)
       }
       let granted = true
 

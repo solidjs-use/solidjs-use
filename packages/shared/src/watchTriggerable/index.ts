@@ -1,4 +1,4 @@
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { watchIgnorable } from '../watchIgnorable'
 import type { MapOldSources, MapSources } from '../utils'
 import type { WatchDeps } from '../watch'
@@ -71,8 +71,8 @@ export function watchTriggerable(source: any, cb: any, options: WatchWithFilterO
 }
 
 function getWatchSources(sources: any) {
-  if (Array.isArray(sources)) return sources.map(item => unAccessor(item))
-  return unAccessor(sources)
+  if (Array.isArray(sources)) return sources.map(item => toValue(item))
+  return toValue(sources)
 }
 
 // For calls triggered by trigger, the old value is unknown, so it cannot be returned

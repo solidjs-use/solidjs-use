@@ -1,4 +1,4 @@
-import type { Awaitable } from '@solidjs-use/shared'
+import type { Awaitable, MaybeAccessor } from '@solidjs-use/shared'
 
 declare const global: any
 
@@ -20,7 +20,11 @@ export interface StorageLike {
 export interface SSRHandlersMap {
   getDefaultStorage: () => StorageLike | undefined
   getDefaultStorageAsync: () => StorageLikeAsync | undefined
-  updateHTMLAttrs: (selector: string, attribute: string, value: string) => void
+  updateHTMLAttrs: (
+    selector: string | MaybeAccessor<HTMLElement | null | undefined>,
+    attribute: string,
+    value: string
+  ) => void
 }
 
 const _global =
@@ -35,8 +39,12 @@ const _global =
     : {}
 
 const globalKey = '__solidjs-use_ssr_handlers__'
-_global[globalKey] = _global[globalKey] ?? {}
-const handlers: Partial<SSRHandlersMap> = _global[globalKey]
+const handlers = /* #__PURE__ */ getHandlers()
+
+function getHandlers() {
+  if (!(globalKey in _global)) _global[globalKey] = _global[globalKey] ?? {}
+  return _global[globalKey] as Partial<SSRHandlersMap>
+}
 
 export function getSSRHandler<T extends keyof SSRHandlersMap>(key: T, fallback: SSRHandlersMap[T]): SSRHandlersMap[T]
 export function getSSRHandler<T extends keyof SSRHandlersMap>(

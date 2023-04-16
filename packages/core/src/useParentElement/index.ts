@@ -1,5 +1,5 @@
 import { createEffect, createSignal, on } from 'solid-js'
-import { resolveAccessor, tryOnMount, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, tryOnMount, toValue } from '@solidjs-use/shared'
 import { useActiveElement } from '../useActiveElement'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { Accessor } from 'solid-js'
@@ -15,12 +15,12 @@ export function useParentElement(
   const [parentElement, setParentElement] = createSignal<HTMLElement | SVGElement | null | undefined>()
 
   const update = () => {
-    const el = unAccessor(element)
+    const el = toValue(element)
     if (el) setParentElement(el.parentElement)
   }
 
   tryOnMount(update)
-  createEffect(on(resolveAccessor(element), update))
+  createEffect(on(toAccessor(element), update))
 
   return parentElement
 }

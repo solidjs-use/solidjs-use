@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { isClient } from '../utils'
 import type { MaybeAccessor, Stoppable, AnyFn } from '../utils'
 
@@ -49,7 +49,7 @@ export function useTimeoutFn<CallbackFn extends AnyFn>(
       timer = null
 
       cb(...args)
-    }, unAccessor(interval))
+    }, toValue(interval))
   }
 
   if (immediate) {

@@ -1,4 +1,4 @@
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import { createMemo, type Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -8,7 +8,7 @@ import type { MaybeAccessor } from 'solidjs-use'
  * @see https://solidjs-use.github.io/solidjs-use/math/logicOr
  */
 export function logicOr(...args: Array<MaybeAccessor<any>>): Accessor<boolean> {
-  return createMemo(() => args.some(i => unAccessor(i)))
+  return createMemo(() => args.some(i => toValue(i)))
 }
 
 // alias

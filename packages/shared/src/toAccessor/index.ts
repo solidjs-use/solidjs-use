@@ -5,8 +5,13 @@ import type { MaybeAccessor } from '../utils'
 /**
  * Normalize value/accessor/getter to `Accessor`.
  *
- * @see https://solidjs-use.github.io/solidjs-use/shared/resolveAccessor
+ * @see https://solidjs-use.github.io/solidjs-use/shared/toAccessor
  */
-export function resolveAccessor<T>(r: MaybeAccessor<T>): Accessor<T> {
+export function toAccessor<T>(r: MaybeAccessor<T>): Accessor<T> {
   return isAccessor<T>(r) ? r : () => r
 }
+
+/**
+ * @deprecated use `toAccessor` instead
+ */
+export const resolveAccessor = toAccessor

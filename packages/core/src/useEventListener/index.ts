@@ -1,4 +1,4 @@
-import { isString, noop, tryOnCleanup, unAccessor, watch } from '@solidjs-use/shared'
+import { noop, tryOnCleanup, toValue, watch } from '@solidjs-use/shared'
 import { defaultWindow } from '../_configurable'
 import type { Arrayable, Fn, MaybeAccessor, MaybeElement } from '@solidjs-use/shared'
 
@@ -87,7 +87,7 @@ export function useEventListener(...args: any[]) {
   let listeners: Arrayable<Function>
   let options: MaybeAccessor<boolean | AddEventListenerOptions> | undefined
 
-  if (isString(args[0]) || Array.isArray(args[0])) {
+  if (typeof args[0] === 'string' || Array.isArray(args[0])) {
     ;[events, listeners, options] = args
     target = defaultWindow
   } else {
@@ -111,7 +111,7 @@ export function useEventListener(...args: any[]) {
   }
 
   const stopWatch = watch(
-    () => [unAccessor(target as unknown as MaybeElement), unAccessor(options)],
+    () => [toValue(target as unknown as MaybeElement), toValue(options)],
     ([el, options]) => {
       cleanup()
       if (!el) return

@@ -7,7 +7,7 @@ const Demo = () => {
   const [target, setTarget] = createSignal(null)
   const [isVisible, setIsVisible] = createSignal(false)
 
-  useIntersectionObserver(
+  const { isActive, pause, resume } = useIntersectionObserver(
     target,
     ([{ isIntersecting }]) => {
       setIsVisible(isIntersecting)
@@ -16,6 +16,17 @@ const Demo = () => {
   )
   return (
     <>
+      <div class="text-center">
+        <label class="checkbox">
+          <input
+            checked={isActive()}
+            type="checkbox"
+            name="enabled"
+            onInput={e => ((e.currentTarget as HTMLInputElement)!.checked ? resume() : pause())}
+          />
+          <span>Enable</span>
+        </label>
+      </div>
       <div ref={setRoot} class="root">
         <p class="notice">Scroll me down!</p>
         <div ref={setTarget} class="target">
@@ -32,7 +43,7 @@ const Demo = () => {
 .root {
   border: 2px dashed #ccc;
   height: 200px;
-  margin: 0 2rem 1rem;
+  margin: 2rem 1rem;
   overflow-y: scroll;
 }
 .notice {

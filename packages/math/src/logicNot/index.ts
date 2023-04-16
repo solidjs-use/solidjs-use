@@ -1,4 +1,4 @@
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import { createMemo, type Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -8,7 +8,7 @@ import type { MaybeAccessor } from 'solidjs-use'
  * @see https://solidjs-use.github.io/solidjs-use/math/logicNot
  */
 export function logicNot(v: MaybeAccessor<any>): Accessor<boolean> {
-  return createMemo(() => !unAccessor(v))
+  return createMemo(() => !toValue(v))
 }
 
 // alias

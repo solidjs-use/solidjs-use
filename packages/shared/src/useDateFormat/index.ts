@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -21,9 +21,9 @@ export interface UseDateFormatOptions {
 }
 
 const REGEX_PARSE =
-  /* #__PURE__ */ /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/
+  /*#__PURE__*/ /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/
 const REGEX_FORMAT =
-  /* #__PURE__ */ /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a{1,2}|A{1,2}|m{1,2}|s{1,2}|Z{1,2}|SSS/g
+  /*#__PURE__*/ /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a{1,2}|A{1,2}|m{1,2}|s{1,2}|Z{1,2}|SSS/g
 
 const defaultMeridiem = (hours: number, minutes: number, isLowercase?: boolean, hasPeriod?: boolean) => {
   let m = hours < 12 ? 'AM' : 'PM'
@@ -101,7 +101,7 @@ export function useDateFormat(
   formatStr: MaybeAccessor<string> = 'HH:mm:ss',
   options: UseDateFormatOptions = {}
 ): Accessor<string> {
-  return createMemo(() => formatDate(normalizeDate(unAccessor(date)), unAccessor(formatStr), options))
+  return createMemo(() => formatDate(normalizeDate(toValue(date)), toValue(formatStr), options))
 }
 
 export type UseDateFormatReturn = ReturnType<typeof useDateFormat>

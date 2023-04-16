@@ -1,4 +1,4 @@
-import { noop, unAccessor, useDebounceFn, useThrottleFn } from '@solidjs-use/shared'
+import { noop, toValue, useDebounceFn, useThrottleFn } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
@@ -118,13 +118,13 @@ export function useScroll(
   })
 
   function scrollTo(_x: number | undefined, _y: number | undefined) {
-    const _element = unAccessor(element)
+    const _element = toValue(element)
 
     if (!_element) return
     ;(_element instanceof Document ? document.body : _element)?.scrollTo({
-      top: unAccessor(_y) ?? y(),
-      left: unAccessor(_x) ?? x(),
-      behavior: unAccessor(behavior)
+      top: toValue(_y) ?? y(),
+      left: toValue(_x) ?? x(),
+      behavior: toValue(behavior)
     })
   }
 
@@ -156,13 +156,23 @@ export function useScroll(
   const onScrollHandler = (e: Event) => {
     const eventTarget = (e.target === document ? (e.target as Document).documentElement : e.target) as HTMLElement
 
+    const { display, flexDirection } = getComputedStyle(eventTarget)
+
     const scrollLeft = eventTarget.scrollLeft
     directions.left = scrollLeft < internalX()
-    directions.right = scrollLeft > internalY()
-    arrivedState.left = scrollLeft <= 0 + (offset.left ?? 0)
-    arrivedState.right =
-      scrollLeft + eventTarget.clientWidth >=
+    directions.right = scrollLeft > internalX()
+    const left = Math.abs(scrollLeft) <= 0 + (offset.left ?? 0)
+    const right =
+      Math.abs(scrollLeft) + eventTarget.clientWidth >=
       eventTarget.scrollWidth - (offset.right ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+
+    if (display === 'flex' && flexDirection === 'row-reverse') {
+      arrivedState.left = right
+      arrivedState.right = left
+    } else {
+      arrivedState.left = left
+      arrivedState.right = right
+    }
     setInternalX(scrollLeft)
 
     let scrollTop = eventTarget.scrollTop
@@ -172,10 +182,23 @@ export function useScroll(
 
     directions.top = scrollTop < internalY()
     directions.bottom = scrollTop > internalY()
-    arrivedState.top = scrollTop <= 0 + (offset.top ?? 0)
-    arrivedState.bottom =
-      scrollTop + eventTarget.clientHeight >=
+    const top = Math.abs(scrollTop) <= 0 + (offset.top ?? 0)
+    const bottom =
+      Math.abs(scrollTop) + eventTarget.clientHeight >=
       eventTarget.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+
+    /**
+     * reverse columns and rows behave exactly the other way around,
+     * bottom is treated as top and top is treated as the negative version of bottom
+     */
+    if (display === 'flex' && flexDirection === 'column-reverse') {
+      arrivedState.top = bottom
+      arrivedState.bottom = top
+    } else {
+      arrivedState.top = top
+      arrivedState.bottom = bottom
+    }
+
     setInternalY(scrollTop)
     setIsScrolling(true)
     onScrollEndDebounced(e)

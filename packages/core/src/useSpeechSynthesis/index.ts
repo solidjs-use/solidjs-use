@@ -1,4 +1,4 @@
-import { resolveAccessor, tryOnCleanup, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, tryOnCleanup, toValue } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
@@ -53,8 +53,8 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
   const [isPlaying, setIsPlaying] = createSignal(false)
   const [status, setStatus] = createSignal<UseSpeechSynthesisStatus>('init')
 
-  const spokenText = resolveAccessor(text || '')
-  const lang = resolveAccessor(options.lang ?? 'en-US')
+  const spokenText = toAccessor(text || '')
+  const lang = toAccessor(options.lang ?? 'en-US')
   const [error, setError] = createSignal<SpeechSynthesisErrorEvent | undefined>(undefined)
 
   const toggle = (value = !isPlaying()) => {
@@ -62,8 +62,8 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
   }
 
   const bindEventsForUtterance = (utterance: SpeechSynthesisUtterance) => {
-    utterance.lang = unAccessor(lang)
-    utterance.voice = unAccessor(options.voice) ?? null
+    utterance.lang = toValue(lang)
+    utterance.voice = toValue(options.voice) ?? null
     utterance.pitch = pitch
     utterance.rate = rate
     utterance.volume = volume
@@ -127,7 +127,7 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
     if (options.voice) {
       createEffect(
         on(
-          resolveAccessor(options.voice),
+          toAccessor(options.voice),
           () => {
             synth!.cancel()
           },
@@ -138,7 +138,7 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
 
     createEffect(
       on(
-        resolveAccessor(isPlaying),
+        toAccessor(isPlaying),
         () => {
           if (isPlaying()) synth!.resume()
           else synth!.pause()

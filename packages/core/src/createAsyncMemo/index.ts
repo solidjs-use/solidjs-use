@@ -1,4 +1,4 @@
-import { isFunction, noop, type Fn } from '@solidjs-use/shared'
+import { noop, type Fn } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { watchEffect } from '@solidjs-use/solid-to-vue/watch'
 import type { Accessor, Setter } from 'solid-js'
@@ -37,7 +37,7 @@ export function createAsyncMemo<T>(
 ): Accessor<T> {
   let options: AsyncComputedOptions
 
-  if (isFunction(optionsOrSetter)) {
+  if (typeof optionsOrSetter === 'function') {
     options = {
       setEvaluating: optionsOrSetter
     }

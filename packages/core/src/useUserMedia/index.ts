@@ -1,7 +1,6 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
 import { createEffect, createSignal, on } from 'solid-js'
-import { resolveAccessor } from '@solidjs-use/shared'
 import { toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { useSupported } from '../useSupported'
 import { defaultNavigator } from '../_configurable'
@@ -22,26 +21,6 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
    */
   autoSwitch?: MaybeAccessor<boolean>
   /**
-   * The device id of video input
-   *
-   * When passing with `undefined` the default device will be used.
-   * Pass `false` or "none" to disabled video input
-   *
-   * @default undefined
-   * @deprecated in favor of constraints
-   */
-  videoDeviceId?: MaybeAccessor<string | undefined | false | 'none'>
-  /**
-   * The device id of audi input
-   *
-   * When passing with `undefined` the default device will be used.
-   * Pass `false` or "none" to disabled audi input
-   *
-   * @default undefined
-   * @deprecated in favor of constraints
-   */
-  audioDeviceId?: MaybeAccessor<string | undefined | false | 'none'>
-  /**
    * MediaStreamConstraints to be applied to the requested MediaStream
    * If provided, the constraints will override videoDeviceId and audioDeviceId
    *
@@ -58,8 +37,6 @@ export interface UseUserMediaOptions extends ConfigurableNavigator {
 export function useUserMedia(options: UseUserMediaOptions = {}) {
   const [enabled, setEnabled] = createSignal(options.enabled ?? false)
   const [autoSwitch, setAutoSwitch] = createSignal(options.autoSwitch ?? true)
-  const videoDeviceId = resolveAccessor(options.videoDeviceId)
-  const audioDeviceId = resolveAccessor(options.audioDeviceId)
   const [constraints, setConstraints] = toSignal(options.constraints)
   const { navigator = defaultNavigator } = options
   const isSupported = useSupported(() => navigator?.mediaDevices?.getUserMedia)
@@ -68,20 +45,14 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
 
   function getDeviceOptions(type: 'video' | 'audio') {
     const constraintsValue = constraints()
-    const videoDeviceIdValue = videoDeviceId()
-    const audioDeviceIdValue = audioDeviceId()
     switch (type) {
       case 'video': {
         if (constraintsValue) return constraintsValue.video ?? false
-        if (videoDeviceIdValue === 'none' || videoDeviceIdValue === false) return false
-        if (videoDeviceIdValue == null) return true
-        return { deviceId: videoDeviceIdValue }
+        break
       }
       case 'audio': {
         if (constraintsValue) return constraintsValue.audio ?? false
-        if (audioDeviceIdValue === 'none' || audioDeviceIdValue === false) return false
-        if (audioDeviceIdValue == null) return true
-        return { deviceId: audioDeviceIdValue }
+        break
       }
     }
   }
@@ -116,7 +87,7 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
 
   async function restart() {
     _stop()
-    return start()
+    return await start()
   }
 
   createEffect(
@@ -126,7 +97,7 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
     })
   )
   createEffect(
-    on([videoDeviceId, audioDeviceId, constraints] as AccessorArray<string | false | undefined>, () => {
+    on([constraints] as AccessorArray<string | false | undefined>, () => {
       if (autoSwitch() && stream()) restart()
     })
   )
@@ -137,8 +108,6 @@ export function useUserMedia(options: UseUserMediaOptions = {}) {
     start,
     stop,
     restart,
-    videoDeviceId,
-    audioDeviceId,
     constraints,
     setConstraints,
     enabled,

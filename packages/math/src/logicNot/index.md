@@ -5,7 +5,7 @@ alias: not
 
 # logicNot
 
-`NOT` condition for ref.
+`NOT` condition for Signal.
 
 ## Usage
 

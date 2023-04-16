@@ -1,6 +1,6 @@
 import { isAccessor, toSignal, writableComputed } from 'solidjs-use/solid-to-vue'
 import { createMemo } from 'solid-js'
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import * as changeCase from './changeCase'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
@@ -25,7 +25,7 @@ export function useChangeCase(
  * @see https://solidjs-use.github.io/solidjs-use/integrations/useChangeCase
  */
 export function useChangeCase(input: any, type: ChangeCaseType, options?: Options | undefined) {
-  if (isAccessor<string>(input)) return createMemo(() => changeCase[type](unAccessor(input), options))
+  if (isAccessor<string>(input)) return createMemo(() => changeCase[type](toValue(input), options))
 
   const [text, setText] = toSignal(input)
   return writableComputed<string>({

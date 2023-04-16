@@ -1,5 +1,5 @@
 import { createMemo, type Accessor } from 'solid-js'
-import { unAccessorArgsFlat } from '../utils'
+import { toValueArgsFlat } from '../utils'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { MaybeAccessorArgs } from '../utils'
 
@@ -13,7 +13,7 @@ export function useAverage(...args: Array<MaybeAccessor<number>>): Accessor<numb
  */
 export function useAverage(...args: MaybeAccessorArgs<number>): Accessor<number> {
   return createMemo(() => {
-    const array = unAccessorArgsFlat(args)
+    const array = toValueArgsFlat(args)
     return array.reduce((sum, v) => (sum += v), 0) / array.length
   })
 }

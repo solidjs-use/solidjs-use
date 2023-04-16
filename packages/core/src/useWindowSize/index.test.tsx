@@ -1,5 +1,6 @@
+import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
-import { useWindowSize } from 'solidjs-use'
+import { useWindowSize } from '.'
 
 describe('useWindowSize', () => {
   it('should be defined', () => {
@@ -7,42 +8,49 @@ describe('useWindowSize', () => {
   })
 
   it('should work', () => {
-    const { width, height } = useWindowSize({ initialWidth: 100, initialHeight: 200 })
+    runHook(() => {
+      const { width, height } = useWindowSize({ initialWidth: 100, initialHeight: 200 })
 
-    expect(width()).to.eq(window.innerWidth)
-    expect(height()).to.eq(window.innerHeight)
+      expect(width()).to.eq(window.innerWidth)
+      expect(height()).to.eq(window.innerHeight)
+    })
   })
 
   it('should exclude scrollbar', () => {
-    const { width, height } = useWindowSize({ initialWidth: 100, initialHeight: 200, includeScrollbar: false })
+    runHook(() => {
+      const { width, height } = useWindowSize({ initialWidth: 100, initialHeight: 200, includeScrollbar: false })
 
-    expect(width()).to.eq(window.document.documentElement.clientWidth)
-    expect(height()).to.eq(window.document.documentElement.clientHeight)
+      expect(width()).to.eq(window.document.documentElement.clientWidth)
+      expect(height()).to.eq(window.document.documentElement.clientHeight)
+    })
   })
 
-  it('sets handler for window "resize" event', async () => {
-    const addEventListenerSpy = cy.spy(window, 'addEventListener')
-    useWindowSize({ initialWidth: 100, initialHeight: 200, listenOrientation: false })
+  it('sets handler for window "resize" event', () => {
+    return runAsyncHook(async () => {
+      const addEventListenerSpy = cy.spy(window, 'addEventListener')
+      useWindowSize({ initialWidth: 100, initialHeight: 200, listenOrientation: false })
 
-    await nextTick()
+      await nextTick()
 
-    expect(addEventListenerSpy).to.be.calledOnce
+      expect(addEventListenerSpy).to.be.calledOnce
 
-    const call = addEventListenerSpy.args[0]
-    expect(call[0]).to.eq('resize')
-    expect(call[2]).to.deep.equal({ passive: true })
+      const call = addEventListenerSpy.args[0]
+      expect(call[0]).to.eq('resize')
+      expect(call[2]).to.deep.equal({ passive: true })
+    })
   })
 
-  it('sets handler for window "orientationchange" event', async () => {
-    const addEventListenerSpy = cy.spy(window, 'addEventListener')
-    useWindowSize({ initialWidth: 100, initialHeight: 200 })
+  it('sets handler for window.matchMedia("(orientation: portrait)") change event', () => {
+    return runAsyncHook(async () => {
+      const matchMediaSpy = cy.spy(window, 'matchMedia')
+      useWindowSize({ initialWidth: 100, initialHeight: 200 })
 
-    await nextTick()
+      await nextTick()
 
-    expect(addEventListenerSpy).to.be.callCount(2)
+      expect(matchMediaSpy).to.be.callCount(1)
 
-    const call = addEventListenerSpy.args[1] as any
-    expect(call[0]).to.eq('orientationchange')
-    expect(call[2]).to.deep.equal({ passive: true })
+      const call = matchMediaSpy.args[0] as any
+      expect(call[0]).to.eq('(orientation: portrait)')
+    })
   })
 })

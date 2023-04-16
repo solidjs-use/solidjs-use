@@ -1,4 +1,4 @@
-import { resolveAccessor, tryOnCleanup, watch } from '@solidjs-use/shared'
+import { toAccessor, tryOnCleanup, watch } from '@solidjs-use/shared'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
@@ -28,7 +28,7 @@ export function useMutationObserver(
     }
   }
 
-  const stopWatch = watch(resolveAccessor(target), el => {
+  const stopWatch = watch(toAccessor(target), el => {
     cleanup()
     if (isSupported() && window && el) {
       observer = new MutationObserver(callback)

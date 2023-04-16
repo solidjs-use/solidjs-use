@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { resolveAccessor, unAccessor } from 'solidjs-use'
+import { toAccessor, toValue } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -23,34 +23,34 @@ export function useFuse<DataItem>(
   options?: MaybeAccessor<UseFuseOptions<DataItem>>
 ) {
   const createFuse = () => {
-    return new Fuse(unAccessor(data) ?? [], unAccessor(options)?.fuseOptions)
+    return new Fuse(toValue(data) ?? [], toValue(options)?.fuseOptions)
   }
 
   const [fuse, setFuse] = createSignal<Fuse<DataItem>>(createFuse())
 
   createEffect(
     on(
-      () => unAccessor(options)?.fuseOptions,
+      () => toValue(options)?.fuseOptions,
       () => {
         setFuse(createFuse())
       }
     )
   )
   createEffect(
-    on(resolveAccessor(data), newData => {
+    on(toAccessor(data), newData => {
       fuse().setCollection(newData)
     })
   )
 
   const results: Accessor<Array<Fuse.FuseResult<DataItem>>> = createMemo(() => {
-    const resolved = unAccessor(options)
+    const resolved = toValue(options)
     // This will also be recomputed when `data` changes, as it causes a change
     // to the Fuse instance, which is tracked here.
-    if (resolved?.matchAllWhenSearchEmpty && !unAccessor(search))
-      return unAccessor(data).map((item, index) => ({ item, refIndex: index }))
+    if (resolved?.matchAllWhenSearchEmpty && !toValue(search))
+      return toValue(data).map((item, index) => ({ item, refIndex: index }))
 
     const limit = resolved?.resultLimit
-    return fuse().search(unAccessor(search), limit ? { limit } : undefined)
+    return fuse().search(toValue(search), limit ? { limit } : undefined)
   })
 
   return {

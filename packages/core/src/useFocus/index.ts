@@ -1,4 +1,4 @@
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createSignal, on } from 'solid-js'
 import { useEventListener } from '../useEventListener'
@@ -25,7 +25,7 @@ export function useFocus(target: MaybeElementAccessor, options: UseFocusOptions 
   const { initialValue = false } = options
 
   const [innerFocused, setInnerFocused] = createSignal(false)
-  const targetElement = resolveAccessor(target)
+  const targetElement = toAccessor(target)
 
   useEventListener(targetElement, 'focus', () => setInnerFocused(true))
   useEventListener(targetElement, 'blur', () => setInnerFocused(false))

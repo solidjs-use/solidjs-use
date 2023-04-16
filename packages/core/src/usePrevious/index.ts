@@ -1,7 +1,7 @@
 /* This implementation is original ported from https://github.com/shorwood/pompaute by Stanley Horwood */
 
 import { createEffect, createSignal } from 'solid-js'
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { Accessor } from 'solid-js'
 
@@ -17,7 +17,7 @@ export function usePrevious<T>(value: MaybeAccessor<T>, initialValue?: T) {
 
   createEffect<T, T | undefined>(v => {
     setPrevious(() => v)
-    return resolveAccessor<T>(value)()
+    return toAccessor<T>(value)()
   }, initialValue)
 
   return previous

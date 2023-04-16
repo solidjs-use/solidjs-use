@@ -1,4 +1,4 @@
-import { resolveAccessor, watch } from '@solidjs-use/shared'
+import { toAccessor, watch } from '@solidjs-use/shared'
 import { createMemo, createSignal } from 'solid-js'
 import { toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { useElementSize } from '../useElementSize'
@@ -218,7 +218,7 @@ function createGetDistance<T>(itemSize: UseVirtualListItemSize, source: UseVirtu
 
 function useWatchForSizes<T>(size: UseVirtualElementSizes, list: MaybeAccessor<T[]>, calculateRange: () => void) {
   watch(
-    [size.width, size.height, resolveAccessor(list)],
+    [size.width, size.height, toAccessor(list)],
     () => {
       calculateRange()
     },

@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process'
 import path from 'node:path'
 import fs from 'fs-extra'
-import consola from 'consola'
+import { consola } from 'consola'
 import { version } from '../package.json'
 import { packages } from '../meta/packages'
 

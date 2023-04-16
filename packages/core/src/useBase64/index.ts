@@ -1,4 +1,4 @@
-import { isClient, unAccessor } from '@solidjs-use/shared'
+import { isClient, toValue } from '@solidjs-use/shared'
 import { isAccessor } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createSignal, on } from 'solid-js'
 import { getDefaultSerialization } from './serialization'
@@ -58,7 +58,7 @@ export function useBase64(target: any, options?: any) {
 
     const promiseVal = new Promise<string>((resolve, reject) => {
       try {
-        const _target = unAccessor(target)
+        const _target = toValue(target)
         if (_target == null) {
           resolve('')
         } else if (typeof _target === 'string') {
