@@ -194,7 +194,7 @@
     {
       "name": "createAsyncMemo",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/createAsyncMemo/",
       "category": "Reactivity",
       "description": "memo for async functions",
@@ -213,7 +213,7 @@
     {
       "name": "createGenericProjection",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/createGenericProjection/",
       "category": "@Math",
       "description": "generic version of `createProjection`",
@@ -245,7 +245,7 @@
     {
       "name": "createUnAccessorFn",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/createUnAccessorFn/",
       "category": "Utilities",
       "description": "make a plain function accepting Accessor and raw values as arguments",
@@ -264,7 +264,7 @@
     {
       "name": "get",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/get/",
       "category": "Utilities",
       "description": "shorthand for accessing `Accessor()`"
@@ -272,7 +272,7 @@
     {
       "name": "isDefined",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/isDefined/",
       "category": "Utilities",
       "description": "non-nullish checking type guard for Signal"
@@ -280,7 +280,7 @@
     {
       "name": "logicAnd",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/logicAnd/",
       "category": "@Math",
       "description": "`AND` condition for Signals",
@@ -295,10 +295,10 @@
     {
       "name": "logicNot",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/logicNot/",
       "category": "@Math",
-      "description": "`NOT` condition for ref",
+      "description": "`NOT` condition for Signal",
       "alias": [
         "not"
       ],
@@ -310,7 +310,7 @@
     {
       "name": "logicOr",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/logicOr/",
       "category": "@Math",
       "description": "`OR` conditions for Signals",
@@ -349,7 +349,7 @@
     {
       "name": "onClickOutside",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onClickOutside/",
       "category": "Sensors",
       "description": "listen for clicks outside of an element"
@@ -357,7 +357,7 @@
     {
       "name": "onKeyStroke",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onKeyStroke/",
       "category": "Sensors",
       "description": "listen for keyboard key being stroked"
@@ -365,7 +365,7 @@
     {
       "name": "onLongPress",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onLongPress/",
       "category": "Sensors",
       "description": "listen for a long press on an element"
@@ -389,7 +389,7 @@
     {
       "name": "reactify",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/reactify/",
       "category": "Reactivity",
       "description": "converts plain functions into reactive functions",
@@ -411,7 +411,7 @@
     {
       "name": "signalAutoReset",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/signalAutoReset/",
       "category": "Reactivity",
       "description": "a ref which will be reset to the default value after some time",
@@ -444,7 +444,7 @@
     {
       "name": "toAccessor",
       "package": "shared",
-      "lastUpdated": 0,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/toAccessor/",
       "category": "Reactivity",
       "description": "normalize value/accessor/getter to `Accessor`",
@@ -471,7 +471,7 @@
     {
       "name": "toReactive",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/toReactive/",
       "category": "Reactivity",
       "description": "converts ref to reactive"
@@ -479,7 +479,7 @@
     {
       "name": "toValue",
       "package": "shared",
-      "lastUpdated": 0,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/toValue/",
       "category": "Reactivity",
       "description": "get the value of value/Accessor",
@@ -506,7 +506,7 @@
     {
       "name": "until",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/until/",
       "category": "Watch",
       "description": "promised one-time watch for changes"
@@ -514,7 +514,7 @@
     {
       "name": "useAbs",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useAbs/",
       "category": "@Math",
       "description": "reactive `Math.abs`"
@@ -530,7 +530,7 @@
     {
       "name": "useAnimate",
       "package": "core",
-      "lastUpdated": 0,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useAnimate/",
       "category": "Animation",
       "description": "reactive [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)"
@@ -538,7 +538,7 @@
     {
       "name": "useArrayDifference",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayDifference/",
       "category": "Array",
       "description": "reactive get array difference of two array"
@@ -546,7 +546,7 @@
     {
       "name": "useArrayEvery",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayEvery/",
       "category": "Array",
       "description": "reactive `Array.every`"
@@ -554,7 +554,7 @@
     {
       "name": "useArrayFilter",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFilter/",
       "category": "Array",
       "description": "reactive `Array.filter`"
@@ -562,7 +562,7 @@
     {
       "name": "useArrayFind",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFind/",
       "category": "Array",
       "description": "reactive `Array.find`"
@@ -570,7 +570,7 @@
     {
       "name": "useArrayFindIndex",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFindIndex/",
       "category": "Array",
       "description": "reactive `Array.findIndex`"
@@ -578,7 +578,7 @@
     {
       "name": "useArrayFindLast",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayFindLast/",
       "category": "Array",
       "description": "reactive `Array.findLast`"
@@ -586,7 +586,7 @@
     {
       "name": "useArrayIncludes",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayIncludes/",
       "category": "Array",
       "description": "reactive `Array.includes`"
@@ -594,7 +594,7 @@
     {
       "name": "useArrayJoin",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayJoin/",
       "category": "Array",
       "description": "reactive `Array.join`"
@@ -602,7 +602,7 @@
     {
       "name": "useArrayMap",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayMap/",
       "category": "Array",
       "description": "reactive `Array.map`"
@@ -610,7 +610,7 @@
     {
       "name": "useArrayReduce",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayReduce/",
       "category": "Array",
       "description": "reactive `Array.reduce`"
@@ -618,7 +618,7 @@
     {
       "name": "useArraySome",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArraySome/",
       "category": "Array",
       "description": "reactive `Array.some`"
@@ -626,7 +626,7 @@
     {
       "name": "useArrayUnique",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useArrayUnique/",
       "category": "Array",
       "description": "reactive unique array"
@@ -650,7 +650,7 @@
     {
       "name": "useAsyncValidator",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAsyncValidator/",
       "category": "@Integrations",
       "description": "wrapper for [`async-validator`](https://github.com/yiminghe/async-validator)",
@@ -668,7 +668,7 @@
     {
       "name": "useAverage",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useAverage/",
       "category": "@Math",
       "description": "get the average of an array reactively"
@@ -676,7 +676,7 @@
     {
       "name": "useAxios",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAxios/",
       "category": "@Integrations",
       "description": "wrapper for [`axios`](https://github.com/axios/axios)",
@@ -685,7 +685,7 @@
     {
       "name": "useBase64",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useBase64/",
       "category": "Utilities",
       "description": "reactive base64 transforming"
@@ -734,7 +734,7 @@
     {
       "name": "useCeil",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useCeil/",
       "category": "@Math",
       "description": "reactive `Math.ceil`"
@@ -742,7 +742,7 @@
     {
       "name": "useChangeCase",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useChangeCase/",
       "category": "@Integrations",
       "description": "reactive wrapper for [`change-case`](https://github.com/blakeembrey/change-case)",
@@ -751,7 +751,7 @@
     {
       "name": "useClamp",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useClamp/",
       "category": "@Math",
       "description": "reactively clamp a value between two other values"
@@ -759,7 +759,7 @@
     {
       "name": "useClipboard",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useClipboard/",
       "category": "Browser",
       "description": "reactive [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)"
@@ -767,7 +767,7 @@
     {
       "name": "useCloned",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCloned/",
       "category": "Utilities",
       "description": "reactive clone of a Accessor"
@@ -775,7 +775,7 @@
     {
       "name": "useColorMode",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useColorMode/",
       "category": "Browser",
       "description": "reactive color mode (dark / light / customs) with auto data persistence",
@@ -813,7 +813,7 @@
     {
       "name": "useCssTransition",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssTransition/",
       "category": "Animation",
       "description": "transition between values"
@@ -821,7 +821,7 @@
     {
       "name": "useCssVar",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssVar/",
       "category": "Browser",
       "description": "manipulate CSS variables"
@@ -829,7 +829,7 @@
     {
       "name": "useCycleList",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCycleList/",
       "category": "Utilities",
       "description": "cycle through a list of items"
@@ -850,7 +850,7 @@
     {
       "name": "useDateFormat",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useDateFormat/",
       "category": "Time",
       "description": "get the formatted date according to the string of tokens passed in"
@@ -935,7 +935,7 @@
     {
       "name": "useDraggable",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDraggable/",
       "category": "Elements",
       "description": "make elements draggable"
@@ -943,7 +943,7 @@
     {
       "name": "useDrauu",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useDrauu/",
       "category": "@Integrations",
       "description": "reactive instance for [drauu](https://github.com/antfu/drauu)",
@@ -960,7 +960,7 @@
     {
       "name": "useElementBounding",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementBounding/",
       "category": "Elements",
       "description": "reactive [bounding box](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) of an HTML element"
@@ -968,7 +968,7 @@
     {
       "name": "useElementByPoint",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementByPoint/",
       "category": "Sensors",
       "description": "reactive element by point"
@@ -984,7 +984,7 @@
     {
       "name": "useElementSize",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementSize/",
       "category": "Elements",
       "description": "reactive size of an HTML element"
@@ -1008,7 +1008,7 @@
     {
       "name": "useEventListener",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useEventListener/",
       "category": "Browser",
       "description": "use EventListener with ease"
@@ -1032,7 +1032,7 @@
     {
       "name": "useFavicon",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFavicon/",
       "category": "Browser",
       "description": "reactive favicon"
@@ -1040,7 +1040,7 @@
     {
       "name": "useFetch",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFetch/",
       "category": "Network",
       "description": "reactive [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides the ability to abort requests"
@@ -1056,7 +1056,7 @@
     {
       "name": "useFileSystemAccess",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFileSystemAccess/",
       "category": "Browser",
       "description": "create and read and write local files with [FileSystemAccessAPI](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API)"
@@ -1064,7 +1064,7 @@
     {
       "name": "useFirestore",
       "package": "firebase",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/firebase/useFirestore/",
       "category": "@Firebase",
       "description": "reactive [Firestore](https://firebase.google.com/docs/firestore) binding",
@@ -1073,7 +1073,7 @@
     {
       "name": "useFloor",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useFloor/",
       "category": "@Math",
       "description": "reactive `Math.floor`"
@@ -1081,7 +1081,7 @@
     {
       "name": "useFocus",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFocus/",
       "category": "Sensors",
       "description": "reactive utility to track or set the focus state of a DOM element"
@@ -1089,7 +1089,7 @@
     {
       "name": "useFocusTrap",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useFocusTrap/",
       "category": "@Integrations",
       "description": "reactive wrapper for [`focus-trap`](https://github.com/focus-trap/focus-trap)",
@@ -1098,7 +1098,7 @@
     {
       "name": "useFocusWithin",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFocusWithin/",
       "category": "Sensors",
       "description": "reactive utility to track if an element or one of its decendants has focus"
@@ -1114,7 +1114,7 @@
     {
       "name": "useFullscreen",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFullscreen/",
       "category": "Browser",
       "description": "reactive [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)"
@@ -1122,7 +1122,7 @@
     {
       "name": "useFuse",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useFuse/",
       "category": "@Integrations",
       "description": "easily implement fuzzy search using a composable with [Fuse.js](https://github.com/krisk/fuse)",
@@ -1160,7 +1160,7 @@
     {
       "name": "useIDBKeyval",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useIDBKeyval/",
       "category": "@Integrations",
       "description": "wrapper for [`idb-keyval`](https://www.npmjs.com/package/idb-keyval)",
@@ -1177,7 +1177,7 @@
     {
       "name": "useImage",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useImage/",
       "category": "Browser",
       "description": "reactive load an image in the browser"
@@ -1185,7 +1185,7 @@
     {
       "name": "useInfiniteScroll",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useInfiniteScroll/",
       "category": "Sensors",
       "description": "infinite scrolling of the element"
@@ -1193,7 +1193,7 @@
     {
       "name": "useIntersectionObserver",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useIntersectionObserver/",
       "category": "Elements",
       "description": "detects that a target element's visibility"
@@ -1209,7 +1209,7 @@
     {
       "name": "useIntervalFn",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useIntervalFn/",
       "category": "Animation",
       "description": "wrapper for `setInterval` with controls"
@@ -1241,7 +1241,7 @@
     {
       "name": "useJwt",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useJwt/",
       "category": "@Integrations",
       "description": "wrapper for [`jwt-decode`](https://github.com/auth0/jwt-decode)",
@@ -1277,7 +1277,7 @@
     {
       "name": "useMagicKeys",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMagicKeys/",
       "category": "Sensors",
       "description": "reactive keys pressed state"
@@ -1285,7 +1285,7 @@
     {
       "name": "useManualHistoryTravel",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useManualHistoryTravel/",
       "category": "State",
       "description": "manually track the change history of a `Signal` or `Accessor` when the using calls `commit()`",
@@ -1304,7 +1304,7 @@
     {
       "name": "useMax",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useMax/",
       "category": "@Math",
       "description": "reactive `Math.max`"
@@ -1312,7 +1312,7 @@
     {
       "name": "useMediaControls",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMediaControls/",
       "category": "Browser",
       "description": "reactive media controls for both `audio` and `video` elements"
@@ -1320,7 +1320,7 @@
     {
       "name": "useMediaQuery",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMediaQuery/",
       "category": "Browser",
       "description": "reactive [Media Query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)"
@@ -1344,7 +1344,7 @@
     {
       "name": "useMin",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useMin/",
       "category": "@Math",
       "description": "reactive `Math.min`"
@@ -1360,7 +1360,7 @@
     {
       "name": "useMouse",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMouse/",
       "category": "Sensors",
       "description": "reactive mouse position"
@@ -1376,7 +1376,7 @@
     {
       "name": "useMousePressed",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMousePressed/",
       "category": "Sensors",
       "description": "reactive mouse pressing state"
@@ -1384,7 +1384,7 @@
     {
       "name": "useMutationObserver",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMutationObserver/",
       "category": "Elements",
       "description": "watch for changes being made to the DOM tree"
@@ -1417,7 +1417,7 @@
     {
       "name": "useNProgress",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useNProgress/",
       "category": "@Integrations",
       "description": "reactive wrapper for [`nprogress`](https://github.com/rstacruz/nprogress)",
@@ -1426,7 +1426,7 @@
     {
       "name": "useObjectUrl",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "component": true,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useObjectUrl/",
       "category": "Browser",
@@ -1443,7 +1443,7 @@
     {
       "name": "useOffsetPagination",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useOffsetPagination/",
       "category": "Utilities",
       "description": "reactive offset pagination"
@@ -1475,7 +1475,7 @@
     {
       "name": "useParentElement",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useParentElement/",
       "category": "Elements",
       "description": "get parent element of the given element"
@@ -1502,7 +1502,7 @@
     {
       "name": "usePointer",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/usePointer/",
       "category": "Sensors",
       "description": "reactive [pointer state](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)"
@@ -1510,7 +1510,7 @@
     {
       "name": "usePointerLock",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/usePointerLock/",
       "category": "Sensors",
       "description": "reactive [pointer lock](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API)"
@@ -1518,7 +1518,7 @@
     {
       "name": "usePointerSwipe",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/usePointerSwipe/",
       "category": "Sensors",
       "description": "reactive swipe detection based on [PointerEvents](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent)"
@@ -1526,7 +1526,7 @@
     {
       "name": "usePrecision",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/usePrecision/",
       "category": "@Math",
       "description": "reactively set the precision of a number"
@@ -1579,7 +1579,7 @@
     {
       "name": "usePrevious",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/usePrevious/",
       "category": "Utilities",
       "description": "holds the previous value of a Accessor"
@@ -1599,7 +1599,7 @@
     {
       "name": "useQRCode",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useQRCode/",
       "category": "@Integrations",
       "description": "wrapper for [`qrcode`](https://github.com/soldair/node-qrcode)",
@@ -1616,7 +1616,7 @@
     {
       "name": "useResizeObserver",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useResizeObserver/",
       "category": "Elements",
       "description": "reports changes to the dimensions of an Element's content or the border-box"
@@ -1624,7 +1624,7 @@
     {
       "name": "useRound",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useRound/",
       "category": "@Math",
       "description": "reactive `Math.round`"
@@ -1657,7 +1657,7 @@
     {
       "name": "useScriptTag",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScriptTag/",
       "category": "Browser",
       "description": "script tag injecting"
@@ -1665,7 +1665,7 @@
     {
       "name": "useScroll",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScroll/",
       "category": "Sensors",
       "description": "reactive scroll position and state"
@@ -1673,7 +1673,7 @@
     {
       "name": "useScrollLock",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScrollLock/",
       "category": "Sensors",
       "description": "lock scrolling of the element"
@@ -1692,7 +1692,7 @@
     {
       "name": "useShare",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useShare/",
       "category": "Browser",
       "description": "reactive [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share)"
@@ -1700,7 +1700,7 @@
     {
       "name": "useSortable",
       "package": "integrations",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useSortable/",
       "category": "@Integrations",
       "description": "wrapper for [`sortable`](https://github.com/SortableJS/Sortable)",
@@ -1709,7 +1709,7 @@
     {
       "name": "useSorted",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useSorted/",
       "category": "Array",
       "description": "reactive sort array"
@@ -1717,7 +1717,7 @@
     {
       "name": "useSpeechRecognition",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSpeechRecognition/",
       "category": "Sensors",
       "description": "reactive [SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)"
@@ -1725,7 +1725,7 @@
     {
       "name": "useSpeechSynthesis",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSpeechSynthesis/",
       "category": "Sensors",
       "description": "reactive [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)"
@@ -1733,7 +1733,7 @@
     {
       "name": "useStepper",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStepper/",
       "category": "Utilities",
       "description": "provides helpers for building a multi-step wizard interface"
@@ -1741,7 +1741,7 @@
     {
       "name": "useStorage",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStorage/",
       "category": "State",
       "description": "reactive [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)/[SessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)",
@@ -1756,7 +1756,7 @@
     {
       "name": "useStorageAsync",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStorageAsync/",
       "category": "State",
       "description": "reactive Storage in with async support",
@@ -1791,7 +1791,7 @@
     {
       "name": "useSum",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useSum/",
       "category": "@Math",
       "description": "get the sum of an array reactively"
@@ -1815,7 +1815,7 @@
     {
       "name": "useTextareaAutoSize",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTextareaAutoSize/",
       "category": "Browser",
       "description": "automatically update the height of a textarea depending on the content"
@@ -1865,7 +1865,7 @@
     {
       "name": "useTimeAgo",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "component": true,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTimeAgo/",
       "category": "Time",
@@ -1882,7 +1882,7 @@
     {
       "name": "useTimeoutFn",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useTimeoutFn/",
       "category": "Animation",
       "description": "wrapper for `setTimeout` with controls"
@@ -1906,7 +1906,7 @@
     {
       "name": "useTitle",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTitle/",
       "category": "Browser",
       "description": "reactive document title"
@@ -1914,7 +1914,7 @@
     {
       "name": "useToggle",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useToggle/",
       "category": "Utilities",
       "description": "a boolean switcher with utility functions"
@@ -1922,7 +1922,7 @@
     {
       "name": "useToNumber",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useToNumber/",
       "category": "Utilities",
       "description": "reactively convert a string ref to number"
@@ -1930,7 +1930,7 @@
     {
       "name": "useToString",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useToString/",
       "category": "Utilities",
       "description": "reactively convert a Accessor to string"
@@ -1938,7 +1938,7 @@
     {
       "name": "useTrunc",
       "package": "math",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/useTrunc/",
       "category": "@Math",
       "description": "reactive `Math.trunc`"
@@ -1954,7 +1954,7 @@
     {
       "name": "useUserMedia",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useUserMedia/",
       "category": "Sensors",
       "description": "reactive [`mediaDevices.getUserMedia`](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia) streaming",
@@ -1967,7 +1967,7 @@
     {
       "name": "useVibrate",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useVibrate/",
       "category": "Browser",
       "description": "reactive [Vibration API](https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API)"
@@ -1975,7 +1975,7 @@
     {
       "name": "useVirtualList",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useVirtualList/",
       "category": "Component",
       "description": "create virtual lists with ease"
@@ -1999,7 +1999,7 @@
     {
       "name": "useWebSocket",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWebSocket/",
       "category": "Network",
       "description": "reactive [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) client"
@@ -2007,7 +2007,7 @@
     {
       "name": "useWebWorker",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWebWorker/",
       "category": "Browser",
       "description": "simple [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) registration and communication",
@@ -2046,7 +2046,7 @@
     {
       "name": "useWindowSize",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWindowSize/",
       "category": "Elements",
       "description": "reactive window size"
@@ -2070,7 +2070,7 @@
     {
       "name": "utils",
       "package": "shared",
-      "lastUpdated": 1678613306000,
+      "lastUpdated": 1681642048000,
       "internal": true
     },
     {
@@ -2092,7 +2092,7 @@
     {
       "name": "watchAtMost",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/watchAtMost/",
       "category": "Watch",
       "description": "`watch` with the number of times triggered"
@@ -2152,7 +2152,7 @@
     {
       "name": "watchTriggerable",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/watchTriggerable/",
       "category": "Watch",
       "description": "watch that can be triggered manually"
