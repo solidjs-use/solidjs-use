@@ -1,4 +1,4 @@
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import { createMemo, createSignal } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 import { useEventListener } from '../useEventListener'
@@ -55,7 +55,7 @@ export function usePointerSwipe(
   target: MaybeAccessor<HTMLElement | null | undefined>,
   options: UsePointerSwipeOptions = {}
 ): UsePointerSwipeReturn {
-  const targetRef = resolveAccessor(target)
+  const targetRef = toAccessor(target)
   const { threshold = 50, onSwipe, onSwipeEnd, onSwipeStart } = options
 
   const posStart = createMutable<Position>({ x: 0, y: 0 })

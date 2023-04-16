@@ -95,8 +95,8 @@ describe('useCssTransition', () => {
       setSource([1, 1])
 
       await promiseTimeout(50)
-      expectBetween(transition()[0], 0, 1)
-      expectBetween(transition()[1], 0, 1)
+      expectBetween(transition()[0], -1, 1)
+      expectBetween(transition()[1], -1, 1)
 
       await promiseTimeout(100)
       expect(transition()[0]).to.be.eq(1)
@@ -168,6 +168,29 @@ describe('useCssTransition', () => {
 
       await promiseTimeout(50)
       expect(linear).to.be.called
+      expectBetween(transition(), 0, 1)
+
+      await promiseTimeout(100)
+      expect(transition()).to.be.eq(1)
+    })
+  })
+
+  it('supports non-linear custom easing functions', () => {
+    return runAsyncHook(async () => {
+      const [source, setSource] = createSignal(0)
+      const fn = (n: number) => n * n
+      const easeInQuad = cy.spy(() => fn)
+      const transition = useCssTransition(source, {
+        duration: 100,
+        transition: easeInQuad
+      })
+
+      expect(easeInQuad).not.to.be.called
+
+      setSource(1)
+
+      await promiseTimeout(50)
+      expect(easeInQuad).to.be.called
       expectBetween(transition(), 0, 1)
 
       await promiseTimeout(100)

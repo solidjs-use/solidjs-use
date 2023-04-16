@@ -87,7 +87,8 @@
         "firebase/database",
         "firebase/firestore",
         "solidjs-use",
-        "solidjs-use/solid-to-vue"
+        "solidjs-use/solid-to-vue",
+        "node:http"
       ],
       "globals": {
         "firebase": "firebase",
@@ -408,17 +409,6 @@
       "description": "apply `reactify` to an object"
     },
     {
-      "name": "resolveAccessor",
-      "package": "shared",
-      "lastUpdated": 1680352976000,
-      "docs": "https://solidjs-use.github.io/solidjs-use/shared/resolveAccessor/",
-      "category": "Reactivity",
-      "description": "normalize value/accessor/getter to `Accessor`",
-      "related": [
-        "unAccessor"
-      ]
-    },
-    {
       "name": "signalAutoReset",
       "package": "shared",
       "lastUpdated": 1680352976000,
@@ -452,6 +442,17 @@
       ]
     },
     {
+      "name": "toAccessor",
+      "package": "shared",
+      "lastUpdated": 0,
+      "docs": "https://solidjs-use.github.io/solidjs-use/shared/toAccessor/",
+      "category": "Reactivity",
+      "description": "normalize value/accessor/getter to `Accessor`",
+      "related": [
+        "toValue"
+      ]
+    },
+    {
       "name": "toAccessors",
       "package": "shared",
       "lastUpdated": 1680352976000,
@@ -476,6 +477,17 @@
       "description": "converts ref to reactive"
     },
     {
+      "name": "toValue",
+      "package": "shared",
+      "lastUpdated": 0,
+      "docs": "https://solidjs-use.github.io/solidjs-use/shared/toValue/",
+      "category": "Reactivity",
+      "description": "get the value of value/Accessor",
+      "related": [
+        "toAccessor"
+      ]
+    },
+    {
       "name": "tryOnCleanup",
       "package": "shared",
       "lastUpdated": 1680352976000,
@@ -490,17 +502,6 @@
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/tryOnMount/",
       "category": "Component",
       "description": "safe `onMount`"
-    },
-    {
-      "name": "unAccessor",
-      "package": "shared",
-      "lastUpdated": 1680352976000,
-      "docs": "https://solidjs-use.github.io/solidjs-use/shared/unAccessor/",
-      "category": "Reactivity",
-      "description": "get the value of value/Accessor",
-      "related": [
-        "resolveAccessor"
-      ]
     },
     {
       "name": "until",
@@ -525,6 +526,14 @@
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useActiveElement/",
       "category": "Elements",
       "description": "reactive `document.activeElement`"
+    },
+    {
+      "name": "useAnimate",
+      "package": "core",
+      "lastUpdated": 0,
+      "docs": "https://solidjs-use.github.io/solidjs-use/core/useAnimate/",
+      "category": "Animation",
+      "description": "reactive [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)"
     },
     {
       "name": "useArrayDifference",

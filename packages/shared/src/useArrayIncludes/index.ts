@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js'
 import { containsProp, isObject } from '../utils'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -55,14 +55,14 @@ export function useArrayIncludes<T, V = any>(...args: any[]): Accessor<boolean> 
 
   if (typeof comparator === 'string') {
     const key = comparator as keyof T
-    comparator = (element: T, value: V) => element[key] === unAccessor(value)
+    comparator = (element: T, value: V) => element[key] === toValue(value)
   }
 
-  comparator = comparator ?? ((element: T, value: T) => element === unAccessor(value))
+  comparator = comparator ?? ((element: T, value: T) => element === toValue(value))
 
   return createMemo(() =>
-    unAccessor(list)
+    toValue(list)
       .slice(formIndex)
-      .some((element, index, array) => comparator(unAccessor(element), unAccessor(value), index, unAccessor(array)))
+      .some((element, index, array) => comparator(toValue(element), toValue(value), index, toValue(array)))
   )
 }

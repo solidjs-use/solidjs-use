@@ -1,4 +1,4 @@
-import { isDef, tryOnCleanup } from 'solidjs-use'
+import { isDef, tryOnCleanup, useTimeoutFn } from 'solidjs-use'
 import { isAccessor } from 'solidjs-use/solid-to-vue'
 import { onSnapshot } from 'firebase/firestore'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
@@ -14,7 +14,7 @@ import type {
 
 export interface UseFirestoreOptions {
   errorHandler?: (err: Error) => void
-  autoDispose?: boolean
+  autoDispose?: boolean | number
 }
 
 export type FirebaseDocRef<T> = Query<T> | DocumentReference<T>
@@ -104,10 +104,16 @@ export function useFirestore<T extends DocumentData>(
     })
   )
 
-  if (autoDispose) {
+  if (autoDispose === true) {
+    // Dispose the request now.
     tryOnCleanup(() => {
       close()
     })
+  } else if (typeof autoDispose === 'number') {
+    // Dispose the request after timeout.
+    useTimeoutFn(() => {
+      close()
+    }, autoDispose)
   }
 
   return data

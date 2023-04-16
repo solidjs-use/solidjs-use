@@ -91,3 +91,5 @@ export type MapSources<T> = {
 export type MapOldSources<T> = {
   [K in keyof T]: T[K] extends EffectOnDeps<infer V> ? V | undefined : never
 }
+
+export type Mutable<T> = { -readonly [P in keyof T]: T[P] }

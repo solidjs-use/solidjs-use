@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 
 export type unAccessorFn<T> = T extends (...args: infer A) => infer R
@@ -15,7 +15,7 @@ export const createUnAccessorFn = <T extends Function>(fn: T): unAccessorFn<T> =
   return function (this: any, ...args: any[]) {
     return fn.apply(
       this,
-      args.map(i => unAccessor(i))
+      args.map(i => toValue(i))
     )
   } as unAccessorFn<T>
 }

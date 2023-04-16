@@ -7,7 +7,7 @@ import type { Signal } from 'solid-js'
 describe('whenever', () => {
   const expectType = <T>(value: T) => value
 
-  it('ignore falsy state change', async () => {
+  it('ignore falsy state change', () => {
     // use a component to simulate normal use case
     return runAsyncHook(async () => {
       const [number, setNumber] = createSignal<number | null | undefined>(1)

@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -17,6 +17,6 @@ export function useArrayFind<T>(
   fn: (element: T, index: number, array: Array<MaybeAccessor<T>>) => boolean
 ): Accessor<T | undefined> {
   return createMemo(() =>
-    unAccessor<T | undefined>(unAccessor(list).find((element, index, array) => fn(unAccessor(element), index, array)))
+    toValue<T | undefined>(toValue(list).find((element, index, array) => fn(toValue(element), index, array)))
   )
 }

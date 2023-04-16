@@ -1,4 +1,4 @@
-import { noop, unAccessor } from '@solidjs-use/shared'
+import { noop, toValue } from '@solidjs-use/shared'
 import { isSignal } from '@solidjs-use/shared/solid-to-vue'
 import { createMemo, createSignal } from 'solid-js'
 import { createMutable } from 'solid-js/store'
@@ -176,7 +176,7 @@ export function useMagicKeys(options: UseMagicKeysOptions = {}): any {
       if (!(prop in refs)) {
         if (/[+_-]/.test(prop)) {
           const keys = prop.split(/[+_-]/g).map(i => i.trim())
-          refs[prop] = createMemo(() => keys.every(key => unAccessor(proxy[key])))
+          refs[prop] = createMemo(() => keys.every(key => toValue(proxy[key])))
         } else {
           refs[prop] = createSignal(false)
         }

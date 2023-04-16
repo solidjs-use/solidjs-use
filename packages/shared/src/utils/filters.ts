@@ -1,5 +1,5 @@
 import { createSignal, getOwner, runWithOwner } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { noop } from './is'
 import type { AnyFn, ArgumentsType, MaybeAccessor, Pausable } from './types'
 
@@ -76,8 +76,8 @@ export function debounceFilter(ms: MaybeAccessor<number>, options: DebounceFilte
 
   const owner = getOwner()
   const filter: EventFilter = invoke => {
-    const duration = unAccessor(ms)
-    const maxDuration = unAccessor(options.maxWait)
+    const duration = toValue(ms)
+    const maxDuration = toValue(options.maxWait)
 
     if (timer) _clearTimeout(timer)
 
@@ -142,7 +142,7 @@ export function throttleFilter(ms: MaybeAccessor<number>, trailing = true, leadi
   }
 
   const filter: EventFilter = _invoke => {
-    const duration = unAccessor(ms)
+    const duration = toValue(ms)
     const elapsed = Date.now() - lastExec
     const invoke = () => {
       return (lastValue = _invoke())

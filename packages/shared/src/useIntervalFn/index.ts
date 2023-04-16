@@ -1,7 +1,7 @@
 import { isAccessor } from '@solidjs-use/solid-to-vue'
 import { createSignal } from 'solid-js'
 import { tryOnCleanup } from '../tryOnCleanup'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { isClient } from '../utils'
 import { watch } from '../watch'
 import type { Fn, MaybeAccessor, Pausable } from '../utils'
@@ -50,7 +50,7 @@ export function useIntervalFn(
   }
 
   function resume() {
-    const intervalValue = unAccessor(interval)
+    const intervalValue = toValue(interval)
     if (intervalValue <= 0) return
     setIsActive(true)
     if (immediateCallback) cb()

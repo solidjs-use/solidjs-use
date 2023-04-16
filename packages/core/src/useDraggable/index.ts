@@ -1,4 +1,4 @@
-import { isClient, unAccessor } from '@solidjs-use/shared'
+import { isClient, toValue } from '@solidjs-use/shared'
 import { createMemo } from 'solid-js'
 import { createMutable } from 'solid-js/store'
 import { useEventListener } from '../useEventListener'
@@ -83,7 +83,7 @@ export function useDraggable(
 ) {
   const draggingElement = options.draggingElement ?? defaultWindow
   const draggingHandle = options.handle ?? target
-  const position = createMutable<{ value: Position }>({ value: unAccessor(options.initialValue) ?? { x: 0, y: 0 } })
+  const position = createMutable<{ value: Position }>({ value: toValue(options.initialValue) ?? { x: 0, y: 0 } })
   const pressedDelta = createMutable<{ value: Position | undefined }>({ value: undefined })
 
   const filterEvent = (e: PointerEvent) => {
@@ -92,14 +92,14 @@ export function useDraggable(
   }
 
   const handleEvent = (e: PointerEvent) => {
-    if (unAccessor(options.preventDefault)) e.preventDefault()
-    if (unAccessor(options.stopPropagation)) e.stopPropagation()
+    if (toValue(options.preventDefault)) e.preventDefault()
+    if (toValue(options.stopPropagation)) e.stopPropagation()
   }
 
   const start = (e: PointerEvent) => {
     if (!filterEvent(e)) return
-    if (unAccessor(options.exact) && e.target !== unAccessor(target)) return
-    const rect = unAccessor(target)!.getBoundingClientRect()
+    if (toValue(options.exact) && e.target !== toValue(target)) return
+    const rect = toValue(target)!.getBoundingClientRect()
     const pos = {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top

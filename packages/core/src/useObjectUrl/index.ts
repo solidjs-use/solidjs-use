@@ -1,4 +1,4 @@
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import { createEffect, createSignal, on } from 'solid-js'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -26,7 +26,7 @@ export function useObjectUrl(object: UseObjectUrlOptions['object']): UseObjectUr
     setUrl(undefined)
   }
   createEffect(
-    on(resolveAccessor(object), newObject => {
+    on(toAccessor(object), newObject => {
       release()
 
       if (newObject) {

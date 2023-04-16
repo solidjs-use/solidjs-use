@@ -3,12 +3,16 @@ import { FaRegularMoon } from 'solid-icons/fa'
 import { IoSunnyOutline } from 'solid-icons/io'
 import { createEffect, Show } from 'solid-js'
 import { useColorMode, useCycleList } from 'solidjs-use'
+import type { Signal } from 'solid-js'
+
 const Demo = () => {
-  const [mode] = useColorMode({
+  const [mode, setMode] = useColorMode({
     emitAuto: true,
     initialValue: 'light'
   })
-  const { state, next } = useCycleList(['dark', 'light', 'cafe', 'contrast', 'auto'], { initialValue: mode })
+  const { state, next } = useCycleList(['dark', 'light', 'auto'], {
+    initialValue: [mode, setMode] as Signal<any>
+  })
 
   createEffect(() => {
     document.body.className = `hope-ui-${mode() === 'auto' ? 'dark' : mode()}`

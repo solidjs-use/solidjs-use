@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -16,5 +16,5 @@ export function useArrayFindIndex<T>(
   list: MaybeAccessor<Array<MaybeAccessor<T>>>,
   fn: (element: T, index: number, array: Array<MaybeAccessor<T>>) => unknown
 ): Accessor<number> {
-  return createMemo(() => unAccessor(list).findIndex((element, index, array) => fn(unAccessor(element), index, array)))
+  return createMemo(() => toValue(list).findIndex((element, index, array) => fn(toValue(element), index, array)))
 }

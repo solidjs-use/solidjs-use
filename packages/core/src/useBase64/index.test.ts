@@ -10,7 +10,7 @@ function decode(encoded: string) {
 }
 
 describe('useBase64', () => {
-  it('should work with record', async () => {
+  it('should work with record', () => {
     return runAsyncHook(async () => {
       const template = { test: 5 }
 
@@ -58,7 +58,7 @@ describe('useBase64', () => {
   })
 
   it('should work with custom serialize function', async () => {
-    return runAsyncHook(async () => {
+    return await runAsyncHook(async () => {
       const arr = [1, 2, 3]
 
       const serializer = (arr: number[]) => {

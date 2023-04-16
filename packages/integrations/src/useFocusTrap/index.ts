@@ -1,6 +1,6 @@
 import { createFocusTrap } from 'focus-trap'
 import { createEffect, createSignal, on } from 'solid-js'
-import { resolveAccessor, tryOnCleanup } from 'solidjs-use'
+import { toAccessor, tryOnCleanup } from 'solidjs-use'
 import type { Accessor } from 'solid-js'
 import type { Fn, MaybeElementAccessor } from 'solidjs-use'
 import type { ActivateOptions, DeactivateOptions, FocusTrap, Options } from 'focus-trap'
@@ -88,7 +88,7 @@ export function useFocusTrap(target: MaybeElementAccessor, options: UseFocusTrap
   }
 
   createEffect(
-    on(resolveAccessor(target), el => {
+    on(toAccessor(target), el => {
       if (!el) return
 
       trap = createFocusTrap(el, {

@@ -92,6 +92,17 @@ export function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[
   }, {} as Pick<O, T>)
 }
 
+/**
+ * Create a new subset object by omit giving keys
+ */
+export function objectOmit<O extends object, T extends keyof O>(obj: O, keys: T[], omitUndefined = false) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key, value]) => {
+      return (!omitUndefined || value !== undefined) && !keys.includes(key as T)
+    })
+  ) as Omit<O, T>
+}
+
 export function objectEntries<T extends object>(obj: T) {
   return Object.entries(obj) as Array<[keyof T, T[keyof T]]>
 }

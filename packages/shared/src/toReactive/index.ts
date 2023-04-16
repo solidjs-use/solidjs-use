@@ -1,6 +1,6 @@
 import { isAccessor } from '@solidjs-use/solid-to-vue'
 import { createMutable } from 'solid-js/store'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { MaybeAccessor } from '../utils'
 
 /**
@@ -15,7 +15,7 @@ export function toReactive<T extends object>(objectAccessor: MaybeAccessor<T>): 
     {},
     {
       get(_, p, receiver) {
-        return unAccessor(Reflect.get(objectAccessor(), p, receiver))
+        return toValue(Reflect.get(objectAccessor(), p, receiver))
       },
       has(_, p) {
         return Reflect.has(objectAccessor(), p)

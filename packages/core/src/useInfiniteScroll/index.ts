@@ -1,9 +1,9 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, on } from 'solid-js'
+import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useScroll } from '../useScroll'
 import type { UseScrollReturn, UseScrollOptions } from '../useScroll'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import type { MaybeAccessor, Awaitable } from '@solidjs-use/shared'
 
 export interface UseInfiniteScrollOptions extends UseScrollOptions {
   /**
@@ -21,11 +21,11 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
   direction?: 'top' | 'bottom' | 'left' | 'right'
 
   /**
-   * Whether to preserve the current scroll position when loading more items.
+   * The interval time between two load more (to avoid too many invokes).
    *
-   * @default false
+   * @default 100
    */
-  preserveScrollPosition?: boolean
+  interval?: number
 }
 
 /**
@@ -35,10 +35,10 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
  */
 export function useInfiniteScroll(
   element: MaybeAccessor<HTMLElement | SVGElement | Window | Document | null | undefined>,
-  onLoadMore: (state: UseScrollReturn) => void | Promise<void>,
+  onLoadMore: (state: UseScrollReturn) => Awaitable<void>,
   options: UseInfiniteScrollOptions = {}
 ) {
-  const direction = options.direction ?? 'bottom'
+  const { direction = 'bottom', interval = 100 } = options
   const state = useScroll(element, {
     ...options,
     offset: {
@@ -47,29 +47,33 @@ export function useInfiniteScroll(
     }
   })
 
-  createEffect(
-    on(
-      () => state.arrivedState[direction],
-      async v => {
-        if (v) {
-          const elem = unAccessor(element) as Element
-          const previous = {
-            height: elem?.scrollHeight ?? 0,
-            width: elem?.scrollWidth ?? 0
-          }
+  const [promise, setPromise] = createSignal<any>()
+  const isLoading = createMemo(() => !!promise())
 
-          await onLoadMore(state)
+  function checkAndLoad() {
+    const el = toValue(element) as HTMLElement
+    if (!el) return
 
-          if (options.preserveScrollPosition && elem) {
-            nextTick(() => {
-              elem.scrollTo({
-                top: elem.scrollHeight - previous.height,
-                left: elem.scrollWidth - previous.width
-              })
-            })
-          }
-        }
+    const isNarrower =
+      direction === 'bottom' || direction === 'top'
+        ? el.scrollHeight <= el.clientHeight
+        : el.scrollWidth <= el.clientWidth
+
+    if (state.arrivedState[direction] || isNarrower) {
+      if (!promise()) {
+        setPromise(
+          Promise.all([onLoadMore(state), new Promise(resolve => setTimeout(resolve, interval))]).finally(() => {
+            setPromise(null)
+            nextTick(() => checkAndLoad())
+          })
+        )
       }
-    )
-  )
+    }
+  }
+
+  createEffect(on(() => [state.arrivedState[direction], toValue(element)], checkAndLoad))
+
+  return {
+    isLoading
+  }
 }

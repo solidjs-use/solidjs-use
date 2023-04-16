@@ -74,7 +74,8 @@ export const packages: PackageManifest[] = [
       'firebase/database',
       'firebase/firestore',
       'solidjs-use',
-      'solidjs-use/solid-to-vue'
+      'solidjs-use/solid-to-vue',
+      'node:http'
     ],
     globals: {
       firebase: 'firebase',

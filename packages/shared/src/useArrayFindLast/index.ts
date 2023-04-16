@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -26,14 +26,14 @@ export function useArrayFindLast<T>(
   fn: (element: T, index: number, array: Array<MaybeAccessor<T>>) => boolean
 ): Accessor<T | undefined> {
   return createMemo(() =>
-    unAccessor<T | undefined>(
+    toValue<T | undefined>(
       // @ts-expect-error - missing in types
       // https://github.com/microsoft/TypeScript/issues/48829
       !Array.prototype.findLast
-        ? findLast(unAccessor(list), (element, index, array) => fn(unAccessor(element), index, array))
-        : unAccessor(list)
+        ? findLast(toValue(list), (element, index, array) => fn(toValue(element), index, array))
+        : toValue(list)
             // @ts-expect-error - missing in types
-            .findLast((element, index, array) => fn(unAccessor(element), index, array))
+            .findLast((element, index, array) => fn(toValue(element), index, array))
     )
   )
 }

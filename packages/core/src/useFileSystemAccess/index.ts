@@ -1,4 +1,4 @@
-import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, toValue } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
@@ -128,7 +128,7 @@ export function useFileSystemAccess(
 
   async function open(_options: UseFileSystemAccessCommonOptions = {}) {
     if (!isSupported()) return
-    const [handle] = await window.showOpenFilePicker({ ...unAccessor(options), ..._options })
+    const [handle] = await window.showOpenFilePicker({ ...toValue(options), ..._options })
     setFileHandle(handle)
     await updateFile()
     await updateData()
@@ -137,7 +137,7 @@ export function useFileSystemAccess(
   async function create(_options: UseFileSystemAccessShowSaveFileOptions = {}) {
     if (!isSupported()) return
     const fileHandleValue = await window.showSaveFilePicker({
-      ...unAccessor(options),
+      ...toValue(options),
       ..._options
     })
     setFileHandle(fileHandleValue)
@@ -152,7 +152,7 @@ export function useFileSystemAccess(
     const fileHandleValue = fileHandle()
     if (!fileHandleValue)
       // save as
-      return saveAs(_options)
+      return await saveAs(_options)
 
     if (data()) {
       // eslint-disable-next-line @typescript-eslint/await-thenable
@@ -167,7 +167,7 @@ export function useFileSystemAccess(
     if (!isSupported()) return
 
     const fileHandleValue = await window.showSaveFilePicker({
-      ...unAccessor(options),
+      ...toValue(options),
       ..._options
     })
     setFileHandle(fileHandleValue)
@@ -188,14 +188,15 @@ export function useFileSystemAccess(
   }
 
   async function updateData() {
-    if (unAccessor(dataType) === 'Text') setData(await file()?.text())
-    if (unAccessor(dataType) === 'ArrayBuffer') setData(await file()?.arrayBuffer())
-    if (unAccessor(dataType) === 'Blob') {
+    const type = toValue(dataType)
+    if (type === 'Text') setData(await file()?.text())
+    if (type === 'ArrayBuffer') setData(await file()?.arrayBuffer())
+    if (type === 'Blob') {
       setData(() => file())
     }
   }
 
-  createEffect(on(resolveAccessor(dataType), updateData, { defer: true }))
+  createEffect(on(toAccessor(dataType), updateData, { defer: true }))
 
   return {
     isSupported,

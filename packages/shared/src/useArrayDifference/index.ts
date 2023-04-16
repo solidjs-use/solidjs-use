@@ -1,6 +1,5 @@
 import { createMemo } from 'solid-js'
-import { isString } from '../utils'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -27,9 +26,9 @@ export function useArrayDifference<T>(...args: any[]): Accessor<T[]> {
   const values: MaybeAccessor<T[]> = args[1]
   let compareFn = args[2] ?? defaultComparator
 
-  if (isString(compareFn)) {
+  if (typeof compareFn === 'string') {
     const key = compareFn as keyof T
     compareFn = (value: T, othVal: T) => value[key] === othVal[key]
   }
-  return createMemo(() => unAccessor(list).filter(x => unAccessor(values).findIndex(y => compareFn(x, y)) === -1))
+  return createMemo(() => toValue(list).filter(x => toValue(values).findIndex(y => compareFn(x, y)) === -1))
 }

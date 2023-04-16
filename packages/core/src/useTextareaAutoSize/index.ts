@@ -1,5 +1,5 @@
 import { createEffect, createSignal, on } from 'solid-js'
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { useResizeObserver } from '../useResizeObserver'
 import type { EffectOnDeps, MaybeAccessor } from '@solidjs-use/shared'
 import type { JSX } from 'solid-js'
@@ -36,7 +36,7 @@ export function useTextareaAutoSize(options?: UseTextareaAutoSizeOptions) {
     setTextareaScrollHeight(textareaRef()?.scrollHeight)
 
     // If style target is provided update its height
-    if (options?.styleTarget) unAccessor(options.styleTarget).style.height = `${textareaScrollHeight()}px`
+    if (options?.styleTarget) toValue(options.styleTarget).style.height = `${textareaScrollHeight()}px`
     // else update textarea's height by updating height variable
     else height = `${textareaScrollHeight()}px`
 

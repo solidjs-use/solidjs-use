@@ -1,4 +1,4 @@
-import { isFunction, isString, unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { isAccessor, toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, on } from 'solid-js'
 import { useMutationObserver } from '../useMutationObserver'
@@ -58,12 +58,12 @@ export function useTitle(newTitle: MaybeAccessor<string | null | undefined> = nu
   function format(t: string) {
     if (!('titleTemplate' in options)) return t
     const template = options.titleTemplate ?? '%s'
-    return isFunction(template) ? template(t) : unAccessor(template).replace(/%s/g, t)
+    return typeof template === 'function' ? template(t) : toValue(template).replace(/%s/g, t)
   }
 
   createEffect(
     on(title[0], (t, o) => {
-      if (t !== o && document) document.title = format(isString(t) ? t : '')
+      if (t !== o && document) document.title = format(typeof t === 'string' ? t : '')
     })
   )
 

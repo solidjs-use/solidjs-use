@@ -1,4 +1,4 @@
-import { resolveAccessor, tryOnCleanup, useIntervalFn } from '@solidjs-use/shared'
+import { toAccessor, tryOnCleanup, useIntervalFn } from '@solidjs-use/shared'
 import { createEffect, createSignal, on } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import type { Accessor } from 'solid-js'
@@ -161,7 +161,7 @@ export function useWebSocket<Data = any>(
   const [data, setData] = createSignal<Data | null>(null)
   const [status, setStatus] = createSignal<WebSocketStatus>('CLOSED')
   const [wsAccessor, setWs] = createSignal<WebSocket | undefined>()
-  const urlAccessor = resolveAccessor(url)
+  const urlAccessor = toAccessor(url)
 
   let heartbeatPause: Fn | undefined
   let heartbeatResume: Fn | undefined

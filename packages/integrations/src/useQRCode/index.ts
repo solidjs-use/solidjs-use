@@ -1,6 +1,6 @@
 import QRCode from 'qrcode'
 import { createEffect, createSignal, on } from 'solid-js'
-import { isClient, resolveAccessor } from 'solidjs-use'
+import { isClient, toAccessor } from 'solidjs-use'
 import type { MaybeAccessor } from 'solidjs-use'
 
 /**
@@ -9,7 +9,7 @@ import type { MaybeAccessor } from 'solidjs-use'
  * @see https://solidjs-use.github.io/solidjs-use/integrations/useQRCode
  */
 export function useQRCode(text: MaybeAccessor<string>, options?: QRCode.QRCodeToDataURLOptions) {
-  const src = resolveAccessor(text)
+  const src = toAccessor(text)
   const [result, setResult] = createSignal('')
 
   createEffect(

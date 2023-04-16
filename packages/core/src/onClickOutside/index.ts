@@ -1,4 +1,4 @@
-import { unAccessor, isIOS, noop } from '@solidjs-use/shared'
+import { toValue, isIOS, noop } from '@solidjs-use/shared'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
 import type { Fn, MaybeElementAccessor } from '@solidjs-use/shared'
@@ -57,13 +57,13 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
           el => el === event.target || event.composedPath().includes(el)
         )
       }
-      const el = unAccessor(target)
+      const el = toValue(target)
       return el && (event.target === el || event.composedPath().includes(el))
     })
   }
 
   const listener = (event: PointerEvent) => {
-    const el = unAccessor(target)
+    const el = toValue(target)
 
     if (!el || el === event.target || event.composedPath().includes(el)) return
 
@@ -83,14 +83,14 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
       window,
       'pointerdown',
       e => {
-        const el = unAccessor(target)
+        const el = toValue(target)
         if (el) shouldListen = !e.composedPath().includes(el) && !shouldIgnore(e)
       },
       { passive: true }
     ),
     detectIframe &&
       useEventListener(window, 'blur', event => {
-        const el = unAccessor(target)
+        const el = toValue(target)
         if (window.document.activeElement?.tagName === 'IFRAME' && !el?.contains(window.document.activeElement))
           handler(event as any)
       })

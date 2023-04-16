@@ -6,6 +6,7 @@ const rules = {
   '@typescript-eslint/no-unsafe-assignment': 'off',
   '@typescript-eslint/no-floating-promises': 'off',
   'n/no-callback-literal': 'off',
+  'spaced-comment': 'off',
   '@typescript-eslint/restrict-template-expressions': 'off',
   '@typescript-eslint/no-invalid-void-type': 'off',
   '@typescript-eslint/no-misused-promises': 'off',

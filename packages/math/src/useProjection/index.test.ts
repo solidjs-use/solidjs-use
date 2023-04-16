@@ -1,5 +1,5 @@
 import { runHook } from '@dream2023/cypress-solidjs'
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { isAccessor } from '@solidjs-use/solid-to-vue'
 import { createSignal } from 'solid-js'
 import { useProjection } from '.'
@@ -12,15 +12,15 @@ describe('useProjection', () => {
   it('returns a Accessor', () => {
     runHook(() => {
       const [val] = createSignal(5)
-      expect(unAccessor(isAccessor(useProjection(val, [0, 10], [0, 100])))).to.eq(true)
+      expect(toValue(isAccessor(useProjection(val, [0, 10], [0, 100])))).to.eq(true)
     })
   })
 
   it('projects correctly', () => {
     runHook(() => {
-      expect(unAccessor(useProjection(5, [0, 10], [0, 100]))).to.eq(50)
-      expect(unAccessor(useProjection(3, [0, 10], [0, 100]))).to.eq(30)
-      expect(unAccessor(useProjection(4, [0, 44], [0, 132]))).to.eq(12)
+      expect(toValue(useProjection(5, [0, 10], [0, 100]))).to.eq(50)
+      expect(toValue(useProjection(3, [0, 10], [0, 100]))).to.eq(30)
+      expect(toValue(useProjection(4, [0, 44], [0, 132]))).to.eq(12)
     })
   })
 
@@ -42,9 +42,9 @@ describe('useProjection', () => {
 
   it('works with getter functions', () => {
     runHook(() => {
-      expect(unAccessor(useProjection(() => 5, [0, 10], [0, 100]))).to.eq(50)
-      expect(unAccessor(useProjection(() => 3, [0, 10], [0, 100]))).to.eq(30)
-      expect(unAccessor(useProjection(() => 4, [0, 44], [0, 132]))).to.eq(12)
+      expect(toValue(useProjection(() => 5, [0, 10], [0, 100]))).to.eq(50)
+      expect(toValue(useProjection(() => 3, [0, 10], [0, 100]))).to.eq(30)
+      expect(toValue(useProjection(() => 4, [0, 44], [0, 132]))).to.eq(12)
     })
   })
 })

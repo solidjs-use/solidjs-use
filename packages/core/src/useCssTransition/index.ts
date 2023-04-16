@@ -1,12 +1,4 @@
-import {
-  identity as linear,
-  isFunction,
-  isNumber,
-  promiseTimeout,
-  resolveAccessor,
-  tryOnCleanup,
-  unAccessor
-} from '@solidjs-use/shared'
+import { identity as linear, promiseTimeout, toAccessor, tryOnCleanup, toValue } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import type { Accessor, Signal } from 'solid-js'
 import type { MaybeAccessor } from '@solidjs-use/shared'
@@ -98,7 +90,7 @@ const _TransitionPresets = {
  *
  * @see https://easings.net
  */
-export const TransitionPresets = /* #__PURE__ */ Object.assign({}, { linear }, _TransitionPresets) as Record<
+export const TransitionPresets = /*#__PURE__*/ Object.assign({}, { linear }, _TransitionPresets) as Record<
   keyof typeof _TransitionPresets,
   CubicBezierPoints
 > & { linear: EasingFunction }
@@ -132,7 +124,7 @@ function createEasingFunction([p0, p1, p2, p3]: CubicBezierPoints): EasingFuncti
 
 const lerp = (a: number, b: number, alpha: number) => a + alpha * (b - a)
 
-const toVec = (t: number | number[] | undefined) => (isNumber(t) ? [t] : t) ?? []
+const toVec = (t: number | number[] | undefined) => (typeof t === 'number' ? [t] : t) ?? []
 
 /**
  * Transition from one value to another.
@@ -148,16 +140,16 @@ export function executeTransition<T extends number | number[]>(
   to: MaybeAccessor<T>,
   options: CssTransitionOptions = {}
 ): PromiseLike<void> {
-  const fromVal = unAccessor(from)
-  const toVal = unAccessor(to)
+  const fromVal = toValue(from)
+  const toVal = toValue(to)
   const v1 = toVec(fromVal)
   const v2 = toVec(toVal)
-  const duration = unAccessor(options.duration) ?? 1000
+  const duration = toValue(options.duration) ?? 1000
   const startedAt = Date.now()
   const endAt = Date.now() + duration
-  const trans = unAccessor<CubicBezierPoints | EasingFunction | undefined>(options.transition) ?? linear
+  const trans = toValue<CubicBezierPoints | EasingFunction | undefined>(options.transition) ?? linear
 
-  const ease = isFunction(trans) ? trans : createEasingFunction(trans)
+  const ease = typeof trans === 'function' ? trans : createEasingFunction(trans)
 
   return new Promise<void>(resolve => {
     setSource(() => fromVal)
@@ -174,7 +166,7 @@ export function executeTransition<T extends number | number[]>(
       const arr = toVec(source()).map((_n, i) => lerp(v1[i], v2[i], alpha))
 
       if (Array.isArray(source())) setSource(() => arr.map((_n, i) => lerp(v1[i] ?? 0, v2[i] ?? 0, alpha)) as T)
-      else if (isNumber(source())) setSource(() => arr[0] as T)
+      else if (typeof source() === 'number') setSource(() => arr[0] as T)
 
       if (now < endAt) {
         requestAnimationFrame(tick)
@@ -216,9 +208,9 @@ export function useCssTransition(
   let currentId = 0
 
   const sourceVal = () => {
-    const v = unAccessor<number | Array<MaybeAccessor<number>>>(source)
+    const v = toValue<number | Array<MaybeAccessor<number>>>(source)
 
-    return isNumber(v) ? v : v.map(unAccessor)
+    return typeof v === 'number' ? v : v.map(toValue)
   }
 
   const [output, setOutput] = createSignal(sourceVal())
@@ -227,15 +219,15 @@ export function useCssTransition(
     on(
       () => sourceVal(),
       async to => {
-        if (unAccessor(options.disabled)) return
+        if (toValue(options.disabled)) return
 
         const id = ++currentId
 
-        if (options.delay) await promiseTimeout(unAccessor(options.delay))
+        if (options.delay) await promiseTimeout(toValue(options.delay))
 
         if (id !== currentId) return
 
-        const toVal = Array.isArray(to) ? to.map(unAccessor) : unAccessor(to)
+        const toVal = Array.isArray(to) ? to.map(toValue) : toValue(to)
 
         options.onStarted?.()
 
@@ -250,7 +242,7 @@ export function useCssTransition(
   )
 
   createEffect(
-    on(resolveAccessor(options.disabled), disabled => {
+    on(toAccessor(options.disabled), disabled => {
       if (disabled) {
         currentId++
 
@@ -263,5 +255,5 @@ export function useCssTransition(
     currentId++
   })
 
-  return createMemo(() => (unAccessor(options.disabled) ? sourceVal() : output()))
+  return createMemo(() => (toValue(options.disabled) ? sourceVal() : output()))
 }

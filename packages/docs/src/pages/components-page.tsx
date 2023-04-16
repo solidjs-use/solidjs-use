@@ -22,15 +22,15 @@ const OmitMutable = lazy(() => import('../../../shared/src/omitMutable/index.md'
 const PickMutable = lazy(() => import('../../../shared/src/pickMutable/index.md'))
 const Reactify = lazy(() => import('../../../shared/src/reactify/index.md'))
 const ReactifyObject = lazy(() => import('../../../shared/src/reactifyObject/index.md'))
-const ResolveAccessor = lazy(() => import('../../../shared/src/resolveAccessor/index.md'))
 const SignalAutoReset = lazy(() => import('../../../shared/src/signalAutoReset/index.md'))
 const SyncSignal = lazy(() => import('../../../shared/src/syncSignal/index.md'))
 const SyncSignals = lazy(() => import('../../../shared/src/syncSignals/index.md'))
+const ToAccessor = lazy(() => import('../../../shared/src/toAccessor/index.md'))
 const ToAccessors = lazy(() => import('../../../shared/src/toAccessors/index.md'))
 const ToReactive = lazy(() => import('../../../shared/src/toReactive/index.md'))
+const ToValue = lazy(() => import('../../../shared/src/toValue/index.md'))
 const TryOnCleanup = lazy(() => import('../../../shared/src/tryOnCleanup/index.md'))
 const TryOnMount = lazy(() => import('../../../shared/src/tryOnMount/index.md'))
-const UnAccessor = lazy(() => import('../../../shared/src/unAccessor/index.md'))
 const Until = lazy(() => import('../../../shared/src/until/index.md'))
 const UseArrayDifference = lazy(() => import('../../../shared/src/useArrayDifference/index.md'))
 const UseArrayEvery = lazy(() => import('../../../shared/src/useArrayEvery/index.md'))
@@ -77,6 +77,7 @@ const OnKeyStroke = lazy(() => import('../../../core/src/onKeyStroke/index.md'))
 const OnLongPress = lazy(() => import('../../../core/src/onLongPress/index.md'))
 const OnStartTyping = lazy(() => import('../../../core/src/onStartTyping/index.md'))
 const UseActiveElement = lazy(() => import('../../../core/src/useActiveElement/index.md'))
+const UseAnimate = lazy(() => import('../../../core/src/useAnimate/index.md'))
 const UseAsyncState = lazy(() => import('../../../core/src/useAsyncState/index.md'))
 const UseBase64 = lazy(() => import('../../../core/src/useBase64/index.md'))
 const UseBattery = lazy(() => import('../../../core/src/useBattery/index.md'))
@@ -260,15 +261,15 @@ const ComponentsPage = () => {
       <Route path="/shared/pickMutable" element={<PickMutable components={markdownComponents} />} />
       <Route path="/shared/reactify" element={<Reactify components={markdownComponents} />} />
       <Route path="/shared/reactifyObject" element={<ReactifyObject components={markdownComponents} />} />
-      <Route path="/shared/resolveAccessor" element={<ResolveAccessor components={markdownComponents} />} />
       <Route path="/shared/signalAutoReset" element={<SignalAutoReset components={markdownComponents} />} />
       <Route path="/shared/syncSignal" element={<SyncSignal components={markdownComponents} />} />
       <Route path="/shared/syncSignals" element={<SyncSignals components={markdownComponents} />} />
+      <Route path="/shared/toAccessor" element={<ToAccessor components={markdownComponents} />} />
       <Route path="/shared/toAccessors" element={<ToAccessors components={markdownComponents} />} />
       <Route path="/shared/toReactive" element={<ToReactive components={markdownComponents} />} />
+      <Route path="/shared/toValue" element={<ToValue components={markdownComponents} />} />
       <Route path="/shared/tryOnCleanup" element={<TryOnCleanup components={markdownComponents} />} />
       <Route path="/shared/tryOnMount" element={<TryOnMount components={markdownComponents} />} />
-      <Route path="/shared/unAccessor" element={<UnAccessor components={markdownComponents} />} />
       <Route path="/shared/until" element={<Until components={markdownComponents} />} />
       <Route path="/shared/useArrayDifference" element={<UseArrayDifference components={markdownComponents} />} />
       <Route path="/shared/useArrayEvery" element={<UseArrayEvery components={markdownComponents} />} />
@@ -315,6 +316,7 @@ const ComponentsPage = () => {
       <Route path="/core/onLongPress" element={<OnLongPress components={markdownComponents} />} />
       <Route path="/core/onStartTyping" element={<OnStartTyping components={markdownComponents} />} />
       <Route path="/core/useActiveElement" element={<UseActiveElement components={markdownComponents} />} />
+      <Route path="/core/useAnimate" element={<UseAnimate components={markdownComponents} />} />
       <Route path="/core/useAsyncState" element={<UseAsyncState components={markdownComponents} />} />
       <Route path="/core/useBase64" element={<UseBase64 components={markdownComponents} />} />
       <Route path="/core/useBattery" element={<UseBattery components={markdownComponents} />} />

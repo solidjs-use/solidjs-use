@@ -1,4 +1,4 @@
-import { containsProp, createEventHook, resolveAccessor, unAccessor, until, useTimeoutFn } from '@solidjs-use/shared'
+import { containsProp, createEventHook, toAccessor, toValue, until, useTimeoutFn } from '@solidjs-use/shared'
 import { isAccessor } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { defaultWindow } from '../_configurable'
@@ -277,8 +277,8 @@ export function createFetch(config: CreateFetchOptions = {}) {
 
   function useFactoryFetch(url: MaybeAccessor<string>, ...args: any[]) {
     const computedUrl = createMemo(() => {
-      const baseUrl = unAccessor(config.baseUrl)
-      const targetUrl = unAccessor(url)
+      const baseUrl = toValue(config.baseUrl)
+      const targetUrl = toValue(url)
 
       return baseUrl && !isAbsoluteURL(targetUrl) ? joinPaths(baseUrl, targetUrl) : targetUrl
     })
@@ -426,13 +426,13 @@ export function useFetch<T>(
       const headers = headersToObject(defaultFetchOptions.headers) as Record<string, string>
       if (config.payloadType) headers['Content-Type'] = payloadMapping[config.payloadType] ?? config.payloadType
 
-      const payload = unAccessor(config.payload)
+      const payload = toValue(config.payload)
       defaultFetchOptions.body = config.payloadType === 'json' ? JSON.stringify(payload) : (payload as BodyInit)
     }
 
     let isCanceled = false
     const context: BeforeFetchContext = {
-      url: unAccessor(url),
+      url: toValue(url),
       options: { ...defaultFetchOptions, ...fetchOptions },
       cancel: () => {
         isCanceled = true
@@ -443,14 +443,14 @@ export function useFetch<T>(
 
     if (isCanceled || !fetch) {
       loading(false)
-      return Promise.resolve(null)
+      return await Promise.resolve(null)
     }
 
     let responseData: any = null
 
     if (timer) timer.start()
 
-    return new Promise<Response | null>((resolve, reject) => {
+    return await new Promise<Response | null>((resolve, reject) => {
       fetch(context.url, {
         ...defaultFetchOptions,
         ...context.options,
@@ -506,10 +506,10 @@ export function useFetch<T>(
     })
   }
 
-  const refetch = resolveAccessor(options.refetch)
+  const refetch = toAccessor(options.refetch)
   createEffect(
     on(
-      [refetch, resolveAccessor(url)],
+      [refetch, toAccessor(url)],
       ([refetch]) => {
         refetch && execute()
       },
@@ -559,7 +559,7 @@ export function useFetch<T>(
         if (isAccessor(config.payload)) {
           createEffect(
             on(
-              [refetch, resolveAccessor(config.payload)],
+              [refetch, toAccessor(config.payload)],
               ([refetch]) => {
                 refetch && execute()
               },
@@ -568,7 +568,7 @@ export function useFetch<T>(
           )
         }
 
-        const rawPayload = unAccessor(config.payload)
+        const rawPayload = toValue(config.payload)
         // Set the payload to json type only if it's not provided and a literal object is provided and the object is not `formData`
         // The only case we can deduce the content type and `fetch` can't
         if (
@@ -614,7 +614,7 @@ export function useFetch<T>(
     }
   }
 
-  if (options.immediate) setTimeout(execute, 0)
+  if (options.immediate) Promise.resolve().then(() => execute())
 
   return {
     ...shell,

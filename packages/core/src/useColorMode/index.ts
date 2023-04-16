@@ -1,13 +1,14 @@
-import { tryOnCleanup } from '@solidjs-use/shared'
+import { toValue, tryOnCleanup } from '@solidjs-use/shared'
 import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { getSSRHandler } from '../ssr-handlers'
 import { usePreferredDark } from '../usePreferredDark'
 import { useStorage } from '../useStorage'
 import { defaultWindow } from '../_configurable'
+import type { ComputedSetter } from '@solidjs-use/shared/solid-to-vue'
+import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { UseStorageOptions } from '../useStorage'
 import type { Accessor, Signal } from 'solid-js'
-import type { ComputedSetter } from '@solidjs-use/shared/solid-to-vue'
 import type { StorageLike } from '../ssr-handlers'
 
 export type BasicColorSchema = 'light' | 'dark' | 'auto'
@@ -19,7 +20,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
    *
    * @default 'html'
    */
-  selector?: string
+  selector?: string | MaybeAccessor<HTMLElement | null | undefined>
 
   /**
    * HTML attribute applying the target element
@@ -85,7 +86,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
    * Disable transition on switch
    *
    * @see https://paco.me/writing/disable-theme-transitions
-   * @default false
+   * @default true
    */
   disableTransition?: boolean
 }
@@ -108,7 +109,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
     listenToStorageChanges = true,
     storageSignal,
     emitAuto,
-    disableTransition = false
+    disableTransition = true
   } = options
 
   const modes = {
@@ -119,7 +120,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
   } as Record<BasicColorSchema | T, string>
 
   const preferredDark = usePreferredDark({ window })
-  const preferredMode = createMemo(() => (preferredDark() ? 'dark' : 'light'))
+  const system = createMemo(() => (preferredDark() ? 'dark' : 'light'))
 
   const [store, setStore] = (storageSignal ??
     (storageKey == null
@@ -130,7 +131,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
 
   const [state, setState] = writableComputed<T | BasicColorSchema>({
     get() {
-      return store() === 'auto' && !emitAuto ? preferredMode() : store()
+      return store() === 'auto' && !emitAuto ? system() : store()
     },
     set(v: any) {
       setStore(v)
@@ -138,7 +139,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
   })
 
   const updateHTMLAttrs = getSSRHandler('updateHTMLAttrs', (selector, attribute, value) => {
-    const el = window?.document.querySelector(selector)
+    const el = typeof selector === 'string' ? window?.document.querySelector(selector) : toValue(selector)
     if (!el) return
 
     let style: HTMLStyleElement | undefined
@@ -175,7 +176,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
   })
 
   function defaultOnChanged(mode: T | BasicColorSchema) {
-    const resolvedMode = mode === 'auto' ? preferredMode() : mode
+    const resolvedMode = mode === 'auto' ? system() : mode
     updateHTMLAttrs(selector, attribute, modes[resolvedMode] ?? resolvedMode)
   }
 
@@ -187,7 +188,7 @@ export function useColorMode<T extends string = BasicColorSchema>(
   createEffect(on(state, onChanged))
 
   if (emitAuto) {
-    createEffect(on(preferredMode, () => onChanged(state())))
+    createEffect(on(system, () => onChanged(state())))
   }
   tryOnCleanup(() => onChanged(state()))
 

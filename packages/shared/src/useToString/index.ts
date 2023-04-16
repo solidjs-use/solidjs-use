@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -9,5 +9,5 @@ import type { MaybeAccessor } from '../utils'
  * @see https://solidjs-use.github.io/solidjs-use/shared/useToString
  */
 export function useToString(value: MaybeAccessor<unknown>): Accessor<string> {
-  return createMemo(() => `${unAccessor(value)}`)
+  return createMemo(() => `${toValue(value)}`)
 }

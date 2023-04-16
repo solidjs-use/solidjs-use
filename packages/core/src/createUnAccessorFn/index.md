@@ -21,5 +21,5 @@ const post = (url, data) => fetch(url, { data })
 const unAccessorPost = createUnAccessorFn(post)
 
 post(url, data) /* ❌ Will throw an error because the arguments are Accessor */
-unAccessorPost(url, data) /* ✔️ Will Work because the arguments will be auto unAccessor */
+unAccessorPost(url, data) /* ✔️ Will Work because the arguments will be auto toValue */
 ```

@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { createMemo, createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
@@ -61,7 +61,7 @@ export function useMousePressed(options: MousePressedOptions = {}) {
     setSourceType(null)
   }
 
-  const target = createMemo(() => unAccessor(options.target) ?? window)
+  const target = createMemo(() => toValue(options.target) ?? window)
 
   useEventListener(target, 'mousedown', onPressed('mouse'), { passive: true })
 

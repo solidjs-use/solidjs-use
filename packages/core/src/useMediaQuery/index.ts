@@ -1,6 +1,6 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { resolveAccessor, tryOnCleanup } from '@solidjs-use/shared'
+import { toAccessor, tryOnCleanup } from '@solidjs-use/shared'
 import { createEffect, createSignal } from 'solid-js'
 import { useSupported } from '../useSupported'
 import { defaultWindow } from '../_configurable'
@@ -34,8 +34,10 @@ export function useMediaQuery(query: MaybeAccessor<string>, options: Configurabl
 
     cleanup()
 
-    mediaQuery = window!.matchMedia(resolveAccessor(query)())
-    setMatches(mediaQuery.matches)
+    mediaQuery = window!.matchMedia(toAccessor(query)())
+    setMatches(!!mediaQuery?.matches)
+
+    if (!mediaQuery) return
 
     if ('addEventListener' in mediaQuery) mediaQuery.addEventListener('change', update)
     // @ts-expect-error deprecated API

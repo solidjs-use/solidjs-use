@@ -4,7 +4,7 @@ category: '@Math'
 
 # useCeil
 
-Reactive `Math.ceil`
+Reactive `Math.ceil`.
 
 ## Usage
 

@@ -1,4 +1,4 @@
-import { isFunction, unAccessor, watchWithFilter } from '@solidjs-use/shared'
+import { toValue, watchWithFilter } from '@solidjs-use/shared'
 import { toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { getSSRHandler } from '../ssr-handlers'
 import { useEventListener } from '../useEventListener'
@@ -100,7 +100,7 @@ export function useStorageAsync<T extends string | number | boolean | object | n
     }
   } = options
 
-  const rawInit: T = unAccessor(initialValue)
+  const rawInit: T = toValue(initialValue)
   const type = guessSerializerType<T>(rawInit)
 
   const [data, setData] = toSignal(initialValue)
@@ -124,7 +124,7 @@ export function useStorageAsync<T extends string | number | boolean | object | n
         if (writeDefaults && rawInit !== null) await storage.setItem(key, await serializer.write(rawInit))
       } else if (mergeDefaults) {
         const value = await serializer.read(rawValue)
-        if (isFunction(mergeDefaults)) {
+        if (typeof mergeDefaults === 'function') {
           setData(() => mergeDefaults(value, rawInit))
         } else if (type === 'object' && !Array.isArray(value)) {
           setData({ ...(rawInit as any), ...value })
@@ -141,7 +141,7 @@ export function useStorageAsync<T extends string | number | boolean | object | n
 
   read()
 
-  if (window && listenToStorageChanges) useEventListener(window, 'storage', e => setTimeout(() => read(e), 0))
+  if (window && listenToStorageChanges) useEventListener(window, 'storage', e => Promise.resolve().then(() => read(e)))
 
   if (storage) {
     watchWithFilter(

@@ -1,6 +1,6 @@
 import { nextTick } from '@solidjs-use/solid-to-vue'
 import { createSignal } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import { watchWithFilter } from '../watchWithFilter'
 import type { Accessor } from 'solid-js'
 import type { MapOldSources, MapSources, MaybeAccessor } from '../utils'
@@ -43,7 +43,7 @@ export function watchAtMost(source: any, cb: any, options: WatchAtMostOptions): 
     source,
     (...args) => {
       setCurrent(current => current + 1)
-      if (current() >= unAccessor(count)) nextTick(() => stop())
+      if (current() >= toValue(count)) nextTick(() => stop())
 
       cb(...args)
     },

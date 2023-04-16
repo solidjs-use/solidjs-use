@@ -1,6 +1,6 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { unAccessor, useTimeoutFn } from '@solidjs-use/shared'
+import { toValue, useTimeoutFn } from '@solidjs-use/shared'
 import { createMemo, createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { useSupported } from '../useSupported'
@@ -80,7 +80,7 @@ export function useClipboard(
     for (const event of events) useEventListener(event as WindowEventName, updateText)
   }
 
-  async function copy(value = unAccessor(source)) {
+  async function copy(value = toValue(source)) {
     if (isSupported() && value != null) {
       if (isClipboardApiSupported()) await navigator!.clipboard.writeText(value)
       else legacyCopy(value)

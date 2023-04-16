@@ -1,7 +1,7 @@
 import { toSignal, writableComputed } from 'solidjs-use/solid-to-vue'
 import nprogress from 'nprogress'
 import { createEffect } from 'solid-js'
-import { isClient, isNumber, tryOnCleanup } from 'solidjs-use'
+import { isClient, tryOnCleanup } from 'solidjs-use'
 import type { MaybeAccessor } from 'solidjs-use'
 import type { NProgressOptions } from 'nprogress'
 
@@ -20,7 +20,7 @@ export function useNProgress(
 
   const [isLoading, setLoading] = writableComputed({
     set: load => (load ? nprogress.start() : nprogress.done()),
-    get: () => isNumber(progress()) && progress()! < 1
+    get: () => typeof progress() === 'number' && progress()! < 1
   })
 
   if (options) nprogress.configure(options)
@@ -32,7 +32,7 @@ export function useNProgress(
   }
 
   createEffect(() => {
-    if (isNumber(progress()) && isClient) _setProgress.call(nprogress, progress()!)
+    if (typeof progress() === 'number' && isClient) _setProgress.call(nprogress, progress()!)
   })
 
   tryOnCleanup(nprogress.remove)

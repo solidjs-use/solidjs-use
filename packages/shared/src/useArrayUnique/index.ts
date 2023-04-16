@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -24,7 +24,7 @@ export function useArrayUnique<T>(
   compareFn?: (a: T, b: T, array: T[]) => boolean
 ): Accessor<T[]> {
   return createMemo<T[]>(() => {
-    const resolvedList = unAccessor(list).map(element => unAccessor(element))
+    const resolvedList = toValue(list).map(element => toValue(element))
     return compareFn ? uniqueElementsBy(resolvedList, compareFn) : uniq(resolvedList)
   })
 }

@@ -1,4 +1,4 @@
-import { unAccessor } from '@solidjs-use/shared'
+import { toValue } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { useRafFn } from '../useRafFn'
 import { defaultDocument } from '../_configurable'
@@ -21,7 +21,7 @@ export function useElementByPoint(options: UseElementByPointOptions) {
   const { x, y, document = defaultDocument } = options
 
   const controls = useRafFn(() => {
-    setElement(() => (document?.elementFromPoint(unAccessor(x), unAccessor(y)) ?? null) as HTMLElement | null)
+    setElement(() => (document?.elementFromPoint(toValue(x), toValue(y)) ?? null) as HTMLElement | null)
   })
 
   return {

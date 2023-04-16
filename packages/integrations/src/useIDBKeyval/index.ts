@@ -1,7 +1,7 @@
 import { toSignal } from 'solidjs-use/solid-to-vue'
 import { del, get, set, update } from 'idb-keyval'
 import { createEffect, createSignal, on } from 'solid-js'
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import type { Accessor, Setter } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -43,7 +43,7 @@ export function useIDBKeyval<T>(
 
   const [isFinished, setIsFinished] = createSignal(false)
   const [data, setData] = toSignal(initialValue) as [Accessor<T>, Setter<T | null | undefined>]
-  const rawInit: T = unAccessor(initialValue)
+  const rawInit: T = toValue(initialValue)
 
   async function read() {
     try {

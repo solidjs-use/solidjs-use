@@ -1,4 +1,4 @@
-import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, toValue } from '@solidjs-use/shared'
 import { createEffect, createMemo, createSignal, on } from 'solid-js'
 import { defaultWindow } from '../_configurable'
 import { useMutationObserver } from '../useMutationObserver'
@@ -29,11 +29,11 @@ export function useCssVar(
   const { window = defaultWindow, initialValue = '', observe = false } = options
   const variableSignal = createSignal(initialValue)
   const [variable, setVariable] = variableSignal
-  const elAccessor = createMemo(() => unAccessor(target) ?? window?.document?.documentElement)
+  const elAccessor = createMemo(() => toValue(target) ?? window?.document?.documentElement)
 
   function updateCssVar() {
-    const key = unAccessor(prop)
-    const el = unAccessor(elAccessor)
+    const key = toValue(prop)
+    const el = toValue(elAccessor)
     if (el && window) {
       const value = window.getComputedStyle(el).getPropertyValue(key)?.trim()
       setVariable(() => value || initialValue)
@@ -47,14 +47,14 @@ export function useCssVar(
     })
   }
 
-  createEffect(on([elAccessor, resolveAccessor(prop)], updateCssVar))
+  createEffect(on([elAccessor, toAccessor(prop)], updateCssVar))
 
   createEffect(
     on(
       variable,
       val => {
         if (elAccessor()?.style) {
-          elAccessor()?.style.setProperty(unAccessor(prop), val)
+          elAccessor()?.style.setProperty(toValue(prop), val)
         }
       },
       { defer: true }

@@ -1,5 +1,5 @@
 import { createMemo, createSignal } from 'solid-js'
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { Accessor } from 'solid-js'
 
@@ -58,7 +58,7 @@ export function useStepper<T extends Record<string, any>>(
   initialStep?: keyof T
 ): UseStepperReturn<Exclude<keyof T, symbol>, T, T[keyof T]>
 export function useStepper(steps: any, initialStep?: any): UseStepperReturn<any, any, any> {
-  const stepsRef = resolveAccessor<any[]>(steps)
+  const stepsRef = toAccessor<any[]>(steps)
   const stepNames = createMemo<any[]>(() => (Array.isArray(stepsRef()) ? stepsRef() : Object.keys(stepsRef())))
   const [index, setIndex] = createSignal(stepNames().indexOf(initialStep ?? stepNames()[0]))
   const current = createMemo(() => at(index()))

@@ -1,6 +1,6 @@
 import Sortable from 'sortablejs'
-import { defaultDocument, tryOnCleanup, tryOnMount, unAccessor } from 'solidjs-use'
-import { toSignal } from 'solidjs-use/solid-to-vue'
+import { defaultDocument, tryOnCleanup, tryOnMount, toValue } from 'solidjs-use'
+import { nextTick, toSignal } from 'solidjs-use/solid-to-vue'
 import type { ConfigurableDocument, MaybeAccessor, MaybeSignal } from 'solidjs-use'
 import type { Options } from 'sortablejs'
 
@@ -49,7 +49,7 @@ export function useSortable<T>(
   }
 
   const start = () => {
-    const target = typeof el === 'string' ? document?.querySelector(el) : unAccessor(el)
+    const target = typeof el === 'string' ? document?.querySelector(el) : toValue(el)
     if (!target) return
     sortable = new Sortable(target as HTMLElement, { ...defaultOptions, ...resetOptions })
   }
@@ -66,9 +66,16 @@ export function useSortable<T>(
 export function moveArrayElement<T>(list: MaybeSignal<T[]>, from: number, to: number): void {
   const [arr, setArr] = toSignal(list)
   if (to >= 0 && to < arr().length) {
+    let element: T
     setArr(([...array]) => {
-      array.splice(to, 0, array.splice(from, 1)[0])
+      element = array.splice(from, 1)[0]
       return array
+    })
+    nextTick(() => {
+      setArr(([...array]) => {
+        array.splice(to, 0, element)
+        return array
+      })
     })
   }
 }

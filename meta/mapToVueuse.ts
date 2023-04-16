@@ -13,7 +13,7 @@ export const VueUseToSolidJSUse: Record<string, string> = {
   tryOnMounted: 'tryOnMount',
   tryOnScopeDispose: '❌', // solidjs 中 scopeDispose 就是用的 onCleanup，没有分是否在 hooks 场景
   tryOnUnmounted: 'tryOnCleanup',
-  unrefElement: 'unAccessor',
+  unrefElement: 'toValue',
   useCurrentElement: '❌', // 此方法依赖了 `getCurrentInstance` 这个 Vue 方法，solidjs 并未提供类似方法
   useTemplateRefsList: '❌', // solidjs 中 ref 指定的元素删除后，并没提供删除的回调，无法实现此方法类似效果
   useVModel: '❌', // 使用到了 vue 自身的概念，emit 和直接通过 .value 修改值，在 solidjs 这不成立，还是需要 [value, setValue] 两者配合
@@ -30,8 +30,8 @@ export const VueUseToSolidJSUse: Record<string, string> = {
   refDefault: 'accessorDefault',
   refThrottled: 'accessorThrottled',
   refWithControl: '❌', // 使用了到 vue 的 customRef API，其能力 solidjs 无法做到
-  resolveRef: 'resolveAccessor',
-  resolveUnref: 'unAccessor',
+  resolveRef: 'toAccessor',
+  resolveUnref: 'toValue',
   syncRef: 'syncSignal',
   syncRefs: 'toSignals',
   toRefs: '❌', // 不太好解决 set 的问题

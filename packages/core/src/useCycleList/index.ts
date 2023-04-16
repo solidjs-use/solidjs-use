@@ -1,6 +1,6 @@
 import { toSignal } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createMemo, on } from 'solid-js'
-import { resolveAccessor, unAccessor } from '@solidjs-use/shared'
+import { toAccessor, toValue } from '@solidjs-use/shared'
 import type { MaybeAccessor } from '@solidjs-use/shared'
 import type { Accessor, Signal, Setter } from 'solid-js'
 
@@ -29,10 +29,10 @@ export interface UseCycleListOptions<T> {
  */
 export function useCycleList<T>(list: MaybeAccessor<T[]>, options?: UseCycleListOptions<T>): UseCycleListReturn<T> {
   const [state, setState] = toSignal(getInitialValue())
-  const listAccessor = resolveAccessor(list)
+  const listAccessor = toAccessor(list)
 
   const index = createMemo<number>(() => {
-    const targetList = unAccessor<T[]>(list)
+    const targetList = toValue<T[]>(list)
 
     let index = options?.getIndexOf ? options.getIndexOf(state(), targetList) : targetList.indexOf(state())
 
@@ -64,7 +64,7 @@ export function useCycleList<T>(list: MaybeAccessor<T[]>, options?: UseCycleList
   }
 
   function getInitialValue() {
-    return options?.initialValue ?? unAccessor<T[]>(list)[0]
+    return options?.initialValue ?? toValue<T[]>(list)[0]
   }
 
   createEffect(

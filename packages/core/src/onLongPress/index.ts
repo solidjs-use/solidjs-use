@@ -1,4 +1,4 @@
-import { resolveAccessor } from '@solidjs-use/shared'
+import { toAccessor } from '@solidjs-use/shared'
 import { useEventListener } from '../useEventListener'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
 
@@ -33,7 +33,7 @@ export function onLongPress(
   handler: (evt: PointerEvent) => void,
   options?: OnLongPressOptions
 ) {
-  const elementRef = resolveAccessor(target)
+  const elementRef = toAccessor(target)
 
   let timeout: ReturnType<typeof setTimeout> | undefined
 

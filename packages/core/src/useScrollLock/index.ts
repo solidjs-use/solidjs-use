@@ -1,4 +1,4 @@
-import { isIOS, resolveAccessor, tryOnCleanup, unAccessor } from '@solidjs-use/shared'
+import { isIOS, toAccessor, tryOnCleanup, toValue } from '@solidjs-use/shared'
 import { createEffect, createSignal, on } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import type { Signal } from 'solid-js'
@@ -51,7 +51,7 @@ export function useScrollLock(
   let initialOverflow: CSSStyleDeclaration['overflow']
 
   createEffect(
-    on(resolveAccessor(element), el => {
+    on(toAccessor(element), el => {
       if (el) {
         const ele = el as HTMLElement
         initialOverflow = ele.style.overflow
@@ -61,7 +61,7 @@ export function useScrollLock(
   )
 
   const lock = () => {
-    const ele = unAccessor(element) as HTMLElement
+    const ele = toValue(element) as HTMLElement
     if (!ele || isLocked()) return
     if (isIOS) {
       stopTouchMoveListener = useEventListener(
@@ -78,7 +78,7 @@ export function useScrollLock(
   }
 
   const unlock = () => {
-    const ele = unAccessor(element) as HTMLElement
+    const ele = toValue(element) as HTMLElement
     if (!ele || !isLocked()) return
     isIOS && stopTouchMoveListener?.()
     ele.style.overflow = initialOverflow

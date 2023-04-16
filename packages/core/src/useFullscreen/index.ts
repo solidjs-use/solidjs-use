@@ -1,76 +1,12 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { tryOnCleanup, unAccessor } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
+import { tryOnCleanup, toValue } from '@solidjs-use/shared'
+import { createMemo, createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { useSupported } from '../useSupported'
 import { defaultDocument } from '../_configurable'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
 import type { ConfigurableDocument } from '../_configurable'
-
-type FunctionMap = [
-  'requestFullscreen',
-  'exitFullscreen',
-  'fullscreenElement',
-  'fullscreenEnabled',
-  'fullscreenchange',
-  'fullscreenerror'
-]
-
-// from: https://github.com/sindresorhus/screenfull.js/blob/master/src/screenfull.js
-const functionsMap: FunctionMap[] = [
-  [
-    'requestFullscreen',
-    'exitFullscreen',
-    'fullscreenElement',
-    'fullscreenEnabled',
-    'fullscreenchange',
-    'fullscreenerror'
-  ],
-  // New WebKit
-  [
-    'webkitRequestFullscreen',
-    'webkitExitFullscreen',
-    'webkitFullscreenElement',
-    'webkitFullscreenEnabled',
-    'webkitfullscreenchange',
-    'webkitfullscreenerror'
-  ],
-  // Safari iOS WebKit
-  [
-    'webkitEnterFullscreen',
-    'webkitExitFullscreen',
-    'webkitFullscreenElement',
-    'webkitFullscreenEnabled',
-    'webkitfullscreenchange',
-    'webkitfullscreenerror'
-  ],
-  // Old WebKit
-  [
-    'webkitRequestFullScreen',
-    'webkitCancelFullScreen',
-    'webkitCurrentFullScreenElement',
-    'webkitCancelFullScreen',
-    'webkitfullscreenchange',
-    'webkitfullscreenerror'
-  ],
-  [
-    'mozRequestFullScreen',
-    'mozCancelFullScreen',
-    'mozFullScreenElement',
-    'mozFullScreenEnabled',
-    'mozfullscreenchange',
-    'mozfullscreenerror'
-  ],
-  [
-    'msRequestFullscreen',
-    'msExitFullscreen',
-    'msFullscreenElement',
-    'msFullscreenEnabled',
-    'MSFullscreenChange',
-    'MSFullscreenError'
-  ]
-] as any
 
 export interface UseFullscreenOptions extends ConfigurableDocument {
   /**
@@ -81,6 +17,14 @@ export interface UseFullscreenOptions extends ConfigurableDocument {
   autoExit?: boolean
 }
 
+const eventHandlers = [
+  'fullscreenchange',
+  'webkitfullscreenchange',
+  'webkitendfullscreen',
+  'mozfullscreenchange',
+  'MSFullscreenChange'
+] as any as Array<'fullscreenchange'>
+
 /**
  * Reactive Fullscreen API.
  *
@@ -88,30 +32,83 @@ export interface UseFullscreenOptions extends ConfigurableDocument {
  */
 export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscreenOptions = {}) {
   const { document = defaultDocument, autoExit = false } = options
-  const targetRef = target ?? document?.querySelector('html')
+
+  const targetAccessor = createMemo(() => toValue(target) ?? document?.querySelector('html'))
   const [isFullscreen, setIsFullscreen] = createSignal(false)
-  let map: FunctionMap = functionsMap[0]
 
-  const isSupported = useSupported(() => {
-    if (!document) {
-      return false
-    }
-    const target = unAccessor(targetRef)
-    for (const m of functionsMap) {
-      if (m[1] in document || (target && m[0] in target)) {
-        map = m
-        return true
-      }
-    }
-
-    return false
+  const requestMethod = createMemo<'requestFullscreen' | undefined>(() => {
+    return [
+      'requestFullscreen',
+      'webkitRequestFullscreen',
+      'webkitEnterFullscreen',
+      'webkitEnterFullScreen',
+      'webkitRequestFullScreen',
+      'mozRequestFullScreen',
+      'msRequestFullscreen'
+    ].find(m => (document && m in document) || (targetAccessor() && m in targetAccessor()!)) as any
   })
 
-  const [REQUEST, EXIT, ELEMENT, , EVENT] = map
+  const exitMethod = createMemo<'exitFullscreen' | undefined>(() => {
+    return [
+      'exitFullscreen',
+      'webkitExitFullscreen',
+      'webkitExitFullScreen',
+      'webkitCancelFullScreen',
+      'mozCancelFullScreen',
+      'msExitFullscreen'
+    ].find(m => (document && m in document) || (targetAccessor() && m in targetAccessor()!)) as any
+  })
+
+  const fullscreenEnabled = createMemo<'fullscreenEnabled' | undefined>(() => {
+    return [
+      'fullScreen',
+      'webkitIsFullScreen',
+      'webkitDisplayingFullscreen',
+      'mozFullScreen',
+      'msFullscreenElement'
+    ].find(m => (document && m in document) || (targetAccessor() && m in targetAccessor()!)) as any
+  })
+
+  const isSupported = useSupported(
+    () =>
+      targetAccessor() &&
+      document &&
+      requestMethod() !== undefined &&
+      exitMethod() !== undefined &&
+      fullscreenEnabled() !== undefined
+  )
+
+  const isElementFullScreen = (): boolean => {
+    const fullscreenEnabledValue = fullscreenEnabled()
+    if (fullscreenEnabledValue) {
+      if (document?.[fullscreenEnabledValue] != null) {
+        return document[fullscreenEnabledValue]
+      }
+
+      const target = targetAccessor()
+      // @ts-expect-error - Fallback for WebKit and iOS Safari browsers
+      if (target?.[fullscreenEnabledValue] != null) {
+        // @ts-expect-error - Fallback for WebKit and iOS Safari browsers
+        return Boolean(target[fullscreenEnabledValue])
+      }
+    }
+    return false
+  }
 
   async function exit() {
     if (!isSupported()) return
-    if (document?.[ELEMENT]) await document[EXIT]()
+    const exitMethodValue = exitMethod()
+    if (exitMethodValue) {
+      if (document?.[exitMethodValue] != null) {
+        await document[exitMethodValue]()
+      } else {
+        const target = targetAccessor()
+        // @ts-expect-error - Fallback for Safari iOS
+        if (target?.[exitMethodValue] != null)
+          // @ts-expect-error - Fallback for Safari iOS
+          await target[exitMethodValue]()
+      }
+    }
 
     setIsFullscreen(false)
   }
@@ -119,30 +116,26 @@ export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscr
   async function enter() {
     if (!isSupported()) return
 
-    await exit()
+    if (isElementFullScreen()) await exit()
 
-    const target = unAccessor(targetRef)
-    if (target) {
-      await target[REQUEST]()
+    const target = targetAccessor()
+    const requestMethodValue = requestMethod()
+    if (requestMethodValue && target?.[requestMethodValue] != null) {
+      await target[requestMethodValue]()
       setIsFullscreen(true)
     }
   }
 
   async function toggle() {
-    if (isFullscreen()) await exit()
-    else await enter()
+    await (isFullscreen() ? exit() : enter())
   }
 
-  if (document) {
-    useEventListener(
-      document,
-      EVENT,
-      () => {
-        setIsFullscreen(!!document?.[ELEMENT])
-      },
-      false
-    )
+  const handlerCallback = () => {
+    setIsFullscreen(isElementFullScreen())
   }
+
+  useEventListener(document, eventHandlers, handlerCallback, false)
+  useEventListener(() => toValue(targetAccessor), eventHandlers, handlerCallback, false)
 
   if (autoExit) tryOnCleanup(exit)
 

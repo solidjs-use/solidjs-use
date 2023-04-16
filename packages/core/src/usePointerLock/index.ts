@@ -1,5 +1,5 @@
 import { createSignal, getOwner } from 'solid-js'
-import { unAccessor, until } from '@solidjs-use/shared'
+import { toValue, until } from '@solidjs-use/shared'
 import { useEventListener } from '../useEventListener'
 import { useSupported } from '../useSupported'
 import { defaultDocument } from '../_configurable'
@@ -66,7 +66,7 @@ export function usePointerLock(target?: MaybeElementAccessor<MaybeHTMLElement>, 
 
     const triggerElementValue = e instanceof Event ? <HTMLElement>e.currentTarget : null
     setTriggerElement(triggerElementValue)
-    targetElement = e instanceof Event ? unAccessor(target) ?? triggerElementValue : unAccessor(e)
+    targetElement = e instanceof Event ? toValue(target) ?? triggerElementValue : toValue(e)
     if (!targetElement) throw new Error('Target element undefined.')
     targetElement.requestPointerLock(options ?? pointerLockOptions)
 

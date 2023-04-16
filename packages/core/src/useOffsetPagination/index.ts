@@ -1,4 +1,4 @@
-import { isNumber, noop, syncSignal, unAccessor } from '@solidjs-use/shared'
+import { noop, syncSignal, toValue } from '@solidjs-use/shared'
 import { isAccessor, reactive } from '@solidjs-use/shared/solid-to-vue'
 import { createEffect, createMemo, on } from 'solid-js'
 import { useClamp } from '../../../math/src/useClamp'
@@ -85,15 +85,15 @@ export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOff
   } = options
 
   const [currentPageSize, setCurrentPageSize] = useClamp(
-    setPageSize === undefined || isNumber(pageSize) ? (pageSize as number) : [pageSize, setPageSize],
+    setPageSize === undefined || typeof pageSize === 'number' ? (pageSize as number) : [pageSize, setPageSize],
     1,
     Infinity
   )
 
-  const pageCount = createMemo(() => Math.max(1, Math.ceil(unAccessor(total) / unAccessor(currentPageSize))))
+  const pageCount = createMemo(() => Math.max(1, Math.ceil(toValue(total) / toValue(currentPageSize))))
 
   const [currentPage, setCurrentPage] = useClamp(
-    setPage === undefined || isNumber(page) ? (page as number) : [page, setPage],
+    setPage === undefined || typeof page === 'number' ? (page as number) : [page, setPage],
     1,
     pageCount
   )

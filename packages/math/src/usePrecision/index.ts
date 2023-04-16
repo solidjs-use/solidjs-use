@@ -1,4 +1,4 @@
-import { unAccessor } from 'solidjs-use'
+import { toValue } from 'solidjs-use'
 import { createMemo, type Accessor } from 'solid-js'
 import type { MaybeAccessor } from 'solidjs-use'
 
@@ -22,9 +22,9 @@ export function usePrecision(
   options?: MaybeAccessor<UsePrecisionOptions>
 ): Accessor<number> {
   return createMemo<number>(() => {
-    const _value = unAccessor(value)
-    const _digits = unAccessor(digits)
+    const _value = toValue(value)
+    const _digits = toValue(digits)
     const power = 10 ** _digits
-    return Math[unAccessor(options)?.math ?? 'round'](_value * power) / power
+    return Math[toValue(options)?.math ?? 'round'](_value * power) / power
   })
 }

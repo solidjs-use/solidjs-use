@@ -1,5 +1,5 @@
 import { createMemo } from 'solid-js'
-import { unAccessor } from '../unAccessor'
+import { toValue } from '../toValue'
 import type { Accessor } from 'solid-js'
 import type { MaybeAccessor } from '../utils'
 
@@ -50,12 +50,12 @@ export function useArrayReduce<T>(
   reducer: (...p: any[]) => any,
   ...args: any[]
 ): Accessor<T> {
-  const reduceCallback = (sum: any, value: any, index: number) => reducer(unAccessor(sum), unAccessor(value), index)
+  const reduceCallback = (sum: any, value: any, index: number) => reducer(toValue(sum), toValue(value), index)
 
   return createMemo(() => {
-    const resolved = unAccessor(list)
+    const resolved = toValue(list)
     // Depending on the behavior of reduce, undefined is also a valid initialization value,
     // and this code will distinguish the behavior between them.
-    return args.length ? resolved.reduce(reduceCallback, unAccessor(args[0])) : resolved.reduce(reduceCallback)
+    return args.length ? resolved.reduce(reduceCallback, toValue(args[0])) : resolved.reduce(reduceCallback)
   })
 }
