@@ -3,7 +3,7 @@ import { createMemo, createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
 import type { MaybeElementAccessor } from '@solidjs-use/shared'
-import type { MouseSourceType } from '../useMouse'
+import type { UseMouseSourceType } from '../useMouse'
 import type { ConfigurableWindow } from '../_configurable'
 
 export interface MousePressedOptions extends ConfigurableWindow {
@@ -43,7 +43,7 @@ export function useMousePressed(options: MousePressedOptions = {}) {
   const { touch = true, drag = true, initialValue = false, window = defaultWindow } = options
 
   const [pressed, setPressed] = createSignal(initialValue)
-  const [sourceType, setSourceType] = createSignal<MouseSourceType>(null)
+  const [sourceType, setSourceType] = createSignal<UseMouseSourceType>(null)
 
   if (!window) {
     return {
@@ -52,7 +52,7 @@ export function useMousePressed(options: MousePressedOptions = {}) {
     }
   }
 
-  const onPressed = (srcType: MouseSourceType) => () => {
+  const onPressed = (srcType: UseMouseSourceType) => () => {
     setPressed(true)
     setSourceType(srcType)
   }

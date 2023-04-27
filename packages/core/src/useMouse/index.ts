@@ -1,9 +1,13 @@
 import { createSignal } from 'solid-js'
 import { useEventListener } from '../useEventListener'
 import { defaultWindow } from '../_configurable'
-import type { ConfigurableEventFilter } from '@solidjs-use/shared'
+import type { ConfigurableEventFilter, MaybeAccessor } from '@solidjs-use/shared'
 import type { Position } from '../types'
 import type { ConfigurableWindow } from '../_configurable'
+
+export type UseMouseCoordType = 'page' | 'client' | 'screen' | 'movement'
+export type UseMouseSourceType = 'mouse' | 'touch' | null
+export type UseMouseEventExtractor = (event: MouseEvent | Touch) => [x: number, y: number] | null | undefined
 
 export interface UseMouseOptions extends ConfigurableWindow, ConfigurableEventFilter {
   /**
@@ -11,7 +15,14 @@ export interface UseMouseOptions extends ConfigurableWindow, ConfigurableEventFi
    *
    * @default 'page'
    */
-  type?: 'page' | 'client' | 'screen' | 'movement'
+  type?: UseMouseCoordType | UseMouseEventExtractor
+
+  /**
+   * Listen events on `target` element
+   *
+   * @default 'Window'
+   */
+  target?: MaybeAccessor<Window | EventTarget | null | undefined>
 
   /**
    * Listen to `touchmove` events
@@ -33,7 +44,12 @@ export interface UseMouseOptions extends ConfigurableWindow, ConfigurableEventFi
   initialValue?: Position
 }
 
-export type MouseSourceType = 'mouse' | 'touch' | null
+const BuiltinExtractors: Record<UseMouseCoordType, UseMouseEventExtractor> = {
+  page: event => [event.pageX, event.pageY],
+  client: event => [event.clientX, event.clientY],
+  screen: event => [event.screenX, event.screenY],
+  movement: event => (event instanceof Touch ? null : [event.movementX, event.movementY])
+} as const
 
 /**
  * Reactive mouse position.
@@ -47,65 +63,58 @@ export function useMouse(options: UseMouseOptions = {}) {
     resetOnTouchEnds = false,
     initialValue = { x: 0, y: 0 },
     window = defaultWindow,
+    target = window,
     eventFilter
   } = options
 
   const [x, setX] = createSignal(initialValue.x)
   const [y, setY] = createSignal(initialValue.y)
-  const [sourceType, setSourceType] = createSignal<MouseSourceType>(null)
+  const [sourceType, setSourceType] = createSignal<UseMouseSourceType>(null)
+  const extractor = typeof type === 'function' ? type : BuiltinExtractors[type]
 
   const mouseHandler = (event: MouseEvent) => {
-    if (type === 'page') {
-      setX(event.pageX)
-      setY(event.pageY)
-    } else if (type === 'client') {
-      setX(event.clientX)
-      setY(event.clientY)
-    } else if (type === 'screen') {
-      setX(event.screenX)
-      setY(event.screenY)
-    } else if (type === 'movement') {
-      setX(event.movementX)
-      setY(event.movementY)
+    const result = extractor(event)
+
+    if (result) {
+      const [x, y] = result
+      setX(x)
+      setY(y)
+      setSourceType('mouse')
     }
-    setSourceType('mouse')
   }
+
+  const touchHandler = (event: TouchEvent) => {
+    if (event.touches.length > 0) {
+      const result = extractor(event.touches[0])
+      if (result) {
+        const [x, y] = result
+        setX(x)
+        setY(y)
+        setSourceType('touch')
+      }
+    }
+  }
+
   const reset = () => {
     setX(initialValue.x)
     setY(initialValue.y)
   }
-  const touchHandler = (event: TouchEvent) => {
-    if (event.touches.length > 0) {
-      const touch = event.touches[0]
-      if (type === 'page') {
-        setX(touch.pageX)
-        setY(touch.pageY)
-      } else if (type === 'client') {
-        setX(touch.clientX)
-        setY(touch.clientY)
-      } else if (type === 'screen') {
-        setX(touch.screenX)
-        setY(touch.screenY)
-      }
-      setSourceType('touch')
-    }
-  }
 
-  const mouseHandlerWrapper = (event: MouseEvent) => {
-    return eventFilter === undefined ? mouseHandler(event) : eventFilter(() => mouseHandler(event), {} as any)
-  }
+  const mouseHandlerWrapper = eventFilter
+    ? (event: MouseEvent) => eventFilter(() => mouseHandler(event), {} as any)
+    : (event: MouseEvent) => mouseHandler(event)
 
-  const touchHandlerWrapper = (event: TouchEvent) => {
-    return eventFilter === undefined ? touchHandler(event) : eventFilter(() => touchHandler(event), {} as any)
-  }
+  const touchHandlerWrapper = eventFilter
+    ? (event: TouchEvent) => eventFilter(() => touchHandler(event), {} as any)
+    : (event: TouchEvent) => touchHandler(event)
 
-  if (window) {
-    useEventListener(window, 'mousemove', mouseHandlerWrapper, { passive: true })
-    useEventListener(window, 'dragover', mouseHandlerWrapper, { passive: true })
+  if (target) {
+    useEventListener(target, 'mousemove', mouseHandlerWrapper, { passive: true })
+    useEventListener(target, 'dragover', mouseHandlerWrapper, { passive: true })
     if (touch && type !== 'movement') {
-      useEventListener(window, 'touchstart', touchHandlerWrapper, { passive: true })
-      useEventListener(window, 'touchmove', touchHandlerWrapper, { passive: true })
-      if (resetOnTouchEnds) useEventListener(window, 'touchend', reset, { passive: true })
+      useEventListener(target, 'touchstart', touchHandlerWrapper, { passive: true })
+      useEventListener(target, 'touchmove', touchHandlerWrapper, { passive: true })
+      if (resetOnTouchEnds) useEventListener(target, 'touchend', reset, { passive: true })
     }
   }
 

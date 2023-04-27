@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
 import { usePreferredDark } from '../usePreferredDark'
 import { useColorMode } from './index'
@@ -24,7 +24,7 @@ describe('useColorMode', () => {
 
   it('should translate auto mode when prefer dark', () => {
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode()
+      const { mode, setMode } = useColorMode()
       await nextTick()
       setMode('auto')
 
@@ -37,7 +37,7 @@ describe('useColorMode', () => {
 
   it('should translate custom mode', () => {
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode<'custom' | 'unknown'>({ modes: { custom: 'custom' } })
+      const { mode, setMode } = useColorMode<'custom' | 'unknown'>({ modes: { custom: 'custom' } })
       await nextTick()
       setMode('custom')
 
@@ -57,7 +57,7 @@ describe('useColorMode', () => {
 
   it('should not persist mode into localStorage', () => {
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode({ storageKey: null })
+      const { mode, setMode } = useColorMode({ storageKey: null })
       await nextTick()
       setMode('auto')
 
@@ -70,7 +70,7 @@ describe('useColorMode', () => {
 
   it('should set html attribute to be mode', () => {
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode({ attribute: 'data-color-mode' })
+      const { mode, setMode } = useColorMode({ attribute: 'data-color-mode' })
       await nextTick()
       setMode('auto')
 
@@ -83,7 +83,7 @@ describe('useColorMode', () => {
 
   it('should not affect html when selector invalid', () => {
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode({ selector: 'unknown' })
+      const { mode, setMode } = useColorMode({ selector: 'unknown' })
       await nextTick()
       setMode('auto')
 
@@ -102,7 +102,7 @@ describe('useColorMode', () => {
     }
 
     return runAsyncHook(async () => {
-      const [mode, setMode] = useColorMode({ onChanged })
+      const { mode, setMode } = useColorMode({ onChanged })
       await nextTick()
       setMode('auto')
       expect(mode()).to.be.eq(systemCurrentTheme)
@@ -114,13 +114,22 @@ describe('useColorMode', () => {
 
   it('should only change html class when preferred dark changed', () => {
     return runAsyncHook(async () => {
-      const [mode] = useColorMode({ emitAuto: true })
+      const { mode } = useColorMode({ emitAuto: true })
       usePreferredDark()
 
       await nextTick()
       expect(mode()).to.be.eq('auto')
       expect(localStorage.getItem(storageKey)).to.be.eq('auto')
       expect(htmlEl?.className).to.be.includes(systemCurrentTheme)
+    })
+  })
+
+  it('should be able access the store & system preference', () => {
+    runHook(() => {
+      const { store, system, state } = useColorMode()
+      expect(store()).to.be.eq('auto')
+      expect(system()).to.be.eq('light')
+      expect(state()).to.be.eq('light')
     })
   })
 })
