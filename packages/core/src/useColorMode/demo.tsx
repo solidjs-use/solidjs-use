@@ -6,16 +6,18 @@ import { useColorMode, useCycleList } from 'solidjs-use'
 import type { Signal } from 'solid-js'
 
 const Demo = () => {
-  const [mode, setMode] = useColorMode({
+  const { mode, setMode } = useColorMode({
     emitAuto: true,
-    initialValue: 'light'
+    initialValue: document.body.className.replace('hope-ui-', '')
   })
+
   const { state, next } = useCycleList(['dark', 'light', 'auto'], {
     initialValue: [mode, setMode] as Signal<any>
   })
 
   createEffect(() => {
-    document.body.className = `hope-ui-${mode() === 'auto' ? 'dark' : mode()}`
+    document.documentElement.className = mode()
+    document.body.className = `hope-ui-${mode() === 'auto' ? 'light' : mode()}`
   })
 
   return (

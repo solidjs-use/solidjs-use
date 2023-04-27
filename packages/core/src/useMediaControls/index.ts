@@ -296,17 +296,17 @@ export function useMediaControls(
     el.querySelectorAll('source').forEach(e => e.removeEventListener('error', sourceErrorEvent.trigger))
   })
 
+  const targetAccessor = toAccessor(target)
   /**
-   * Watch volume and change player volume when volume prop changes
+   * Apply composable state to the element, also when element is changed
    */
   createEffect(
     on(
-      volume,
-      vol => {
-        const el = toValue(target)
+      [targetAccessor, volume],
+      ([el, volumeValue]) => {
         if (!el) return
 
-        el.volume = vol
+        el.volume = volumeValue
       },
       { defer: true }
     )
@@ -314,12 +314,11 @@ export function useMediaControls(
 
   createEffect(
     on(
-      muted,
-      mute => {
-        const el = toValue(target)
+      [targetAccessor, muted],
+      ([el, mutedValue]) => {
         if (!el) return
 
-        el.muted = mute
+        el.muted = mutedValue
       },
       { defer: true }
     )
@@ -327,12 +326,11 @@ export function useMediaControls(
 
   createEffect(
     on(
-      rate,
-      rate => {
-        const el = toValue(target)
+      [targetAccessor, rate],
+      ([el, rateValue]) => {
         if (!el) return
 
-        el.playbackRate = rate
+        el.playbackRate = rateValue
       },
       { defer: true }
     )

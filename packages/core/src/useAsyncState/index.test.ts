@@ -1,3 +1,4 @@
+import { runAsyncHook } from '@dream2023/cypress-solidjs'
 import { promiseTimeout } from '@solidjs-use/shared'
 import { useAsyncState } from '../useAsyncState'
 
@@ -23,6 +24,15 @@ describe('useAsyncState', () => {
     expect(state()).to.be.eq(0)
     await execute(0, 2)
     expect(state()).to.be.eq(2)
+  })
+
+  it('should work with await', () => {
+    return runAsyncHook(async () => {
+      const asyncState = useAsyncState(p1, 0, { immediate: true })
+      expect(asyncState.isLoading()).to.be.true
+      await asyncState
+      expect(asyncState.isLoading()).to.be.false
+    })
   })
 
   it('should work with isLoading', () => {

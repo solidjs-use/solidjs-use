@@ -21,7 +21,7 @@ export interface SSRHandlersMap {
   getDefaultStorage: () => StorageLike | undefined
   getDefaultStorageAsync: () => StorageLikeAsync | undefined
   updateHTMLAttrs: (
-    selector: string | MaybeAccessor<HTMLElement | null | undefined>,
+    selector: string | MaybeAccessor<HTMLElement | SVGElement | null | undefined>,
     attribute: string,
     value: string
   ) => void

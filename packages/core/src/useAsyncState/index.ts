@@ -1,14 +1,17 @@
-import { noop, promiseTimeout } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
+import { noop, promiseTimeout, until } from '@solidjs-use/shared'
+import { createSignal, getOwner } from 'solid-js'
 import type { Accessor } from 'solid-js'
 
-export interface UseAsyncStateReturn<Data, Params extends any[]> {
+export interface UseAsyncStateReturnBase<Data, Params extends any[]> {
   state: Accessor<Data>
   isReady: Accessor<boolean>
   isLoading: Accessor<boolean>
   error: Accessor<unknown>
   execute: (delay?: number, ...args: Params) => Promise<Data>
 }
+
+export type UseAsyncStateReturn<Data, Params extends any[]> = UseAsyncStateReturnBase<Data, Params> &
+  PromiseLike<UseAsyncStateReturnBase<Data, Params>>
 
 export interface UseAsyncStateOptions<T = any> {
   /**
@@ -111,11 +114,28 @@ export function useAsyncState<Data, Params extends any[] = []>(
 
   if (immediate) execute(delay)
 
-  return {
+  const shell: UseAsyncStateReturnBase<Data, Params> = {
     state,
     isReady,
     isLoading,
     error,
     execute
+  }
+
+  const owner = getOwner()
+  function waitUntilIsLoaded() {
+    return new Promise<UseAsyncStateReturnBase<Data, Params>>((resolve, reject) => {
+      until(isLoading, owner)
+        .toBe(false)
+        .then(() => resolve(shell))
+        .catch(reject)
+    })
+  }
+
+  return {
+    ...shell,
+    then(onFulfilled, onRejected) {
+      return waitUntilIsLoaded().then(onFulfilled, onRejected)
+    }
   }
 }

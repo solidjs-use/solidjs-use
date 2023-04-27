@@ -1,26 +1,25 @@
 import { toValue, tryOnCleanup } from '@solidjs-use/shared'
-import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
+import { toSignal, writableComputed } from '@solidjs-use/shared/solid-to-vue'
+import { createEffect, createMemo, on } from 'solid-js'
 import { getSSRHandler } from '../ssr-handlers'
 import { usePreferredDark } from '../usePreferredDark'
 import { useStorage } from '../useStorage'
 import { defaultWindow } from '../_configurable'
-import type { ComputedSetter } from '@solidjs-use/shared/solid-to-vue'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import type { MaybeAccessor, MaybeElementAccessor } from '@solidjs-use/shared'
 import type { UseStorageOptions } from '../useStorage'
-import type { Accessor, Signal } from 'solid-js'
+import type { Signal } from 'solid-js'
 import type { StorageLike } from '../ssr-handlers'
 
-export type BasicColorSchema = 'light' | 'dark' | 'auto'
+export type BasicColorMode = 'light' | 'dark'
+export type BasicColorSchema = BasicColorMode | 'auto'
 
-export interface UseColorModeOptions<T extends string = BasicColorSchema>
-  extends UseStorageOptions<T | BasicColorSchema> {
+export interface UseColorModeOptions<T extends string = BasicColorMode> extends UseStorageOptions<T | BasicColorMode> {
   /**
    * CSS Selector for the target element applying to
    *
    * @default 'html'
    */
-  selector?: string | MaybeAccessor<HTMLElement | null | undefined>
+  selector?: string | MaybeElementAccessor
 
   /**
    * HTML attribute applying the target element
@@ -34,7 +33,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
    *
    * @default 'auto'
    */
-  initialValue?: T | BasicColorSchema
+  initialValue?: MaybeAccessor<T | BasicColorSchema>
 
   /**
    * Prefix when adding value to the attribute
@@ -47,7 +46,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
    *
    * @default undefined
    */
-  onChanged?: (mode: T | BasicColorSchema, defaultHandler: (mode: T | BasicColorSchema) => void) => void
+  onChanged?: (mode: T | BasicColorMode, defaultHandler: (mode: T | BasicColorMode) => void) => void
 
   /**
    * Custom storage Signal
@@ -79,6 +78,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
    * This is useful when the fact that `auto` mode was selected needs to be known.
    *
    * @default undefined
+   * @deprecated use `store()` when `auto` mode needs to be known
    */
   emitAuto?: boolean
 
@@ -96,9 +96,7 @@ export interface UseColorModeOptions<T extends string = BasicColorSchema>
  *
  * @see https://solidjs-use.github.io/solidjs-use/core/useColorMode
  */
-export function useColorMode<T extends string = BasicColorSchema>(
-  options: UseColorModeOptions<T> = {}
-): [Accessor<T | BasicColorSchema>, ComputedSetter<T | BasicColorSchema>] {
+export function useColorMode<T extends string = BasicColorMode>(options: UseColorModeOptions<T> = {}) {
   const {
     selector = 'html',
     attribute = 'class',
@@ -124,18 +122,14 @@ export function useColorMode<T extends string = BasicColorSchema>(
 
   const [store, setStore] = (storageSignal ??
     (storageKey == null
-      ? createSignal(initialValue)
+      ? toSignal(initialValue)
       : useStorage(storageKey, initialValue, storage, { window, listenToStorageChanges }))) as Signal<
     T | BasicColorSchema
   >
 
-  const [state, setState] = writableComputed<T | BasicColorSchema>({
-    get() {
-      return store() === 'auto' && !emitAuto ? system() : store()
-    },
-    set(v: any) {
-      setStore(v)
-    }
+  const state = createMemo(() => {
+    const value = store()
+    return value === 'auto' ? system() : value
   })
 
   const updateHTMLAttrs = getSSRHandler('updateHTMLAttrs', (selector, attribute, value) => {
@@ -175,22 +169,27 @@ export function useColorMode<T extends string = BasicColorSchema>(
     }
   })
 
-  function defaultOnChanged(mode: T | BasicColorSchema) {
-    const resolvedMode = mode === 'auto' ? system() : mode
-    updateHTMLAttrs(selector, attribute, modes[resolvedMode] ?? resolvedMode)
+  function defaultOnChanged(mode: T | BasicColorMode) {
+    updateHTMLAttrs(selector, attribute, modes[mode] ?? mode)
   }
 
-  function onChanged(mode: T | BasicColorSchema) {
+  function onChanged(mode: T | BasicColorMode) {
     if (options.onChanged) options.onChanged(mode, defaultOnChanged)
     else defaultOnChanged(mode)
   }
 
   createEffect(on(state, onChanged))
 
-  if (emitAuto) {
-    createEffect(on(system, () => onChanged(state())))
-  }
   tryOnCleanup(() => onChanged(state()))
 
-  return [state, setState]
+  const [mode, setMode] = writableComputed({
+    get() {
+      return emitAuto ? store() : state()
+    },
+    set(v) {
+      setStore(v as BasicColorMode)
+    }
+  })
+
+  return { mode, setMode, store, setStore, system, state }
 }

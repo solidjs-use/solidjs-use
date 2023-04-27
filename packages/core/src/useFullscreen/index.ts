@@ -69,6 +69,13 @@ export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscr
     ].find(m => (document && m in document) || (targetAccessor() && m in targetAccessor()!)) as any
   })
 
+  const fullscreenElementMethod = [
+    'fullscreenElement',
+    'webkitFullscreenElement',
+    'mozFullScreenElement',
+    'msFullscreenElement'
+  ].find(m => document && m in document) as 'fullscreenElement' | undefined
+
   const isSupported = useSupported(
     () =>
       targetAccessor() &&
@@ -77,6 +84,11 @@ export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscr
       exitMethod() !== undefined &&
       fullscreenEnabled() !== undefined
   )
+
+  const isCurrentElementFullScreen = (): boolean => {
+    if (fullscreenElementMethod) return document?.[fullscreenElementMethod] === targetAccessor()
+    return false
+  }
 
   const isElementFullScreen = (): boolean => {
     const fullscreenEnabledValue = fullscreenEnabled()
@@ -131,7 +143,9 @@ export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscr
   }
 
   const handlerCallback = () => {
-    setIsFullscreen(isElementFullScreen())
+    const isElementFullScreenValue = isElementFullScreen()
+    if (!isElementFullScreenValue || (isElementFullScreenValue && isCurrentElementFullScreen()))
+      setIsFullscreen(isElementFullScreenValue)
   }
 
   useEventListener(document, eventHandlers, handlerCallback, false)

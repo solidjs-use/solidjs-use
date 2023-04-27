@@ -32,7 +32,7 @@ export function useCycleList<T>(list: MaybeAccessor<T[]>, options?: UseCycleList
   const listAccessor = toAccessor(list)
 
   const index = createMemo<number>(() => {
-    const targetList = toValue<T[]>(list)
+    const targetList = listAccessor()
 
     let index = options?.getIndexOf ? options.getIndexOf(state(), targetList) : targetList.indexOf(state())
 
