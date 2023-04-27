@@ -1,0 +1,1 @@
+import{r as a,A as s,B as m,q as c}from"./index-4206062e.js";import{t as u}from"./index-2995e46f.js";import{t as f}from"./index-0580bd81.js";import{u as i}from"./index-e3e12aab.js";function P(t=i()){const[n,o]=a(),e=()=>{const r=c(t);r&&o(r.parentElement)};return f(e),s(m(u(t),e)),n}export{P as u};

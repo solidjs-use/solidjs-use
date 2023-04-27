@@ -1,0 +1,1 @@
+import{r as f,E as l,A as i,B as u,q as d}from"./index-4206062e.js";function S(e){return JSON.parse(JSON.stringify(e))}function p(e,a={}){const[t,s]=f({}),{manual:o,clone:c=S,defer:r=!1}=a;function n(){s(c(d(e)))}return!o&&l(e)?i(u(e,n,{defer:r})):n(),{cloned:t,setCloned:s,sync:n}}export{S as c,p as u};

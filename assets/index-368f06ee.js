@@ -1,1 +1,0 @@
-import{N as c,E as g,q as n}from"./index-66786029.js";function h(e=!1,o={}){const{truthyValue:a=!0,falsyValue:l=!1}=o,[t,r]=c(e);function s(f){if(arguments.length)return r(f),t();const u=n(a);return r(t()===u?n(l):u),t()}return g(e)?s:[t,s]}export{h as u};
