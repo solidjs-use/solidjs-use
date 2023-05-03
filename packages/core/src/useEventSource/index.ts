@@ -10,7 +10,7 @@ export type UseEventSourceOptions = EventSourceInit
  * @see https://solidjs-use.github.io/solidjs-use/core/useEventSource
  * @see https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource EventSource
  */
-export function useEventSource(url: string, events: string[] = [], options: UseEventSourceOptions = {}) {
+export function useEventSource(url: string | URL, events: string[] = [], options: UseEventSourceOptions = {}) {
   const [event, setEvent] = createSignal<string | null>(null)
   const [data, setData] = createSignal<string | null>(null)
   const [status, setState] = createSignal<'OPEN' | 'CONNECTING' | 'CLOSED'>('CONNECTING')

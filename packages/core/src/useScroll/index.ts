@@ -153,18 +153,17 @@ export function useScroll(
   }
   const onScrollEndDebounced = useDebounceFn(onScrollEnd, throttle + idle)
 
-  const onScrollHandler = (e: Event) => {
-    const eventTarget = (e.target === document ? (e.target as Document).documentElement : e.target) as HTMLElement
+  const setArrivedState = (target: HTMLElement | SVGElement | Window | Document | null | undefined) => {
+    const el = (target === document ? (target as Document).documentElement : target) as HTMLElement
 
-    const { display, flexDirection } = getComputedStyle(eventTarget)
+    const { display, flexDirection } = getComputedStyle(el)
 
-    const scrollLeft = eventTarget.scrollLeft
+    const scrollLeft = el.scrollLeft
     directions.left = scrollLeft < internalX()
     directions.right = scrollLeft > internalX()
     const left = Math.abs(scrollLeft) <= 0 + (offset.left ?? 0)
     const right =
-      Math.abs(scrollLeft) + eventTarget.clientWidth >=
-      eventTarget.scrollWidth - (offset.right ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+      Math.abs(scrollLeft) + el.clientWidth >= el.scrollWidth - (offset.right ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
 
     if (display === 'flex' && flexDirection === 'row-reverse') {
       arrivedState.left = right
@@ -175,17 +174,16 @@ export function useScroll(
     }
     setInternalX(scrollLeft)
 
-    let scrollTop = eventTarget.scrollTop
+    let scrollTop = el.scrollTop
 
     // patch for mobile compatible
-    if (e.target === document && !scrollTop) scrollTop = document.body.scrollTop
+    if (target === document && !scrollTop) scrollTop = document.body.scrollTop
 
     directions.top = scrollTop < internalY()
     directions.bottom = scrollTop > internalY()
     const top = Math.abs(scrollTop) <= 0 + (offset.top ?? 0)
     const bottom =
-      Math.abs(scrollTop) + eventTarget.clientHeight >=
-      eventTarget.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+      Math.abs(scrollTop) + el.clientHeight >= el.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
 
     /**
      * reverse columns and rows behave exactly the other way around,
@@ -200,6 +198,12 @@ export function useScroll(
     }
 
     setInternalY(scrollTop)
+  }
+
+  const onScrollHandler = (e: Event) => {
+    const eventTarget = (e.target === document ? (e.target as Document).documentElement : e.target) as HTMLElement
+
+    setArrivedState(eventTarget)
     setIsScrolling(true)
     onScrollEndDebounced(e)
     onScroll(e)
@@ -221,7 +225,12 @@ export function useScroll(
     setY,
     isScrolling,
     arrivedState,
-    directions
+    directions,
+    measure() {
+      const _element = toValue(element)
+
+      if (_element) setArrivedState(_element)
+    }
   }
 }
 

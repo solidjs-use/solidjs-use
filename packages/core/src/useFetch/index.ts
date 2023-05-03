@@ -253,19 +253,16 @@ function combineCallbacks<T = any>(
     // use last callback
     return async (ctx: T) => {
       const callback = callbacks[callbacks.length - 1]
-      if (callback !== undefined) await callback(ctx)
+      if (callback) return { ...ctx, ...(await callback(ctx)) }
       return ctx
     }
   }
   // chaining and combine result
   return async (ctx: T) => {
-    await callbacks.reduce(
-      (prevCallback, callback) =>
-        prevCallback.then(async () => {
-          if (callback) ctx = { ...ctx, ...(await callback(ctx)) }
-        }),
-      Promise.resolve()
-    )
+    for (const callback of callbacks) {
+      // eslint-disable-next-line no-await-in-loop
+      if (callback) ctx = { ...ctx, ...(await callback(ctx)) }
+    }
     return ctx
   }
 }

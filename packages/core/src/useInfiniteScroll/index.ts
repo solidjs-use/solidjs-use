@@ -51,6 +51,8 @@ export function useInfiniteScroll(
   const isLoading = createMemo(() => !!promise())
 
   function checkAndLoad() {
+    state.measure()
+
     const el = toValue(element) as HTMLElement
     if (!el) return
 

@@ -41,7 +41,7 @@ export function useDrauu(target: MaybeElementAccessor, options?: UseDrauuOptions
 
   const onChangedHook = createEventHook<void>()
   const onCanceledHook = createEventHook<void>()
-  const onCommittedHook = createEventHook<void>()
+  const onCommittedHook = createEventHook<SVGElement | undefined>()
   const onStartHook = createEventHook<void>()
   const onEndHook = createEventHook<void>()
   const [canUndo, setCanUndo] = createSignal(false)
@@ -105,7 +105,7 @@ export function useDrauu(target: MaybeElementAccessor, options?: UseDrauuOptions
 
       disposables = [
         drauuInstanceVal.on('canceled', () => onCanceledHook.trigger()),
-        drauuInstanceVal.on('committed', () => onCommittedHook.trigger()),
+        drauuInstanceVal.on('committed', (node: SVGElement | undefined) => onCommittedHook.trigger(node)),
         drauuInstanceVal.on('start', () => onStartHook.trigger()),
         drauuInstanceVal.on('end', () => onEndHook.trigger()),
         drauuInstanceVal.on('changed', () => {
