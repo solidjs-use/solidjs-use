@@ -14,7 +14,7 @@ import {
   useColorMode,
   useColorModeValue
 } from '@hope-ui/solid'
-import { Link } from 'solid-app-router'
+import { Link } from '@solidjs/router'
 import { createEffect, createSignal } from 'solid-js'
 
 import { IconGithub } from '../icons/IconGithub'

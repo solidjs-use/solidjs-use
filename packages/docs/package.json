@@ -28,17 +28,17 @@
     "unocss": "^0.48.2",
     "vite": "^4.1.2",
     "vite-plugin-prismjs": "^0.0.8",
-    "vite-plugin-solid": "^2.5.0"
+    "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
     "@hope-ui/solid": "^0.6.7",
     "@stitches/core": "^1.2.8",
     "change-case": "^4.1.2",
     "js-yaml": "^4.1.0",
-    "solid-app-router": "^0.4.2",
-    "solid-js": "^1.6.11",
+    "@solidjs/router": "^0.8.2",
+    "solid-js": "^1.7.4",
     "solid-mdx": "^0.0.6",
-    "solid-transition-group": "0.0.10",
+    "solid-transition-group": "0.2.2",
     "yup": "^0.32.11"
   }
 }

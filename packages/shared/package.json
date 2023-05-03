@@ -44,6 +44,6 @@
     "@solidjs-use/solid-to-vue": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.6.11"
+    "solid-js": "^1.7.4"
   }
 }

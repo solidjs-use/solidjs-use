@@ -3,7 +3,7 @@ import { createMemo, For, Show } from 'solid-js'
 import 'unocss'
 
 import { Anchor } from '@hope-ui/solid'
-import { Link } from 'solid-app-router'
+import { Link } from '@solidjs/router'
 import { functions } from '../../../../meta'
 import { useTimeAgo } from '../../../core/src/useTimeAgo'
 import exportSizes from '../data/export-size.json'

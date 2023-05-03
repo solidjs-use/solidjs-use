@@ -17,8 +17,8 @@ export default defineConfig({
     excludeSpecPattern: ['**/__snapshots__/*', '**/__image_snapshots__/*', 'examples/**/*'],
     specPattern: 'packages/*/src/*/*.test.{ts,tsx}',
     devServer: {
+      framework: '@dream2023/cypress-ct-solid-js',
       bundler: 'vite',
-      framework: 'solidjs',
       viteConfig: mergeConfig(viteConfig, { publicDir: path.join(__dirname, './cypress/fixtures') })
     },
     experimentalSingleTabRunMode: true // 是否合并所有文件为单个 tab

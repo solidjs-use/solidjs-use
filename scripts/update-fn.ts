@@ -80,7 +80,7 @@ export async function updateMarkdownDoc() {
     const routes = componentsTmp.map(item => item.route).join('\n')
 
     const componentsPageTemp = `import markdownComponents from '../components/markdownComponents'
-import { Route } from 'solid-app-router'
+import { Route } from '@solidjs/router'
 import { lazy } from 'solid-js'
 
 ${lazyImports}

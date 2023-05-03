@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, Stack, Text, VStack } from '@hope-ui/solid'
-import { Link } from 'solid-app-router'
+import { Link } from '@solidjs/router'
 import { Show, splitProps } from 'solid-js'
 
 import { IconArrowLeft } from '../icons/IconArrowLeft'

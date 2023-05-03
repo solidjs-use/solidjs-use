@@ -11,7 +11,7 @@ import {
   VStack,
   Anchor
 } from '@hope-ui/solid'
-import { Link } from 'solid-app-router'
+import { Link } from '@solidjs/router'
 import { Portal } from 'solid-js/web'
 
 import Footer from '../components/Footer'

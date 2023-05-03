@@ -1,4 +1,4 @@
-import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook, runHook } from '@dream2023/cypress-ct-solid-js'
 import { nextTick } from '@solidjs-use/solid-to-vue'
 import { toValue } from '../toValue'
 import { useSorted } from '.'

@@ -1,5 +1,5 @@
 import { Box, Container, Flex, hope, Progress, ProgressIndicator } from '@hope-ui/solid'
-import { Outlet, useIsRouting } from 'solid-app-router'
+import { Outlet, useIsRouting } from '@solidjs/router'
 import { Portal } from 'solid-js/web'
 import 'solid-mdx'
 

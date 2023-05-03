@@ -1,5 +1,5 @@
 import { Show } from 'solid-js'
-import { mount } from '@dream2023/cypress-solidjs'
+import { mount } from '@dream2023/cypress-ct-solid-js'
 import { useToggle } from '@solidjs-use/shared'
 
 export function mountWithUnmount<V>(setup: () => V) {

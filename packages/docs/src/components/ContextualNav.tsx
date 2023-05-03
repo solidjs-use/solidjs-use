@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Anchor, Box, Heading, VStack } from '@hope-ui/solid'
-import { useLocation } from 'solid-app-router'
+import { useLocation } from '@solidjs/router'
 import { For, onMount, splitProps } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import type { HTMLHopeProps } from '@hope-ui/solid'

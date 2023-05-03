@@ -642,7 +642,7 @@
     {
       "name": "useAsyncState",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useAsyncState/",
       "category": "State",
       "description": "reactive async state"
@@ -775,7 +775,7 @@
     {
       "name": "useColorMode",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useColorMode/",
       "category": "Browser",
       "description": "reactive color mode (dark / light / customs) with auto data persistence",
@@ -829,7 +829,7 @@
     {
       "name": "useCycleList",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCycleList/",
       "category": "Utilities",
       "description": "cycle through a list of items"
@@ -837,7 +837,7 @@
     {
       "name": "useDark",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDark/",
       "category": "Browser",
       "description": "reactive dark mode with auto data persistence",
@@ -850,7 +850,7 @@
     {
       "name": "useDateFormat",
       "package": "shared",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useDateFormat/",
       "category": "Time",
       "description": "get the formatted date according to the string of tokens passed in"
@@ -943,7 +943,7 @@
     {
       "name": "useDrauu",
       "package": "integrations",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useDrauu/",
       "category": "@Integrations",
       "description": "reactive instance for [drauu](https://github.com/antfu/drauu)",
@@ -1016,7 +1016,7 @@
     {
       "name": "useEventSource",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useEventSource/",
       "category": "Network",
       "description": "an [EventSource](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) or [Server-Sent-Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) instance opens a persistent connection to an HTTP server"
@@ -1040,7 +1040,7 @@
     {
       "name": "useFetch",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFetch/",
       "category": "Network",
       "description": "reactive [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides the ability to abort requests"
@@ -1114,7 +1114,7 @@
     {
       "name": "useFullscreen",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFullscreen/",
       "category": "Browser",
       "description": "reactive [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)"
@@ -1177,7 +1177,7 @@
     {
       "name": "useImage",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useImage/",
       "category": "Browser",
       "description": "reactive load an image in the browser"
@@ -1185,7 +1185,7 @@
     {
       "name": "useInfiniteScroll",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useInfiniteScroll/",
       "category": "Sensors",
       "description": "infinite scrolling of the element"
@@ -1285,7 +1285,7 @@
     {
       "name": "useManualHistoryTravel",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useManualHistoryTravel/",
       "category": "State",
       "description": "manually track the change history of a `Signal` or `Accessor` when the using calls `commit()`",
@@ -1312,7 +1312,7 @@
     {
       "name": "useMediaControls",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMediaControls/",
       "category": "Browser",
       "description": "reactive media controls for both `audio` and `video` elements"
@@ -1360,7 +1360,7 @@
     {
       "name": "useMouse",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMouse/",
       "category": "Sensors",
       "description": "reactive mouse position"
@@ -1376,7 +1376,7 @@
     {
       "name": "useMousePressed",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMousePressed/",
       "category": "Sensors",
       "description": "reactive mouse pressing state"
@@ -1526,7 +1526,7 @@
     {
       "name": "usePrecision",
       "package": "math",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/math/usePrecision/",
       "category": "@Math",
       "description": "reactively set the precision of a number"
@@ -1665,7 +1665,7 @@
     {
       "name": "useScroll",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683102296000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScroll/",
       "category": "Sensors",
       "description": "reactive scroll position and state"
@@ -1807,7 +1807,7 @@
     {
       "name": "useSwipe",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1682605472000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useSwipe/",
       "category": "Sensors",
       "description": "reactive swipe detection based on [`TouchEvents`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent)"

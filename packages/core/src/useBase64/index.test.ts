@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook } from '@dream2023/cypress-ct-solid-js'
 import { useBase64 } from '.'
 
 function decode(encoded: string) {
