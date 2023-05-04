@@ -134,7 +134,7 @@ export function useDraggable(
 
   return {
     x: () => position.value.x,
-    y: () => position.value.x,
+    y: () => position.value.y,
     position,
     isDragging: createMemo(() => !!pressedDelta.value),
     style: createMemo(() => ({ left: `${position.value.x}px`, top: `${position.value.y}px` }))
