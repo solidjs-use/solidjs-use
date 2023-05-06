@@ -1,1 +1,0 @@
-import{r as g,w as b}from"./index-7a1cdecc.js";import{b as m,c as u}from"./filters-ac36fc19.js";function h(r,s,o={}){const{defer:a=!0,eventFilter:n=m}=o,c=u(n,s),[i,t]=g(!1),p=e=>{t(!0),e(),t(!1)};return{stop:b(r,(e,f,l)=>{i()||c(e,f,l)},{defer:a}),ignoreUpdates:p}}export{h as w};
