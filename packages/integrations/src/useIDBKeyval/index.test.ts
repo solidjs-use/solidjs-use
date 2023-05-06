@@ -62,12 +62,14 @@ describe('useIDBKeyval', async () => {
     })
   })
 
-  it('isFinished', async () => {
-    const { isFinished } = useIDBKeyval(KEY4, 'test')
-    expect(isFinished()).to.be.eq(false)
+  it('isFinished', () => {
+    return runAsyncHook(async () => {
+      const { isFinished } = useIDBKeyval(KEY4, 'test')
+      expect(isFinished()).to.be.eq(false)
 
-    await promiseTimeout(50)
+      await promiseTimeout(50)
 
-    expect(isFinished()).to.be.eq(true)
+      expect(isFinished()).to.be.eq(true)
+    })
   })
 })
