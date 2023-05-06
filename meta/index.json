@@ -935,7 +935,7 @@
     {
       "name": "useDraggable",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683243306000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDraggable/",
       "category": "Elements",
       "description": "make elements draggable"
