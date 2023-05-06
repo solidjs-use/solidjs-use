@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook } from '@dream2023/cypress-ct-solid-js'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'
 import { usePointerSwipe } from './index'
 import type { UsePointerSwipeOptions } from './index'

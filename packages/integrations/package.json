@@ -167,6 +167,6 @@
     "qrcode": "^1.5.1",
     "sortablejs": "^1.15.0",
     "universal-cookie": "^4.0.4",
-    "solid-js": "^1.6.11"
+    "solid-js": "^1.7.5"
   }
 }

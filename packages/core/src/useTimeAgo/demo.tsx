@@ -10,7 +10,7 @@ const Demo = () => {
   return (
     <>
       <div>
-        <div class="text-primary text-center">{timeAgo}</div>
+        <div class="text-primary text-center">{timeAgo()}</div>
         <input
           value={slider()}
           onInput={e => setSolider(Number(e.currentTarget.value))}

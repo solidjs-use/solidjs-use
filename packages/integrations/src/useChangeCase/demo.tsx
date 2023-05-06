@@ -20,7 +20,7 @@ const Demo = () => {
   const [input, setInput] = createSignal('helloWorld')
   const [type, setType] = createSignal<ChangeCaseType>(arr[0])
   const changeCase = createMemo(() => {
-    return useChangeCase(input, type())
+    return useChangeCase(input, type())()
   })
 
   return (

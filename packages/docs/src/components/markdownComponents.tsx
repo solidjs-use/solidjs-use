@@ -1,5 +1,5 @@
 import { Anchor, Alert, AlertIcon, Text, Table, Thead, Tbody, Tr, Th, Td } from '@hope-ui/solid'
-import { Link } from 'solid-app-router'
+import { Link } from '@solidjs/router'
 import { Show } from 'solid-js'
 import { paramCase } from 'change-case'
 import PageTitle from './PageTitle'
@@ -28,7 +28,6 @@ function getTitleId(title: any) {
           return node().innerText
         }
       }
-      console.log(title)
       throw new Error('parse title error')
     })
     .join('')

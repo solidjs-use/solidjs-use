@@ -1,4 +1,4 @@
-import { runHook } from '@dream2023/cypress-solidjs'
+import { runHook } from '@dream2023/cypress-ct-solid-js'
 import { toValue } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { logicNot } from '.'

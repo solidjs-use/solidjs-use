@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook } from '@dream2023/cypress-ct-solid-js'
 import { promiseTimeout } from '@solidjs-use/shared'
 import { clear, get } from 'idb-keyval'
 import { useIDBKeyval } from '.'
@@ -62,12 +62,14 @@ describe('useIDBKeyval', async () => {
     })
   })
 
-  it('isFinished', async () => {
-    const { isFinished } = useIDBKeyval(KEY4, 'test')
-    expect(isFinished()).to.be.eq(false)
+  it('isFinished', () => {
+    return runAsyncHook(async () => {
+      const { isFinished } = useIDBKeyval(KEY4, 'test')
+      expect(isFinished()).to.be.eq(false)
 
-    await promiseTimeout(50)
+      await promiseTimeout(50)
 
-    expect(isFinished()).to.be.eq(true)
+      expect(isFinished()).to.be.eq(true)
+    })
   })
 })

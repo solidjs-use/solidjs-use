@@ -8,7 +8,7 @@ const Demo = () => {
   return (
     <>
       <div>
-        <div>Count: {count}</div>
+        <div>Count: {count()}</div>
         <button onClick={() => pause()}>pause</button>
         <button onClick={() => resume()}>resume</button>
       </div>

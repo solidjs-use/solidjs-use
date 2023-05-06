@@ -1,4 +1,4 @@
-import { runHook } from '@dream2023/cypress-solidjs'
+import { runHook } from '@dream2023/cypress-ct-solid-js'
 import { useCounter } from '@solidjs-use/shared'
 import { mountWithUnmount } from '@solidjs-use/test-utils'
 import { events } from './internal'

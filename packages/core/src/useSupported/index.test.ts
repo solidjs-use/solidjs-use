@@ -1,4 +1,4 @@
-import { runHook } from '@dream2023/cypress-solidjs'
+import { runHook } from '@dream2023/cypress-ct-solid-js'
 import { useSupported } from './index'
 
 describe('useSupported', () => {

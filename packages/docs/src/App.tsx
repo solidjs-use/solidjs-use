@@ -1,5 +1,5 @@
 import { Center, Spinner } from '@hope-ui/solid'
-import { Route, Routes } from 'solid-app-router'
+import { Route, Routes } from '@solidjs/router'
 import { Suspense, lazy } from 'solid-js'
 
 import markdownComponents from './components/markdownComponents'

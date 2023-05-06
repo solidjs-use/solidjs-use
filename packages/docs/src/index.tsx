@@ -12,7 +12,7 @@ import 'uno.css'
 
 import { HopeProvider, NotificationsProvider } from '@hope-ui/solid'
 import Prism from 'prismjs'
-import { Router } from 'solid-app-router'
+import { Router } from '@solidjs/router'
 import { render } from 'solid-js/web'
 
 import App from './App'
@@ -46,11 +46,11 @@ const config: HopeThemeConfig = {
 render(
   () => (
     <Router>
-      <HopeProvider config={config}>
-        <NotificationsProvider>
+      <NotificationsProvider>
+        <HopeProvider config={config}>
           <App />
-        </NotificationsProvider>
-      </HopeProvider>
+        </HopeProvider>
+      </NotificationsProvider>
     </Router>
   ),
   document.getElementById('root')!

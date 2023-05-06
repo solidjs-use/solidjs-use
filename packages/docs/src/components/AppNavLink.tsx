@@ -1,5 +1,5 @@
 import { Badge, hope } from '@hope-ui/solid'
-import { NavLink } from 'solid-app-router'
+import { NavLink } from '@solidjs/router'
 import { Show, splitProps } from 'solid-js'
 import type { ComponentProps } from 'solid-js'
 

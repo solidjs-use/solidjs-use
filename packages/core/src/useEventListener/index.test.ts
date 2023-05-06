@@ -1,4 +1,4 @@
-import { runAsyncHook, runHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook, runHook } from '@dream2023/cypress-ct-solid-js'
 import { noop } from '@solidjs-use/shared'
 import { createSignal, getOwner } from 'solid-js'
 import { nextTick } from '@solidjs-use/shared/solid-to-vue'

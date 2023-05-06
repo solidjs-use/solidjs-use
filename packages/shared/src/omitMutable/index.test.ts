@@ -1,4 +1,4 @@
-import { runHook } from '@dream2023/cypress-solidjs'
+import { runHook } from '@dream2023/cypress-ct-solid-js'
 import { createMutable } from 'solid-js/store'
 import { omitMutable } from '.'
 

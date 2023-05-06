@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook } from '@dream2023/cypress-ct-solid-js'
 import { nextTick } from '@solidjs-use/solid-to-vue'
 import { createSignal } from 'solid-js'
 import { watch } from '.'

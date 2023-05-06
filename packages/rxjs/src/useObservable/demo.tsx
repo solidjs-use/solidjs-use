@@ -15,7 +15,7 @@ const Demo = () => {
   return (
     <>
       <Note>Update every 1s</Note>
-      <p>Counter: {count}</p>
+      <p>Counter: {count()}</p>
     </>
   )
 }

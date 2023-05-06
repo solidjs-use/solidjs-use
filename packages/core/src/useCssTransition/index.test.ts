@@ -1,4 +1,4 @@
-import { runAsyncHook } from '@dream2023/cypress-solidjs'
+import { runAsyncHook } from '@dream2023/cypress-ct-solid-js'
 import { promiseTimeout } from '@solidjs-use/shared'
 import { createSignal } from 'solid-js'
 import { executeTransition, useCssTransition } from '.'

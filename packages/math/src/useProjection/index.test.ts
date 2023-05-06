@@ -1,4 +1,4 @@
-import { runHook } from '@dream2023/cypress-solidjs'
+import { runHook } from '@dream2023/cypress-ct-solid-js'
 import { toValue } from '@solidjs-use/shared'
 import { isAccessor } from '@solidjs-use/solid-to-vue'
 import { createSignal } from 'solid-js'

@@ -1,4 +1,4 @@
-import { mount } from '@dream2023/cypress-solidjs'
+import { mount } from '@dream2023/cypress-ct-solid-js'
 import { createSignal } from 'solid-js'
 import { toAccessors } from './index'
 import type { Component } from 'solid-js'
