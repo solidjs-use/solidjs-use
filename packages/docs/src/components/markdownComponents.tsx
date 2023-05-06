@@ -28,7 +28,6 @@ function getTitleId(title: any) {
           return node().innerText
         }
       }
-      console.log(title)
       throw new Error('parse title error')
     })
     .join('')

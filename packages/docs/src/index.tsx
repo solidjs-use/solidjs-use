@@ -46,11 +46,11 @@ const config: HopeThemeConfig = {
 render(
   () => (
     <Router>
-      <HopeProvider config={config}>
-        <NotificationsProvider>
+      <NotificationsProvider>
+        <HopeProvider config={config}>
           <App />
-        </NotificationsProvider>
-      </HopeProvider>
+        </HopeProvider>
+      </NotificationsProvider>
     </Router>
   ),
   document.getElementById('root')!

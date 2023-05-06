@@ -41,6 +41,6 @@
     "solidjs-use": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.7.4"
+    "solid-js": "^1.7.5"
   }
 }

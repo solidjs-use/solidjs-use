@@ -6,7 +6,7 @@ importers:
     devDependencies:
       '@dream2023/cypress-ct-solid-js':
         specifier: ^1.0.0
-        version: 1.0.0(cypress@12.11.0)(solid-js@1.7.4)
+        version: 1.0.0(cypress@12.11.0)(solid-js@1.7.5)
       '@giveerr/eslint-config':
         specifier: ^2.2.3
         version: 2.2.3(@typescript-eslint/parser@5.58.0)
@@ -96,10 +96,10 @@ importers:
         version: 2.8.1
       solid-icons:
         specifier: ^1.0.4
-        version: 1.0.4(solid-js@1.7.4)
+        version: 1.0.4(solid-js@1.7.5)
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
       tsx:
         specifier: ^3.12.3
         version: 3.12.3
@@ -114,7 +114,7 @@ importers:
         version: 4.3.4(@types/node@18.11.18)(less@4.1.3)
       vite-plugin-solid:
         specifier: ^2.7.0
-        version: 2.7.0(solid-js@1.7.4)(vite@4.3.4)
+        version: 2.7.0(solid-js@1.7.5)(vite@4.3.4)
 
   packages/core:
     dependencies:
@@ -126,17 +126,17 @@ importers:
         version: 0.0.16
     devDependencies:
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/docs:
     dependencies:
       '@hope-ui/solid':
         specifier: ^0.6.7
-        version: registry.npmmirror.com/@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.7.4)(solid-transition-group@0.2.2)
+        version: registry.npmmirror.com/@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.7.5)(solid-transition-group@0.0.10)
       '@solidjs/router':
         specifier: ^0.8.2
-        version: 0.8.2(solid-js@1.7.4)
+        version: 0.8.2(solid-js@1.7.5)
       '@stitches/core':
         specifier: ^1.2.8
         version: registry.npmmirror.com/@stitches/core@1.2.8
@@ -147,14 +147,11 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
       solid-mdx:
         specifier: ^0.0.6
-        version: registry.npmmirror.com/solid-mdx@0.0.6(solid-js@1.7.4)(vite@4.3.4)
-      solid-transition-group:
-        specifier: 0.2.2
-        version: 0.2.2(solid-js@1.7.4)
+        version: registry.npmmirror.com/solid-mdx@0.0.6(solid-js@1.7.5)(vite@4.3.4)
       yup:
         specifier: ^0.32.11
         version: registry.npmmirror.com/yup@0.32.11
@@ -212,7 +209,7 @@ importers:
         version: registry.npmmirror.com/vite-plugin-prismjs@0.0.8(prismjs@1.29.0)
       vite-plugin-solid:
         specifier: ^2.7.0
-        version: 2.7.0(solid-js@1.7.4)(vite@4.3.4)
+        version: 2.7.0(solid-js@1.7.5)(vite@4.3.4)
 
   packages/electron:
     dependencies:
@@ -224,8 +221,8 @@ importers:
         specifier: ^18.3.7
         version: 18.3.15
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/firebase:
     dependencies:
@@ -237,8 +234,8 @@ importers:
         specifier: ^9.0.0
         version: 9.15.0
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/integrations:
     dependencies:
@@ -286,8 +283,8 @@ importers:
         specifier: ^1.5.1
         version: 1.5.1
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
       sortablejs:
         specifier: ^1.15.0
         version: 1.15.0
@@ -302,8 +299,8 @@ importers:
         version: link:../core
     devDependencies:
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/rxjs:
     dependencies:
@@ -315,8 +312,8 @@ importers:
         specifier: ^6.6.7
         version: 6.6.7
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/shared:
     dependencies:
@@ -325,14 +322,14 @@ importers:
         version: link:../solid-to-vue
     devDependencies:
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
   packages/solid-to-vue:
     devDependencies:
       solid-js:
-        specifier: ^1.7.4
-        version: 1.7.4
+        specifier: ^1.7.5
+        version: 1.7.5
 
 packages:
 
@@ -763,14 +760,14 @@ packages:
       perfect-freehand: 1.2.0
     dev: true
 
-  /@dream2023/cypress-ct-solid-js@1.0.0(cypress@12.11.0)(solid-js@1.7.4):
+  /@dream2023/cypress-ct-solid-js@1.0.0(cypress@12.11.0)(solid-js@1.7.5):
     resolution: {integrity: sha512-gKx+0FekKUOGz9BUkZuznFUxZVK8oHe9yS4On6w+EMfpvf7XSi2lF+ETG6M41pegyrsBNldCDmZ0Lp7dBbNltg==}
     peerDependencies:
       cypress: '>=10.6.0'
       solid-js: '>=1.0.0'
     dependencies:
       cypress: 12.11.0
-      solid-js: 1.7.4
+      solid-js: 1.7.5
     dev: true
 
   /@electron/get@1.14.1:
@@ -1875,37 +1872,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /@solid-primitives/refs@1.0.2(solid-js@1.7.4):
-    resolution: {integrity: sha512-qnqQRdYbsENlVx86QCfftRKGZ/9zUJMGK9U85xDRymocEyeUXxdxgq0FeyGhvgg4A25spJVwHmuZUGY0aMBBLA==}
-    peerDependencies:
-      solid-js: ^1.6.12
-    dependencies:
-      '@solid-primitives/utils': 6.1.0(solid-js@1.7.4)
-      solid-js: 1.7.4
-    dev: false
-
-  /@solid-primitives/transition-group@1.0.2(solid-js@1.7.4):
-    resolution: {integrity: sha512-+o3J7TnU0/Sok+LKA0z0wvhim88dpd2eFBk8/05adE6wVypVlME8sKqTMO+xRv8HoT4Kq3sczmvwV07FKg2n+g==}
-    peerDependencies:
-      solid-js: ^1.6.12
-    dependencies:
-      solid-js: 1.7.4
-    dev: false
-
-  /@solid-primitives/utils@6.1.0(solid-js@1.7.4):
-    resolution: {integrity: sha512-uTikKFrq33UO+MnKt2WzZr9WYbQe5YX58ytGkL+29DL6o0pZs1wrICbd4ymzSm8azqzMcQqEQOL3HLWjuv9tLw==}
-    peerDependencies:
-      solid-js: ^1.6.12
-    dependencies:
-      solid-js: 1.7.4
-    dev: false
-
-  /@solidjs/router@0.8.2(solid-js@1.7.4):
+  /@solidjs/router@0.8.2(solid-js@1.7.5):
     resolution: {integrity: sha512-gUKW+LZqxtX6y/Aw6JKyy4gQ9E7dLqp513oB9pSYJR1HM5c56Pf7eijzyXX+b3WuXig18Cxqah4tMtF0YGu80w==}
     peerDependencies:
       solid-js: ^1.5.3
     dependencies:
-      solid-js: 1.7.4
+      solid-js: 1.7.5
     dev: false
 
   /@szmarczak/http-timer@1.1.2:
@@ -6316,22 +6288,22 @@ packages:
       dot-case: 3.0.4
       tslib: 2.4.0
 
-  /solid-icons@1.0.4(solid-js@1.7.4):
+  /solid-icons@1.0.4(solid-js@1.7.5):
     resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
     engines: {node: '>= 16'}
     peerDependencies:
       solid-js: '*'
     dependencies:
-      solid-js: 1.7.4
+      solid-js: 1.7.5
     dev: true
 
-  /solid-js@1.7.4:
-    resolution: {integrity: sha512-hD/bzIpaa7DL/LGRRTLFvejQuxQaoXyH+DBgPputJW7zvFigCewQIoDvbwDR4VHTsa8VsMDPzV8BT0F9OqsS1Q==}
+  /solid-js@1.7.5:
+    resolution: {integrity: sha512-GfJ8na1e9FG1oAF5xC24BM+ATLym0sfH+ZblkbBFpueYdq3fWAoA5Ve+jGeIeLI7jmMGfa0rUaKruszNm2sH8w==}
     dependencies:
       csstype: 3.1.1
       seroval: 0.5.1
 
-  /solid-refresh@0.5.2(solid-js@1.7.4):
+  /solid-refresh@0.5.2(solid-js@1.7.5):
     resolution: {integrity: sha512-I69HmFj0LsGRJ3n8CEMVjyQFgVtuM2bSjznu2hCnsY+i5oOxh8ioWj00nnHBv0UYD3WpE/Sq4Q3TNw2IKmKN7A==}
     peerDependencies:
       solid-js: ^1.3
@@ -6339,17 +6311,15 @@ packages:
       '@babel/generator': 7.21.5
       '@babel/helper-module-imports': 7.18.6
       '@babel/types': 7.21.5
-      solid-js: 1.7.4
+      solid-js: 1.7.5
     dev: true
 
-  /solid-transition-group@0.2.2(solid-js@1.7.4):
-    resolution: {integrity: sha512-6nB90UM2PB6VsIo/UCkmZmlIJb9mnmP7QPGrePqQJWtpUiRs5PbhkB8fvdyv9g/RPHWYpdJhQgxL6n++WmTt5A==}
+  /solid-transition-group@0.0.10(solid-js@1.7.5):
+    resolution: {integrity: sha512-b3O9z6BUP60CG1WnTdqFuvHms0reDNYwQF+eAEEaSaoDEmiOu9+Lu7zQgWGySJjaAdSAClhmFCmx/eAjQgfIoA==}
     peerDependencies:
-      solid-js: ^1.6.12
+      solid-js: ^1.0.0
     dependencies:
-      '@solid-primitives/refs': 1.0.2(solid-js@1.7.4)
-      '@solid-primitives/transition-group': 1.0.2(solid-js@1.7.4)
-      solid-js: 1.7.4
+      solid-js: 1.7.5
     dev: false
 
   /sortablejs@1.15.0:
@@ -6835,7 +6805,7 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-plugin-solid@2.7.0(solid-js@1.7.4)(vite@4.3.4):
+  /vite-plugin-solid@2.7.0(solid-js@1.7.5)(vite@4.3.4):
     resolution: {integrity: sha512-avp/Jl5zOp/Itfo67xtDB2O61U7idviaIp4mLsjhCa13PjKNasz+IID0jYTyqUp9SFx6/PmBr6v4KgDppqompg==}
     peerDependencies:
       solid-js: ^1.7.2
@@ -6846,8 +6816,8 @@ packages:
       '@types/babel__core': 7.20.0
       babel-preset-solid: 1.7.4(@babel/core@7.20.5)
       merge-anything: 5.1.4
-      solid-js: 1.7.4
-      solid-refresh: 0.5.2(solid-js@1.7.4)
+      solid-js: 1.7.5
+      solid-refresh: 0.5.2(solid-js@1.7.5)
       vite: 4.3.4(@types/node@18.11.18)(less@4.1.3)
       vitefu: 0.2.4(vite@4.3.4)
     transitivePeerDependencies:
@@ -7256,7 +7226,7 @@ packages:
       '@floating-ui/core': registry.npmmirror.com/@floating-ui/core@0.6.2
     dev: false
 
-  registry.npmmirror.com/@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.7.4)(solid-transition-group@0.2.2):
+  registry.npmmirror.com/@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.7.5)(solid-transition-group@0.0.10):
     resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/@hope-ui/solid/-/solid-0.6.7.tgz}
     id: registry.npmmirror.com/@hope-ui/solid/0.6.7
     name: '@hope-ui/solid'
@@ -7272,8 +7242,8 @@ packages:
       focus-trap: registry.npmmirror.com/focus-trap@6.7.3
       lodash.merge: registry.npmmirror.com/lodash.merge@4.6.2
       scroll-lock: registry.npmmirror.com/scroll-lock@2.1.5
-      solid-js: 1.7.4
-      solid-transition-group: 0.2.2(solid-js@1.7.4)
+      solid-js: 1.7.5
+      solid-transition-group: 0.0.10(solid-js@1.7.5)
     dev: false
 
   registry.npmmirror.com/@mdx-js/mdx@2.2.1:
@@ -8910,7 +8880,7 @@ packages:
       tslib: registry.npmmirror.com/tslib@2.4.0
     dev: true
 
-  registry.npmmirror.com/solid-mdx@0.0.6(solid-js@1.7.4)(vite@4.3.4):
+  registry.npmmirror.com/solid-mdx@0.0.6(solid-js@1.7.5)(vite@4.3.4):
     resolution: {integrity: sha512-SDr+iOqxvB7ktdjrwgKLCLkJK43J+TQjoYmesHxmZHXtn6W+a5NRqWgBcybsSP0noHa2co1plSjuPYU4bdtklQ==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/solid-mdx/-/solid-mdx-0.0.6.tgz}
     id: registry.npmmirror.com/solid-mdx/0.0.6
     name: solid-mdx
@@ -8919,7 +8889,7 @@ packages:
       solid-js: ^1.2.6
       vite: '*'
     dependencies:
-      solid-js: 1.7.4
+      solid-js: 1.7.5
       vite: 4.3.4(@types/node@18.11.18)(less@4.1.3)
     dev: false
 
