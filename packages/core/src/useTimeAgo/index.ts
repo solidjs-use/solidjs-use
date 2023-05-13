@@ -129,7 +129,7 @@ export function useTimeAgo<UnitNames extends string = UseTimeAgoUnitNamesDefault
   const { controls: exposeControls = false, updateInterval = 30_000 } = options
 
   const { now, ...controls } = useNow({ interval: updateInterval, controls: true })
-  const timeAgo = createMemo(() => formatTimeAgo(new Date(toValue(time)), options, toValue(now())))
+  const timeAgo = createMemo(() => formatTimeAgo(new Date(toValue(time)), options, toValue(now)))
 
   if (exposeControls) {
     return {

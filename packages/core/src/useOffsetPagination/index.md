@@ -31,9 +31,9 @@ const {
   next,
 } = useOffsetPagination({
   total: data().length,
-  page,
+  page: 1,
   setPage,
-  pageSize,
+  pageSize: 10,
   setPageSize,
   onPageChange: fetchData,
   onPageSizeChange: fetchData,

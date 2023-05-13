@@ -323,15 +323,36 @@ describe('useAxios', () => {
     })
   })
 
-  it('should call onFinish', async () => {
-    const onFinish = cy.spy()
-    const { execute, isLoading, isFinished } = useAxios(url, config, { ...options, onFinish })
-    expect(isLoading()).to.be.false
+  it('should be loading on re-execute', () => {
+    return runAsyncHook(async () => {
+      const onError = cy.spy()
+      const { isLoading, execute } = useAxios(url, config, { ...options, onError })
 
-    await execute()
-    expect(onFinish).to.have.been.called
-    expect(isFinished()).to.be.true
-    expect(isLoading()).to.be.false
+      execute().catch(() => ({}))
+      await new Promise(resolve => setTimeout(resolve, 0))
+      expect(isLoading()).to.be.true
+
+      execute().catch(() => ({}))
+      await new Promise(resolve => setTimeout(resolve, 0))
+      expect(isLoading()).to.be.true
+
+      await execute().catch(() => ({}))
+      expect(isLoading()).to.be.false
+      expect(onError).to.be.callCount(2)
+    })
+  })
+
+  it('should call onFinish', () => {
+    return runAsyncHook(async () => {
+      const onFinish = cy.spy()
+      const { execute, isLoading, isFinished } = useAxios(url, config, { ...options, onFinish })
+      expect(isLoading()).to.be.false
+
+      await execute()
+      expect(onFinish).to.have.been.called
+      expect(isFinished()).to.be.true
+      expect(isLoading()).to.be.false
+    })
   })
 
   it('should use initialData', () => {

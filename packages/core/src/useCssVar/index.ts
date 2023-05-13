@@ -42,7 +42,7 @@ export function useCssVar(
 
   if (observe) {
     useMutationObserver(elAccessor, updateCssVar, {
-      attributes: true,
+      attributeFilter: ['style'],
       window
     })
   }

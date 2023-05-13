@@ -47,5 +47,6 @@
     "source.fixAll.eslint": true
   },
   "javascript.format.semicolons": "remove",
-  "typescript.format.semicolons": "remove"
+  "typescript.format.semicolons": "remove",
+  "files.eol": "\n"
 }
