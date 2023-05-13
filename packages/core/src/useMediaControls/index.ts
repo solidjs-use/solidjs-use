@@ -402,10 +402,15 @@ export function useMediaControls(
   useEventListener(target, 'progress', () => setBuffered(() => timeRangeToArray(toValue(target)!.buffered)))
   useEventListener(target, 'seeking', () => setSeeking(true))
   useEventListener(target, 'seeked', () => setSeeking(false))
-  useEventListener(target, 'waiting', () => setWaiting(true))
+  useEventListener(target, ['waiting', 'loadstart'], () => {
+    setWaiting(true)
+    ignorePlayingUpdates(() => setPlaying(false))
+  })
+  useEventListener(target, 'loadeddata', () => setWaiting(false))
   useEventListener(target, 'playing', () => {
     setWaiting(false)
     setEnded(false)
+    ignorePlayingUpdates(() => setPlaying(true))
   })
   useEventListener(target, 'ratechange', () => setRate(() => toValue(target)!.playbackRate))
   useEventListener(target, 'stalled', () => setStalled(true))
