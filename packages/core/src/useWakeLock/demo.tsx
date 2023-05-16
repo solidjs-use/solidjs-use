@@ -4,8 +4,8 @@ import { useWakeLock } from 'solidjs-use'
 
 const Demo = () => {
   const { isActive, request, release, isSupported } = useWakeLock()
-  const text = createMemo(() => (isActive() ? 'OFF' : 'ON'))
-  const onClick = () => (isActive() ? request('screen') : release())
+  const text = createMemo(() => (isActive() ? 'Release' : 'Request'))
+  const onClick = () => (isActive() ? release() : request('screen'))
   return (
     <>
       <div>
