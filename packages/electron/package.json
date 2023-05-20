@@ -37,13 +37,12 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "dependencies": {},
   "peerDependencies": {
     "electron": ">=9.0.0"
   },
-  "dependencies": {
-    "solidjs-use": "workspace:*"
-  },
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "electron": "^18.3.7",
     "solid-js": "^1.7.5"
   }

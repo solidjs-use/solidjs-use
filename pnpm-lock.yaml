@@ -212,10 +212,6 @@ importers:
         version: 2.7.0(solid-js@1.7.5)(vite@4.3.4)
 
   packages/electron:
-    dependencies:
-      solidjs-use:
-        specifier: workspace:*
-        version: link:../core
     devDependencies:
       electron:
         specifier: ^18.3.7
@@ -223,12 +219,11 @@ importers:
       solid-js:
         specifier: ^1.7.5
         version: 1.7.5
-
-  packages/firebase:
-    dependencies:
       solidjs-use:
         specifier: workspace:*
         version: link:../core
+
+  packages/firebase:
     devDependencies:
       firebase:
         specifier: ^9.0.0
@@ -236,12 +231,11 @@ importers:
       solid-js:
         specifier: ^1.7.5
         version: 1.7.5
-
-  packages/integrations:
-    dependencies:
       solidjs-use:
         specifier: workspace:*
         version: link:../core
+
+  packages/integrations:
     devDependencies:
       '@types/nprogress':
         specifier: ^0.2.0
@@ -285,6 +279,9 @@ importers:
       solid-js:
         specifier: ^1.7.5
         version: 1.7.5
+      solidjs-use:
+        specifier: workspace:*
+        version: link:../core
       sortablejs:
         specifier: ^1.15.0
         version: 1.15.0
@@ -293,20 +290,15 @@ importers:
         version: 4.0.4
 
   packages/math:
-    dependencies:
-      solidjs-use:
-        specifier: workspace:*
-        version: link:../core
     devDependencies:
       solid-js:
         specifier: ^1.7.5
         version: 1.7.5
-
-  packages/rxjs:
-    dependencies:
       solidjs-use:
         specifier: workspace:*
         version: link:../core
+
+  packages/rxjs:
     devDependencies:
       rxjs:
         specifier: ^6.6.7
@@ -314,6 +306,9 @@ importers:
       solid-js:
         specifier: ^1.7.5
         version: 1.7.5
+      solidjs-use:
+        specifier: workspace:*
+        version: link:../core
 
   packages/shared:
     dependencies:

@@ -100,7 +100,6 @@
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "solidjs-use": "workspace:*"
   },
   "peerDependencies": {
     "async-validator": "*",
@@ -152,6 +151,7 @@
     }
   },
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "@types/nprogress": "^0.2.0",
     "@types/qrcode": "^1.5.0",
     "@types/sortablejs": "^1.15.0",

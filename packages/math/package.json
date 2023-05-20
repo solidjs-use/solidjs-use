@@ -37,10 +37,9 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "solidjs-use": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "solid-js": "^1.7.5"
   }
 }
