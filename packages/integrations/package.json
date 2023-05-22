@@ -99,8 +99,7 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "async-validator": "*",
     "axios": "*",
