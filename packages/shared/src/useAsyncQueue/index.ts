@@ -6,7 +6,7 @@ import type { Accessor } from 'solid-js'
 export type UseAsyncQueueTask<T> = (...args: any[]) => T | Promise<T>
 
 export interface UseAsyncQueueResult<T> {
-  state: 'pending' | 'fulfilled' | 'rejected'
+  state: 'aborted' | 'fulfilled' | 'pending' | 'rejected'
   data: T | null
 }
 
@@ -34,6 +34,11 @@ export interface UseAsyncQueueOptions {
    *
    */
   onFinished?: () => void
+
+  /**
+   * A AbortSignal that can be used to abort the task.
+   */
+  signal?: AbortSignal
 }
 
 /**
@@ -85,12 +90,13 @@ export function useAsyncQueue<T = any>(
   tasks: Array<UseAsyncQueueTask<any>>,
   options: UseAsyncQueueOptions = {}
 ): UseAsyncQueueReturn<Array<UseAsyncQueueResult<T>>> {
-  const { interrupt = true, onError = noop, onFinished = noop } = options
+  const { interrupt = true, onError = noop, onFinished = noop, signal } = options
 
   const promiseState: Record<UseAsyncQueueResult<T>['state'], UseAsyncQueueResult<T>['state']> = {
+    aborted: 'aborted',
+    fulfilled: 'fulfilled',
     pending: 'pending',
-    rejected: 'rejected',
-    fulfilled: 'fulfilled'
+    rejected: 'rejected'
   }
   const initialResult = Array.from(new Array(tasks.length), () => ({ state: promiseState.pending, data: null }))
   const result = reactive(initialResult) as Array<UseAsyncQueueResult<T>>
@@ -114,18 +120,32 @@ export function useAsyncQueue<T = any>(
   tasks.reduce((prev, curr) => {
     return prev
       .then(prevRes => {
+        if (signal?.aborted) {
+          updateResult(promiseState.aborted, new Error('aborted'))
+          return
+        }
+
         if (result[activeIndex()]?.state === promiseState.rejected && interrupt) {
           onFinished()
           return
         }
 
-        return curr(prevRes).then((currentRes: any) => {
+        const done = curr(prevRes).then((currentRes: any) => {
           updateResult(promiseState.fulfilled, currentRes)
           activeIndex() === tasks.length - 1 && onFinished()
           return currentRes
         })
+
+        if (!signal) return done
+
+        return Promise.race([done, whenAborted(signal)])
       })
       .catch(e => {
+        if (signal?.aborted) {
+          updateResult(promiseState.aborted, e)
+          return e
+        }
+
         updateResult(promiseState.rejected, e)
         onError()
         return e
@@ -136,4 +156,13 @@ export function useAsyncQueue<T = any>(
     activeIndex,
     result
   }
+}
+
+function whenAborted(signal: AbortSignal): Promise<never> {
+  return new Promise((resolve, reject) => {
+    const error = new Error('aborted')
+
+    if (signal.aborted) reject(error)
+    else signal.addEventListener('abort', () => reject(error), { once: true })
+  })
 }

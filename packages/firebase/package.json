@@ -49,13 +49,12 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "dependencies": {},
   "peerDependencies": {
     "firebase": ">=9.0.0"
   },
-  "dependencies": {
-    "solidjs-use": "workspace:*"
-  },
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "firebase": "^9.0.0",
     "solid-js": "^1.7.5"
   }

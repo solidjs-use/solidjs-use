@@ -16,6 +16,7 @@ const rules = {
   '@typescript-eslint/no-unsafe-argument': 'off',
   '@typescript-eslint/no-empty-function': 'off',
   'prefer-destructuring': 'off',
+  endOfLine: 'off',
   '@typescript-eslint/no-unnecessary-type-assertion': 'off',
   '@typescript-eslint/ban-ts-comment': 'off',
   '@typescript-eslint/explicit-member-accessibility': 'off',

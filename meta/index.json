@@ -349,7 +349,7 @@
     {
       "name": "onClickOutside",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onClickOutside/",
       "category": "Sensors",
       "description": "listen for clicks outside of an element"
@@ -676,7 +676,7 @@
     {
       "name": "useAxios",
       "package": "integrations",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useAxios/",
       "category": "@Integrations",
       "description": "wrapper for [`axios`](https://github.com/axios/axios)",
@@ -821,7 +821,7 @@
     {
       "name": "useCssVar",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssVar/",
       "category": "Browser",
       "description": "manipulate CSS variables"
@@ -968,7 +968,7 @@
     {
       "name": "useElementByPoint",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementByPoint/",
       "category": "Sensors",
       "description": "reactive element by point"
@@ -1048,7 +1048,7 @@
     {
       "name": "useFileDialog",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFileDialog/",
       "category": "Browser",
       "description": "open file dialog with ease"
@@ -1312,7 +1312,7 @@
     {
       "name": "useMediaControls",
       "package": "core",
-      "lastUpdated": 1682605472000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useMediaControls/",
       "category": "Browser",
       "description": "reactive media controls for both `audio` and `video` elements"
@@ -1673,7 +1673,7 @@
     {
       "name": "useScrollLock",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScrollLock/",
       "category": "Sensors",
       "description": "lock scrolling of the element"
@@ -1865,7 +1865,7 @@
     {
       "name": "useTimeAgo",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1683964806000,
       "component": true,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTimeAgo/",
       "category": "Time",

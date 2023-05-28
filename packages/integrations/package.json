@@ -99,9 +99,7 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "solidjs-use": "workspace:*"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "async-validator": "*",
     "axios": "*",
@@ -152,6 +150,7 @@
     }
   },
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "@types/nprogress": "^0.2.0",
     "@types/qrcode": "^1.5.0",
     "@types/sortablejs": "^1.15.0",

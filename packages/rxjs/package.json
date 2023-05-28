@@ -37,13 +37,12 @@
   "unpkg": "./dist/index.mjs",
   "jsdelivr": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "solidjs-use": "workspace:*"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "rxjs": ">=6.0.0"
   },
   "devDependencies": {
+    "solidjs-use": "workspace:*",
     "rxjs": "^6.6.7",
     "solid-js": "^1.7.5"
   }
