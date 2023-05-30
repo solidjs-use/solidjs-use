@@ -103,15 +103,15 @@ const Demo = () => {
             <div text="right" opacity="75">
               Scrolling Right
             </div>
-            <BooleanDisplay value={arrivedState.right} />
+            <BooleanDisplay value={directions.right} />
             <div text="right" opacity="75">
               Scrolling Down
             </div>
-            <BooleanDisplay value={arrivedState.bottom} />
+            <BooleanDisplay value={directions.bottom} />
             <div text="right" opacity="75">
               Scrolling Left
             </div>
-            <BooleanDisplay value={arrivedState.left} />
+            <BooleanDisplay value={directions.left} />
           </div>
         </div>
       </div>
