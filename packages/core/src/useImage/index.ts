@@ -19,12 +19,14 @@ export interface UseImageOptions {
   loading?: HTMLImageElement['loading']
   /** Image CORS settings */
   crossorigin?: string
+  /** Referrer policy for fetch https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy */
+  referrerPolicy?: HTMLImageElement['referrerPolicy']
 }
 
 function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image()
-    const { src, srcset, sizes, class: clazz, loading, crossorigin } = options
+    const { src, srcset, sizes, class: clazz, loading, crossorigin, referrerPolicy } = options
 
     img.src = src
     if (srcset) img.srcset = srcset
@@ -32,6 +34,7 @@ function loadImage(options: UseImageOptions): Promise<HTMLImageElement> {
     if (clazz) img.className = clazz
     if (loading) img.loading = loading
     if (crossorigin) img.crossOrigin = crossorigin
+    if (referrerPolicy) img.referrerPolicy = referrerPolicy
 
     img.onload = () => resolve(img)
     img.onerror = reject

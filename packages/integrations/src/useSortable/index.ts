@@ -13,6 +13,14 @@ export interface UseSortableReturn {
    * destroy sortable instance
    */
   stop: () => void
+
+  /**
+   * Options getter/setter
+   * @param name a Sortable.Options property.
+   * @param value a value.
+   */
+  option<K extends keyof Sortable.Options>(name: K, value: Sortable.Options[K]): void
+  option<K extends keyof Sortable.Options>(name: K): Sortable.Options[K]
 }
 
 export type UseSortableOptions = Options & ConfigurableDocument
@@ -60,7 +68,11 @@ export function useSortable<T>(
 
   tryOnCleanup(stop)
 
-  return { stop, start }
+  const option = <K extends keyof Options>(name: K, value?: Options[K]) => {
+    if (value !== undefined) sortable?.option(name, value)
+    else return sortable?.option(name)
+  }
+  return { stop, start, option }
 }
 
 export function moveArrayElement<T>(list: MaybeSignal<T[]>, from: number, to: number): void {

@@ -58,9 +58,18 @@ const Demo = () => {
     { id: 3, name: 'c' }
   ])
 
-  useSortable(el, [list, setList], {
-    handle: '.handle'
+  const animation = 200
+
+  const { option } = useSortable(el, list, {
+    handle: '.handle',
+    // or option set
+    // animation
   })
+
+  // You can use the option method to set and get the option of Sortable
+  option('animation', animation)
+  // option('animation') // 200
+
   return (
     <>
       <div ref={setEl}>

@@ -1,5 +1,5 @@
 import { createEffect, createSignal, on } from 'solid-js'
-import { toValue } from '@solidjs-use/shared'
+import { nextTick, toValue } from '@solidjs-use/shared'
 import { useResizeObserver } from '../useResizeObserver'
 import type { EffectOnDeps, MaybeAccessor } from '@solidjs-use/shared'
 import type { JSX } from 'solid-js'
@@ -45,7 +45,7 @@ export function useTextareaAutoSize(options?: UseTextareaAutoSizeOptions) {
     options?.onResize?.()
   }
 
-  createEffect(on([value, textareaRef], triggerResize))
+  createEffect(on([value, textareaRef], () => nextTick(triggerResize)))
 
   useResizeObserver(textareaRef, () => triggerResize())
 

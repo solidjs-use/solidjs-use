@@ -6,9 +6,11 @@ import { defaultWindow } from '../_configurable'
 import type { Accessor } from 'solid-js'
 import type { ConfigurableWindow } from '../_configurable'
 
+type PostMessage = (typeof Worker.prototype)['postMessage']
+
 export interface UseWebWorkerReturn<Data = any> {
   data: Accessor<Data>
-  post: (typeof Worker.prototype)['postMessage']
+  post: PostMessage
   terminate: () => void
   worker: Accessor<Worker | undefined>
 }
@@ -40,11 +42,11 @@ export function useWebWorker<Data = any>(
   const [data, setData] = createSignal<any>(null)
   const [worker, setWorker] = createSignal<Worker>()
 
-  const post: (typeof Worker.prototype)['postMessage'] = function post(val: any) {
+  const post: PostMessage = function post(...args) {
     const workerValue = worker()
     if (!workerValue) return
 
-    workerValue.postMessage(val)
+    workerValue.postMessage(...(args as Parameters<PostMessage>))
   }
 
   const terminate: (typeof Worker.prototype)['terminate'] = function terminate() {
