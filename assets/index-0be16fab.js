@@ -1,1 +1,0 @@
-import{w as c}from"./index-7fa3b75b.js";import{p as l}from"./filters-27a8e70a.js";function w(t,e,r={}){const{eventFilter:s,defer:i=!0}=r,{eventFilter:o,pause:a,resume:n,isActive:p}=l(s);return{stop:c(t,e,{defer:i,eventFilter:o}),pause:a,resume:n,isActive:p}}export{w};
