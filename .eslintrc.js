@@ -74,7 +74,7 @@ module.exports = {
     },
     {
       files: ['./**/*.tsx'],
-      extends: '@giveerr/eslint-config-prettier-solid',
+      extends: '@giveerr/eslint-config-solid',
       rules: {
         ...rules,
         'solid/no-innerhtml': 'off',
