@@ -40,7 +40,7 @@
     "@dream2023/cypress-ct-solid-js": "^1.0.0",
     "@giveerr/eslint-config": "^2.2.3",
     "@giveerr/eslint-config-prettier-javascript": "^2.2.3",
-    "@giveerr/eslint-config-prettier-solid": "^2.2.3",
+    "@giveerr/eslint-config-solid": "^2.2.3",
     "@giveerr/eslint-config-prettier-typescript": "^2.2.3",
     "@giveerr/prettier-config": "^2.2.3",
     "@rollup/plugin-node-resolve": "^15.0.1",
