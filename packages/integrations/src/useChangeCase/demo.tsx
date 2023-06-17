@@ -19,9 +19,7 @@ const Demo = () => {
   const [types] = createSignal(arr)
   const [input, setInput] = createSignal('helloWorld')
   const [type, setType] = createSignal<ChangeCaseType>(arr[0])
-  const changeCase = createMemo(() => {
-    return useChangeCase(input, type())()
-  })
+  const changeCase = createMemo(() => useChangeCase(input, type())())
 
   return (
     <>

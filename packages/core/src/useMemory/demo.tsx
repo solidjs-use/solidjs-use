@@ -9,7 +9,8 @@ const Demo = () => {
   const { isSupported, memory } = useMemory()
   return (
     <>
-      {isSupported() && memory() ? (
+      {isSupported() && memory()
+        ? (
         <div class="inline-grid grid-cols-2 gap-x-4 gap-y-2">
           <Show when={!!memory()}>
             <>
@@ -22,9 +23,10 @@ const Demo = () => {
             </>
           </Show>
         </div>
-      ) : (
+          )
+        : (
         <div>Your browser does not support performance memory API</div>
-      )}
+          )}
     </>
   )
 }

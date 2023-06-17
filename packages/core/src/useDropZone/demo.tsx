@@ -4,9 +4,9 @@ import { useDropZone } from 'solidjs-use'
 
 const Demo = () => {
   const [filesData, setFilesData] = createSignal<
-    Array<{ name: string; size: number; type: string; lastModified: number }>
+  Array<{ name: string; size: number; type: string; lastModified: number }>
   >([])
-  function onDrop(files: File[] | null) {
+  function onDrop (files: File[] | null) {
     setFilesData([])
     if (files) {
       setFilesData(

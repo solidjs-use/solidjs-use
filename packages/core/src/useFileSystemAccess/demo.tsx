@@ -17,7 +17,7 @@ const Demo = () => {
     excludeAcceptAllOption: true
   })
 
-  async function onSave() {
+  async function onSave () {
     await res.save()
   }
   return (

@@ -25,32 +25,28 @@ describe('useWindowSize', () => {
     })
   })
 
-  it('sets handler for window "resize" event', () => {
-    return runAsyncHook(async () => {
-      const addEventListenerSpy = cy.spy(window, 'addEventListener')
-      useWindowSize({ initialWidth: 100, initialHeight: 200, listenOrientation: false })
+  it('sets handler for window "resize" event', () => runAsyncHook(async () => {
+    const addEventListenerSpy = cy.spy(window, 'addEventListener')
+    useWindowSize({ initialWidth: 100, initialHeight: 200, listenOrientation: false })
 
-      await nextTick()
+    await nextTick()
 
-      expect(addEventListenerSpy).to.be.calledOnce
+    expect(addEventListenerSpy).to.be.calledOnce
 
-      const call = addEventListenerSpy.args[0]
-      expect(call[0]).to.eq('resize')
-      expect(call[2]).to.deep.equal({ passive: true })
-    })
-  })
+    const call = addEventListenerSpy.args[0]
+    expect(call[0]).to.eq('resize')
+    expect(call[2]).to.deep.equal({ passive: true })
+  }))
 
-  it('sets handler for window.matchMedia("(orientation: portrait)") change event', () => {
-    return runAsyncHook(async () => {
-      const matchMediaSpy = cy.spy(window, 'matchMedia')
-      useWindowSize({ initialWidth: 100, initialHeight: 200 })
+  it('sets handler for window.matchMedia("(orientation: portrait)") change event', () => runAsyncHook(async () => {
+    const matchMediaSpy = cy.spy(window, 'matchMedia')
+    useWindowSize({ initialWidth: 100, initialHeight: 200 })
 
-      await nextTick()
+    await nextTick()
 
-      expect(matchMediaSpy).to.be.callCount(1)
+    expect(matchMediaSpy).to.be.callCount(1)
 
-      const call = matchMediaSpy.args[0] as any
-      expect(call[0]).to.eq('(orientation: portrait)')
-    })
-  })
+    const call = matchMediaSpy.args[0] as any
+    expect(call[0]).to.eq('(orientation: portrait)')
+  }))
 })

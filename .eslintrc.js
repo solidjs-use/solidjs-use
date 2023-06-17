@@ -39,7 +39,6 @@ const rules = {
 
 module.exports = {
   root: true,
-  extends: ['@giveerr/eslint-config-solid'],
   env: {
     node: true,
     browser: true,

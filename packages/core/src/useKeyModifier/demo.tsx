@@ -1,8 +1,7 @@
 import { useKeyModifier } from 'solidjs-use'
 import type { ParentComponent } from 'solid-js'
 
-const Key: ParentComponent<{ value: boolean }> = props => {
-  return (
+const Key: ParentComponent<{ value: boolean }> = props => (
     <div
       class="font-mono px-4 py-2 rounded"
       classList={{
@@ -12,8 +11,7 @@ const Key: ParentComponent<{ value: boolean }> = props => {
     >
       {props.children}
     </div>
-  )
-}
+)
 
 const Demo = () => {
   const capsLock = useKeyModifier('CapsLock')

@@ -2,8 +2,7 @@ import { For } from 'solid-js'
 import { coreTeamMembers } from '../data/contributors'
 import { TeamMember } from './TeamMember'
 
-export const HomeTeam = () => {
-  return (
+export const HomeTeam = () => (
     <>
       <div class="vp-doc">
         <h2 op50 font-normal pt-5 pb-2>
@@ -14,5 +13,4 @@ export const HomeTeam = () => {
         <For each={coreTeamMembers}>{c => <TeamMember data={c} />}</For>
       </div>
     </>
-  )
-}
+)

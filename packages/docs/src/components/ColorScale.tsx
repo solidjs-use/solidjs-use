@@ -11,7 +11,7 @@ type ColorScaleProps = GridProps & {
   scale: ColorScaleItem[]
 }
 
-export function ColorScale(props: ColorScaleProps) {
+export function ColorScale (props: ColorScaleProps) {
   const theme = useTheme()
   const [local, others] = splitProps(props, ['scale'])
 

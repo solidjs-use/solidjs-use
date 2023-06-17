@@ -8,9 +8,7 @@ const Demo = () => {
 
   const [baseVector, setBaseVector] = createSignal([0, 0])
 
-  const easeOutElastic = (n: number) => {
-    return n === 0 ? 0 : n === 1 ? 1 : 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1
-  }
+  const easeOutElastic = (n: number) => (n === 0 ? 0 : n === 1 ? 1 : 2 ** (-10 * n) * Math.sin((n * 10 - 0.75) * ((2 * Math.PI) / 3)) + 1)
 
   const cubicBezierNumber = useCssTransition(baseNumber, {
     duration,

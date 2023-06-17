@@ -24,7 +24,7 @@ import { IconSun } from '../icons/IconSun'
 
 import MainNavContent from './MainNavContent'
 
-export default function Header() {
+export default function Header () {
   const [isMainNavOverlayVisible, setIsMainNavOverlayVisible] = createSignal(false)
 
   const { toggleColorMode, colorMode } = useColorMode()

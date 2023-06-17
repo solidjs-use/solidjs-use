@@ -35,7 +35,7 @@ type AppNavLinkProps = ComponentProps<typeof StyledNavLink> & {
   isNew?: boolean
 }
 
-export default function AppNavLink(props: AppNavLinkProps) {
+export default function AppNavLink (props: AppNavLinkProps) {
   const [local, others] = splitProps(props, ['children', 'href', 'isNew'])
 
   return (

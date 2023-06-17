@@ -5,7 +5,8 @@ const Demo = () => {
 
   return (
     <>
-      {isSupported() ? (
+      {isSupported()
+        ? (
         <div>
           <div>isSupported: {isSupported().toString()}</div>
           <div>
@@ -13,11 +14,12 @@ const Demo = () => {
           </div>
           <button onClick={() => open()}>Open Eye Dropper</button>
         </div>
-      ) : (
+          )
+        : (
         <div>
           <span>Not Supported by Your Browser</span>
         </div>
-      )}
+          )}
     </>
   )
 }

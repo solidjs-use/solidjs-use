@@ -2,7 +2,7 @@ import { Show } from 'solid-js'
 import { mount } from '@dream2023/cypress-ct-solid-js'
 import { useToggle } from '@solidjs-use/shared'
 
-export function mountWithUnmount<V>(setup: () => V) {
+export function mountWithUnmount<V> (setup: () => V) {
   const Demo = () => {
     setup()
     return <div>demo</div>

@@ -25,7 +25,7 @@ const Demo = () => {
   const inputArr = createMemo(() => arrText().split(','))
   const inputOut = useSorted(inputArr)
 
-  function randomArr() {
+  function randomArr () {
     const arr: number[] = []
     for (let i = 0; i < rand(10, 20); i++) arr.push(rand(0, 100))
     setArrText(arr.join(','))

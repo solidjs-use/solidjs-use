@@ -2,7 +2,7 @@ import { createSharedComposable, useCounter } from 'solidjs-use'
 
 const useSharedCounter = createSharedComposable(useCounter)
 
-function Demo1() {
+function Demo1 () {
   const { count, inc, dec } = useSharedCounter()
 
   return (
@@ -14,7 +14,7 @@ function Demo1() {
   )
 }
 
-function Demo2() {
+function Demo2 () {
   const { count, inc, dec } = useSharedCounter()
 
   return (
@@ -26,13 +26,11 @@ function Demo2() {
   )
 }
 
-const Demo = () => {
-  return (
+const Demo = () => (
     <>
       <Demo1 />
       <Demo2 />
     </>
-  )
-}
+)
 
 export default Demo

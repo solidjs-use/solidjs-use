@@ -1,21 +1,17 @@
 import { Note } from '@solidjs-use/docs-components'
 import { useAsyncQueue } from 'solidjs-use'
 const Demo = () => {
-  const p1 = () => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(1000)
-      }, 10)
-    })
-  }
+  const p1 = () => new Promise(resolve => {
+    setTimeout(() => {
+      resolve(1000)
+    }, 10)
+  })
 
-  const p2 = (result: number) => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(1000 + result)
-      }, 20)
-    })
-  }
+  const p2 = (result: number) => new Promise(resolve => {
+    setTimeout(() => {
+      resolve(1000 + result)
+    }, 20)
+  })
 
   const { activeIndex, result } = useAsyncQueue([p1, p2])
   return (

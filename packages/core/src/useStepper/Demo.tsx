@@ -32,11 +32,11 @@ const Demo = () => {
     }
   })
 
-  function submit() {
+  function submit () {
     if (stepper.current().isValid()) stepper.goToNext()
   }
 
-  function allStepsBeforeAreValid(index: number): boolean {
+  function allStepsBeforeAreValid (index: number): boolean {
     return !Array(index)
       .fill(null)
       .some((_, i) => !stepper.at(i)?.isValid())

@@ -13,7 +13,7 @@ import DetailTitle from './DetailTitle'
 import ContextualNav from './ContextualNav'
 import { RequiresProxy } from './RequiresProxy'
 
-function getTitleId(title: any) {
+function getTitleId (title: any) {
   if (typeof title === 'string') return title
   if (typeof title === 'function') return title()().innerText
   return title
@@ -36,8 +36,7 @@ function getTitleId(title: any) {
 }
 
 const markdownComponents: any = {
-  a: (props: any) => {
-    return (
+  a: (props: any) => (
       <Anchor
         as={Link}
         target={
@@ -48,36 +47,23 @@ const markdownComponents: any = {
       >
         {props.children}
       </Anchor>
-    )
-  },
-  h1: (props: any) => {
-    return <PageTitle>{props.children}</PageTitle>
-  },
-  h2: (props: any) => {
-    return <SectionTitle id={paramCase(getTitleId(props.children))}>{props.children}</SectionTitle>
-  },
-  h3: (props: any) => {
-    return <SectionSubtitle id={paramCase(getTitleId(props.children))}>{props.children}</SectionSubtitle>
-  },
-  h4: (props: any) => {
-    return <DetailTitle id={paramCase(getTitleId(props.children))}>{props.children}</DetailTitle>
-  },
-  p: (props: any) => {
-    return (
+  ),
+  h1: (props: any) => <PageTitle>{props.children}</PageTitle>,
+  h2: (props: any) => <SectionTitle id={paramCase(getTitleId(props.children))}>{props.children}</SectionTitle>,
+  h3: (props: any) => <SectionSubtitle id={paramCase(getTitleId(props.children))}>{props.children}</SectionSubtitle>,
+  h4: (props: any) => <DetailTitle id={paramCase(getTitleId(props.children))}>{props.children}</DetailTitle>,
+  p: (props: any) => (
       <Text mb="$4" mt="$4" lineHeight="lg">
         {props.children}
       </Text>
-    )
-  },
-  code: (props: any) => {
-    return (
+  ),
+  code: (props: any) => (
       <Show when={props['data-language']} fallback={<Code>{props.children}</Code>}>
         <CodeSnippet lang={props['data-language']} mb="$4" mt="$4" lineHeight={28}>
           {props.children}
         </CodeSnippet>
       </Show>
-    )
-  },
+  ),
   table: Table,
   thead: Thead,
   tr: Tr,

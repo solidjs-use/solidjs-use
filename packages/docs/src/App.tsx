@@ -19,7 +19,7 @@ const Functions = lazy(() => import('./pages/functions.md'))
 const AddOns = lazy(() => import('./pages/add-ons.md'))
 const FunctionsList = lazy(() => import('./components/FunctionsList'))
 
-export default function App() {
+export default function App () {
   return (
     <Suspense
       fallback={

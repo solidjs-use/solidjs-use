@@ -11,66 +11,60 @@ describe('useScriptTag', () => {
     document.head.innerHTML = ''
   })
 
-  it('should add script tag', () => {
-    return runAsyncHook(async () => {
-      const appendChildListener = cy.spy(document.head, 'appendChild')
+  it('should add script tag', () => runAsyncHook(async () => {
+    const appendChildListener = cy.spy(document.head, 'appendChild')
 
-      expect(appendChildListener).not.to.be.called
+    expect(appendChildListener).not.to.be.called
 
-      expect(scriptTagElement()).to.be.null
+    expect(scriptTagElement()).to.be.null
 
-      const { load, scriptTag } = useScriptTag(src, () => {}, { immediate: true })
+    const { load, scriptTag } = useScriptTag(src, () => {}, { immediate: true })
 
-      await load(true)
-      expect(scriptTag()).to.be.instanceOf(HTMLScriptElement)
-      expect(appendChildListener).to.be.called
+    await load(true)
+    expect(scriptTag()).to.be.instanceOf(HTMLScriptElement)
+    expect(appendChildListener).to.be.called
+  }))
+
+  it('should re-use the same src for multiple loads', () => runAsyncHook(async () => {
+    const addChildListener = cy.spy(document.head, 'appendChild')
+
+    expect(addChildListener).not.to.be.called
+
+    expect(scriptTagElement()).to.be.null
+
+    const script1 = useScriptTag(src, () => {}, { immediate: false, manual: true })
+    const script2 = useScriptTag(src, () => {}, { immediate: false, manual: true })
+
+    await script1.load(true)
+    await script2.load(true)
+
+    expect(script1.scriptTag()).not.to.be.null
+    expect(script2.scriptTag()).not.to.be.null
+
+    expect(addChildListener).to.be.calledOnce
+    expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
+  }))
+
+  it('should support custom attributes', () => runAsyncHook(async () => {
+    const appendChildListener = cy.spy(document.head, 'appendChild')
+
+    expect(appendChildListener).not.to.be.called
+
+    expect(scriptTagElement()).to.be.null
+
+    const { load } = useScriptTag(src, () => {}, {
+      attrs: { id: 'id-value', 'data-test': 'data-test-value' },
+      immediate: true
     })
-  })
 
-  it('should re-use the same src for multiple loads', () => {
-    return runAsyncHook(async () => {
-      const addChildListener = cy.spy(document.head, 'appendChild')
+    await load()
+    expect(appendChildListener).to.be.called
 
-      expect(addChildListener).not.to.be.called
-
-      expect(scriptTagElement()).to.be.null
-
-      const script1 = useScriptTag(src, () => {}, { immediate: false, manual: true })
-      const script2 = useScriptTag(src, () => {}, { immediate: false, manual: true })
-
-      await script1.load(true)
-      await script2.load(true)
-
-      expect(script1.scriptTag()).not.to.be.null
-      expect(script2.scriptTag()).not.to.be.null
-
-      expect(addChildListener).to.be.calledOnce
-      expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
-    })
-  })
-
-  it('should support custom attributes', () => {
-    return runAsyncHook(async () => {
-      const appendChildListener = cy.spy(document.head, 'appendChild')
-
-      expect(appendChildListener).not.to.be.called
-
-      expect(scriptTagElement()).to.be.null
-
-      const { load } = useScriptTag(src, () => {}, {
-        attrs: { id: 'id-value', 'data-test': 'data-test-value' },
-        immediate: true
-      })
-
-      await load()
-      expect(appendChildListener).to.be.called
-
-      const element = scriptTagElement()
-      expect(element).to.be.instanceOf(HTMLScriptElement)
-      expect(element?.getAttribute('id')).to.eq('id-value')
-      expect(element?.getAttribute('data-test')).to.eq('data-test-value')
-    })
-  })
+    const element = scriptTagElement()
+    expect(element).to.be.instanceOf(HTMLScriptElement)
+    expect(element?.getAttribute('id')).to.eq('id-value')
+    expect(element?.getAttribute('data-test')).to.eq('data-test-value')
+  }))
 
   it('should remove script tag on unmount', () => {
     const removeChildListener = cy.spy(document.head, 'removeChild')
@@ -87,54 +81,50 @@ describe('useScriptTag', () => {
     })
   })
 
-  it('should remove script tag on unload call', () => {
-    return runAsyncHook(async () => {
-      const removeChildListener = cy.spy(document.head, 'removeChild')
+  it('should remove script tag on unload call', () => runAsyncHook(async () => {
+    const removeChildListener = cy.spy(document.head, 'removeChild')
 
-      expect(removeChildListener).not.to.be.called
+    expect(removeChildListener).not.to.be.called
 
-      expect(scriptTagElement()).to.be.null
+    expect(scriptTagElement()).to.be.null
 
-      const { scriptTag, load, unload } = useScriptTag(src, () => {}, { immediate: false })
+    const { scriptTag, load, unload } = useScriptTag(src, () => {}, { immediate: false })
 
-      await load(true)
+    await load(true)
 
-      expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
+    expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
 
-      unload()
+    unload()
 
-      expect(scriptTagElement()).to.be.null
+    expect(scriptTagElement()).to.be.null
 
-      expect(removeChildListener).to.be.called
+    expect(removeChildListener).to.be.called
 
-      expect(scriptTag()).to.be.null
-    })
-  })
+    expect(scriptTag()).to.be.null
+  }))
 
-  it('should remove script tag on unload call after multiple loads', () => {
-    return runAsyncHook(async () => {
-      const removeChildListener = cy.spy(document.head, 'removeChild')
+  it('should remove script tag on unload call after multiple loads', () => runAsyncHook(async () => {
+    const removeChildListener = cy.spy(document.head, 'removeChild')
 
-      expect(removeChildListener).not.to.be.called
+    expect(removeChildListener).not.to.be.called
 
-      expect(scriptTagElement()).to.be.null
+    expect(scriptTagElement()).to.be.null
 
-      const script1 = useScriptTag(src, () => {}, { immediate: false, manual: true })
-      const script2 = useScriptTag(src, () => {}, { immediate: false, manual: true })
+    const script1 = useScriptTag(src, () => {}, { immediate: false, manual: true })
+    const script2 = useScriptTag(src, () => {}, { immediate: false, manual: true })
 
-      // Multiple Loads
-      await script1.load(true)
-      await script2.load(true)
+    // Multiple Loads
+    await script1.load(true)
+    await script2.load(true)
 
-      expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
+    expect(scriptTagElement()).to.be.instanceOf(HTMLScriptElement)
 
-      script1.unload()
-      script2.unload()
+    script1.unload()
+    script2.unload()
 
-      expect(script1.scriptTag()).to.be.null
-      expect(script2.scriptTag()).to.be.null
-      expect(removeChildListener).to.be.calledOnce
-      expect(scriptTagElement()).to.be.null
-    })
-  })
+    expect(script1.scriptTag()).to.be.null
+    expect(script2.scriptTag()).to.be.null
+    expect(removeChildListener).to.be.calledOnce
+    expect(scriptTagElement()).to.be.null
+  }))
 })

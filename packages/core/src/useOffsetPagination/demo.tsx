@@ -13,7 +13,7 @@ const Demo = () => {
     setDatabase(data => [...data, { id: i, name: `user ${i}` }])
   }
 
-  function fetch(page: number, pageSize: number) {
+  function fetch (page: number, pageSize: number) {
     return new Promise<User[]>(resolve => {
       const start = (page - 1) * pageSize
       const end = start + pageSize
@@ -32,7 +32,7 @@ const Demo = () => {
     currentPageSize: pageSize
   })
 
-  function fetchData({
+  function fetchData ({
     currentPage,
     currentPageSize
   }: {

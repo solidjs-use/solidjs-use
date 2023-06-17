@@ -10,15 +10,15 @@ import type { ContextualNavLink } from './ContextualNav'
 import type { HTMLHopeProps } from '@hope-ui/solid'
 
 type PageLayoutProps = HTMLHopeProps<
-  'div',
-  {
-    previousLink?: ContextualNavLink
-    nextLink?: ContextualNavLink
-    contextualNavLinks?: ContextualNavLink[]
-  }
+'div',
+{
+  previousLink?: ContextualNavLink
+  nextLink?: ContextualNavLink
+  contextualNavLinks?: ContextualNavLink[]
+}
 >
 
-export default function PageLayout(props: PageLayoutProps) {
+export default function PageLayout (props: PageLayoutProps) {
   const [local, others] = splitProps(props, ['children', 'previousLink', 'nextLink', 'contextualNavLinks'])
 
   return (

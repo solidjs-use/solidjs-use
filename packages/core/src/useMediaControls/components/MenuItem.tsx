@@ -1,7 +1,6 @@
 import type { ParentComponent } from 'solid-js'
 
-export const MenuItem: ParentComponent<{ onClick: () => void }> = props => {
-  return (
+export const MenuItem: ParentComponent<{ onClick: () => void }> = props => (
     <>
       <div
         onClick={props.onClick}
@@ -11,5 +10,4 @@ export const MenuItem: ParentComponent<{ onClick: () => void }> = props => {
         {props.children}
       </div>
     </>
-  )
-}
+)

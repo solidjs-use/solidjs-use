@@ -9,7 +9,7 @@ export interface CodeSnippetProps extends HTMLHopeProps<'div'> {
   lang?: 'bash' | 'js' | 'tsx' | 'html' | 'css'
 }
 
-export default function CodeSnippet(props: ParentProps<CodeSnippetProps>) {
+export default function CodeSnippet (props: ParentProps<CodeSnippetProps>) {
   const propsWithDefault = mergeProps({ lang: 'tsx' }, props)
   const [local, others] = splitProps(propsWithDefault, ['snippet', 'lang'])
   onMount(() => {

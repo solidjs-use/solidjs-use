@@ -32,7 +32,7 @@ const Demo = () => {
           style={{
             '--rotY': rotY(),
             '--rotX': rotX(),
-            transform: `rotateY(calc(var(--rotY) * 1deg)) rotateX(calc(var(--rotX) * 1deg))`
+            transform: 'rotateY(calc(var(--rotY) * 1deg)) rotateX(calc(var(--rotX) * 1deg))'
           }}
         >
           <span

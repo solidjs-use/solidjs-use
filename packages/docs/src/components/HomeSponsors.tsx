@@ -1,5 +1,4 @@
-export const HomeSponsors = () => {
-  return (
+export const HomeSponsors = () => (
     <>
       <div class="vp-doc">
         <h2 op50 font-normal pt-5 pb-2>
@@ -12,5 +11,4 @@ export const HomeSponsors = () => {
         </a>
       </p>
     </>
-  )
-}
+)

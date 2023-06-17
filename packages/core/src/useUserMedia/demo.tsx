@@ -5,7 +5,7 @@ const Demo = () => {
   const [currentCamera, setCurrentCamera] = createSignal<string>()
   const { videoInputs: cameras } = useDevicesList({
     requestPermissions: true,
-    onUpdated() {
+    onUpdated () {
       if (!cameras().find(i => i.deviceId === currentCamera())) setCurrentCamera(cameras()[0]?.deviceId)
     }
   })

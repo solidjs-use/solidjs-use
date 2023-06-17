@@ -50,7 +50,7 @@ const FunctionsList = () => {
     Boolean(query().search || query().category || query().component || query().sortMethod)
   )
 
-  function resetFilters() {
+  function resetFilters () {
     setQuery({
       sortMethod: '',
       category: '',
@@ -58,21 +58,21 @@ const FunctionsList = () => {
       search: ''
     })
   }
-  function toggleCategory(cate: string) {
+  function toggleCategory (cate: string) {
     setQuery(({ ...newQuery }) => ({
       ...newQuery,
       category: newQuery.category === cate ? '' : cate
     }))
   }
-  function toggleSort(method: string) {
+  function toggleSort (method: string) {
     setQuery(({ ...newQuery }) => ({
       ...newQuery,
       sortMethod: method
     }))
   }
 
-  function styledName(name: string) {
-    if (name.startsWith('use'))
+  function styledName (name: string) {
+    if (name.startsWith('use')) {
       return (
         <>
           {' '}
@@ -80,7 +80,8 @@ const FunctionsList = () => {
           {name.slice(3)}
         </>
       )
-    if (name.startsWith('try'))
+    }
+    if (name.startsWith('try')) {
       return (
         <>
           {' '}
@@ -88,7 +89,8 @@ const FunctionsList = () => {
           {name.slice(3)}
         </>
       )
-    if (name.startsWith('on'))
+    }
+    if (name.startsWith('on')) {
       return (
         <>
           {' '}
@@ -96,6 +98,7 @@ const FunctionsList = () => {
           {name.slice(2)}
         </>
       )
+    }
     return name
   }
   return (

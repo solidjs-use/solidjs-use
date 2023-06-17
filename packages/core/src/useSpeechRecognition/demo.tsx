@@ -5,7 +5,7 @@ import { useSpeechRecognition } from 'solidjs-use'
 const Demo = () => {
   const [lang, setLang] = createSignal('en-US')
 
-  function sample<T>(arr: T[], size: number) {
+  function sample<T> (arr: T[], size: number) {
     const shuffled = arr.slice(0)
     let i = arr.length
     let temp: T

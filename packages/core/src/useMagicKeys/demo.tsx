@@ -3,8 +3,7 @@ import { createMemo, For } from 'solid-js'
 import { useMagicKeys } from 'solidjs-use'
 import type { ParentComponent } from 'solid-js'
 
-const Key: ParentComponent<{ value: boolean }> = props => {
-  return (
+const Key: ParentComponent<{ value: boolean }> = props => (
     <div
       class={`font-mono px-4 py-2 rounded ${
         props.value
@@ -14,8 +13,7 @@ const Key: ParentComponent<{ value: boolean }> = props => {
     >
       {props.children}
     </div>
-  )
-}
+)
 
 const Demo = () => {
   // eslint-disable-next-line camelcase

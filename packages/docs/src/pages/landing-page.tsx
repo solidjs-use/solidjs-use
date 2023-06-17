@@ -19,7 +19,7 @@ import Header from '../components/Header'
 import { IconGithub } from '../icons/IconGithub'
 import type { HTMLHopeProps, VStackProps } from '@hope-ui/solid'
 
-function HeroSection(props: VStackProps) {
+function HeroSection (props: VStackProps) {
   return (
     <VStack
       minH="calc(100vh - 72px)"
@@ -77,7 +77,7 @@ function HeroSection(props: VStackProps) {
   )
 }
 
-function FeatureSection(props: HTMLHopeProps<'div'>) {
+function FeatureSection (props: HTMLHopeProps<'div'>) {
   return (
     <Box minH="calc(100vh - 232px)" bg="$neutral2" {...props}>
       <Container>
@@ -168,7 +168,7 @@ function FeatureSection(props: HTMLHopeProps<'div'>) {
   )
 }
 
-export default function LandingPage() {
+export default function LandingPage () {
   return (
     <VStack alignItems="stretch">
       <Portal>

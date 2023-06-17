@@ -9,13 +9,15 @@ const Demo = () => {
         Supported: <BooleanDisplay value={isSupported()} />
       </p>
       <Note class="mb-2">Navigator Language:</Note>
-      {isSupported() ? (
+      {isSupported()
+        ? (
         <div>
           <code class="mr-2">{language()}</code>
         </div>
-      ) : (
+          )
+        : (
         <div>The Navigator.language API is not supported in your browser.</div>
-      )}
+          )}
     </>
   )
 }

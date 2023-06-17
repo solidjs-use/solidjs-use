@@ -14,7 +14,7 @@ const Demo = () => {
   }
 
   const { distanceX, isSwiping } = usePointerSwipe(target, {
-    onSwipe() {
+    onSwipe () {
       const containerWidth = container()?.offsetWidth
       if (containerWidth) {
         if (distanceX() < 0) {
@@ -27,7 +27,7 @@ const Demo = () => {
         }
       }
     },
-    onSwipeEnd() {
+    onSwipeEnd () {
       const containerWidth = container()?.offsetWidth
       if (distanceX() < 0 && containerWidth && Math.abs(distanceX()) / containerWidth >= 0.5) {
         setLeft('100%')

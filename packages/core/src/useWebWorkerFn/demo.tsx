@@ -44,13 +44,15 @@ const Demo = () => {
         Clock stops when UI blocking happens.
       </Note>
       <button onClick={baseSort}>Sort in Main Thread</button>
-      {!running() ? (
+      {!running()
+        ? (
         <button onClick={workerSort}>Sort in Worker</button>
-      ) : (
+          )
+        : (
         <button class="orange" onClick={() => workerTerminate('PENDING')}>
           Terminate Worker
         </button>
-      )}
+          )}
       {!!data() && (
         <p>
           Thread: <strong>{runner()}</strong>

@@ -13,13 +13,17 @@ const Demo = () => {
   }
   return (
     <>
-      {isLoading() ? (
+      {isLoading()
+        ? (
         <div class="w-[300px] h-[200px] animate-pulse bg-gray-500/5 p-2">Loading...</div>
-      ) : error() ? (
+          )
+        : error()
+          ? (
         <div>Failed</div>
-      ) : (
+            )
+          : (
         <img class="w-[300px] h-[200px]" src={imageOptions().src} />
-      )}
+            )}
       <button onClick={change}>Change</button>
     </>
   )

@@ -1,8 +1,7 @@
 import { For } from 'solid-js'
 import { contributors } from '../data/contributors'
 
-export const HomeContributors = () => {
-  return (
+export const HomeContributors = () => (
     <>
       <div class="vp-doc">
         <h2 op50 font-normal pt-5 pb-2>
@@ -33,5 +32,4 @@ export const HomeContributors = () => {
         <br />
       </div>
     </>
-  )
-}
+)

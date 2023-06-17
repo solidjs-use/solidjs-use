@@ -14,14 +14,12 @@ export interface ContextualNavLink {
 
 export type ContextualNavProps = HTMLHopeProps<'div', { links?: ContextualNavLink[] }>
 
-export default function ContextualNav(props: ContextualNavProps) {
+export default function ContextualNav (props: ContextualNavProps) {
   const [local, others] = splitProps(props, ['links', 'children'])
 
   const location = useLocation()
 
-  const isActiveLink = (href: string) => {
-    return location.hash === href.replace('#', '')
-  }
+  const isActiveLink = (href: string) => location.hash === href.replace('#', '')
 
   const mountData = () => (
     <Portal mount={document.getElementById('aside-container')}>

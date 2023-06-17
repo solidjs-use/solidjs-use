@@ -1,5 +1,4 @@
-export const RequiresProxy = () => {
-  return (
+export const RequiresProxy = () => (
     <div class="info custom-block">
       <p class="custom-block-title">
         This function uses{' '}
@@ -18,5 +17,4 @@ export const RequiresProxy = () => {
         .
       </p>
     </div>
-  )
-}
+)

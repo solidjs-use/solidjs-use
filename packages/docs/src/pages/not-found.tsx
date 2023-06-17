@@ -3,7 +3,7 @@ import { Link } from '@solidjs/router'
 
 import Header from '../components/Header'
 
-export default function NotFound() {
+export default function NotFound () {
   return (
     <VStack alignItems="stretch">
       <Header />

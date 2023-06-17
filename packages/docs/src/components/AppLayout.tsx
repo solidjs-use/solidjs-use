@@ -7,7 +7,7 @@ import PageLayout from './PageLayout'
 import Header from './Header'
 import MainNavigation from './MainNavigation'
 
-function AppLayout() {
+function AppLayout () {
   const isRouting = useIsRouting()
 
   return (

@@ -12,7 +12,7 @@ export interface PropsTableItem {
 
 type PropsTableProps = TableProps & { items: PropsTableItem[] }
 
-export function PropsTable(props: PropsTableProps) {
+export function PropsTable (props: PropsTableProps) {
   const [local, others] = splitProps(props, ['items'])
 
   return (

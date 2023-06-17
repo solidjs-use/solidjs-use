@@ -1,6 +1,6 @@
 import { Center, Text } from '@hope-ui/solid'
 
-export default function Footer() {
+export default function Footer () {
   return (
     <Center as="footer" flexDirection="column" h="$40">
       <Text mb="$3">Released under the MIT License.</Text>

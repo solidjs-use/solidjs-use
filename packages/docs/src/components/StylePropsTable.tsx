@@ -10,7 +10,7 @@ export interface StylePropsTableItem {
 
 type StylePropsTableProps = TableProps & { items: StylePropsTableItem[] }
 
-export function StylePropsTable(props: StylePropsTableProps) {
+export function StylePropsTable (props: StylePropsTableProps) {
   const [local, others] = splitProps(props, ['items'])
 
   return (

@@ -10,9 +10,7 @@ const Demo = () => {
     size: i % 2 === 0 ? 'small' : 'large'
   }))
 
-  const filteredItems = createMemo(() => {
-    return allItems.filter(i => i.size.startsWith(search().toLowerCase()))
-  })
+  const filteredItems = createMemo(() => allItems.filter(i => i.size.startsWith(search().toLowerCase())))
 
   const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(filteredItems, {
     itemHeight: i => filteredItems()[i].height + 8,

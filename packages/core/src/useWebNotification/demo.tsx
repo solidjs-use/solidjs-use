@@ -20,13 +20,15 @@ const Demo = () => {
           Supported: <BooleanDisplay value={isSupported()} />
         </p>
       </div>
-      {isSupported() ? (
+      {isSupported()
+        ? (
         <div>
           <button onClick={() => show()}>Show Notification</button>
         </div>
-      ) : (
+          )
+        : (
         <div>The Notification Web API is not supported in your browser.</div>
-      )}
+          )}
     </>
   )
 }

@@ -6,7 +6,7 @@ import MainNavTitle from '../MainNavTitle'
 
 import { categoryNames, categoryFunctions } from '../../../../../meta'
 
-export default function MainNavContent() {
+export default function MainNavContent () {
   return (
     <>
       <MainNavTitle mb="$2">Getting started</MainNavTitle>
@@ -34,8 +34,7 @@ export default function MainNavContent() {
         </AppNavLink>
       </VStack>
       <For each={categoryNames}>
-        {(category: string) => {
-          return (
+        {(category: string) => (
             <>
               {' '}
               <MainNavTitle mb="$2">{category}</MainNavTitle>
@@ -49,8 +48,7 @@ export default function MainNavContent() {
                 </For>
               </VStack>
             </>
-          )
-        }}
+        )}
       </For>
     </>
   )

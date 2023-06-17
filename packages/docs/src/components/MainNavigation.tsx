@@ -2,7 +2,7 @@ import { Flex } from '@hope-ui/solid'
 
 import MainNavContent from './MainNavContent'
 
-export default function MainNavigation() {
+export default function MainNavigation () {
   return (
     <Flex
       as="nav"

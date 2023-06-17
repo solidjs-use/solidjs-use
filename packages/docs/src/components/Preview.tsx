@@ -4,7 +4,7 @@ import { Show, splitProps } from 'solid-js'
 import CodeSnippet from './CodeSnippet'
 import type { CodeSnippetProps } from './CodeSnippet'
 
-export function Preview(props: CodeSnippetProps) {
+export function Preview (props: CodeSnippetProps) {
   const [local, others] = splitProps(props, ['lang', 'snippet', 'children'])
 
   return (
