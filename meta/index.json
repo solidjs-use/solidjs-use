@@ -530,7 +530,7 @@
     {
       "name": "useAnimate",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1687680699000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useAnimate/",
       "category": "Animation",
       "description": "reactive [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)"
@@ -634,7 +634,7 @@
     {
       "name": "useAsyncQueue",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1684760029000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useAsyncQueue/",
       "category": "Utilities",
       "description": "executes each asynchronous task sequentially and passes the current task result to the next task"
@@ -775,7 +775,7 @@
     {
       "name": "useColorMode",
       "package": "core",
-      "lastUpdated": 1682605472000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useColorMode/",
       "category": "Browser",
       "description": "reactive color mode (dark / light / customs) with auto data persistence",
@@ -821,7 +821,7 @@
     {
       "name": "useCssVar",
       "package": "core",
-      "lastUpdated": 1683964806000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useCssVar/",
       "category": "Browser",
       "description": "manipulate CSS variables"
@@ -984,7 +984,7 @@
     {
       "name": "useElementSize",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1687680699000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useElementSize/",
       "category": "Elements",
       "description": "reactive size of an HTML element"
@@ -1131,7 +1131,7 @@
     {
       "name": "useGamepad",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1687680699000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useGamepad/",
       "category": "Browser",
       "description": "provides reactive bindings for the [Gamepad API](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API)"
@@ -1177,7 +1177,7 @@
     {
       "name": "useImage",
       "package": "core",
-      "lastUpdated": 1683102296000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useImage/",
       "category": "Browser",
       "description": "reactive load an image in the browser"
@@ -1660,12 +1660,12 @@
       "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScriptTag/",
       "category": "Browser",
-      "description": "script tag injecting"
+      "description": "creates a script tag"
     },
     {
       "name": "useScroll",
       "package": "core",
-      "lastUpdated": 1683102296000,
+      "lastUpdated": 1684760029000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useScroll/",
       "category": "Sensors",
       "description": "reactive scroll position and state"
@@ -1700,7 +1700,7 @@
     {
       "name": "useSortable",
       "package": "integrations",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/integrations/useSortable/",
       "category": "@Integrations",
       "description": "wrapper for [`sortable`](https://github.com/SortableJS/Sortable)",
@@ -1815,7 +1815,7 @@
     {
       "name": "useTextareaAutoSize",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useTextareaAutoSize/",
       "category": "Browser",
       "description": "automatically update the height of a textarea depending on the content"
@@ -1922,7 +1922,7 @@
     {
       "name": "useToNumber",
       "package": "shared",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1687680699000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useToNumber/",
       "category": "Utilities",
       "description": "reactively convert a string ref to number"
@@ -2007,7 +2007,7 @@
     {
       "name": "useWebWorker",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1686837541000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useWebWorker/",
       "category": "Browser",
       "description": "simple [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) registration and communication",
@@ -2070,7 +2070,7 @@
     {
       "name": "utils",
       "package": "shared",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1687680699000,
       "internal": true
     },
     {
