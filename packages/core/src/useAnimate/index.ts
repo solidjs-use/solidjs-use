@@ -56,7 +56,7 @@ export interface UseAnimateReturn {
   pending: Accessor<boolean>
   playState: Accessor<AnimationPlayState>
   replaceState: Accessor<AnimationReplaceState>
-  startTime: WritableComputedReturn<number | null>
+  startTime: WritableComputedReturn<CSSNumberish | number | null>
   currentTime: WritableComputedReturn<CSSNumberish | null>
   timeline: WritableComputedReturn<AnimationTimeline | null>
   playbackRate: WritableComputedReturn<number>

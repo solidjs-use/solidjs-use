@@ -73,7 +73,7 @@ export function increaseWithUnit(target: string | number, delta: number): string
   if (typeof target === 'number') return target + delta
   const value = /^-?[0-9]+\.?[0-9]*/.exec(target)?.[0] ?? ''
   const unit = target.slice(value.length)
-  const result = parseFloat(value) + delta
+  const result = Number.parseFloat(value) + delta
   if (Number.isNaN(result)) return target
   return `${result}${unit}`
 }

@@ -2,13 +2,14 @@ import { createSignal } from 'solid-js'
 import { useImage } from 'solidjs-use'
 
 const Demo = () => {
-  const [imageOptions, setImageOptions] = createSignal({ src: 'https://place.dog/300/200' })
+  const [imageOptions, setImageOptions] = createSignal({ src: 'https://place-hold.it/300x200' })
+  const colors = ['fff', '000', '5f0caa']
   const { isLoading, error } = useImage(imageOptions, { delay: 2000 })
 
   const change = () => {
-    const time = new Date().getTime()
+    const color: string = colors[Math.floor(Math.random() * colors.length)]
     setImageOptions({
-      src: `https://place.dog/300/200?t=${time}`
+      src: `https://place-hold.it/300x200/${color}`
     })
   }
   return (
@@ -19,12 +20,14 @@ const Demo = () => {
           )
         : error()
           ? (
-        <div>Failed</div>
+        <div class="text-red">Failed</div>
             )
           : (
         <img class="w-[300px] h-[200px]" src={imageOptions().src} />
             )}
       <button onClick={change}>Change</button>
+
+      <button onClick={() => setImageOptions({ src: '' })}>Create Error</button>
     </>
   )
 }

@@ -106,8 +106,8 @@ const Demo = () => {
       if (resultLimitString() === '') {
         setResultLimit(undefined)
       } else {
-        const float = parseFloat(resultLimitString())
-        if (!isNaN(float)) {
+        const float = Number.parseFloat(resultLimitString())
+        if (!Number.isNaN(float)) {
           setResultLimit(Math.round(float))
           setResultLimitString(String(resultLimit()))
         }
@@ -175,7 +175,7 @@ const Demo = () => {
                 onChange={e => setCaseSensitive(e.currentTarget.checked)}
                 type="checkbox"
               />
-              <span>Case Sensistive</span>
+              <span>Case Sensitive</span>
             </label>
             <label class="checkbox">
               <input
