@@ -36,7 +36,7 @@ export function useToNumber(value: MaybeAccessor<number | string>, options: UseT
   return createMemo(() => {
     let resolved = toValue(value)
     if (typeof resolved === 'string') resolved = Number[method](resolved, radix)
-    if (nanToZero && isNaN(resolved)) resolved = 0
+    if (nanToZero && Number.isNaN(resolved)) resolved = 0
     return resolved
   })
 }

@@ -71,7 +71,7 @@ export function useGamepad(options: UseGamepadOptions = {}) {
   const onConnectedHook = createEventHook<number>()
   const onDisconnectedHook = createEventHook<number>()
 
-  const stateFromGamepad = (gamepad: Gamepad) => {
+  const stateFromGamepad = (gamepad: Gamepad): Gamepad => {
     const hapticActuators: any[] = []
     const vibrationActuator: any = 'vibrationActuator' in gamepad ? (gamepad as any).vibrationActuator : null
 
@@ -80,12 +80,9 @@ export function useGamepad(options: UseGamepadOptions = {}) {
     if (gamepad.hapticActuators) hapticActuators.push(...gamepad.hapticActuators)
 
     return {
+      ...gamepad,
       id: gamepad.id,
       hapticActuators,
-      index: gamepad.index,
-      mapping: gamepad.mapping,
-      connected: gamepad.connected,
-      timestamp: gamepad.timestamp,
       axes: gamepad.axes.map(axes => axes),
       buttons: gamepad.buttons.map(button => ({
         pressed: button.pressed,

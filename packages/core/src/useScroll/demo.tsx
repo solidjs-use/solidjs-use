@@ -40,7 +40,7 @@ const Demo = () => {
               <div>
                 <input
                   value={x().toFixed(1)}
-                  onInput={e => setX(parseFloat(e.currentTarget.value))}
+                  onInput={e => setX(Number.parseFloat(e.currentTarget.value))}
                   type="number"
                   min="0"
                   max="200"
@@ -56,7 +56,7 @@ const Demo = () => {
               <div>
                 <input
                   value={y().toFixed(1)}
-                  onInput={e => setY(parseFloat(e.currentTarget.value))}
+                  onInput={e => setY(Number.parseFloat(e.currentTarget.value))}
                   type="number"
                   min="0"
                   max="100"

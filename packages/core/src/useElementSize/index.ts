@@ -41,8 +41,8 @@ export function useElementSize(
         const $elem = toValue(target)
         if ($elem) {
           const styles = window.getComputedStyle($elem)
-          setWidth(parseFloat(styles.width))
-          setHeight(parseFloat(styles.height))
+          setWidth(Number.parseFloat(styles.width))
+          setHeight(Number.parseFloat(styles.height))
         }
       } else {
         if (boxSize) {
