@@ -1,1 +1,0 @@
-import{w as c}from"./index-679f24a2.js";function L([f,e],[i,h],l={}){const{defer:o,direction:r="both",transform:n={}}=l;let s,a;const m=n.ltr??(t=>t),w=n.rtl??(t=>t);return(r==="both"||r==="ltr")&&(s=c(f,t=>{h(()=>m(t))},{defer:o})),(r==="both"||r==="rtl")&&(a=c(i,t=>{e(()=>w(t))},{defer:o})),()=>{s?.(),a?.()}}export{L as s};
