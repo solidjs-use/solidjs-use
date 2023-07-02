@@ -13,9 +13,9 @@ export function useTimeoutPoll(
   interval: MaybeAccessor<number>,
   timeoutPollOptions?: UseTimeoutFnOptions
 ): Pausable {
-  const { start } = useTimeoutFn(loop, interval)
+  const { start } = useTimeoutFn(loop, interval, { immediate: true })
 
-  const [isActive, setIsActive] = createSignal(false)
+  const [isActive, setIsActive] = createSignal(true)
 
   async function loop() {
     if (!isActive()) return
