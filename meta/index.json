@@ -256,7 +256,7 @@
     {
       "name": "from",
       "package": "rxjs",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/rxjs/from/",
       "category": "@RxJS",
       "description": "/ fromEvent"
@@ -952,7 +952,7 @@
     {
       "name": "useDropZone",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useDropZone/",
       "category": "Elements",
       "description": "create an zone where files can be dropped"
@@ -1114,7 +1114,7 @@
     {
       "name": "useFullscreen",
       "package": "core",
-      "lastUpdated": 1682605472000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useFullscreen/",
       "category": "Browser",
       "description": "reactive [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)"
@@ -1185,7 +1185,7 @@
     {
       "name": "useInfiniteScroll",
       "package": "core",
-      "lastUpdated": 1683102296000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useInfiniteScroll/",
       "category": "Sensors",
       "description": "infinite scrolling of the element"
@@ -1608,7 +1608,7 @@
     {
       "name": "useRafFn",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useRafFn/",
       "category": "Animation",
       "description": "call function on every `requestAnimationFrame`"
@@ -1767,7 +1767,7 @@
     {
       "name": "useStyleTag",
       "package": "core",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useStyleTag/",
       "category": "Browser",
       "description": "inject reactive `style` element in head"
@@ -1890,7 +1890,7 @@
     {
       "name": "useTimeoutPoll",
       "package": "shared",
-      "lastUpdated": 1680352976000,
+      "lastUpdated": 1688266808000,
       "docs": "https://solidjs-use.github.io/solidjs-use/shared/useTimeoutPoll/",
       "category": "Utilities",
       "description": "use timeout to poll something"
