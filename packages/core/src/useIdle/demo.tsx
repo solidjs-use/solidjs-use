@@ -5,9 +5,9 @@ import { useIdle, useTimestamp } from 'solidjs-use'
 const Demo = () => {
   const { idle, lastActive } = useIdle(5000)
 
-  const [now] = useTimestamp()
+  const [now] = useTimestamp({ interval: 1000 })
 
-  const idledFor = createMemo(() => Math.floor((now() - lastActive()) / 1000))
+  const idledFor = createMemo(() => Math.ceil((now() - lastActive()) / 1000))
   return (
     <>
       <Note class="mb-2">

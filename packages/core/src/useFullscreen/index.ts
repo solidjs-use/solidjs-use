@@ -108,7 +108,7 @@ export function useFullscreen(target?: MaybeElementAccessor, options: UseFullscr
   }
 
   async function exit() {
-    if (!isSupported()) return
+    if (!isSupported() || !isFullscreen()) return
     const exitMethodValue = exitMethod()
     if (exitMethodValue) {
       if (document?.[exitMethodValue] != null) {

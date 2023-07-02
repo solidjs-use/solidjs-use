@@ -19,7 +19,7 @@ const Demo = () => {
         <>
           {' '}
           <p>
-            You have selected: <b>{files()!.length} files</b>
+            You have selected: <b>{`${files()?.length} ${files()?.length === 1 ? 'file' : 'files'}`} files</b>
           </p>
           <For each={files() as unknown as File[]}>{file => <li>{file.name}</li>}</For>
         </>
