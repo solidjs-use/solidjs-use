@@ -1,0 +1,1 @@
+import{n as c,P as m,r as p,u as d}from"./index-c97db86a.js";function P(s,a,l={}){const{immediate:r=!0}=l,[o,t]=c(!1);let e=null;function n(){e&&(clearTimeout(e),e=null)}function i(){t(!1),n()}function u(...f){n(),t(!0),e=setTimeout(()=>{t(!1),e=null,s(...f)},d(a))}return r&&(t(!0),m&&u()),p(i),{isPending:o,start:u,stop:i}}export{P as u};
