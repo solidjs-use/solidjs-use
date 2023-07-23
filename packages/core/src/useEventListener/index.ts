@@ -74,6 +74,20 @@ export function useEventListener<K extends keyof HTMLElementEventMap>(
  *
  * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
+export function useEventListener<Names extends string, EventType = Event>(
+  target: InferEventTarget<Names>,
+  event: Arrayable<Names>,
+  listener: Arrayable<GeneralEventListener<EventType>>,
+  options?: MaybeAccessor<boolean | AddEventListenerOptions>
+): Fn
+
+/**
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
+ *
+ * Overload 6: Custom event target fallback
+ *
+ * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
+ */
 export function useEventListener<EventType = Event>(
   target: MaybeAccessor<EventTarget | null | undefined>,
   event: Arrayable<string>,
