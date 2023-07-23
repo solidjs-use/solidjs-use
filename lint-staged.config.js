@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   'packages/**/*.ts?(x)': () => 'npm run type-check',
-  '*.{js,jsx,ts,tsx,md}': ['prettier --write', 'eslint --fix'],
+  '*.{js,jsx,ts,tsx,md}': ['prettier --write'],
   'packages/*/src/*/index.test.ts?(x)': filenames => {
     const files = filenames
       .map(filePath => (filePath.includes('test.') ? filePath : filePath.replace('index.', 'index.test.')))
