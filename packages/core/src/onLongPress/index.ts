@@ -1,6 +1,6 @@
-import { toAccessor } from '@solidjs-use/shared'
-import { useEventListener } from '../useEventListener'
-import type { MaybeElementAccessor } from '@solidjs-use/shared'
+import { toAccessor } from "@solidjs-use/shared"
+import { useEventListener } from "../useEventListener"
+import type { MaybeElementAccessor } from "@solidjs-use/shared"
 
 const DEFAULT_DELAY = 500
 
@@ -61,7 +61,6 @@ export function onLongPress(
     once: options?.modifiers?.once
   }
 
-  useEventListener(elementRef, 'pointerdown', onDown, listenerOptions)
-  useEventListener(elementRef, 'pointerup', clear, listenerOptions)
-  useEventListener(elementRef, 'pointerleave', clear, listenerOptions)
+  useEventListener(elementRef, "pointerdown", onDown, listenerOptions)
+  useEventListener(elementRef, ["pointerup", "pointerleave"], clear, listenerOptions)
 }

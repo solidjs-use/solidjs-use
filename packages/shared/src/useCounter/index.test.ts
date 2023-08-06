@@ -1,11 +1,12 @@
-import { useCounter } from '.'
+import { createSignal } from "solid-js"
+import { useCounter } from "."
 
-describe('useCounter', () => {
-  it('should be defined', () => {
+describe("useCounter", () => {
+  it("should be defined", () => {
     expect(useCounter).to.be.not.undefined
   })
 
-  it('should be update counter', () => {
+  it("should be update counter", () => {
     const { count, inc, dec, set, reset } = useCounter()
 
     expect(count()).to.eq(0)
@@ -27,7 +28,48 @@ describe('useCounter', () => {
     expect(count()).to.eq(25)
   })
 
-  it('should be update limited counter', () => {
+  it("should be update initial & counter", () => {
+    const [initial, setInitial] = createSignal(0)
+    const { count, inc, dec, set, reset } = useCounter([initial, setInitial])
+
+    expect(count()).to.be.eq(0)
+    expect(initial()).to.be.eq(0)
+    expect(count()).to.be.eq(0)
+    inc()
+    expect(initial()).to.be.eq(1)
+    expect(count()).to.be.eq(1)
+    expect(count()).to.be.eq(1)
+    inc(2)
+    expect(count()).to.be.eq(3)
+    expect(initial()).to.be.eq(3)
+    expect(count()).to.be.eq(3)
+    dec()
+    expect(count()).to.be.eq(2)
+    expect(initial()).to.be.eq(2)
+    expect(count()).to.be.eq(2)
+    dec(5)
+    expect(count()).to.be.eq(-3)
+    expect(initial()).to.be.eq(-3)
+    expect(count()).to.be.eq(-3)
+    set(100)
+    expect(count()).to.be.eq(100)
+    expect(initial()).to.be.eq(100)
+    expect(count()).to.be.eq(100)
+    reset()
+    expect(count()).to.be.eq(0)
+    expect(initial()).to.be.eq(0)
+    expect(count()).to.be.eq(0)
+    reset(25)
+    expect(count()).to.be.eq(25)
+    expect(initial()).to.be.eq(25)
+    expect(count()).to.be.eq(25)
+    reset()
+    expect(count()).to.be.eq(25)
+    expect(initial()).to.be.eq(25)
+    expect(count()).to.be.eq(25)
+  })
+
+  it("should be update limited counter", () => {
     const { count, inc, dec, set, reset } = useCounter(1, { min: -2, max: 15 })
     expect(count()).to.eq(1)
     inc(20)

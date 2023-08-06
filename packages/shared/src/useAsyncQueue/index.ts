@@ -1,12 +1,12 @@
-import { reactive } from '@solidjs-use/solid-to-vue'
-import { createSignal } from 'solid-js'
-import { noop } from '../utils'
-import type { Accessor } from 'solid-js'
+import { reactive } from "@solidjs-use/solid-to-vue"
+import { createSignal } from "solid-js"
+import { noop } from "../utils"
+import type { Accessor } from "solid-js"
 
 export type UseAsyncQueueTask<T> = (...args: any[]) => T | Promise<T>
 
 export interface UseAsyncQueueResult<T> {
-  state: 'aborted' | 'fulfilled' | 'pending' | 'rejected'
+  state: "aborted" | "fulfilled" | "pending" | "rejected"
   data: T | null
 }
 
@@ -59,10 +59,20 @@ export function useAsyncQueue<T1, T2, T3>(
   options?: UseAsyncQueueOptions
 ): UseAsyncQueueReturn<[UseAsyncQueueResult<T1>, UseAsyncQueueResult<T2>, UseAsyncQueueResult<T3>]>
 export function useAsyncQueue<T1, T2, T3, T4>(
-  tasks: [UseAsyncQueueTask<T1>, UseAsyncQueueTask<T2>, UseAsyncQueueTask<T3>, UseAsyncQueueTask<T4>],
+  tasks: [
+    UseAsyncQueueTask<T1>,
+    UseAsyncQueueTask<T2>,
+    UseAsyncQueueTask<T3>,
+    UseAsyncQueueTask<T4>
+  ],
   options?: UseAsyncQueueOptions
 ): UseAsyncQueueReturn<
-  [UseAsyncQueueResult<T1>, UseAsyncQueueResult<T2>, UseAsyncQueueResult<T3>, UseAsyncQueueResult<T4>]
+  [
+    UseAsyncQueueResult<T1>,
+    UseAsyncQueueResult<T2>,
+    UseAsyncQueueResult<T3>,
+    UseAsyncQueueResult<T4>
+  ]
 >
 export function useAsyncQueue<T1, T2, T3, T4, T5>(
   tasks: [
@@ -92,13 +102,16 @@ export function useAsyncQueue<T = any>(
 ): UseAsyncQueueReturn<Array<UseAsyncQueueResult<T>>> {
   const { interrupt = true, onError = noop, onFinished = noop, signal } = options
 
-  const promiseState: Record<UseAsyncQueueResult<T>['state'], UseAsyncQueueResult<T>['state']> = {
-    aborted: 'aborted',
-    fulfilled: 'fulfilled',
-    pending: 'pending',
-    rejected: 'rejected'
+  const promiseState: Record<UseAsyncQueueResult<T>["state"], UseAsyncQueueResult<T>["state"]> = {
+    aborted: "aborted",
+    fulfilled: "fulfilled",
+    pending: "pending",
+    rejected: "rejected"
   }
-  const initialResult = Array.from(new Array(tasks.length), () => ({ state: promiseState.pending, data: null }))
+  const initialResult = Array.from(Array.from({ length: tasks.length }), () => ({
+    state: promiseState.pending,
+    data: null
+  }))
   const result = reactive(initialResult) as Array<UseAsyncQueueResult<T>>
 
   const [activeIndex, setActiveIndex] = createSignal<number>(-1)
@@ -111,7 +124,7 @@ export function useAsyncQueue<T = any>(
     }
   }
 
-  function updateResult(state: UseAsyncQueueResult<T>['state'], res: unknown) {
+  function updateResult(state: UseAsyncQueueResult<T>["state"], res: unknown) {
     setActiveIndex(val => val + 1)
     result[activeIndex()].data = res as T
     result[activeIndex()].state = state
@@ -121,7 +134,7 @@ export function useAsyncQueue<T = any>(
     return prev
       .then(prevRes => {
         if (signal?.aborted) {
-          updateResult(promiseState.aborted, new Error('aborted'))
+          updateResult(promiseState.aborted, new Error("aborted"))
           return
         }
 
@@ -160,9 +173,9 @@ export function useAsyncQueue<T = any>(
 
 function whenAborted(signal: AbortSignal): Promise<never> {
   return new Promise((resolve, reject) => {
-    const error = new Error('aborted')
+    const error = new Error("aborted")
 
     if (signal.aborted) reject(error)
-    else signal.addEventListener('abort', () => reject(error), { once: true })
+    else signal.addEventListener("abort", () => reject(error), { once: true })
   })
 }

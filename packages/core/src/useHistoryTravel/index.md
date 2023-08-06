@@ -10,8 +10,8 @@ Track the change history of a `Signal` or `Accessor`, when the parameter is a Si
 ## Usage
 
 ```ts {5}
-import { createSignal } from 'solid-js'
-import { useHistoryTravel } from 'solidjs-use'
+import { createSignal } from "solid-js"
+import { useHistoryTravel } from "solidjs-use"
 
 const [counter, setCounter] = createSignal(0)
 const { history, undo, redo } = useHistoryTravel([counter, setCounter])
@@ -39,43 +39,43 @@ console.log(counter()) // 0
 
 #### Custom Clone Function
 
-`useHistoryTravel` only embeds the minimal clone function `x => JSON.parse(JSON.stringify(x))`. To use a full featured or custom clone function, you can set up via the `dump` options.
+`useHistoryTravel` only embeds the minimal clone function `x => JSON.parse(JSON.stringify(x))`. To use a full featured or custom clone function, you can set up via the `clone` options.
 
 For example, using [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone):
 
 ```ts
-import { useHistoryTravel } from 'solidjs-use'
+import { useHistoryTravel } from "solidjs-use"
 
-const historyTravelData = useHistoryTravel(target, { dump: structuredClone })
+const historyTravelData = useHistoryTravel(target, { clone: structuredClone })
 ```
 
 Or by using [lodash's `cloneDeep`](https://lodash.com/docs/4.17.15#cloneDeep):
 
 ```ts
-import { cloneDeep } from 'lodash-es'
-import { useHistoryTravel } from 'solidjs-use'
+import { cloneDeep } from "lodash-es"
+import { useHistoryTravel } from "solidjs-use"
 
-const historyTravelData = useHistoryTravel(target, { dump: cloneDeep })
+const historyTravelData = useHistoryTravel(target, { clone: cloneDeep })
 ```
 
 Or a more lightweight [`klona`](https://github.com/lukeed/klona):
 
 ```ts
-import { klona } from 'klona'
-import { useHistoryTravel } from 'solidjs-use'
+import { klona } from "klona"
+import { useHistoryTravel } from "solidjs-use"
 
-const historyTravelData = useHistoryTravel(target, { dump: klona })
+const historyTravelData = useHistoryTravel(target, { clone: klona })
 ```
 
 #### Custom Dump and Parse Function
 
-Instead of using the `clone` param, you can pass custom functions to control the serialization and parsing. In case you do not need history values to be objects, this can save an extra clone when undoing. It is also useful in case you want to have the snapshots already stringified to be saved to local storage for example.
+Instead of using the `clone` options, you can pass custom functions to control the serialization and parsing. In case you do not need history values to be objects, this can save an extra clone when undoing. It is also useful in case you want to have the snapshots already stringified to be saved to local storage for example.
 
 ```ts
-import { useHistoryTravel } from 'solidjs-use'
+import { useHistoryTravel } from "solidjs-use"
 
 const historyTravelData = useHistoryTravel(target, {
-  dump: JSON.stringify,
+  clone: JSON.stringify,
   parse: JSON.parse
 })
 ```

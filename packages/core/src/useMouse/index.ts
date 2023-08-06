@@ -1,13 +1,15 @@
-import { createSignal } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import type { ConfigurableEventFilter, MaybeAccessor } from '@solidjs-use/shared'
-import type { Position } from '../types'
-import type { ConfigurableWindow } from '../_configurable'
+import { createSignal } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import type { ConfigurableEventFilter, MaybeAccessor } from "@solidjs-use/shared"
+import type { Position } from "../types"
+import type { ConfigurableWindow } from "../_configurable"
 
-export type UseMouseCoordType = 'page' | 'client' | 'screen' | 'movement'
-export type UseMouseSourceType = 'mouse' | 'touch' | null
-export type UseMouseEventExtractor = (event: MouseEvent | Touch) => [x: number, y: number] | null | undefined
+export type UseMouseCoordType = "page" | "client" | "screen" | "movement"
+export type UseMouseSourceType = "mouse" | "touch" | null
+export type UseMouseEventExtractor = (
+  event: MouseEvent | Touch
+) => [x: number, y: number] | null | undefined
 
 export interface UseMouseOptions extends ConfigurableWindow, ConfigurableEventFilter {
   /**
@@ -58,7 +60,7 @@ const BuiltinExtractors: Record<UseMouseCoordType, UseMouseEventExtractor> = {
  */
 export function useMouse(options: UseMouseOptions = {}) {
   const {
-    type = 'page',
+    type = "page",
     touch = true,
     resetOnTouchEnds = false,
     initialValue = { x: 0, y: 0 },
@@ -70,7 +72,7 @@ export function useMouse(options: UseMouseOptions = {}) {
   const [x, setX] = createSignal(initialValue.x)
   const [y, setY] = createSignal(initialValue.y)
   const [sourceType, setSourceType] = createSignal<UseMouseSourceType>(null)
-  const extractor = typeof type === 'function' ? type : BuiltinExtractors[type]
+  const extractor = typeof type === "function" ? type : BuiltinExtractors[type]
 
   const mouseHandler = (event: MouseEvent) => {
     const result = extractor(event)
@@ -79,7 +81,7 @@ export function useMouse(options: UseMouseOptions = {}) {
       const [x, y] = result
       setX(x)
       setY(y)
-      setSourceType('mouse')
+      setSourceType("mouse")
     }
   }
 
@@ -90,7 +92,7 @@ export function useMouse(options: UseMouseOptions = {}) {
         const [x, y] = result
         setX(x)
         setY(y)
-        setSourceType('touch')
+        setSourceType("touch")
       }
     }
   }
@@ -109,12 +111,11 @@ export function useMouse(options: UseMouseOptions = {}) {
     : (event: TouchEvent) => touchHandler(event)
 
   if (target) {
-    useEventListener(target, 'mousemove', mouseHandlerWrapper, { passive: true })
-    useEventListener(target, 'dragover', mouseHandlerWrapper, { passive: true })
-    if (touch && type !== 'movement') {
-      useEventListener(target, 'touchstart', touchHandlerWrapper, { passive: true })
-      useEventListener(target, 'touchmove', touchHandlerWrapper, { passive: true })
-      if (resetOnTouchEnds) useEventListener(target, 'touchend', reset, { passive: true })
+    const listenerOptions = { passive: true }
+    useEventListener(target, ["mousemove", "dragover"], mouseHandlerWrapper, listenerOptions)
+    if (touch && type !== "movement") {
+      useEventListener(target, ["touchstart", "touchmove"], touchHandlerWrapper, listenerOptions)
+      if (resetOnTouchEnds) useEventListener(target, "touchend", reset, listenerOptions)
     }
   }
 

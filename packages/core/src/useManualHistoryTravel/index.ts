@@ -1,9 +1,9 @@
-import { timestamp } from '@solidjs-use/shared'
-import { isSignal, toSignal } from '@solidjs-use/shared/solid-to-vue'
-import { createMemo, createSignal } from 'solid-js'
-import { cloneFnJSON } from '../useCloned'
-import type { Accessor, Setter, Signal } from 'solid-js'
-import type { CloneFn } from '../useCloned'
+import { timestamp } from "@solidjs-use/shared"
+import { isSignal, toSignal } from "@solidjs-use/shared/solid-to-vue"
+import { createMemo, createSignal } from "solid-js"
+import { cloneFnJSON } from "../useCloned"
+import type { Accessor, Setter, Signal } from "solid-js"
+import type { CloneFn } from "../useCloned"
 
 export interface UseHistoryTravelRecord<T> {
   snapshot: T
@@ -108,11 +108,19 @@ const fnSetSource = <F>(setSource: Setter<F>, value: F) => setSource(value as an
 type FnCloneOrBypass<F, T> = (v: F) => T
 
 function defaultDump<R, S>(clone?: boolean | CloneFn<R>) {
-  return (clone ? (typeof clone === 'function' ? clone : cloneFnJSON) : fnBypass) as unknown as FnCloneOrBypass<R, S>
+  return (clone
+    ? typeof clone === "function"
+      ? clone
+      : cloneFnJSON
+    : fnBypass) as unknown as FnCloneOrBypass<R, S>
 }
 
 function defaultParse<R, S>(clone?: boolean | CloneFn<R>) {
-  return (clone ? (typeof clone === 'function' ? clone : cloneFnJSON) : fnBypass) as unknown as FnCloneOrBypass<S, R>
+  return (clone
+    ? typeof clone === "function"
+      ? clone
+      : cloneFnJSON
+    : fnBypass) as unknown as FnCloneOrBypass<S, R>
 }
 
 /**
@@ -165,7 +173,7 @@ export function useManualHistoryTravel<Raw, Serialized = Raw>(
 
     if (options.capacity && undoStack().length > options.capacity) {
       setUndoStack(([...stacks]) => {
-        stacks.splice(options.capacity!, Infinity)
+        stacks.splice(options.capacity!, Number.POSITIVE_INFINITY)
         return stacks
       })
     }

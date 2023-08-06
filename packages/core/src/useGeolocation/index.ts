@@ -1,10 +1,10 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { tryOnCleanup } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
-import { useSupported } from '../useSupported'
-import { defaultNavigator } from '../_configurable'
-import type { ConfigurableNavigator } from '../_configurable'
+import { tryOnCleanup } from "@solidjs-use/shared"
+import { createSignal } from "solid-js"
+import { useSupported } from "../useSupported"
+import { defaultNavigator } from "../_configurable"
+import type { ConfigurableNavigator } from "../_configurable"
 
 export interface UseGeolocationOptions extends Partial<PositionOptions>, ConfigurableNavigator {
   immediate?: boolean
@@ -24,14 +24,14 @@ export function useGeolocation(options: UseGeolocationOptions = {}) {
     immediate = true
   } = options
 
-  const isSupported = useSupported(() => navigator && 'geolocation' in navigator)
+  const isSupported = useSupported(() => navigator && "geolocation" in navigator)
 
   const [locatedAt, setLocatedAt] = createSignal<number | null>(null)
   const [error, setError] = createSignal<GeolocationPositionError | null>(null)
-  const [coords, setCoords] = createSignal<GeolocationPosition['coords']>({
+  const [coords, setCoords] = createSignal<GeolocationPosition["coords"]>({
     accuracy: 0,
-    latitude: Infinity,
-    longitude: Infinity,
+    latitude: Number.POSITIVE_INFINITY,
+    longitude: Number.POSITIVE_INFINITY,
     altitude: null,
     altitudeAccuracy: null,
     heading: null,

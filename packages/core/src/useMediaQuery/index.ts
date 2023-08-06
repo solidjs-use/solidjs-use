@@ -1,11 +1,11 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { toAccessor, tryOnCleanup } from '@solidjs-use/shared'
-import { createEffect, createSignal } from 'solid-js'
-import { useSupported } from '../useSupported'
-import { defaultWindow } from '../_configurable'
-import type { MaybeAccessor } from '@solidjs-use/shared'
-import type { ConfigurableWindow } from '../_configurable'
+import { toAccessor, toValue, tryOnCleanup, watch } from "@solidjs-use/shared"
+import { createSignal } from "solid-js"
+import { useSupported } from "../useSupported"
+import { defaultWindow } from "../_configurable"
+import type { MaybeAccessor } from "@solidjs-use/shared"
+import type { ConfigurableWindow } from "../_configurable"
 
 /**
  * Reactive Media Query.
@@ -14,38 +14,41 @@ import type { ConfigurableWindow } from '../_configurable'
  */
 export function useMediaQuery(query: MaybeAccessor<string>, options: ConfigurableWindow = {}) {
   const { window = defaultWindow } = options
-  const isSupported = useSupported(() => window && 'matchMedia' in window && typeof window.matchMedia === 'function')
+  const isSupported = useSupported(
+    () => window && "matchMedia" in window && typeof window.matchMedia === "function"
+  )
 
   let mediaQuery: MediaQueryList | undefined
   const [matches, setMatches] = createSignal(false)
+  const handler = (event: MediaQueryListEvent) => {
+    setMatches(event.matches)
+  }
 
   const cleanup = () => {
     if (!mediaQuery) return
-    if ('removeEventListener' in mediaQuery)
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      mediaQuery.removeEventListener('change', update)
+    if ("removeEventListener" in mediaQuery) mediaQuery.removeEventListener("change", handler)
     // @ts-expect-error deprecated API
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    else mediaQuery.removeListener(update)
+    else mediaQuery.removeListener(handler)
   }
-
-  const update = () => {
+  const stopWatch = watch([toAccessor(query), isSupported], () => {
     if (!isSupported()) return
 
     cleanup()
 
-    mediaQuery = window!.matchMedia(toAccessor(query)())
-    setMatches(!!mediaQuery?.matches)
+    mediaQuery = window!.matchMedia(toValue(query))
 
-    if (!mediaQuery) return
-
-    if ('addEventListener' in mediaQuery) mediaQuery.addEventListener('change', update)
+    if ("addEventListener" in mediaQuery) mediaQuery.addEventListener("change", handler)
     // @ts-expect-error deprecated API
-    else mediaQuery.addListener(update)
-  }
-  createEffect(update)
+    else mediaQuery.addListener(handler)
 
-  tryOnCleanup(() => cleanup())
+    setMatches(mediaQuery.matches)
+  })
+
+  tryOnCleanup(() => {
+    stopWatch()
+    cleanup()
+    mediaQuery = undefined
+  })
 
   return matches
 }

@@ -1,9 +1,9 @@
-import { tryOnMount } from '@solidjs-use/shared'
-import { createEffect, createSignal, on } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import { useMediaQuery } from '../useMediaQuery'
-import type { ConfigurableWindow } from '../_configurable'
+import { tryOnMount } from "@solidjs-use/shared"
+import { createEffect, createSignal, on } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import { useMediaQuery } from "../useMediaQuery"
+import type { ConfigurableWindow } from "../_configurable"
 
 export interface UseWindowSizeOptions extends ConfigurableWindow {
   initialWidth?: number
@@ -30,8 +30,8 @@ export interface UseWindowSizeOptions extends ConfigurableWindow {
 export function useWindowSize(options: UseWindowSizeOptions = {}) {
   const {
     window = defaultWindow,
-    initialWidth = Infinity,
-    initialHeight = Infinity,
+    initialWidth = Number.POSITIVE_INFINITY,
+    initialHeight = Number.POSITIVE_INFINITY,
     listenOrientation = true,
     includeScrollbar = true
   } = options
@@ -53,10 +53,10 @@ export function useWindowSize(options: UseWindowSizeOptions = {}) {
 
   update()
   tryOnMount(update)
-  useEventListener('resize', update, { passive: true })
+  useEventListener("resize", update, { passive: true })
 
   if (listenOrientation) {
-    const matches = useMediaQuery('(orientation: portrait)')
+    const matches = useMediaQuery("(orientation: portrait)")
     createEffect(
       on(matches, () => {
         update()

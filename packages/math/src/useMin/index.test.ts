@@ -1,20 +1,20 @@
-import { runHook } from '@dream2023/cypress-ct-solid-js'
-import { createSignal } from 'solid-js'
-import { useMin } from '.'
+import { runHook } from "@dream2023/cypress-ct-solid-js"
+import { createSignal } from "solid-js"
+import { useMin } from "."
 
-describe('useMin', () => {
-  it('should be defined', () => {
+describe("useMin", () => {
+  it("should be defined", () => {
     expect(useMin).to.be.exist
   })
 
-  it('should accept numbers', () => {
+  it("should accept numbers", () => {
     runHook(() => {
       const v = useMin(50, 100)
       expect(v()).to.eq(50)
     })
   })
 
-  it('should accept Signals', () => {
+  it("should accept Signals", () => {
     runHook(() => {
       const [value1, setValue1] = createSignal(10)
       const [value2, setValue2] = createSignal(100)
@@ -34,7 +34,7 @@ describe('useMin', () => {
     })
   })
 
-  it('should accept numbers and Signals', () => {
+  it("should accept numbers and Signals", () => {
     runHook(() => {
       const value1 = 10
       const [value2, setValue2] = createSignal(100)
@@ -48,17 +48,17 @@ describe('useMin', () => {
     })
   })
 
-  it('should accept single arg', () => {
+  it("should accept single arg", () => {
     runHook(() => {
       const v = useMin(50)
       expect(v()).to.eq(50)
     })
   })
 
-  it('should accept zero arg', () => {
+  it("should accept zero arg", () => {
     runHook(() => {
       const v = useMin()
-      expect(v()).to.eq(Infinity)
+      expect(v()).to.eq(Number.POSITIVE_INFINITY)
     })
   })
 })

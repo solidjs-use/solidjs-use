@@ -4,14 +4,14 @@ category: Sensors
 
 # onKeyStroke
 
-Listen for keyboard key being stroked.
+Listen for keyboard keystrokes.
 
 ## Usage
 
 ```js
-import { onKeyStroke } from 'solidjs-use'
+import { onKeyStroke } from "solidjs-use"
 
-onKeyStroke('ArrowDown', e => {
+onKeyStroke("ArrowDown", e => {
   e.preventDefault()
 })
 ```
@@ -21,9 +21,9 @@ See [this table](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/
 ### Listen To Multiple Keys
 
 ```js
-import { onKeyStroke } from 'solidjs-use'
+import { onKeyStroke } from "solidjs-use"
 
-onKeyStroke(['s', 'S', 'ArrowDown'], e => {
+onKeyStroke(["s", "S", "ArrowDown"], e => {
   e.preventDefault()
 })
 
@@ -40,9 +40,9 @@ onKeyStroke(e => {
 
 ```js
 onKeyStroke(
-  'A',
+  "A",
   e => {
-    console.log('Key A pressed on document')
+    console.log("Key A pressed on document")
   },
   { target: document }
 )
@@ -53,13 +53,13 @@ onKeyStroke(
 The callback will trigger only once when pressing `A` and **hold down**.
 
 ```js
-import { onKeyStroke } from 'solidjs-use'
+import { onKeyStroke } from "solidjs-use"
 
 // use `autoRepeat` option
 onKeyStroke(
-  'A',
+  "A",
   e => {
-    console.log('Key A pressed')
+    console.log("Key A pressed")
   },
   { dedupe: false }
 )
@@ -71,18 +71,18 @@ Reference: [KeyboardEvent.repeat](https://developer.mozilla.org/en-US/docs/Web/A
 
 ```js
 onKeyStroke(
-  'Shift',
+  "Shift",
   e => {
-    console.log('Shift key up')
+    console.log("Shift key up")
   },
-  { eventName: 'keyup' }
+  { eventName: "keyup" }
 )
 ```
 
 Or
 
 ```js
-onKeyUp('Shift', () => console.log('Shift key up'))
+onKeyUp("Shift", () => console.log("Shift key up"))
 ```
 
 ## Shorthands

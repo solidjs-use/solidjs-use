@@ -1,10 +1,15 @@
-export * from './filters'
-export * from './is'
-export * from './types'
+export * from "./filters"
+export * from "./is"
+export * from "./types"
+export * from "./port"
 
-export { nextTick } from '@solidjs-use/solid-to-vue'
+export { nextTick } from "@solidjs-use/solid-to-vue"
 
-export function promiseTimeout(ms: number, throwOnTimeout = false, reason = 'Timeout'): Promise<void> {
+export function promiseTimeout(
+  ms: number,
+  throwOnTimeout = false,
+  reason = "Timeout"
+): Promise<void> {
   return new Promise((resolve, reject) => {
     if (throwOnTimeout) setTimeout(() => reject(reason), ms)
     else setTimeout(resolve, ms)
@@ -70,8 +75,8 @@ export function increaseWithUnit(target: number, delta: number): number
 export function increaseWithUnit(target: string, delta: number): string
 export function increaseWithUnit(target: string | number, delta: number): string | number
 export function increaseWithUnit(target: string | number, delta: number): string | number {
-  if (typeof target === 'number') return target + delta
-  const value = /^-?[0-9]+\.?[0-9]*/.exec(target)?.[0] ?? ''
+  if (typeof target === "number") return target + delta
+  const value = /^-?[0-9]+\.?[0-9]*/.exec(target)?.[0] ?? ""
   const unit = target.slice(value.length)
   const result = Number.parseFloat(value) + delta
   if (Number.isNaN(result)) return target
@@ -83,7 +88,11 @@ export function increaseWithUnit(target: string | number, delta: number): string
  *
  * @category Object
  */
-export function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[], omitUndefined = false) {
+export function objectPick<O extends object, T extends keyof O>(
+  obj: O,
+  keys: T[],
+  omitUndefined = false
+) {
   return keys.reduce((n, k) => {
     if (k in obj) {
       if (!omitUndefined || obj[k] !== undefined) n[k] = obj[k]
@@ -95,7 +104,11 @@ export function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[
 /**
  * Create a new subset object by omit giving keys
  */
-export function objectOmit<O extends object, T extends keyof O>(obj: O, keys: T[], omitUndefined = false) {
+export function objectOmit<O extends object, T extends keyof O>(
+  obj: O,
+  keys: T[],
+  omitUndefined = false
+) {
   return Object.fromEntries(
     Object.entries(obj).filter(([key, value]) => {
       return (!omitUndefined || value !== undefined) && !keys.includes(key as T)

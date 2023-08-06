@@ -1,8 +1,8 @@
-import { createSignal, getOwner, runWithOwner } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { useSupported } from '../useSupported'
-import { defaultNavigator } from '../_configurable'
-import type { ConfigurableNavigator } from '../_configurable'
+import { createSignal, getOwner, runWithOwner } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { useSupported } from "../useSupported"
+import { defaultNavigator } from "../_configurable"
+import type { ConfigurableNavigator } from "../_configurable"
 
 export interface BatteryManager extends EventTarget {
   charging: boolean
@@ -21,9 +21,9 @@ type NavigatorWithBattery = Navigator & {
  * @see https://solidjs-use.github.io/solidjs-use/core/useBattery
  */
 export function useBattery({ navigator = defaultNavigator }: ConfigurableNavigator = {}) {
-  const events = ['chargingchange', 'chargingtimechange', 'dischargingtimechange', 'levelchange']
+  const events = ["chargingchange", "chargingtimechange", "dischargingtimechange", "levelchange"]
 
-  const isSupported = useSupported(() => navigator && 'getBattery' in navigator)
+  const isSupported = useSupported(() => navigator && "getBattery" in navigator)
 
   const [charging, setCharging] = createSignal(false)
   const [chargingTime, setChargingTime] = createSignal(0)
@@ -44,11 +44,10 @@ export function useBattery({ navigator = defaultNavigator }: ConfigurableNavigat
     ;(navigator as NavigatorWithBattery).getBattery().then(_battery => {
       battery = _battery
       updateBatteryInfo.call(battery)
-      for (const event of events) {
-        runWithOwner(owner, () => {
-          useEventListener(battery, event, updateBatteryInfo, { passive: true })
-        })
-      }
+
+      runWithOwner(owner, () => {
+        useEventListener(battery, events, updateBatteryInfo, { passive: true })
+      })
     })
   }
 

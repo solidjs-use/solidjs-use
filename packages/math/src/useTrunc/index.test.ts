@@ -1,6 +1,6 @@
-import { runHook } from '@dream2023/cypress-ct-solid-js'
-import { createSignal } from 'solid-js'
-import { useTrunc } from '.'
+import { runHook } from "@dream2023/cypress-ct-solid-js"
+import { createSignal } from "solid-js"
+import { useTrunc } from "."
 
 // Returns:
 //  0        ->  0
@@ -14,11 +14,11 @@ import { useTrunc } from '.'
 //  NaN      ->  NaN
 //  null     ->  0
 
-describe('useTrunk', () => {
-  it('should be defined', () => {
+describe("useTrunk", () => {
+  it("should be defined", () => {
     expect(useTrunc).to.be.exist
   })
-  it('should work', () => {
+  it("should work", () => {
     runHook(() => {
       const [base, setBase] = createSignal(1.95)
       const result = useTrunc(base)
@@ -36,11 +36,11 @@ describe('useTrunk', () => {
       setBase(-0.2)
       expect(result()).to.eq(-0)
 
-      setBase(Infinity)
-      expect(result()).to.eq(Infinity)
-      setBase(-Infinity)
-      expect(result()).to.eq(-Infinity)
-      setBase(NaN)
+      setBase(Number.POSITIVE_INFINITY)
+      expect(result()).to.eq(Number.POSITIVE_INFINITY)
+      setBase(Number.NEGATIVE_INFINITY)
+      expect(result()).to.eq(Number.NEGATIVE_INFINITY)
+      setBase(Number.NaN)
       expect(isNaN(result())).to.eq(true)
     })
   })

@@ -1,10 +1,11 @@
-import { tryOnCleanup } from 'solidjs-use'
-import { onValue } from 'firebase/database'
-import { createSignal } from 'solid-js'
-import type { Signal } from 'solid-js'
-import type { DatabaseReference, DataSnapshot } from 'firebase/database'
+import { tryOnCleanup } from "solidjs-use"
+import { onValue } from "firebase/database"
+import { createSignal } from "solid-js"
+import type { Signal } from "solid-js"
+import type { DatabaseReference, DataSnapshot } from "firebase/database"
 
 export interface UseRTDBOptions {
+  errorHandler?: (err: Error) => void
   autoDispose?: boolean
 }
 
@@ -14,14 +15,14 @@ export interface UseRTDBOptions {
  * @see https://solidjs-use.github.io/solidjs-use/firebase/useRTDB
  */
 export function useRTDB<T = any>(docRef: DatabaseReference, options: UseRTDBOptions = {}) {
-  const { autoDispose = true } = options
+  const { errorHandler = (err: Error) => console.error(err), autoDispose = true } = options
   const data = createSignal(undefined) as Signal<T | undefined>
 
   function update(snapshot: DataSnapshot) {
     data[1](snapshot.val())
   }
 
-  const off = onValue(docRef, update)
+  const off = onValue(docRef, update, errorHandler)
 
   if (autoDispose) tryOnCleanup(() => off())
 

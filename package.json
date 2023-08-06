@@ -1,7 +1,7 @@
 {
   "name": "@solidjs-use/monorepo",
   "version": "2.2.1",
-  "vueuse-git-commit-id": "4f4141ad3ce9bbb86dbf57c57ceb3792a28ffdd6",
+  "vueuse-git-commit-id": "028a732333ea6792a984f39c18f1fdad8b0587bd",
   "private": true,
   "packageManager": "pnpm@8.3.1",
   "description": "Collection of SolidJS utilities inspired completely by VueUse",
@@ -70,7 +70,6 @@
     "vite": "^4.3.4",
     "vite-plugin-solid": "^2.7.0"
   },
-  "prettier": "@giveerr/prettier-config",
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   }

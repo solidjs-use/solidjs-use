@@ -1,6 +1,6 @@
-import { noop, tryOnCleanup, toValue, watch } from '@solidjs-use/shared'
-import { defaultWindow } from '../_configurable'
-import type { Arrayable, Fn, MaybeAccessor, MaybeElement } from '@solidjs-use/shared'
+import { noop, tryOnCleanup, watch, toAccessor } from "@solidjs-use/shared"
+import { defaultWindow } from "../_configurable"
+import type { Arrayable, Fn, MaybeAccessor, MaybeElement } from "@solidjs-use/shared"
 
 interface InferEventTarget<Events> {
   addEventListener: (event: Events, fn?: any, options?: any) => any
@@ -60,10 +60,10 @@ export function useEventListener<E extends keyof DocumentEventMap>(
  *
  * @see https://solidjs-use.github.io/solidjs-use/core/useEventListener
  */
-export function useEventListener<K extends keyof HTMLElementEventMap>(
+export function useEventListener<E extends keyof HTMLElementEventMap>(
   target: MaybeAccessor<HTMLElement | null | undefined>,
-  event: K,
-  listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+  event: Arrayable<E>,
+  listener: (this: HTMLElement, ev: HTMLElementEventMap[E]) => any,
   options?: boolean | AddEventListenerOptions
 ): () => void
 
@@ -101,7 +101,7 @@ export function useEventListener(...args: any[]) {
   let listeners: Arrayable<Function>
   let options: MaybeAccessor<boolean | AddEventListenerOptions> | undefined
 
-  if (typeof args[0] === 'string' || Array.isArray(args[0])) {
+  if (typeof args[0] === "string" || Array.isArray(args[0])) {
     ;[events, listeners, options] = args
     target = defaultWindow
   } else {
@@ -125,7 +125,7 @@ export function useEventListener(...args: any[]) {
   }
 
   const stopWatch = watch(
-    () => [toValue(target as unknown as MaybeElement), toValue(options)],
+    [toAccessor(target as unknown as MaybeElement), toAccessor(options)],
     ([el, options]) => {
       cleanup()
       if (!el) return

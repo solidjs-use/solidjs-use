@@ -1,9 +1,9 @@
-import { noop, syncSignal, toValue } from '@solidjs-use/shared'
-import { isAccessor, reactive } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, createMemo, on } from 'solid-js'
-import { useClamp } from '../../../math/src/useClamp'
-import type { Accessor, Setter } from 'solid-js'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import { noop, syncSignal, toValue } from "@solidjs-use/shared"
+import { isAccessor, reactive } from "@solidjs-use/shared/solid-to-vue"
+import { createEffect, createMemo, on } from "solid-js"
+import { useClamp } from "../../../math/src/useClamp"
+import type { Accessor, Setter } from "solid-js"
+import type { MaybeAccessor } from "@solidjs-use/shared"
 
 export interface UseOffsetPaginationOptions {
   /**
@@ -61,7 +61,7 @@ export interface UseOffsetPaginationReturn {
   next: () => void
 }
 
-export type UseOffsetPaginationInfinityPageReturn = Omit<UseOffsetPaginationReturn, 'isLastPage'>
+export type UseOffsetPaginationInfinityPageReturn = Omit<UseOffsetPaginationReturn, "isLastPage">
 
 /**
  * Reactive offset pagination.
@@ -69,12 +69,14 @@ export type UseOffsetPaginationInfinityPageReturn = Omit<UseOffsetPaginationRetu
  * @see https://solidjs-use.github.io/solidjs-use/core/useOffsetPagination
  */
 export function useOffsetPagination(
-  options: Omit<UseOffsetPaginationOptions, 'total'>
+  options: Omit<UseOffsetPaginationOptions, "total">
 ): UseOffsetPaginationInfinityPageReturn
 export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOffsetPaginationReturn
-export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOffsetPaginationReturn {
+export function useOffsetPagination(
+  options: UseOffsetPaginationOptions
+): UseOffsetPaginationReturn {
   const {
-    total = Infinity,
+    total = Number.POSITIVE_INFINITY,
     pageSize = 10,
     page = 1,
     setPage,
@@ -85,15 +87,19 @@ export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOff
   } = options
 
   const [currentPageSize, setCurrentPageSize] = useClamp(
-    setPageSize === undefined || typeof pageSize === 'number' ? (pageSize as number) : [pageSize, setPageSize],
+    setPageSize === undefined || typeof pageSize === "number"
+      ? (pageSize as number)
+      : [pageSize, setPageSize],
     1,
-    Infinity
+    Number.POSITIVE_INFINITY
   )
 
-  const pageCount = createMemo(() => Math.max(1, Math.ceil(toValue(total) / toValue(currentPageSize))))
+  const pageCount = createMemo(() =>
+    Math.max(1, Math.ceil(toValue(total) / toValue(currentPageSize)))
+  )
 
   const [currentPage, setCurrentPage] = useClamp(
-    setPage === undefined || typeof page === 'number' ? (page as number) : [page, setPage],
+    setPage === undefined || typeof page === "number" ? (page as number) : [page, setPage],
     1,
     pageCount
   )
@@ -103,7 +109,8 @@ export function useOffsetPagination(options: UseOffsetPaginationOptions): UseOff
 
   if (isAccessor(page)) syncSignal([page, setPage!], [currentPage, setCurrentPage], { defer: true })
 
-  if (isAccessor(pageSize)) syncSignal([pageSize, setPageSize!], [currentPageSize, setCurrentPageSize], { defer: true })
+  if (isAccessor(pageSize))
+    syncSignal([pageSize, setPageSize!], [currentPageSize, setCurrentPageSize], { defer: true })
 
   function prev() {
     setCurrentPage(state => state - 1)
