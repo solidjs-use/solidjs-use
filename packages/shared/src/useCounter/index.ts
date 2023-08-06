@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js"
 import type { Accessor } from "solid-js"
-import type { MaybeAccessor, MaybeSignal } from "../utils"
+import type { MaybeSignal } from "../utils"
 import { toValue } from "../toValue"
 import { toSignal } from "@solidjs-use/solid-to-vue"
 

@@ -1,4 +1,4 @@
-import { noop, tryOnCleanup, toValue, watch, toAccessor } from "@solidjs-use/shared"
+import { noop, tryOnCleanup, watch, toAccessor } from "@solidjs-use/shared"
 import { defaultWindow } from "../_configurable"
 import type { Arrayable, Fn, MaybeAccessor, MaybeElement } from "@solidjs-use/shared"
 

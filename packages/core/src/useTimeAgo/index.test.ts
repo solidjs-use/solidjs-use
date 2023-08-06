@@ -58,8 +58,8 @@ describe("useTimeAgo", () => {
     it("just now using custom formatter", () => {
       runHook(() => {
         expect(
-          // @ts-expect-error mock messages
           useTimeAgo(baseTime, {
+            // @ts-ignore
             messages: { second: "{0}", future: "{0}", past: "{0}" },
             showSecond: true
           })()
