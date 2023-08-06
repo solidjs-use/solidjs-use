@@ -1,0 +1,1 @@
+import{G as I,u as N}from"./index-7f53179d.js";function x(r=0,c={}){const[n,e]=I(r);let o=N(n);const{max:s=Number.POSITIVE_INFINITY,min:a=Number.NEGATIVE_INFINITY}=c,i=(t=1)=>e(Math.min(s,n()+t)),m=(t=1)=>e(Math.max(a,n()-t)),u=t=>e(Math.max(a,Math.min(s,t)));return{count:n,inc:i,dec:m,set:u,reset:(t=o)=>(o=t,u(t))}}export{x as u};

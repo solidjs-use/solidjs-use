@@ -1,1 +1,0 @@
-import{a as t,i as r,g as l,E as n,t as o}from"./index-1dd1638f.js";const u=o("<span>"),c=s=>{const e=t({value:!1,true:"true",false:"false",trueClass:"text-primary",falseClass:"text-orange-400 dark:text-orange-300"},s);return(()=>{const a=u();return r(a,()=>e.value?e.true:e.false),l(()=>n(a,`${e.value?e.trueClass:e.falseClass} ${e.class}`)),a})()};export{c as B};
