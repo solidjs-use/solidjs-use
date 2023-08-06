@@ -1,12 +1,19 @@
-import { toValue } from '@solidjs-use/shared'
-import { createMemo } from 'solid-js'
-import { useNow } from '../useNow'
-import type { Accessor } from 'solid-js'
-import type { MaybeAccessor, Pausable } from '@solidjs-use/shared'
+import { toValue } from "@solidjs-use/shared"
+import { createMemo } from "solid-js"
+import { useNow } from "../useNow"
+import type { Accessor } from "solid-js"
+import type { MaybeAccessor, Pausable } from "@solidjs-use/shared"
 
 export type UseTimeAgoFormatter<T = number> = (value: T, isPast: boolean) => string
 
-export type UseTimeAgoUnitNamesDefault = 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year'
+export type UseTimeAgoUnitNamesDefault =
+  | "second"
+  | "minute"
+  | "hour"
+  | "day"
+  | "week"
+  | "month"
+  | "year"
 
 export interface UseTimeAgoMessagesBuiltIn {
   justNow: string
@@ -15,8 +22,8 @@ export interface UseTimeAgoMessagesBuiltIn {
   invalid: string
 }
 
-export type UseTimeAgoMessages<UnitNames extends string = UseTimeAgoUnitNamesDefault> = UseTimeAgoMessagesBuiltIn &
-  Record<UnitNames, string | UseTimeAgoFormatter>
+export type UseTimeAgoMessages<UnitNames extends string = UseTimeAgoUnitNamesDefault> =
+  UseTimeAgoMessagesBuiltIn & Record<UnitNames, string | UseTimeAgoFormatter>
 
 export interface FormatTimeAgoOptions<UnitNames extends string = UseTimeAgoUnitNamesDefault> {
   /**
@@ -48,7 +55,7 @@ export interface FormatTimeAgoOptions<UnitNames extends string = UseTimeAgoUnitN
    *
    * @default 'round'
    */
-  rounding?: 'round' | 'ceil' | 'floor' | number
+  rounding?: "round" | "ceil" | "floor" | number
 
   /**
    * Custom units
@@ -56,8 +63,10 @@ export interface FormatTimeAgoOptions<UnitNames extends string = UseTimeAgoUnitN
   units?: UseTimeAgoUnit[]
 }
 
-export interface UseTimeAgoOptions<Controls extends boolean, UnitNames extends string = UseTimeAgoUnitNamesDefault>
-  extends FormatTimeAgoOptions<UnitNames> {
+export interface UseTimeAgoOptions<
+  Controls extends boolean,
+  UnitNames extends string = UseTimeAgoUnitNamesDefault
+> extends FormatTimeAgoOptions<UnitNames> {
   /**
    * Expose more controls
    *
@@ -80,27 +89,30 @@ export interface UseTimeAgoUnit<Unit extends string = UseTimeAgoUnitNamesDefault
 }
 
 const DEFAULT_UNITS: UseTimeAgoUnit[] = [
-  { max: 60000, value: 1000, name: 'second' },
-  { max: 2760000, value: 60000, name: 'minute' },
-  { max: 72000000, value: 3600000, name: 'hour' },
-  { max: 518400000, value: 86400000, name: 'day' },
-  { max: 2419200000, value: 604800000, name: 'week' },
-  { max: 28512000000, value: 2592000000, name: 'month' },
-  { max: Infinity, value: 31536000000, name: 'year' }
+  { max: 60000, value: 1000, name: "second" },
+  { max: 2760000, value: 60000, name: "minute" },
+  { max: 72000000, value: 3600000, name: "hour" },
+  { max: 518400000, value: 86400000, name: "day" },
+  { max: 2419200000, value: 604800000, name: "week" },
+  { max: 28512000000, value: 2592000000, name: "month" },
+  { max: Number.POSITIVE_INFINITY, value: 31536000000, name: "year" }
 ]
 
 const DEFAULT_MESSAGES: UseTimeAgoMessages = {
-  justNow: 'just now',
+  justNow: "just now",
   past: n => (/\d/.exec(n) ? `${n} ago` : n),
   future: n => (/\d/.exec(n) ? `in ${n}` : n),
-  month: (n, past) => (n === 1 ? (past ? 'last month' : 'next month') : `${n} month${n > 1 ? 's' : ''}`),
-  year: (n, past) => (n === 1 ? (past ? 'last year' : 'next year') : `${n} year${n > 1 ? 's' : ''}`),
-  day: (n, past) => (n === 1 ? (past ? 'yesterday' : 'tomorrow') : `${n} day${n > 1 ? 's' : ''}`),
-  week: (n, past) => (n === 1 ? (past ? 'last week' : 'next week') : `${n} week${n > 1 ? 's' : ''}`),
-  hour: n => `${n} hour${n > 1 ? 's' : ''}`,
-  minute: n => `${n} minute${n > 1 ? 's' : ''}`,
-  second: n => `${n} second${n > 1 ? 's' : ''}`,
-  invalid: ''
+  month: (n, past) =>
+    n === 1 ? (past ? "last month" : "next month") : `${n} month${n > 1 ? "s" : ""}`,
+  year: (n, past) =>
+    n === 1 ? (past ? "last year" : "next year") : `${n} year${n > 1 ? "s" : ""}`,
+  day: (n, past) => (n === 1 ? (past ? "yesterday" : "tomorrow") : `${n} day${n > 1 ? "s" : ""}`),
+  week: (n, past) =>
+    n === 1 ? (past ? "last week" : "next week") : `${n} week${n > 1 ? "s" : ""}`,
+  hour: n => `${n} hour${n > 1 ? "s" : ""}`,
+  minute: n => `${n} minute${n > 1 ? "s" : ""}`,
+  second: n => `${n} second${n > 1 ? "s" : ""}`,
+  invalid: ""
 }
 
 const DEFAULT_FORMATTER = (date: Date) => date.toISOString().slice(0, 10)
@@ -151,10 +163,11 @@ export function formatTimeAgo<UnitNames extends string = UseTimeAgoUnitNamesDefa
     fullDateFormatter = DEFAULT_FORMATTER,
     units = DEFAULT_UNITS,
     showSecond = false,
-    rounding = 'round'
+    rounding = "round"
   } = options
 
-  const roundFn = typeof rounding === 'number' ? (n: number) => +n.toFixed(rounding) : Math[rounding]
+  const roundFn =
+    typeof rounding === "number" ? (n: number) => +n.toFixed(rounding) : Math[rounding]
 
   const diff = +now - +from
   const absDiff = Math.abs(diff)
@@ -168,21 +181,25 @@ export function formatTimeAgo<UnitNames extends string = UseTimeAgoUnitNamesDefa
     const past = diff > 0
 
     const str = applyFormat(unit.name as UnitNames, val, past)
-    return applyFormat(past ? 'past' : 'future', str, past)
+    return applyFormat(past ? "past" : "future", str, past)
   }
 
-  function applyFormat(name: UnitNames | keyof UseTimeAgoMessagesBuiltIn, val: number | string, isPast: boolean) {
+  function applyFormat(
+    name: UnitNames | keyof UseTimeAgoMessagesBuiltIn,
+    val: number | string,
+    isPast: boolean
+  ) {
     const formatter = messages[name]
-    if (typeof formatter === 'function') return formatter(val as never, isPast)
-    return formatter.replace('{0}', val.toString())
+    if (typeof formatter === "function") return formatter(val as never, isPast)
+    return formatter.replace("{0}", val.toString())
   }
 
   // less than a minute
   if (absDiff < 60000 && !showSecond) return messages.justNow
 
-  if (typeof max === 'number' && absDiff > max) return fullDateFormatter(new Date(from))
+  if (typeof max === "number" && absDiff > max) return fullDateFormatter(new Date(from))
 
-  if (typeof max === 'string') {
+  if (typeof max === "string") {
     const unitMax = units.find(i => i.name === max)?.max
     if (unitMax && absDiff > unitMax) return fullDateFormatter(new Date(from))
   }

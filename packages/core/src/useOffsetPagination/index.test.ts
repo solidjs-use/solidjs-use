@@ -1,19 +1,19 @@
-import { runAsyncHook, runHook } from '@dream2023/cypress-ct-solid-js'
-import { nextTick } from '@solidjs-use/shared/solid-to-vue'
-import { createSignal, getOwner } from 'solid-js'
-import { useOffsetPagination } from '.'
-import type { Accessor, Owner, Setter } from 'solid-js'
-import type { UseOffsetPaginationReturn } from '.'
+import { runAsyncHook, runHook } from "@dream2023/cypress-ct-solid-js"
+import { nextTick } from "@solidjs-use/shared/solid-to-vue"
+import { createSignal, getOwner } from "solid-js"
+import { useOffsetPagination } from "."
+import type { Accessor, Owner, Setter } from "solid-js"
+import type { UseOffsetPaginationReturn } from "."
 
-describe('useOffsetPagination', () => {
-  it('should be defined', () => {
+describe("useOffsetPagination", () => {
+  it("should be defined", () => {
     expect(useOffsetPagination).to.be.exist
   })
 
-  describe('when page is 1', () => {
-    let currentPage: UseOffsetPaginationReturn['currentPage']
-    let prev: UseOffsetPaginationReturn['prev']
-    let next: UseOffsetPaginationReturn['next']
+  describe("when page is 1", () => {
+    let currentPage: UseOffsetPaginationReturn["currentPage"]
+    let prev: UseOffsetPaginationReturn["prev"]
+    let next: UseOffsetPaginationReturn["next"]
     let owner: Owner | null
 
     beforeEach(() => {
@@ -32,7 +32,7 @@ describe('useOffsetPagination', () => {
       }, owner)
     })
 
-    it('increments after calling next() when there are still pages left', () => {
+    it("increments after calling next() when there are still pages left", () => {
       runHook(() => {
         next()
         expect(currentPage()).to.be.eq(2)
@@ -59,8 +59,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('when page is something other than 1', () => {
-    let currentPage: UseOffsetPaginationReturn['currentPage']
+  describe("when page is something other than 1", () => {
+    let currentPage: UseOffsetPaginationReturn["currentPage"]
     let owner: Owner | null
     beforeEach(() => {
       runHook(() => {
@@ -80,8 +80,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('when total is 0', () => {
-    let currentPage: UseOffsetPaginationReturn['currentPage']
+  describe("when total is 0", () => {
+    let currentPage: UseOffsetPaginationReturn["currentPage"]
     let owner: Owner | null
 
     beforeEach(() => {
@@ -93,15 +93,15 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('returns a currentPage of 1', () => {
+    it("returns a currentPage of 1", () => {
       runHook(() => {
         expect(currentPage()).to.be.eq(1)
       }, owner)
     })
   })
 
-  describe('when the page is outside of the range of possible pages', () => {
-    let currentPage: UseOffsetPaginationReturn['currentPage']
+  describe("when the page is outside of the range of possible pages", () => {
+    let currentPage: UseOffsetPaginationReturn["currentPage"]
     const [page, setPage] = createSignal(0)
     let owner: Owner | null
 
@@ -117,14 +117,14 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('returns the maximum page number possible', () => {
+    it("returns the maximum page number possible", () => {
       runHook(() => {
         setPage(123456) // outside maximum range
         expect(currentPage()).to.be.eq(4)
       }, owner)
     })
 
-    it('clamps the lower end of the range to 1', () => {
+    it("clamps the lower end of the range to 1", () => {
       runHook(() => {
         setPage(1)
         expect(currentPage()).to.be.eq(1)
@@ -136,8 +136,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('when the page is a Accessor', () => {
-    let currentPage: UseOffsetPaginationReturn['currentPage']
+  describe("when the page is a Accessor", () => {
+    let currentPage: UseOffsetPaginationReturn["currentPage"]
     let page: Accessor<number>
     let setPage: Setter<number>
     let owner: Owner | null
@@ -156,7 +156,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('returns the correct currentPage', async () => {
+    it("returns the correct currentPage", async () => {
       runHook(() => {
         expect(currentPage()).to.be.eq(2)
         setPage(3)
@@ -168,21 +168,21 @@ describe('useOffsetPagination', () => {
       }, owner)
     })
 
-    it('clamps out of range numbers to the first and last pages', () => {
+    it("clamps out of range numbers to the first and last pages", () => {
       runHook(() => {
         setPage(-1)
         expect(currentPage()).to.be.eq(1)
 
-        setPage(Infinity)
+        setPage(Number.POSITIVE_INFINITY)
         expect(currentPage()).to.be.eq(4)
       }, owner)
     })
   })
 
-  describe('currentPageSize', () => {
-    describe('when pageSize is given as a value', () => {
-      let currentPageSize: UseOffsetPaginationReturn['currentPageSize']
-      let next: UseOffsetPaginationReturn['next']
+  describe("currentPageSize", () => {
+    describe("when pageSize is given as a value", () => {
+      let currentPageSize: UseOffsetPaginationReturn["currentPageSize"]
+      let next: UseOffsetPaginationReturn["next"]
       let owner: Owner | null
 
       beforeEach(() => {
@@ -196,13 +196,13 @@ describe('useOffsetPagination', () => {
         })
       })
 
-      it('returns the given initial page size', () => {
+      it("returns the given initial page size", () => {
         runHook(() => {
           expect(currentPageSize()).to.be.eq(14)
         }, owner)
       })
 
-      it('does not change currentPageSize when navigating through to the last page', () => {
+      it("does not change currentPageSize when navigating through to the last page", () => {
         runHook(() => {
           next()
           expect(currentPageSize()).to.be.eq(14)
@@ -216,8 +216,8 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    describe('when pageSize is given as a Accessor', () => {
-      let currentPageSize: UseOffsetPaginationReturn['currentPageSize']
+    describe("when pageSize is given as a Accessor", () => {
+      let currentPageSize: UseOffsetPaginationReturn["currentPageSize"]
       const [pageSize, setPageSize] = createSignal(11)
       let owner: Owner | null
 
@@ -231,7 +231,7 @@ describe('useOffsetPagination', () => {
         })
       })
 
-      it('changes when the given pageSize changes', () => {
+      it("changes when the given pageSize changes", () => {
         runHook(() => {
           expect(currentPageSize()).to.be.eq(11)
           setPageSize(23)
@@ -240,8 +240,8 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    describe('when pageSize is not given', () => {
-      let currentPageSize: UseOffsetPaginationReturn['currentPageSize']
+    describe("when pageSize is not given", () => {
+      let currentPageSize: UseOffsetPaginationReturn["currentPageSize"]
       let owner: Owner | null
 
       beforeEach(() => {
@@ -254,7 +254,7 @@ describe('useOffsetPagination', () => {
         })
       })
 
-      it('defaults to 10', () => {
+      it("defaults to 10", () => {
         runHook(() => {
           expect(currentPageSize()).to.be.eq(10)
         }, owner)
@@ -262,8 +262,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('isFirstPage', () => {
-    it('returns true when on the first page', () => {
+  describe("isFirstPage", () => {
+    it("returns true when on the first page", () => {
       runHook(() => {
         const { isFirstPage, prev } = useOffsetPagination({
           total: 35,
@@ -276,7 +276,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('returns false when not the first page', () => {
+    it("returns false when not the first page", () => {
       runHook(() => {
         const { isFirstPage, next } = useOffsetPagination({
           total: 35,
@@ -293,8 +293,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('isLastPage', () => {
-    it('returns true when on the last page', () => {
+  describe("isLastPage", () => {
+    it("returns true when on the last page", () => {
       runHook(() => {
         const { isLastPage, next } = useOffsetPagination({
           total: 35,
@@ -308,7 +308,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('returns false when not the last page', () => {
+    it("returns false when not the last page", () => {
       runHook(() => {
         const { isLastPage, prev } = useOffsetPagination({
           total: 35,
@@ -322,8 +322,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('onPageChange', () => {
-    it('is called when the page changes', () => {
+  describe("onPageChange", () => {
+    it("is called when the page changes", () => {
       return runAsyncHook(async () => {
         const onPageChange = cy.spy()
         const [page, setPage] = createSignal(1)
@@ -356,7 +356,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('is called with the correct UseOffsetPaginationReturn values', () => {
+    it("is called with the correct UseOffsetPaginationReturn values", () => {
       return runAsyncHook(async () => {
         const onPageChange = cy.spy(data => {
           return {
@@ -421,8 +421,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('onPageSizeChange', () => {
-    it('is called when the page size changes', () => {
+  describe("onPageSizeChange", () => {
+    it("is called when the page size changes", () => {
       return runAsyncHook(async () => {
         const onPageSizeChange = cy.spy()
         const [pageSize, setPageSize] = createSignal(5)
@@ -445,7 +445,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('is called with the correct UseOffsetPaginationReturn values', () => {
+    it("is called with the correct UseOffsetPaginationReturn values", () => {
       return runAsyncHook(async () => {
         const [pageSize, setPageSize] = createSignal(5)
         const onPageSizeChange = cy.spy(data => {
@@ -491,8 +491,8 @@ describe('useOffsetPagination', () => {
     })
   })
 
-  describe('onPageCountChange', () => {
-    it('is called when the page count changes', () => {
+  describe("onPageCountChange", () => {
+    it("is called when the page count changes", () => {
       return runAsyncHook(async () => {
         const onPageCountChange = cy.spy()
         const [pageSize, setPageSize] = createSignal(5)
@@ -515,7 +515,7 @@ describe('useOffsetPagination', () => {
       })
     })
 
-    it('is called with the correct UseOffsetPaginationReturn values', () => {
+    it("is called with the correct UseOffsetPaginationReturn values", () => {
       return runAsyncHook(async () => {
         const [pageSize, setPageSize] = createSignal(5)
         const onPageCountChange = cy.spy(data => {

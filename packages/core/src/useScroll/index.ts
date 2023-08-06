@@ -1,11 +1,13 @@
-import { noop, toValue, useDebounceFn, useThrottleFn } from '@solidjs-use/shared'
-import { createSignal } from 'solid-js'
-import { createMutable } from 'solid-js/store'
-import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
-import { useEventListener } from '../useEventListener'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import { noop, toValue, useDebounceFn, useThrottleFn } from "@solidjs-use/shared"
+import { createSignal } from "solid-js"
+import { createMutable } from "solid-js/store"
+import { writableComputed } from "@solidjs-use/shared/solid-to-vue"
+import { useEventListener } from "../useEventListener"
+import type { MaybeAccessor } from "@solidjs-use/shared"
+import type { ConfigurableWindow } from "../_configurable"
+import { defaultWindow } from "../_configurable"
 
-export interface UseScrollOptions {
+export interface UseScrollOptions extends ConfigurableWindow {
   /**
    * Throttle time for scroll event, it’s disabled by default.
    *
@@ -92,7 +94,8 @@ export function useScroll(
       capture: false,
       passive: true
     },
-    behavior = 'auto'
+    behavior = "auto",
+    window = defaultWindow
   } = options
 
   const [internalX, setInternalX] = createSignal(0)
@@ -118,10 +121,12 @@ export function useScroll(
   })
 
   function scrollTo(_x: number | undefined, _y: number | undefined) {
+    if (!window) return
+
     const _element = toValue(element)
 
     if (!_element) return
-    ;(_element instanceof Document ? document.body : _element)?.scrollTo({
+    ;(_element instanceof Document ? window.document.body : _element)?.scrollTo({
       top: toValue(_y) ?? y(),
       left: toValue(_x) ?? x(),
       behavior: toValue(behavior)
@@ -153,11 +158,15 @@ export function useScroll(
   }
   const onScrollEndDebounced = useDebounceFn(onScrollEnd, throttle + idle)
 
-  const setArrivedState = (target: HTMLElement | SVGElement | Window | Document | null | undefined) => {
+  const setArrivedState = (
+    target: HTMLElement | SVGElement | Window | Document | null | undefined
+  ) => {
+    if (!window) return
+
     const el = (
       target === window
         ? (target as Window).document.documentElement
-        : target === document
+        : target === window.document
         ? (target as Document).documentElement
         : target
     ) as HTMLElement
@@ -169,9 +178,10 @@ export function useScroll(
     directions.right = scrollLeft > internalX()
     const left = Math.abs(scrollLeft) <= 0 + (offset.left ?? 0)
     const right =
-      Math.abs(scrollLeft) + el.clientWidth >= el.scrollWidth - (offset.right ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+      Math.abs(scrollLeft) + el.clientWidth >=
+      el.scrollWidth - (offset.right ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
 
-    if (display === 'flex' && flexDirection === 'row-reverse') {
+    if (display === "flex" && flexDirection === "row-reverse") {
       arrivedState.left = right
       arrivedState.right = left
     } else {
@@ -183,19 +193,20 @@ export function useScroll(
     let scrollTop = el.scrollTop
 
     // patch for mobile compatible
-    if (target === document && !scrollTop) scrollTop = document.body.scrollTop
+    if (target === window.document && !scrollTop) scrollTop = window.document.body.scrollTop
 
     directions.top = scrollTop < internalY()
     directions.bottom = scrollTop > internalY()
     const top = Math.abs(scrollTop) <= 0 + (offset.top ?? 0)
     const bottom =
-      Math.abs(scrollTop) + el.clientHeight >= el.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
+      Math.abs(scrollTop) + el.clientHeight >=
+      el.scrollHeight - (offset.bottom ?? 0) - ARRIVED_STATE_THRESHOLD_PIXELS
 
     /**
      * reverse columns and rows behave exactly the other way around,
      * bottom is treated as top and top is treated as the negative version of bottom
      */
-    if (display === 'flex' && flexDirection === 'column-reverse') {
+    if (display === "flex" && flexDirection === "column-reverse") {
       arrivedState.top = bottom
       arrivedState.bottom = top
     } else {
@@ -207,7 +218,11 @@ export function useScroll(
   }
 
   const onScrollHandler = (e: Event) => {
-    const eventTarget = (e.target === document ? (e.target as Document).documentElement : e.target) as HTMLElement
+    if (!window) return
+
+    const eventTarget = (
+      e.target === window.document ? (e.target as Document).documentElement : e.target
+    ) as HTMLElement
 
     setArrivedState(eventTarget)
     setIsScrolling(true)
@@ -217,12 +232,12 @@ export function useScroll(
 
   useEventListener(
     element,
-    'scroll',
+    "scroll",
     throttle ? useThrottleFn(onScrollHandler, throttle, true, false) : onScrollHandler,
     eventListenerOptions
   )
 
-  useEventListener(element, 'scrollend', onScrollEnd, eventListenerOptions)
+  useEventListener(element, "scrollend", onScrollEnd, eventListenerOptions)
 
   return {
     x,
@@ -235,7 +250,7 @@ export function useScroll(
     measure() {
       const _element = toValue(element)
 
-      if (_element) setArrivedState(_element)
+      if (window && _element) setArrivedState(_element)
     }
   }
 }

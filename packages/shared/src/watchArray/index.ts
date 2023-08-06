@@ -1,7 +1,12 @@
-import { watch } from '../watch'
-import type { Accessor, OnOptions } from 'solid-js/types/reactive/signal'
+import { watch } from "../watch"
+import type { Accessor, OnOptions } from "solid-js/types/reactive/signal"
 
-export declare type WatchArrayCallback<V = any, OV = any> = (value: V, oldValue: OV, added: V, removed: OV) => any
+export declare type WatchArrayCallback<V = any, OV = any> = (
+  value: V,
+  oldValue: OV,
+  added: V,
+  removed: OV
+) => any
 
 /**
  * Watch for an array with additions and removals.
@@ -17,7 +22,7 @@ export function watchArray<T, Defer extends Readonly<boolean> = false>(
   return watch(
     source,
     newList => {
-      const oldListRemains = new Array<boolean>(oldList.length)
+      const oldListRemains = Array.from({ length: oldList.length })
       const added: T[] = []
       for (const obj of newList) {
         let found = false

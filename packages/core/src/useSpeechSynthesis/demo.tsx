@@ -1,14 +1,20 @@
-import { FaSolidAngleDown } from 'solid-icons/fa'
-import { TbLanguageHiragana } from 'solid-icons/tb'
-import { createSignal, For, onMount, Show } from 'solid-js'
-import { useSpeechSynthesis } from 'solidjs-use'
+import { FaSolidAngleDown } from "solid-icons/fa"
+import { TbLanguageHiragana } from "solid-icons/tb"
+import { createSignal, For, onMount, Show } from "solid-js"
+import { useSpeechSynthesis } from "solidjs-use"
 
 const Demo = () => {
-  const [voice, setVoice] = createSignal<SpeechSynthesisVoice>(undefined as unknown as SpeechSynthesisVoice)
-  const [text, setText] = createSignal('Hello, everyone! Good morning!')
+  const [voice, setVoice] = createSignal<SpeechSynthesisVoice>(
+    undefined as unknown as SpeechSynthesisVoice
+  )
+  const [text, setText] = createSignal("Hello, everyone! Good morning!")
+  const [pitch, setPitch] = createSignal(1)
+  const [rate, setRate] = createSignal(1)
 
   const speech = useSpeechSynthesis(text, {
-    voice
+    voice,
+    pitch,
+    rate
   })
 
   let synth: SpeechSynthesis
@@ -27,8 +33,8 @@ const Demo = () => {
   })
 
   const play = () => {
-    if (speech.status() === 'pause') {
-      console.log('resume')
+    if (speech.status() === "pause") {
+      console.log("resume")
       window.speechSynthesis.resume()
     } else {
       speech.speak()
@@ -51,17 +57,31 @@ const Demo = () => {
           fallback={
             <div>
               <label class="font-bold mr-2">Spoken Text</label>
-              <input value={text()} onInput={e => setText(e.currentTarget.value)} class="!inline-block" type="text" />
+              <input
+                value={text()}
+                onInput={e => setText(e.currentTarget.value)}
+                class="!inline-block"
+                type="text"
+              />
 
               <br />
               <label class="font-bold mr-2">Language</label>
-              <div bg="$vp-c-bg" border="$vp-c-divider-light 1" inline-flex items-center relative rounded>
+              <div
+                bg="$vp-c-bg"
+                border="$vp-c-divider-light 1"
+                inline-flex
+                items-center
+                relative
+                rounded
+              >
                 <TbLanguageHiragana class="absolute left-2 opacity-80 pointer-events-none" />
                 <select
                   value={voice()?.name}
                   onChange={e =>
                     setVoice(
-                      voices().find(item => item.name === e.currentTarget.value) as unknown as SpeechSynthesisVoice
+                      voices().find(
+                        item => item.name === e.currentTarget.value
+                      ) as unknown as SpeechSynthesisVoice
                     )
                   }
                   px-8
@@ -84,10 +104,39 @@ const Demo = () => {
                 </select>
                 <FaSolidAngleDown class="absolute right-2 opacity-80 pointer-events-none" />
               </div>
+              <br />
+              <div inline-flex items-center>
+                <label class="font-bold mr-2">Pitch</label>
+                <div class="mt-1" inline-flex>
+                  <input
+                    value={pitch()}
+                    onInput={e => setPitch(Number(e.currentTarget.value))}
+                    type="range"
+                    min="0.5"
+                    max="2"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+
+              <br />
+              <div inline-flex items-center>
+                <label class="font-bold mr-3">Rate</label>
+                <div class="mt-1" inline-flex>
+                  <input
+                    value={rate()}
+                    onInput={e => setRate(Number(e.currentTarget.value))}
+                    type="range"
+                    min="0.5"
+                    max="2"
+                    step="0.1"
+                  />
+                </div>
+              </div>
 
               <div class="mt-2">
                 <button disabled={speech.isPlaying()} onClick={play}>
-                  {speech.status() === 'pause' ? 'Resume' : 'Speak'}
+                  {speech.status() === "pause" ? "Resume" : "Speak"}
                 </button>
                 <button disabled={!speech.isPlaying()} class="orange" onClick={pause}>
                   Pause

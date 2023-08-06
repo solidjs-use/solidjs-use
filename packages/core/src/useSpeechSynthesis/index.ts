@@ -1,11 +1,11 @@
-import { toAccessor, tryOnCleanup, toValue } from '@solidjs-use/shared'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { useSupported } from '../useSupported'
-import { defaultWindow } from '../_configurable'
-import type { MaybeAccessor } from '@solidjs-use/shared'
-import type { ConfigurableWindow } from '../_configurable'
+import { toAccessor, tryOnCleanup, toValue } from "@solidjs-use/shared"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
+import { useSupported } from "../useSupported"
+import { defaultWindow } from "../_configurable"
+import type { MaybeAccessor } from "@solidjs-use/shared"
+import type { ConfigurableWindow } from "../_configurable"
 
-export type UseSpeechSynthesisStatus = 'init' | 'play' | 'pause' | 'end'
+export type UseSpeechSynthesisStatus = "init" | "play" | "pause" | "end"
 
 export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
   /**
@@ -19,13 +19,13 @@ export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
    *
    * @default 1
    */
-  pitch?: SpeechSynthesisUtterance['pitch']
+  pitch?: MaybeAccessor<SpeechSynthesisUtterance["pitch"]>
   /**
    * Gets and sets the speed at which the utterance will be spoken at.
    *
    * @default 1
    */
-  rate?: SpeechSynthesisUtterance['rate']
+  rate?: MaybeAccessor<SpeechSynthesisUtterance["rate"]>
   /**
    * Gets and sets the voice that will be used to speak the utterance.
    */
@@ -35,7 +35,7 @@ export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
    *
    * @default 1
    */
-  volume?: SpeechSynthesisUtterance['volume']
+  volume?: SpeechSynthesisUtterance["volume"]
 }
 
 /**
@@ -44,17 +44,20 @@ export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
  * @see https://solidjs-use.github.io/solidjs-use/core/useSpeechSynthesis
  * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis SpeechSynthesis
  */
-export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpeechSynthesisOptions = {}) {
+export function useSpeechSynthesis(
+  text: MaybeAccessor<string>,
+  options: UseSpeechSynthesisOptions = {}
+) {
   const { pitch = 1, rate = 1, volume = 1, window = defaultWindow } = options
 
   const synth = window && ((window as any).speechSynthesis as SpeechSynthesis)
   const isSupported = useSupported(() => synth)
 
   const [isPlaying, setIsPlaying] = createSignal(false)
-  const [status, setStatus] = createSignal<UseSpeechSynthesisStatus>('init')
+  const [status, setStatus] = createSignal<UseSpeechSynthesisStatus>("init")
 
-  const spokenText = toAccessor(text || '')
-  const lang = toAccessor(options.lang ?? 'en-US')
+  const spokenText = toAccessor(text || "")
+  const lang = toAccessor(options.lang ?? "en-US")
   const [error, setError] = createSignal<SpeechSynthesisErrorEvent | undefined>(undefined)
 
   const toggle = (value = !isPlaying()) => {
@@ -64,28 +67,28 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
   const bindEventsForUtterance = (utterance: SpeechSynthesisUtterance) => {
     utterance.lang = toValue(lang)
     utterance.voice = toValue(options.voice) ?? null
-    utterance.pitch = pitch
-    utterance.rate = rate
+    utterance.pitch = toValue(pitch)
+    utterance.rate = toValue(rate)
     utterance.volume = volume
 
     utterance.onstart = () => {
       setIsPlaying(true)
-      setStatus('play')
+      setStatus("play")
     }
 
     utterance.onpause = () => {
       setIsPlaying(false)
-      setStatus('pause')
+      setStatus("pause")
     }
 
     utterance.onresume = () => {
       setIsPlaying(true)
-      setStatus('play')
+      setStatus("play")
     }
 
     utterance.onend = () => {
       setIsPlaying(false)
-      setStatus('end')
+      setStatus("end")
     }
 
     utterance.onerror = event => {
@@ -95,7 +98,7 @@ export function useSpeechSynthesis(text: MaybeAccessor<string>, options: UseSpee
 
   const utterance = createMemo(() => {
     setIsPlaying(false)
-    setStatus('init')
+    setStatus("init")
     const newUtterance = new SpeechSynthesisUtterance(spokenText())
     bindEventsForUtterance(newUtterance)
     return newUtterance

@@ -1,11 +1,11 @@
-import { objectPick, toAccessors } from '@solidjs-use/shared'
-import { createMutable } from 'solid-js/store'
-import { createSignal } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import type { PointerType, Position } from '../types'
-import type { ConfigurableWindow } from '../_configurable'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import { objectPick, toAccessors } from "@solidjs-use/shared"
+import { createMutable } from "solid-js/store"
+import { createSignal } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import type { PointerType, Position } from "../types"
+import type { ConfigurableWindow } from "../_configurable"
+import type { MaybeAccessor } from "@solidjs-use/shared"
 
 export interface UsePointerState extends Position {
   pressure: number
@@ -65,15 +65,16 @@ export function usePointer(options: UsePointerOptions = {}) {
 
   const handler = (event: PointerEvent) => {
     setInside(true)
-    if (options.pointerTypes && !options.pointerTypes.includes(event.pointerType as PointerType)) return
+    if (options.pointerTypes && !options.pointerTypes.includes(event.pointerType as PointerType))
+      return
 
     Object.assign(state, objectPick(event, keys, false))
   }
 
   if (target) {
-    useEventListener(target, 'pointerdown', handler, { passive: true })
-    useEventListener(target, 'pointermove', handler, { passive: true })
-    useEventListener(target, 'pointerleave', () => setInside(false), { passive: true })
+    const listenerOptions = { passive: true }
+    useEventListener(target, ["pointerdown", "pointermove", "pointerup"], handler, listenerOptions)
+    useEventListener(target, "pointerleave", () => setInside(false), listenerOptions)
   }
 
   return {

@@ -1,14 +1,14 @@
-import { noop } from '@solidjs-use/shared'
-import { createMemo, createSignal } from 'solid-js'
-import { createMutable } from 'solid-js/store'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import type { Position } from '../types'
-import type { ConfigurableWindow } from '../_configurable'
-import type { Accessor } from 'solid-js'
-import type { MaybeAccessor } from '@solidjs-use/shared'
+import { noop } from "@solidjs-use/shared"
+import { createMemo, createSignal } from "solid-js"
+import { createMutable } from "solid-js/store"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import type { Position } from "../types"
+import type { ConfigurableWindow } from "../_configurable"
+import type { Accessor } from "solid-js"
+import type { MaybeAccessor } from "@solidjs-use/shared"
 
-export type UseSwipeDirection = 'up' | 'down' | 'left' | 'right' | 'none'
+export type UseSwipeDirection = "up" | "down" | "left" | "right" | "none"
 
 export interface UseSwipeOptions extends ConfigurableWindow {
   /**
@@ -59,7 +59,14 @@ export function useSwipe(
   target: MaybeAccessor<EventTarget | null | undefined>,
   options: UseSwipeOptions = {}
 ): UseSwipeReturn {
-  const { threshold = 50, onSwipe, onSwipeEnd, onSwipeStart, passive = true, window = defaultWindow } = options
+  const {
+    threshold = 50,
+    onSwipe,
+    onSwipeEnd,
+    onSwipeStart,
+    passive = true,
+    window = defaultWindow
+  } = options
 
   const coordsStart = createMutable<Position>({ x: 0, y: 0 })
   const coordsEnd = createMutable<Position>({ x: 0, y: 0 })
@@ -73,12 +80,12 @@ export function useSwipe(
   const [isSwiping, setIsSwiping] = createSignal(false)
 
   const direction = createMemo<UseSwipeDirection>(() => {
-    if (!isThresholdExceeded()) return 'none'
+    if (!isThresholdExceeded()) return "none"
 
     if (abs(diffX()) > abs(diffY())) {
-      return diffX() > 0 ? 'left' : 'right'
+      return diffX() > 0 ? "left" : "right"
     }
-    return diffY() > 0 ? 'up' : 'down'
+    return diffY() > 0 ? "up" : "down"
   })
 
   const getTouchEventCoords = (e: TouchEvent) => [e.touches[0].clientX, e.touches[0].clientY]
@@ -97,7 +104,10 @@ export function useSwipe(
 
   const isPassiveEventSupported = checkPassiveEventSupport(window?.document)
 
-  if (!passive) listenerOptions = isPassiveEventSupported ? { passive: false, capture: true } : { capture: true }
+  if (!passive)
+    listenerOptions = isPassiveEventSupported
+      ? { passive: false, capture: true }
+      : { capture: true }
   else listenerOptions = isPassiveEventSupported ? { passive: true } : { capture: false }
 
   const onTouchEnd = (e: TouchEvent) => {
@@ -109,7 +119,7 @@ export function useSwipe(
   const stops = [
     useEventListener(
       target,
-      'touchstart',
+      "touchstart",
       (e: TouchEvent) => {
         if (e.touches.length !== 1) return
         if (listenerOptions.capture && !listenerOptions.passive) e.preventDefault()
@@ -123,7 +133,7 @@ export function useSwipe(
 
     useEventListener(
       target,
-      'touchmove',
+      "touchmove",
       (e: TouchEvent) => {
         if (e.touches.length !== 1) return
         const [x, y] = getTouchEventCoords(e)
@@ -134,8 +144,7 @@ export function useSwipe(
       listenerOptions
     ),
 
-    useEventListener(target, 'touchend', onTouchEnd, listenerOptions),
-    useEventListener(target, 'touchcancel', onTouchEnd, listenerOptions)
+    useEventListener(target, ["touchend", "touchcancel"], onTouchEnd, listenerOptions)
   ]
 
   const stop = () => stops.forEach(s => s())
@@ -165,7 +174,7 @@ function checkPassiveEventSupport(document?: Document) {
       return false
     }
   }
-  document.addEventListener('x', noop, optionsBlock)
-  document.removeEventListener('x', noop)
+  document.addEventListener("x", noop, optionsBlock)
+  document.removeEventListener("x", noop)
   return supportsPassive
 }

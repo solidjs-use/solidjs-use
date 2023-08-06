@@ -1,9 +1,18 @@
-import { createSignal } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import type { ConfigurableWindow, ConfigurableDocumentOrShadowRoot } from '../_configurable'
+import { createSignal } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import type { ConfigurableWindow, ConfigurableDocumentOrShadowRoot } from "../_configurable"
 
-export interface UseActiveElementOptions extends ConfigurableWindow, ConfigurableDocumentOrShadowRoot {}
+export interface UseActiveElementOptions
+  extends ConfigurableWindow,
+    ConfigurableDocumentOrShadowRoot {
+  /**
+   * Search active element deeply inside shadow dom
+   *
+   * @default true
+   */
+  deep?: boolean
+}
 
 /**
  * Reactive `document.activeElement`
@@ -11,16 +20,24 @@ export interface UseActiveElementOptions extends ConfigurableWindow, Configurabl
  * @see https://solidjs-use.github.io/solidjs-use/core/useActiveElement
  */
 export function useActiveElement<T extends HTMLElement>(options: UseActiveElementOptions = {}) {
-  const { window = defaultWindow } = options
+  const { window = defaultWindow, deep = true } = options
   const document = options.document ?? window?.document
+  const getDeepActiveElement = () => {
+    let element = document?.activeElement
+    if (deep) {
+      while (element?.shadowRoot) element = element?.shadowRoot?.activeElement
+    }
+    return element
+  }
+
   const [activeElement, setActiveElement] = createSignal<T | null | undefined>(
-    document?.activeElement as T | null | undefined
+    getDeepActiveElement() as T | null | undefined
   )
 
   if (window) {
     useEventListener(
       window,
-      'blur',
+      "blur",
       event => {
         if (event.relatedTarget !== null) return
 
@@ -30,7 +47,7 @@ export function useActiveElement<T extends HTMLElement>(options: UseActiveElemen
     )
     useEventListener(
       window,
-      'focus',
+      "focus",
       () => {
         setActiveElement(() => document?.activeElement as T)
       },

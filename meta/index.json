@@ -360,7 +360,7 @@
       "lastUpdated": 1681642048000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/onKeyStroke/",
       "category": "Sensors",
-      "description": "listen for keyboard key being stroked"
+      "description": "listen for keyboard keystrokes"
     },
     {
       "name": "onLongPress",
@@ -1008,7 +1008,7 @@
     {
       "name": "useEventListener",
       "package": "core",
-      "lastUpdated": 1681642048000,
+      "lastUpdated": 1690083115000,
       "docs": "https://solidjs-use.github.io/solidjs-use/core/useEventListener/",
       "category": "Browser",
       "description": "use EventListener with ease"

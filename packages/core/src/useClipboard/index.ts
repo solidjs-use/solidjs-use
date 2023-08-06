@@ -1,14 +1,13 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import { toValue, useTimeoutFn } from '@solidjs-use/shared'
-import { createMemo, createSignal } from 'solid-js'
-import { useEventListener } from '../useEventListener'
-import { useSupported } from '../useSupported'
-import { defaultNavigator } from '../_configurable'
-import type { ConfigurableNavigator } from '../_configurable'
-import type { Accessor } from 'solid-js'
-import type { MaybeAccessor } from '@solidjs-use/shared'
-import type { WindowEventName } from '../useEventListener'
+import { toValue, useTimeoutFn } from "@solidjs-use/shared"
+import { createMemo, createSignal } from "solid-js"
+import { useEventListener } from "../useEventListener"
+import { useSupported } from "../useSupported"
+import { defaultNavigator } from "../_configurable"
+import type { ConfigurableNavigator } from "../_configurable"
+import type { Accessor } from "solid-js"
+import type { MaybeAccessor } from "@solidjs-use/shared"
 
 export interface UseClipboardOptions<Source> extends ConfigurableNavigator {
   /**
@@ -51,17 +50,24 @@ export interface UseClipboardReturn<Optional> {
  * @see https://solidjs-use.github.io/solidjs-use/core/useClipboard
  */
 export function useClipboard(options?: UseClipboardOptions<undefined>): UseClipboardReturn<false>
-export function useClipboard(options: UseClipboardOptions<MaybeAccessor<string>>): UseClipboardReturn<true>
+export function useClipboard(
+  options: UseClipboardOptions<MaybeAccessor<string>>
+): UseClipboardReturn<true>
 export function useClipboard(
   options: UseClipboardOptions<MaybeAccessor<string> | undefined> = {}
 ): UseClipboardReturn<boolean> {
-  const { navigator = defaultNavigator, read = false, source, copiedDuring = 1500, legacy = false } = options
+  const {
+    navigator = defaultNavigator,
+    read = false,
+    source,
+    copiedDuring = 1500,
+    legacy = false
+  } = options
 
-  const events = ['copy', 'cut']
-  const isClipboardApiSupported = useSupported(() => navigator && 'clipboard' in navigator)
+  const isClipboardApiSupported = useSupported(() => navigator && "clipboard" in navigator)
   const isSupported = createMemo(() => isClipboardApiSupported() || legacy)
 
-  const [text, setText] = createSignal('')
+  const [text, setText] = createSignal("")
   const [copied, setCopied] = createSignal(false)
 
   const timeout = useTimeoutFn(() => setCopied(false), copiedDuring)
@@ -77,7 +83,7 @@ export function useClipboard(
   }
 
   if (isSupported() && read) {
-    for (const event of events) useEventListener(event as WindowEventName, updateText)
+    useEventListener(window, ["copy", "cut"], updateText)
   }
 
   async function copy(value = toValue(source)) {
@@ -91,18 +97,18 @@ export function useClipboard(
   }
 
   function legacyCopy(value: string) {
-    const ta = document.createElement('textarea')
-    ta.value = value ?? ''
-    ta.style.position = 'absolute'
-    ta.style.opacity = '0'
+    const ta = document.createElement("textarea")
+    ta.value = value ?? ""
+    ta.style.position = "absolute"
+    ta.style.opacity = "0"
     document.body.appendChild(ta)
     ta.select()
-    document.execCommand('copy')
+    document.execCommand("copy")
     ta.remove()
   }
 
   function legacyRead() {
-    return document?.getSelection?.()?.toString() ?? ''
+    return document?.getSelection?.()?.toString() ?? ""
   }
 
   return {

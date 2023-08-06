@@ -1,9 +1,16 @@
-import { containsProp, createEventHook, toAccessor, toValue, until, useTimeoutFn } from '@solidjs-use/shared'
-import { isAccessor } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { defaultWindow } from '../_configurable'
-import type { Accessor } from 'solid-js'
-import type { EventHookOn, Fn, MaybeAccessor, Stoppable } from '@solidjs-use/shared'
+import {
+  containsProp,
+  createEventHook,
+  toAccessor,
+  toValue,
+  until,
+  useTimeoutFn
+} from "@solidjs-use/shared"
+import { isAccessor } from "@solidjs-use/shared/solid-to-vue"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
+import { defaultWindow } from "../_configurable"
+import type { Accessor } from "solid-js"
+import type { EventHookOn, Fn, MaybeAccessor, Stoppable } from "@solidjs-use/shared"
 
 export interface UseFetchReturn<T> {
   /**
@@ -74,12 +81,30 @@ export interface UseFetchReturn<T> {
 
   // methods
   get: () => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  post: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  put: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  delete: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  patch: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  head: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
-  options: (payload?: MaybeAccessor<unknown>, type?: string) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  post: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  put: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  delete: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  patch: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  head: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+  options: (
+    payload?: MaybeAccessor<unknown>,
+    type?: string
+  ) => UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
 
   // type
   json: <JSON = any>() => UseFetchReturn<JSON> & PromiseLike<UseFetchReturn<JSON>>
@@ -89,14 +114,14 @@ export interface UseFetchReturn<T> {
   formData: () => UseFetchReturn<FormData> & PromiseLike<UseFetchReturn<FormData>>
 }
 
-type DataType = 'text' | 'json' | 'blob' | 'arrayBuffer' | 'formData'
-type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
-type Combination = 'overwrite' | 'chain'
+type DataType = "text" | "json" | "blob" | "arrayBuffer" | "formData"
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS"
+type Combination = "overwrite" | "chain"
 
 const payloadMapping: Record<string, string> = {
-  json: 'application/json',
-  text: 'text/plain',
-  formData: 'multipart/form-data'
+  json: "application/json",
+  text: "text/plain",
+  formData: "multipart/form-data"
 }
 
 export interface BeforeFetchContext {
@@ -176,7 +201,9 @@ export interface UseFetchOptions {
    * Will run immediately after the fetch request is returned.
    * Runs after any 2xx response
    */
-  afterFetch?: (ctx: AfterFetchContext) => Promise<Partial<AfterFetchContext>> | Partial<AfterFetchContext>
+  afterFetch?: (
+    ctx: AfterFetchContext
+  ) => Promise<Partial<AfterFetchContext>> | Partial<AfterFetchContext>
 
   /**
    * Will run immediately after the fetch request is returned.
@@ -223,14 +250,14 @@ function isFetchOptions(obj: object): obj is UseFetchOptions {
     obj &&
     containsProp(
       obj,
-      'immediate',
-      'refetch',
-      'initialData',
-      'timeout',
-      'beforeFetch',
-      'afterFetch',
-      'onFetchError',
-      'fetch'
+      "immediate",
+      "refetch",
+      "initialData",
+      "timeout",
+      "beforeFetch",
+      "afterFetch",
+      "onFetchError",
+      "fetch"
     )
   )
 }
@@ -241,7 +268,8 @@ function isAbsoluteURL(url: string) {
 }
 
 function headersToObject(headers: HeadersInit | undefined) {
-  if (typeof Headers !== 'undefined' && headers instanceof Headers) return Object.fromEntries([...headers.entries()])
+  if (typeof Headers !== "undefined" && headers instanceof Headers)
+    return Object.fromEntries([...headers.entries()])
   return headers
 }
 
@@ -249,7 +277,7 @@ function combineCallbacks<T = any>(
   combination: Combination,
   ...callbacks: Array<((ctx: T) => void | Partial<T> | Promise<void | Partial<T>>) | undefined>
 ) {
-  if (combination === 'overwrite') {
+  if (combination === "overwrite") {
     // use last callback
     return async (ctx: T) => {
       const callback = callbacks[callbacks.length - 1]
@@ -268,7 +296,7 @@ function combineCallbacks<T = any>(
 }
 
 export function createFetch(config: CreateFetchOptions = {}) {
-  const _combination = config.combination ?? ('chain' as Combination)
+  const _combination = config.combination ?? ("chain" as Combination)
   const _options = config.options ?? {}
   const _fetchOptions = config.fetchOptions ?? {}
 
@@ -326,7 +354,9 @@ export function createFetch(config: CreateFetchOptions = {}) {
  *
  * @see https://solidjs-use.github.io/solidjs-use/core/useFetch
  */
-export function useFetch<T>(url: MaybeAccessor<string>): UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
+export function useFetch<T>(
+  url: MaybeAccessor<string>
+): UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>>
 export function useFetch<T>(
   url: MaybeAccessor<string>,
   useFetchOptions: UseFetchOptions
@@ -341,7 +371,7 @@ export function useFetch<T>(
   url: MaybeAccessor<string>,
   ...args: any[]
 ): UseFetchReturn<T> & PromiseLike<UseFetchReturn<T>> {
-  const supportsAbort = typeof AbortController === 'function'
+  const supportsAbort = typeof AbortController === "function"
 
   let fetchOptions: RequestInit = {}
   let options: UseFetchOptions = { immediate: true, refetch: false, timeout: 0 }
@@ -352,8 +382,8 @@ export function useFetch<T>(
     payloadType?: string
   }
   const config: InternalConfig = {
-    method: 'GET',
-    type: 'text' as DataType,
+    method: "GET",
+    type: "text" as DataType,
     payload: undefined as unknown
   }
 
@@ -421,10 +451,21 @@ export function useFetch<T>(
 
     if (config.payload) {
       const headers = headersToObject(defaultFetchOptions.headers) as Record<string, string>
-      if (config.payloadType) headers['Content-Type'] = payloadMapping[config.payloadType] ?? config.payloadType
-
       const payload = toValue(config.payload)
-      defaultFetchOptions.body = config.payloadType === 'json' ? JSON.stringify(payload) : (payload as BodyInit)
+      // Set the payload to json type only if it's not provided and a literal object is provided and the object is not `formData`
+      // The only case we can deduce the content type and `fetch` can't
+      if (
+        !config.payloadType &&
+        payload &&
+        Object.getPrototypeOf(payload) === Object.prototype &&
+        !(payload instanceof FormData)
+      )
+        config.payloadType = "json"
+      if (config.payloadType)
+        headers["Content-Type"] = payloadMapping[config.payloadType] ?? config.payloadType
+
+      defaultFetchOptions.body =
+        config.payloadType === "json" ? JSON.stringify(payload) : (payload as BodyInit)
     }
 
     let isCanceled = false
@@ -470,7 +511,10 @@ export function useFetch<T>(
           }
 
           if (options.afterFetch) {
-            ;({ data: responseData } = await options.afterFetch({ data: responseData, response: fetchResponse }))
+            ;({ data: responseData } = await options.afterFetch({
+              data: responseData,
+              response: fetchResponse
+            }))
           }
 
           setData(responseData)
@@ -530,19 +574,19 @@ export function useFetch<T>(
     onFetchError: errorEvent.on,
     onFetchFinally: finallyEvent.on,
     // method
-    get: setMethod('GET'),
-    put: setMethod('PUT'),
-    post: setMethod('POST'),
-    delete: setMethod('DELETE'),
-    patch: setMethod('PATCH'),
-    head: setMethod('HEAD'),
-    options: setMethod('OPTIONS'),
+    get: setMethod("GET"),
+    put: setMethod("PUT"),
+    post: setMethod("POST"),
+    delete: setMethod("DELETE"),
+    patch: setMethod("PATCH"),
+    head: setMethod("HEAD"),
+    options: setMethod("OPTIONS"),
     // type
-    json: setType('json'),
-    text: setType('text'),
-    blob: setType('blob'),
-    arrayBuffer: setType('arrayBuffer'),
-    formData: setType('formData')
+    json: setType("json"),
+    text: setType("text"),
+    blob: setType("blob"),
+    arrayBuffer: setType("arrayBuffer"),
+    formData: setType("formData")
   }
 
   function setMethod(method: HttpMethod) {
@@ -564,17 +608,6 @@ export function useFetch<T>(
             )
           )
         }
-
-        const rawPayload = toValue(config.payload)
-        // Set the payload to json type only if it's not provided and a literal object is provided and the object is not `formData`
-        // The only case we can deduce the content type and `fetch` can't
-        if (
-          !payloadType &&
-          rawPayload &&
-          Object.getPrototypeOf(rawPayload) === Object.prototype &&
-          !(rawPayload instanceof FormData)
-        )
-          config.payloadType = 'json'
 
         return {
           ...shell,
@@ -622,7 +655,7 @@ export function useFetch<T>(
 }
 
 function joinPaths(start: string, end: string): string {
-  if (!start.endsWith('/') && !end.startsWith('/')) return `${start}/${end}`
+  if (!start.endsWith("/") && !end.startsWith("/")) return `${start}/${end}`
 
   return `${start}${end}`
 }

@@ -1,10 +1,10 @@
-import { isAccessor } from '@solidjs-use/solid-to-vue'
-import { getOwner, runWithOwner } from 'solid-js'
-import { toValue } from '../toValue'
-import { promiseTimeout } from '../utils'
-import { watch } from '../watch'
-import type { EffectOnDeps, ElementOf, MaybeAccessor } from '../utils'
-import type { Owner } from 'solid-js'
+import { isAccessor } from "@solidjs-use/solid-to-vue"
+import { getOwner, runWithOwner } from "solid-js"
+import { toValue } from "../toValue"
+import { promiseTimeout } from "../utils"
+import { watch } from "../watch"
+import type { EffectOnDeps, ElementOf, MaybeAccessor } from "../utils"
+import type { Owner } from "solid-js"
 
 export interface UntilToMatchOptions {
   /**
@@ -35,14 +35,22 @@ export interface UntilBaseInstance<T, Not extends boolean = false> {
   changedTimes: (n?: number, options?: UntilToMatchOptions) => Promise<T>
 }
 
-type Falsy = false | void | null | undefined | 0 | 0n | ''
+type Falsy = false | void | null | undefined | 0 | 0n | ""
 
-export interface UntilValueInstance<T, Not extends boolean = false> extends UntilBaseInstance<T, Not> {
+export interface UntilValueInstance<T, Not extends boolean = false>
+  extends UntilBaseInstance<T, Not> {
   readonly not: UntilValueInstance<T, Not extends true ? false : true>
 
-  toBe: <P = T>(value: MaybeAccessor<P>, options?: UntilToMatchOptions) => Not extends true ? Promise<T> : Promise<P>
-  toBeTruthy: (options?: UntilToMatchOptions) => Not extends true ? Promise<T & Falsy> : Promise<Exclude<T, Falsy>>
-  toBeNull: (options?: UntilToMatchOptions) => Not extends true ? Promise<Exclude<T, null>> : Promise<null>
+  toBe: <P = T>(
+    value: MaybeAccessor<P>,
+    options?: UntilToMatchOptions
+  ) => Not extends true ? Promise<T> : Promise<P>
+  toBeTruthy: (
+    options?: UntilToMatchOptions
+  ) => Not extends true ? Promise<T & Falsy> : Promise<Exclude<T, Falsy>>
+  toBeNull: (
+    options?: UntilToMatchOptions
+  ) => Not extends true ? Promise<Exclude<T, null>> : Promise<null>
   toBeUndefined: (
     options?: UntilToMatchOptions
   ) => Not extends true ? Promise<Exclude<T, undefined>> : Promise<undefined>
@@ -58,8 +66,11 @@ export interface UntilArrayInstance<T> extends UntilBaseInstance<T> {
 function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
   const owner = selfOwner ?? getOwner()
 
-  function toMatch(condition: (v: any) => boolean, { timeout, throwOnTimeout }: UntilToMatchOptions = {}): Promise<T> {
-    let stop: Function | null = null
+  function toMatch(
+    condition: (v: any) => boolean,
+    { timeout, throwOnTimeout }: UntilToMatchOptions = {}
+  ): Promise<T> {
+    let stop: (() => void) | null = null
     const watcher = new Promise<T>(resolve => {
       runWithOwner(owner!, () => {
         stop = watch(r, (v: T) => {
@@ -87,7 +98,7 @@ function createUntil<T>(r: any, isNot = false, selfOwner?: Owner | null) {
     if (!isAccessor(value)) return toMatch(v => v === value, options)
 
     const { timeout, throwOnTimeout } = options ?? {}
-    let stop: Function | null = null
+    let stop: (() => void) | null = null
     const watcher = new Promise<T>(resolve => {
       runWithOwner(owner!, () => {
         stop = watch([r, value], ([v1, v2]: [T, any]) => {
@@ -195,7 +206,13 @@ export function until<T extends unknown[]>(
   r: EffectOnDeps<T> | MaybeAccessor<T>,
   owner?: Owner | null
 ): UntilArrayInstance<T>
-export function until<T>(r: EffectOnDeps<T> | MaybeAccessor<T>, owner?: Owner | null): UntilValueInstance<T>
-export function until<T>(r: any, owner?: Owner | null): UntilValueInstance<T> | UntilArrayInstance<T> {
+export function until<T>(
+  r: EffectOnDeps<T> | MaybeAccessor<T>,
+  owner?: Owner | null
+): UntilValueInstance<T>
+export function until<T>(
+  r: any,
+  owner?: Owner | null
+): UntilValueInstance<T> | UntilArrayInstance<T> {
   return createUntil(r, false, owner)
 }

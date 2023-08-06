@@ -1,9 +1,10 @@
-import { toValue } from '@solidjs-use/shared'
-import { nextTick } from '@solidjs-use/shared/solid-to-vue'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { useScroll } from '../useScroll'
-import type { UseScrollReturn, UseScrollOptions } from '../useScroll'
-import type { MaybeAccessor, Awaitable } from '@solidjs-use/shared'
+import { toValue } from "@solidjs-use/shared"
+import { nextTick } from "@solidjs-use/shared/solid-to-vue"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
+import { useScroll } from "../useScroll"
+import type { UseScrollReturn, UseScrollOptions } from "../useScroll"
+import type { MaybeAccessor, Awaitable } from "@solidjs-use/shared"
+import { useElementVisibility } from "../useElementVisibility"
 
 export interface UseInfiniteScrollOptions extends UseScrollOptions {
   /**
@@ -18,7 +19,7 @@ export interface UseInfiniteScrollOptions extends UseScrollOptions {
    *
    * @default 'bottom'
    */
-  direction?: 'top' | 'bottom' | 'left' | 'right'
+  direction?: "top" | "bottom" | "left" | "right"
 
   /**
    * The interval time between two load more (to avoid too many invokes).
@@ -38,7 +39,7 @@ export function useInfiniteScroll(
   onLoadMore: (state: UseScrollReturn) => Awaitable<void>,
   options: UseInfiniteScrollOptions = {}
 ) {
-  const { direction = 'bottom', interval = 100 } = options
+  const { direction = "bottom", interval = 100 } = options
   const state = useScroll(element, {
     ...options,
     offset: {
@@ -49,22 +50,35 @@ export function useInfiniteScroll(
 
   const [promise, setPromise] = createSignal<any>()
   const isLoading = createMemo(() => !!promise())
+  // Document and Window cannot be observed by IntersectionObserver
+  const observedElement = createMemo<HTMLElement | SVGElement | null | undefined>(() => {
+    const el = toValue(element)
+    if (el instanceof Window) return window.document.documentElement
+
+    if (el instanceof Document) return document.documentElement
+
+    return el
+  })
+  const isElementVisible = useElementVisibility(observedElement)
 
   function checkAndLoad() {
     state.measure()
-
-    const el = toValue(element) as HTMLElement
-    if (!el?.offsetParent) return
+    if (!observedElement() || !isElementVisible()) return
+    const { scrollHeight, clientHeight, scrollWidth, clientWidth } =
+      observedElement() as HTMLElement
 
     const isNarrower =
-      direction === 'bottom' || direction === 'top'
-        ? el.scrollHeight <= el.clientHeight
-        : el.scrollWidth <= el.clientWidth
+      direction === "bottom" || direction === "top"
+        ? scrollHeight <= clientHeight
+        : scrollWidth <= clientWidth
 
     if (state.arrivedState[direction] || isNarrower) {
       if (!promise()) {
         setPromise(
-          Promise.all([onLoadMore(state), new Promise(resolve => setTimeout(resolve, interval))]).finally(() => {
+          Promise.all([
+            onLoadMore(state),
+            new Promise(resolve => setTimeout(resolve, interval))
+          ]).finally(() => {
             setPromise(null)
             nextTick(() => checkAndLoad())
           })
@@ -73,7 +87,7 @@ export function useInfiniteScroll(
     }
   }
 
-  createEffect(on(() => [state.arrivedState[direction], toValue(element)], checkAndLoad))
+  createEffect(on(() => [state.arrivedState[direction], isElementVisible()], checkAndLoad))
 
   return {
     isLoading

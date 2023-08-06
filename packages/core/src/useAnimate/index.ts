@@ -1,16 +1,23 @@
-import { isObject, nextTick, objectOmit, toValue, tryOnCleanup, tryOnMount } from '@solidjs-use/shared'
-import { createEffect, createMemo, createSignal, on } from 'solid-js'
-import { createMutable } from 'solid-js/store'
-import { writableComputed } from '@solidjs-use/shared/solid-to-vue'
-import { toAccessor } from '@solidjs-use/shared/toAccessor'
-import { defaultWindow } from '../_configurable'
-import { useSupported } from '../useSupported'
-import { useEventListener } from '../useEventListener'
-import { useRafFn } from '../useRafFn'
-import type { WritableComputedReturn } from '@solidjs-use/shared/solid-to-vue'
-import type { Accessor, Setter } from 'solid-js'
-import type { MaybeAccessor, MaybeElementAccessor, Mutable } from '@solidjs-use/shared'
-import type { ConfigurableWindow } from '../_configurable'
+import {
+  isObject,
+  nextTick,
+  objectOmit,
+  toValue,
+  tryOnCleanup,
+  tryOnMount
+} from "@solidjs-use/shared"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
+import { createMutable } from "solid-js/store"
+import { writableComputed } from "@solidjs-use/shared/solid-to-vue"
+import { toAccessor } from "@solidjs-use/shared/toAccessor"
+import { defaultWindow } from "../_configurable"
+import { useSupported } from "../useSupported"
+import { useEventListener } from "../useEventListener"
+import { useRafFn } from "../useRafFn"
+import type { WritableComputedReturn } from "@solidjs-use/shared/solid-to-vue"
+import type { Accessor, Setter } from "solid-js"
+import type { MaybeAccessor, MaybeElementAccessor, Mutable } from "@solidjs-use/shared"
+import type { ConfigurableWindow } from "../_configurable"
 
 export interface UseAnimateOptions extends KeyframeAnimationOptions, ConfigurableWindow {
   /**
@@ -64,7 +71,13 @@ export interface UseAnimateReturn {
 
 type AnimateStoreKeys = Extract<
   keyof Animation,
-  'startTime' | 'currentTime' | 'timeline' | 'playbackRate' | 'pending' | 'playState' | 'replaceState'
+  | "startTime"
+  | "currentTime"
+  | "timeline"
+  | "playbackRate"
+  | "pending"
+  | "playState"
+  | "replaceState"
 >
 
 type AnimateStore = Mutable<Pick<Animation, AnimateStoreKeys>>
@@ -84,7 +97,14 @@ export function useAnimate(
 
   if (isObject(options)) {
     config = options
-    animateOptions = objectOmit(options, ['window', 'immediate', 'commitStyles', 'persist', 'onReady', 'onError'])
+    animateOptions = objectOmit(options, [
+      "window",
+      "immediate",
+      "commitStyles",
+      "persist",
+      "onReady",
+      "onError"
+    ])
   } else {
     config = { duration: options }
     animateOptions = options
@@ -102,7 +122,9 @@ export function useAnimate(
     }
   } = config
 
-  const isSupported = useSupported(() => window && HTMLElement && 'animate' in HTMLElement.prototype)
+  const isSupported = useSupported(
+    () => window && HTMLElement && "animate" in HTMLElement.prototype
+  )
 
   const [animate, setAnimate] = createSignal<Animation | undefined>(undefined)
   const store = createMutable<AnimateStore>({
@@ -111,8 +133,8 @@ export function useAnimate(
     timeline: null,
     playbackRate: _playbackRate,
     pending: false,
-    playState: immediate ? 'idle' : 'paused',
-    replaceState: 'active'
+    playState: immediate ? "idle" : "paused",
+    replaceState: "active"
   })
 
   const pending = createMemo(() => store.pending)
@@ -262,9 +284,7 @@ export function useAnimate(
     onReady?.(animateValue)
   }
 
-  useEventListener(animate, 'cancel', syncPause)
-  useEventListener(animate, 'finish', syncPause)
-  useEventListener(animate, 'remove', syncPause)
+  useEventListener(animate, ["cancel", "finish", "remove"], syncPause)
 
   const { resume: resumeRef, pause: pauseRef } = useRafFn(
     () => {

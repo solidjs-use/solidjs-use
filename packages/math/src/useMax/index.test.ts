@@ -1,20 +1,20 @@
-import { runHook } from '@dream2023/cypress-ct-solid-js'
-import { createSignal } from 'solid-js'
-import { useMax } from '.'
+import { runHook } from "@dream2023/cypress-ct-solid-js"
+import { createSignal } from "solid-js"
+import { useMax } from "."
 
-describe('useMax', () => {
-  it('should be defined', () => {
+describe("useMax", () => {
+  it("should be defined", () => {
     expect(useMax).to.be.exist
   })
 
-  it('should accept numbers', () => {
+  it("should accept numbers", () => {
     runHook(() => {
       const v = useMax(50, 100)
       expect(v()).to.eq(100)
     })
   })
 
-  it('should accept Signals', () => {
+  it("should accept Signals", () => {
     runHook(() => {
       const [value1, setValue1] = createSignal(10)
       const [value2, setValue2] = createSignal(100)
@@ -34,7 +34,7 @@ describe('useMax', () => {
     })
   })
 
-  it('should accept numbers and Signals', () => {
+  it("should accept numbers and Signals", () => {
     runHook(() => {
       const value1 = 10
       const [value2, setValue2] = createSignal(100)
@@ -48,17 +48,17 @@ describe('useMax', () => {
     })
   })
 
-  it('should accept single arg', () => {
+  it("should accept single arg", () => {
     runHook(() => {
       const v = useMax(50)
       expect(v()).to.eq(50)
     })
   })
 
-  it('should accept zero arg', () => {
+  it("should accept zero arg", () => {
     runHook(() => {
       const v = useMax()
-      expect(v()).to.eq(-Infinity)
+      expect(v()).to.eq(Number.NEGATIVE_INFINITY)
     })
   })
 })

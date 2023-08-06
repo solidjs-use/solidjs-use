@@ -1,8 +1,8 @@
-import { toValue, isIOS, noop } from '@solidjs-use/shared'
-import { useEventListener } from '../useEventListener'
-import { defaultWindow } from '../_configurable'
-import type { Fn, MaybeElementAccessor } from '@solidjs-use/shared'
-import type { ConfigurableWindow } from '../_configurable'
+import { toValue, isIOS, noop } from "@solidjs-use/shared"
+import { useEventListener } from "../useEventListener"
+import { defaultWindow } from "../_configurable"
+import type { Fn, MaybeElementAccessor } from "@solidjs-use/shared"
+import type { ConfigurableWindow } from "../_configurable"
 
 export interface OnClickOutsideOptions extends ConfigurableWindow {
   /**
@@ -22,8 +22,8 @@ export interface OnClickOutsideOptions extends ConfigurableWindow {
 }
 
 export type OnClickOutsideHandler<
-  T extends { detectIframe: OnClickOutsideOptions['detectIframe'] } = { detectIframe: false }
-> = (evt: T['detectIframe'] extends true ? PointerEvent | FocusEvent : PointerEvent) => void
+  T extends { detectIframe: OnClickOutsideOptions["detectIframe"] } = { detectIframe: false }
+> = (evt: T["detectIframe"] extends true ? PointerEvent | FocusEvent : PointerEvent) => void
 
 let _iOSWorkaround = false
 
@@ -34,7 +34,7 @@ let _iOSWorkaround = false
  */
 export function onClickOutside<T extends OnClickOutsideOptions>(
   target: MaybeElementAccessor,
-  handler: OnClickOutsideHandler<{ detectIframe: T['detectIframe'] }>,
+  handler: OnClickOutsideHandler<{ detectIframe: T["detectIframe"] }>,
   options: T = {} as T
 ) {
   const { window = defaultWindow, ignore = [], capture = true, detectIframe = false } = options
@@ -45,14 +45,15 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
   // How it works: https://stackoverflow.com/a/39712411
   if (isIOS && !_iOSWorkaround) {
     _iOSWorkaround = true
-    Array.from(window.document.body.children).forEach(el => el.addEventListener('click', noop))
+    Array.from(window.document.body.children).forEach(el => el.addEventListener("click", noop))
+    window.document.documentElement.addEventListener("click", noop)
   }
 
   let shouldListen = true
 
   const shouldIgnore = (event: PointerEvent) => {
     return ignore.some(target => {
-      if (typeof target === 'string') {
+      if (typeof target === "string") {
         return Array.from(window.document.querySelectorAll(target)).some(
           el => el === event.target || event.composedPath().includes(el)
         )
@@ -78,10 +79,10 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
   }
 
   const cleanup = [
-    useEventListener(window, 'click', listener, { passive: true, capture }),
+    useEventListener(window, "click", listener, { passive: true, capture }),
     useEventListener(
       window,
-      'pointerdown',
+      "pointerdown",
       e => {
         const el = toValue(target)
         if (el) shouldListen = !e.composedPath().includes(el) && !shouldIgnore(e)
@@ -89,10 +90,13 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
       { passive: true }
     ),
     detectIframe &&
-      useEventListener(window, 'blur', event => {
+      useEventListener(window, "blur", event => {
         setTimeout(() => {
           const el = toValue(target)
-          if (window.document.activeElement?.tagName === 'IFRAME' && !el?.contains(window.document.activeElement))
+          if (
+            window.document.activeElement?.tagName === "IFRAME" &&
+            !el?.contains(window.document.activeElement)
+          )
             handler(event as any)
         }, 0)
       })
