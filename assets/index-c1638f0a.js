@@ -1,0 +1,1 @@
+import{n as o,x as l}from"./index-1dd1638f.js";import{u as a}from"./index-8c369488.js";function f(e,{window:s=l,scrollTarget:t}={}){const[i,n]=o(!1);return a(e,([{isIntersecting:r}])=>{n(r)},{root:t,window:s}),i}export{f as u};
