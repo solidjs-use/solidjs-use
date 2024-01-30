@@ -20,7 +20,7 @@ export function useDeviceOrientation(options: ConfigurableWindow = {}) {
   const [beta, setBeta] = createSignal<number | null>(null)
   const [gamma, setGamma] = createSignal<number | null>(null)
 
-  if (isSupported()) {
+  if (window && isSupported()) {
     useEventListener(window, 'deviceorientation', event => {
       setIsAbsolute(event.absolute)
       setAlpha(event.alpha)
