@@ -1,1 +1,0 @@
-import{G as c,B as g,u as n}from"./index-dbcfc8dd.js";function h(e=!1,o={}){const{truthyValue:a=!0,falsyValue:l=!1}=o,[t,u]=c(e);function r(f){if(arguments.length)return u(f),t();const s=n(a);return u(t()===s?n(l):s),t()}return g(e)?r:[t,r]}export{h as u};
